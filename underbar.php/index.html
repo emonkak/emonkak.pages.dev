@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Underbar.php</title>
+    <link href="css/screen.css" media="screen, projection" rel="stylesheet">
+    <link href="css/print.css" media="print" rel="stylesheet">
+  </head>
+  <body>
+    <header id="header">
+      <nav role="navigation">
+        <h1><a href="#header">Underbar.php
+            <p>Functional array utility</p></a></h1>
+        <ul>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+        </ul>
+        <h2><a href="#collections">Collections
+            <p>Array or traversable object</p></a></h2>
+        <ul>
+          <li><a href="#each">each</a></li>
+          <li><a href="#map">map</a></li>
+          <li><a href="#parMap">parMap</a></li>
+          <li><a href="#reduce">reduce</a></li>
+          <li><a href="#reduceRight">reduceRight</a></li>
+          <li><a href="#find">find</a></li>
+          <li><a href="#filter">filter</a></li>
+          <li><a href="#where">where</a></li>
+          <li><a href="#findWhere">findWhere</a></li>
+          <li><a href="#reject">reject</a></li>
+          <li><a href="#every">every</a></li>
+          <li><a href="#all">all</a></li>
+          <li><a href="#some">some</a></li>
+          <li><a href="#any">any</a></li>
+          <li><a href="#sum">sum</a></li>
+          <li><a href="#product">product</a></li>
+          <li><a href="#contains">contains</a></li>
+          <li><a href="#invoke">invoke</a></li>
+          <li><a href="#pluck">pluck</a></li>
+          <li><a href="#max">max</a></li>
+          <li><a href="#min">min</a></li>
+          <li><a href="#sortBy">sortBy</a></li>
+          <li><a href="#groupBy">groupBy</a></li>
+          <li><a href="#countBy">countBy</a></li>
+          <li><a href="#shuffle">shuffle</a></li>
+          <li><a href="#toArray">toArray</a></li>
+          <li><a href="#size">size</a></li>
+          <li><a href="#span">span</a></li>
+          <li><a href="#get">get</a></li>
+          <li><a href="#memorize">memorize</a></li>
+        </ul>
+        <h2><a href="#arrays">Arrays
+            <p>Numerical array</p></a></h2>
+        <ul>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#first">first</a></li>
+          <li><a href="#initial">initial</a></li>
+          <li><a href="#last">last</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article id="main" role="main">
+      <header>
+        <h1>Underbar.php
+          <p>Functional array utility</p>
+        </h1>
+      </header>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section id="getting-started">
+        <h2>Getting Started</h2>
+        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section id="api">
+        <h2>api</h2>
+        <section id="collections">
+          <h3>Collection Functions</h3>
+          <!-- each {{{-->
+          <section id="each">
+            <h4 class="function"><em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <p>
+              arrayの各要素に対して関数<var>$f</var>を呼び出します。
+              <var>$f</var>は以下の3つの引数を取ります。
+            </p>
+            <dl class="arguments">
+              <dt>
+                <var>$x</var>
+              </dt>
+              <dd>配列の要素</dd>
+              <dt>
+                <var>$i</var>
+              </dt>
+              <dd>配列の添字</dd>
+              <dt>
+                <var>$xs</var>
+              </dt>
+              <dd>配列自身</dd>
+            </dl>
+            <pre>&gt;&gt;&gt; _::each([1, 2, 3], function($x, $i, $xs) {
+  echo $x, PHP_EOL;
+})
+=&gt; 1
+=&gt; 2
+=&gt; 3
+&gt;&gt;&gt; _::each(['one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3], function($x, $k, $xs) {
+  echo $k, $x, PHP_EOL;
+})
+=&gt; one1
+=&gt; two2
+=&gt; three3</pre>
+            <div class="top"><a href="#">TOP</a></div>
+          </section>
+          <!-- }}}-->
+          <!-- map {{{-->
+          <section id="map">
+            <h4 class="function"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <p>
+              Arrayの各要素に対して関数<var>$f</var>を適用して新しい配列を返します。
+              <var>$f</var>は以下の3つの引数を取ります。
+            </p>
+            <dl class="arguments">
+              <dt>
+                <var>$x</var>
+              </dt>
+              <dd>配列の要素</dd>
+              <dt>
+                <var>$i</var>
+              </dt>
+              <dd>配列の添字</dd>
+              <dt>
+                <var>$xs</var>
+              </dt>
+              <dd>配列自身</dd>
+            </dl>
+            <pre>&gt;&gt;&gt; _::map([1, 2, 3], function($x) {
+  return $x * 3;
+})
+=&gt; [3, 6, 9]
+&gt;&gt;&gt; _::map(['one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3], function($x) {
+  return $x * 3;
+})
+=&gt; [3, 6, 9]</pre>
+            <div class="top"><a href="#">TOP</a></div>
+          </section>
+          <!-- }}}-->
+        </section>
+        <section id="arrays">
+          <h3>Array Functions</h3>
+          <!-- first {{{-->
+          <section id="first">
+            <h4 class="function"><em>array</em> first(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="function"><em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
+            <ul class="aliases">
+              <li><strong>head</strong></li>
+              <li><strong>take</strong></li>
+            </ul>
+            <p>
+              配列の最初の要素を返します。
+              <var>$n</var>を指定した場合は先頭からn個分の要素を含む配列を返します。
+            </p>
+            <pre>&gt;&gt;&gt; _::first([1, 2, 3])
+1
+&gt;&gt;&gt; _::first([1, 2, 3], 1)
+[1]
+&gt;&gt;&gt; _::first([1, 2, 3], 2)
+[1, 2]</pre>
+            <div class="top"><a href="#">TOP</a></div>
+          </section>
+          <!-- }}}-->
+        </section>
+      </section>
+    </article>
+    <footer id="footer">
+      <article>
+        <p>Developed by <a href="http://twitter.com/emonkak">@emonkak</a></p>
+        <p>Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a></p>
+      </article>
+    </footer>
+  </body>
+</html>

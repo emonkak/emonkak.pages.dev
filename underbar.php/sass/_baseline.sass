@@ -1,0 +1,53 @@
+$baseline-font-size: 16 !default
+$baseline-line-height: 24 !default
+
+@function baseline-line-height($font-size)
+  @if $font-size <= 0
+    $font-size: $baseline-font-size
+  $line-height: $baseline-line-height / $font-size
+  @return if($line-height < 1.0, $line-height * 2, $line-height)
+
+@function baseline-font-size($font-size)
+  @return 1em * $font-size / $baseline-font-size
+
+@function baseline-margin($font-size)
+  @return 1em * $baseline-line-height / $font-size
+
+@mixin baseline-font($font-size)
+  font-size: baseline-font-size($font-size)
+  line-height: baseline-line-height($font-size)
+
+@mixin baseline-grid
+  $grid-size: 1em * baseline-line-height(0)
+  @include background-image(linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px))
+  background-size: $grid-size $grid-size
+
+body
+  line-height: baseline-line-height(0)
+
+h1
+  @include baseline-font(48)
+  margin-bottom: baseline-margin(48)
+
+h2
+  @include baseline-font(36)
+  margin-bottom: baseline-margin(36)
+
+h3
+  @include baseline-font(24)
+  margin-bottom: baseline-margin(24)
+
+h4
+  @include baseline-font(21)
+  margin-bottom: baseline-margin(21)
+
+h5
+  @include baseline-font(18)
+  margin-bottom: baseline-margin(18)
+
+h6
+  @include baseline-font(16)
+  margin-bottom: baseline-margin(16)
+
+dl, ol, p, pre, ul, table
+  margin: 1em * baseline-line-height(0) 0
