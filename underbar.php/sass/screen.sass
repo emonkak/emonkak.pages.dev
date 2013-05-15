@@ -8,11 +8,11 @@
 @import "_baseline"
 @import "_color"
 
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Lato:400,700)
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Mono)
 
 // Variables  {{{1
 
-$sidebar-width: 260px
+$sidebar-width: 240px
 $content-width: 940px
 $responsive-min-width: 767px
 
@@ -30,7 +30,7 @@ $responsive-min-width: 767px
 // Common  {{{1
 
 body
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif
+  font-family: "Avenir", "Helvetica", "Arial", sans-serif
   font-size: 14px
   color: $color-midnight-blue
   -webkit-text-size-adjust: 100%
@@ -48,9 +48,10 @@ a
     text-decoration: underline
 
 pre
-  font-family: "Droid Sans Mono", "Menlo", "Monaco", "Consolas", "Bitstram Vera Sans Mono", monospace
+  font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", "Bitstram Vera Sans Mono", monospace
   background-color: $color-clouds
   padding: 0.5em * baseline-line-height(0)
+  overflow: scroll
   @include border-radius(4px)
 
 code, var
@@ -200,13 +201,13 @@ ul, ol
     nav
       margin: 0.5em * baseline-line-height(0)
 
-      h1
-        @include border-top-left-radius(4px)
-        @include border-top-right-radius(4px)
+    h1
+      @include border-top-left-radius(4px)
+      @include border-top-right-radius(4px)
 
-      ul:last-child li:last-child
-        @include border-bottom-left-radius(4px)
-        @include border-bottom-right-radius(4px)
+    ul:last-child li:last-child
+      @include border-bottom-left-radius(4px)
+      @include border-bottom-right-radius(4px)
 
     li
       text-indent: 1em
