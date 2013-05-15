@@ -1,5 +1,5 @@
-$baseline-font-size: 16 !default
-$baseline-line-height: 24 !default
+$baseline-font-size: 16
+$baseline-line-height: 24
 
 @function baseline-line-height($font-size)
   @if $font-size <= 0
@@ -18,12 +18,12 @@ $baseline-line-height: 24 !default
   line-height: baseline-line-height($font-size)
 
 @mixin baseline-grid
-  $grid-size: 1em * baseline-line-height(0)
+  $grid-size: 1em * baseline-line-height(16)
   @include background-image(linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px))
   background-size: $grid-size $grid-size
 
 body
-  line-height: baseline-line-height(0)
+  line-height: baseline-line-height(16)
 
 h1
   @include baseline-font(48)
@@ -50,4 +50,4 @@ h6
   margin-bottom: baseline-margin(16)
 
 dl, ol, p, pre, ul, table
-  margin: 1em * baseline-line-height(0) 0
+  margin: 1em * baseline-line-height(16) 0

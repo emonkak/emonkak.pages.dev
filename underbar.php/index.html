@@ -2,16 +2,16 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>Underbar.php</title>
     <link href="css/screen.css" media="screen, projection" rel="stylesheet">
     <link href="css/print.css" media="print" rel="stylesheet">
   </head>
   <body>
     <header id="header">
-      <nav role="navigation">
-        <h1><a href="#header">Underbar.php
-            <p>Functional array utility</p></a></h1>
+      <h1><a href="#header" class="btn-nav">&#x2630;</a><a href="#">Underbar.php
+          <p>Functional array utility</p></a></h1>
+      <nav id="navigation" role="navigation">
         <ul>
           <li><a href="#introduction">Introduction</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
@@ -86,14 +86,22 @@
       </header>
       <section id="introduction">
         <h2>Introduction</h2>
-        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Underbar.phpは配列操作のための便利な関数群を提供する<a href="http://underscorejs.org/">Underscore.js</a>ライクなPHPのライブラリです。</p>
+        <h3>Example</h3>
+        <h3>Features</h3>
+        <ul>
+          <li>遅延リスト</li>
+          <li>Enumerableトレイト</li>
+          <li>mapの並列処理</li>
+          <li>Haskell由来の関数</li>
+        </ul>
       </section>
       <section id="getting-started">
         <h2>Getting Started</h2>
         <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </section>
       <section id="api">
-        <h2>api</h2>
+        <h2>API</h2>
         <section id="collections">
           <h3>Collection Functions</h3>
           <!-- each {{{-->

@@ -3,77 +3,82 @@ doctype 5
 html(lang="ja")
   head
     meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+    meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
     title Underbar.php
     link(href="css/screen.css", media="screen, projection", rel="stylesheet")
     link(href="css/print.css", media="print", rel="stylesheet")
   body
-    header#header: nav(role="navigation")
-      h1: a(href="#header") Underbar.php
-        p Functional array utility
-      ul
-        li: a(href="#introduction") Introduction
-        li: a(href="#getting-started") Getting Started
+    header#header
+      h1
+        a.btn-nav(href="#header") &#x2630;
+        a(href="#") Underbar.php
+          p Functional array utility
+      nav#navigation(role="navigation")
+        ul
+          li: a(href="#introduction") Introduction
+          li: a(href="#getting-started") Getting Started
 
-      h2: a(href="#collections") Collections
-        p Array or traversable object
-      ul
-        li: a(href="#each") each
-        li: a(href="#map") map
-        li: a(href="#parMap") parMap
-        li: a(href="#reduce") reduce
-        li: a(href="#reduceRight") reduceRight
-        li: a(href="#find") find
-        li: a(href="#filter") filter
-        li: a(href="#where") where
-        li: a(href="#findWhere") findWhere
-        li: a(href="#reject") reject
-        li: a(href="#every") every
-        li: a(href="#all") all
-        li: a(href="#some") some
-        li: a(href="#any") any
-        li: a(href="#sum") sum
-        li: a(href="#product") product
-        li: a(href="#contains") contains
-        li: a(href="#invoke") invoke
-        li: a(href="#pluck") pluck
-        li: a(href="#max") max
-        li: a(href="#min") min
-        li: a(href="#sortBy") sortBy
-        li: a(href="#groupBy") groupBy
-        li: a(href="#countBy") countBy
-        li: a(href="#shuffle") shuffle
-        li: a(href="#toArray") toArray
-        li: a(href="#size") size
-        li: a(href="#span") span
-        li: a(href="#get") get
-        li: a(href="#memorize") memorize
+        h2
+          a(href="#collections") Collections
+            p Array or traversable object
+        ul
+          li: a(href="#each") each
+          li: a(href="#map") map
+          li: a(href="#parMap") parMap
+          li: a(href="#reduce") reduce
+          li: a(href="#reduceRight") reduceRight
+          li: a(href="#find") find
+          li: a(href="#filter") filter
+          li: a(href="#where") where
+          li: a(href="#findWhere") findWhere
+          li: a(href="#reject") reject
+          li: a(href="#every") every
+          li: a(href="#all") all
+          li: a(href="#some") some
+          li: a(href="#any") any
+          li: a(href="#sum") sum
+          li: a(href="#product") product
+          li: a(href="#contains") contains
+          li: a(href="#invoke") invoke
+          li: a(href="#pluck") pluck
+          li: a(href="#max") max
+          li: a(href="#min") min
+          li: a(href="#sortBy") sortBy
+          li: a(href="#groupBy") groupBy
+          li: a(href="#countBy") countBy
+          li: a(href="#shuffle") shuffle
+          li: a(href="#toArray") toArray
+          li: a(href="#size") size
+          li: a(href="#span") span
+          li: a(href="#get") get
+          li: a(href="#memorize") memorize
 
-      h2: a(href="#arrays") Arrays
-        p Numerical array
-      ul
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#first") first
-        li: a(href="#initial") initial
-        li: a(href="#last") last
+        h2
+          a(href="#arrays") Arrays
+            p Numerical array
+        ul
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#first") first
+          li: a(href="#initial") initial
+          li: a(href="#last") last
 
     article#main(role="main")
       header
@@ -83,14 +88,25 @@ html(lang="ja")
 
       section#introduction
         h2 Introduction
-        p lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        p Underbar.phpは配列操作のための便利な関数群を提供する
+          a(href="http://underscorejs.org/") Underscore.js
+          | ライクなPHPのライブラリです。
+
+        h3 Example
+
+        h3 Features
+        ul
+          li 遅延リスト
+          li Enumerableトレイト
+          li mapの並列処理
+          li Haskell由来の関数
 
       section#getting-started
         h2 Getting Started
         p lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
       section#api
-        h2 api
+        h2 API
 
         section#collections
           h3 Collection Functions

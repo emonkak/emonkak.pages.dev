@@ -1,5 +1,6 @@
 @import "blueprint/reset"
 @import "compass/css3"
+@import "compass/css3/background-size"
 @import "compass/css3/border-radius"
 @import "compass/css3/opacity"
 @import "compass/css3/transition"
@@ -8,7 +9,7 @@
 @import "_baseline"
 @import "_color"
 
-@import url(http://fonts.googleapis.com/css?family=Source+Code+Mono)
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro)
 
 // Variables  {{{1
 
@@ -50,7 +51,7 @@ a
 pre
   font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", "Bitstram Vera Sans Mono", monospace
   background-color: $color-clouds
-  padding: 0.5em * baseline-line-height(0)
+  padding: 0.5em * baseline-line-height(16)
   overflow: scroll
   @include border-radius(4px)
 
@@ -79,7 +80,6 @@ ul, ol
     display: block
     text-decoration: none
     color: $color-clouds
-    padding: 0.25em * baseline-line-height(0) 8px
 
   ul
     margin: 0
@@ -89,7 +89,6 @@ ul, ol
   h1, h2
     @include baseline-font(18)
     background-color: $color-turquoise
-    border-bottom: 1px solid $color-green-sea
     text-transform: uppercase
     margin: 0
 
@@ -97,11 +96,10 @@ ul, ol
       background: $color-green-sea
 
     a
-      padding: 1.0em * baseline-line-height(0) 8px
+      padding: 1.0em * baseline-line-height(18) 8px
       color: $color-midnight-blue
 
     p
-      @include baseline-font(14)
       font-weight: normal
       text-transform: none
       margin: 0
@@ -111,6 +109,9 @@ ul, ol
 
     &:hover
       background: $color-midnight-blue
+
+    a
+      padding: 0.25em * baseline-line-height(16) 8px
 
 
 
@@ -122,20 +123,20 @@ ul, ol
   padding: 0 1.5em
 
   header
-    margin: 4em * baseline-line-height(0) 0
+    margin: 4em * baseline-line-height(16) 0
 
-    h1
-      position: relative
+  h1
+    position: relative
 
-      p
-        color: $color-silver
-        line-height: 1
-        font-size: 50%
-        font-weight: normal
-        margin: 0
+    p
+      color: $color-silver
+      line-height: 1
+      font-size: 50%
+      font-weight: normal
+      margin: 0
 
   section
-    margin-bottom: 2em * baseline-line-height(0)
+    margin-bottom: 2em * baseline-line-height(16)
 
 
 
@@ -143,12 +144,11 @@ ul, ol
 // Footer  {{{1
 
 #footer
-  background-color: $color-midnight-blue
-  color: $color-clouds
+  background-color: $color-clouds
   text-align: center
   padding:
-    top: 2em * baseline-line-height(0)
-    bottom: 2em * baseline-line-height(0)
+    top: 2em * baseline-line-height(16)
+    bottom: 2em * baseline-line-height(16)
 
   article
     max-width: $content-width - $sidebar-width
@@ -168,23 +168,42 @@ ul, ol
     left: 0
     right: 0
     z-index: 1
-    background-color: $color-wet-asphalt
 
-    &:target
-      h2, ul
-        display: block
+    &:target nav
+      max-height: 999px
+      @include transition-timing-function(ease-in)
 
-    h2, ul
-      display: none
+    nav
+      @include transition-property(max-height)
+      @include transition-duration(0.2s)
+      @include transition-timing-function(ease-out)
+      background-color: $color-wet-asphalt
+      overflow: hidden
+      max-height: 0px
 
-    h2
-      clear: left
+    .btn-nav
+      @include border-radius(4px)
+      float: right
+      width: 48px
+      height: 32px
+      text-align: center
+      line-height: 32px
+      margin: 1em * baseline-line-height(16) 8px
+      padding: 0
+      background-color: $color-wet-asphalt
+      color: $color-clouds
+
+    .btn-nav:hover
+      background-color: $color-midnight-blue
+
+    ul
+      @include clearfix
 
     li
       float: left
 
   #main
-    margin-top: 4em * baseline-line-height(0)
+    margin-top: 4em * baseline-line-height(16)
 
 @include layout-two-column()
   #header
@@ -198,23 +217,11 @@ ul, ol
     &::-webkit-scrollbar
       width: 0
 
-    nav
-      margin: 0.5em * baseline-line-height(0)
-
-    h1
-      @include border-top-left-radius(4px)
-      @include border-top-right-radius(4px)
-
-    ul:last-child li:last-child
-      @include border-bottom-left-radius(4px)
-      @include border-bottom-right-radius(4px)
+    .btn-nav
+      display: none
 
     li
       text-indent: 1em
-      border-bottom: 1px solid $color-midnight-blue
-
-    li:first-child
-      border-top: 1px solid $color-midnight-blue
 
   #main
     margin-left: $sidebar-width
