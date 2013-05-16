@@ -190,11 +190,10 @@ ul, ol {
 #main {
   overflow: hidden;
   *zoom: 1;
-  padding: 0 1.5em;
 }
 #main header {
   padding: 6em 1.5em;
-  margin: 0 -1.5em 3em;
+  margin: 0 0 3em;
   background-color: #ecf0f1;
   text-align: center;
 }
@@ -205,7 +204,8 @@ ul, ol {
   font-weight: normal;
   margin: 0;
 }
-#main section {
+#main > section {
+  padding: 0 1.5em;
   margin-bottom: 6em;
 }
 #main section section {
@@ -217,9 +217,6 @@ ul, ol {
   text-align: center;
   padding-top: 3em;
   padding-bottom: 3em;
-}
-#footer article {
-  max-width: 700px;
 }
 #footer p {
   margin: 0;
@@ -309,6 +306,8 @@ ul, ol {
 
   #main {
     margin-left: 240px;
+  }
+  #main > section {
     max-width: 700px;
   }
 

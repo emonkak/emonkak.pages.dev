@@ -120,11 +120,10 @@ ul, ol
 
 #main
   @include clearfix
-  padding: 0 1.5em
 
   header
     padding: 4em * baseline-line-height(16) 1.5em
-    margin: 0 -1.5em 2em * baseline-line-height(16)
+    margin: 0 0 2em * baseline-line-height(16)
     background-color: $color-clouds
     text-align: center
 
@@ -135,7 +134,8 @@ ul, ol
     font-weight: normal
     margin: 0
 
-  section
+  > section
+    padding: 0 1.5em
     margin-bottom: 4em * baseline-line-height(16)
 
   section section
@@ -152,9 +152,6 @@ ul, ol
   padding:
     top: 2em * baseline-line-height(16)
     bottom: 2em * baseline-line-height(16)
-
-  article
-    max-width: $content-width - $sidebar-width
 
   p
     margin: 0
@@ -228,7 +225,9 @@ ul, ol
 
   #main
     margin-left: $sidebar-width
-    max-width: $content-width - $sidebar-width
+
+    > section
+      max-width: $content-width - $sidebar-width
 
   #footer
     padding-left: $sidebar-width
