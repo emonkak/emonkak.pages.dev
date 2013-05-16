@@ -117,7 +117,7 @@ pre {
   font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", "Bitstram Vera Sans Mono", monospace;
   background-color: #ecf0f1;
   padding: 0.75em;
-  overflow: scroll;
+  overflow: auto;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -193,10 +193,10 @@ ul, ol {
   padding: 0 1.5em;
 }
 #main header {
-  margin: 6em 0;
-}
-#main h1 {
-  position: relative;
+  padding: 6em 1.5em;
+  margin: 0 -1.5em 3em;
+  background-color: #ecf0f1;
+  text-align: center;
 }
 #main h1 p {
   color: #bdc3c7;
@@ -206,6 +206,9 @@ ul, ol {
   margin: 0;
 }
 #main section {
+  margin-bottom: 6em;
+}
+#main section section {
   margin-bottom: 3em;
 }
 
