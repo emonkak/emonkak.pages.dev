@@ -248,11 +248,7 @@ ul, ol {
 
 @media screen and (max-width: 767px) {
   #header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    position: relative;
   }
   #header:target nav {
     max-height: 999px;
@@ -262,6 +258,7 @@ ul, ol {
     transition-timing-function: ease-in;
   }
   #header nav {
+    position: absolute;
     -webkit-transition-property: max-height;
     -moz-transition-property: max-height;
     -o-transition-property: max-height;
@@ -277,6 +274,7 @@ ul, ol {
     background-color: #34495e;
     overflow: hidden;
     max-height: 0px;
+    z-index: 1;
   }
   #header .btn-nav {
     -webkit-border-radius: 4px;
@@ -284,13 +282,15 @@ ul, ol {
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
-    float: right;
+    position: absolute;
+    top: 50%;
+    right: 8px;
     width: 48px;
     height: 32px;
     text-align: center;
     line-height: 32px;
-    margin: 1.5em 8px;
     padding: 0;
+    margin-top: -16px;
     background-color: #34495e;
     color: #ecf0f1;
   }
@@ -303,10 +303,6 @@ ul, ol {
   }
   #header li {
     float: left;
-  }
-
-  #main {
-    margin-top: 6em;
   }
 }
 @media screen and (min-width: 768px) {
