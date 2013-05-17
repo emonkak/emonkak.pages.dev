@@ -31,8 +31,8 @@ $responsive-min-width: 767px
 // Common  {{{1
 
 body
-  font-family: "Avenir", "Helvetica", "Arial", sans-serif
-  font-size: 14px
+  font-family: "Proxima Nova", "Lato", "Helvetica", "Arial", sans-serif
+  font-size: 16px
   color: $color-midnight-blue
   -webkit-text-size-adjust: 100%
   // @include baseline-grid
@@ -123,19 +123,42 @@ ul, ol
 
   header
     padding: 4em * baseline-line-height(16) 1.5em
-    margin: 0 0 2em * baseline-line-height(16)
     background-color: $color-clouds
     text-align: center
 
-  h1 p
-    color: $color-silver
-    line-height: 1
-    font-size: 50%
-    font-weight: normal
+    h1
+      margin: 0
+
+    p
+      @include baseline-font(24)
+      color: $color-silver
+
+  aside
+    text-align: center
+    background-color: $color-clouds
+    padding: 0.5em * baseline-line-height(16) 1em
+    margin-bottom: 2em * baseline-line-height(16)
+
+  .social-buttons
+    @include clearfix
+    display: inline-block
+    list-style: none
     margin: 0
 
+    li
+      float: left
+
+    .hatena-bookmark-button-frame
+      width: 130px !important
+
+    .github-watch-button-frame
+      width: 95px !important
+
+    .twitter-share-button
+      width: 110px !important
+
   > section
-    padding: 0 1.5em
+    padding: 0 1em
     margin-bottom: 4em * baseline-line-height(16)
 
   section section
@@ -288,6 +311,18 @@ ul.aliases
 
     &:hover
       background-color: $color-clouds
+
+.btn
+  @include border-radius(4px)
+  background-color: $color-turquoise
+  color: $color-clouds
+  border-bottom: 2px solid $color-green-sea
+  padding: 0.5em * baseline-line-height(16) 1em
+
+  &:hover
+    background-color: $color-turquoise + #111
+    text-decoration: none
+
 
 
 

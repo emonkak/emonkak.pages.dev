@@ -4,7 +4,7 @@ html(lang="ja")
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
-    title Underbar.php
+    title Underbar.php - Functional array utility
     link(href="css/screen.css", media="screen, projection", rel="stylesheet")
     link(href="css/print.css", media="print", rel="stylesheet")
   body
@@ -82,9 +82,16 @@ html(lang="ja")
 
     article#main(role="main")
       header
-        h1
-          | Underbar.php
-          p Functional array utility
+        h1 Underbar.php
+        p Functional array utility
+        p: a.btn(href="https://github.com/emonkak/underbar.php") GitHub Source
+
+      aside: ul.social-buttons
+        li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", allowtransparency="true", frameborder="0", scrolling="0", width="110", height="20")
+        li: a.twitter-share-button(href="https://twitter.com/share") Tweet
+        li: a.hatena-bookmark-button(href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/", data-hatena-bookmark-layout="standard-balloon")
+          img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
+        li: div.fb-like(data-href="https://emonkak.github.io/underbar.php/", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
 
       section#introduction
         h2 Introduction
@@ -190,3 +197,15 @@ html(lang="ja")
     footer#footer
       p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
       p Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a>
+    div#fb-root
+    script(src="http://b.st-hatena.com/js/bookmark_button.js", async="async")
+    script
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    script
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
