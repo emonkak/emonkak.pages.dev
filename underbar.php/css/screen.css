@@ -230,10 +230,10 @@ ul, ol {
 }
 #main > section {
   padding: 0 1em;
-  margin-bottom: 6em;
+  margin: 0 auto 6em;
 }
 #main section section {
-  margin-bottom: 3em;
+  margin: 0 auto 3em;
 }
 
 #footer {
