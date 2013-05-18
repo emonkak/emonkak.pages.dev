@@ -15,8 +15,7 @@
           <li><a href="#introduction">Introduction</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
         </ul>
-        <h2><a href="#collections">Collections
-            <p>Array or traversable object</p></a></h2>
+        <h2><a href="#collections">Collections<small>Array or traversable object</small></a></h2>
         <ul>
           <li><a href="#each">each</a></li>
           <li><a href="#map">map</a></li>
@@ -49,8 +48,7 @@
           <li><a href="#get">get</a></li>
           <li><a href="#memorize">memorize</a></li>
         </ul>
-        <h2><a href="#arrays">Arrays
-            <p>Numerical array</p></a></h2>
+        <h2><a href="#arrays">Arrays<small>Numerical array</small></a></h2>
         <ul>
           <li><a href="#first">first</a></li>
           <li><a href="#first">first</a></li>
@@ -81,12 +79,12 @@
       <header>
         <h1>Underbar.php</h1>
         <p>Functional array utility</p>
-        <p><a href="https://github.com/emonkak/underbar.php" class="btn">GitHub Source</a></p>
+        <p><a href="https://github.com/emonkak/underbar.php" class="btn">GitHub Repository</a></p>
       </header>
       <aside>
         <ul class="social-buttons">
           <li>
-            <iframe src="http://ghbtns.com/github-btn.html?user=emonkak&amp;repo=underbar.php&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20" class="github-watch-button-frame"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=emonkak&amp;repo=underbar.php&amp;type=watch&amp;count=true" width="110" height="20" class="github-watch-button-frame"></iframe>
           </li>
           <li><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></li>
           <li><a href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/" data-hatena-bookmark-layout="standard-balloon" class="hatena-bookmark-button"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"></a></li>
@@ -120,66 +118,38 @@
             <h4 class="function"><em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
             <p>
               arrayの各要素に対して関数<var>$f</var>を呼び出します。
-              <var>$f</var>は以下の3つの引数を取ります。
+              <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
             </p>
-            <dl class="arguments">
-              <dt>
-                <var>$x</var>
-              </dt>
-              <dd>配列の要素</dd>
-              <dt>
-                <var>$i</var>
-              </dt>
-              <dd>配列の添字</dd>
-              <dt>
-                <var>$xs</var>
-              </dt>
-              <dd>配列自身</dd>
-            </dl>
-            <pre>&gt;&gt;&gt; _::each([1, 2, 3], function($x, $i, $xs) {
+            <pre>>>> _::each([1, 2, 3], function($x, $i, $xs) {
   echo $x, PHP_EOL;
 })
-=&gt; 1
-=&gt; 2
-=&gt; 3
-&gt;&gt;&gt; _::each(['one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3], function($x, $k, $xs) {
+=> 1
+=> 2
+=> 3
+>>> _::each(['one' => 1, 'two' => 2, 'three' => 3], function($x, $k, $xs) {
   echo $k, $x, PHP_EOL;
 })
-=&gt; one1
-=&gt; two2
-=&gt; three3</pre>
+=> one1
+=> two2
+=> three3</pre>
             <div class="top"><a href="#">TOP</a></div>
           </section>
           <!-- }}}-->
           <!-- map {{{-->
           <section id="map">
-            <h4 class="function"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="function lazy"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
             <p>
               Arrayの各要素に対して関数<var>$f</var>を適用して新しい配列を返します。
-              <var>$f</var>は以下の3つの引数を取ります。
+              <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
             </p>
-            <dl class="arguments">
-              <dt>
-                <var>$x</var>
-              </dt>
-              <dd>配列の要素</dd>
-              <dt>
-                <var>$i</var>
-              </dt>
-              <dd>配列の添字</dd>
-              <dt>
-                <var>$xs</var>
-              </dt>
-              <dd>配列自身</dd>
-            </dl>
-            <pre>&gt;&gt;&gt; _::map([1, 2, 3], function($x) {
+            <pre>>>> _::map([1, 2, 3], function($x) {
   return $x * 3;
 })
-=&gt; [3, 6, 9]
-&gt;&gt;&gt; _::map(['one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3], function($x) {
+=> [3, 6, 9]
+>>> _::map(['one' => 1, 'two' => 2, 'three' => 3], function($x) {
   return $x * 3;
 })
-=&gt; [3, 6, 9]</pre>
+=> [3, 6, 9]</pre>
             <div class="top"><a href="#">TOP</a></div>
           </section>
           <!-- }}}-->
@@ -188,7 +158,7 @@
           <h3>Array Functions</h3>
           <!-- first {{{-->
           <section id="first">
-            <h4 class="function"><em>array</em> first(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="function lazy"><em>array</em> first(<em>array</em> <var>$xs</var>)</h4>
             <h4 class="function"><em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
             <ul class="aliases">
               <li><strong>head</strong></li>
@@ -198,11 +168,11 @@
               配列の最初の要素を返します。
               <var>$n</var>を指定した場合は先頭からn個分の要素を含む配列を返します。
             </p>
-            <pre>&gt;&gt;&gt; _::first([1, 2, 3])
+            <pre>>>> _::first([1, 2, 3])
 1
-&gt;&gt;&gt; _::first([1, 2, 3], 1)
+>>> _::first([1, 2, 3], 1)
 [1]
-&gt;&gt;&gt; _::first([1, 2, 3], 2)
+>>> _::first([1, 2, 3], 2)
 [1, 2]</pre>
             <div class="top"><a href="#">TOP</a></div>
           </section>

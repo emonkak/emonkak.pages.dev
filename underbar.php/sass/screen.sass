@@ -9,7 +9,7 @@
 @import "_baseline"
 @import "_color"
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro)
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro)
 
 // Variables  {{{1
 
@@ -31,7 +31,7 @@ $responsive-min-width: 767px
 // Common  {{{1
 
 body
-  font-family: "Proxima Nova", "Lato", "Helvetica", "Arial", sans-serif
+  font-family: "Proxima Nova", "Avenir", "Corbel", "Helvetica", "Arial", sans-serif
   font-size: 14px
   color: $color-midnight-blue
   -webkit-text-size-adjust: 100%
@@ -49,7 +49,7 @@ a
     text-decoration: underline
 
 pre
-  font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", "Bitstram Vera Sans Mono", monospace
+  font-family: "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace
   background-color: $color-clouds
   padding: 0.5em * baseline-line-height(16)
   overflow: auto
@@ -68,7 +68,21 @@ em
   color: $color-asbestos
 
 ul, ol
-  padding-left: 1.5em
+  padding-left: 2.5em
+
+table
+  width: 100%
+  border-collapse: collapse
+  border-spacing: 0
+
+td, th
+  padding: 0.5em * baseline-line-height(16) 0.5em
+
+th
+  font-weight: bold
+
+tr:nth-child(odd) td
+  background-color: $color-clouds
 
 
 
@@ -99,7 +113,9 @@ ul, ol
       padding: 1.0em * baseline-line-height(18) 8px
       color: $color-midnight-blue
 
-    p
+    small
+      display: block
+      font-size: inherit
       font-weight: normal
       text-transform: none
       margin: 0
@@ -134,18 +150,19 @@ ul, ol
       color: $color-silver
 
   aside
-    text-align: center
-    padding: 0.5em * baseline-line-height(16) 1em
+    padding: 0.5em * baseline-line-height(16) 0em
     margin-bottom: 2em * baseline-line-height(16)
 
   .social-buttons
     @include clearfix
-    display: inline-block
+    height: 1em * baseline-line-height(16)
+    overflow: visible
+    text-align: center
     list-style: none
     margin: 0
 
     li
-      float: left
+      display: inline-block
 
     .hatena-bookmark-button-frame
       width: 130px !important
@@ -257,24 +274,15 @@ ul, ol
 
 // Classes  {{{1
 
-dl.arguments
-  padding-left: 6px
-  border-left: 6px solid $color-peter-river
-
-  dt
-    float: left
-    width: 4em
-    overflow: hidden
-    clear: left
-    text-overflow: ellipsis
-    white-space: nowrap
-
 .function
   padding-left: 6px
   border-left: 6px solid $color-turquoise
 
   &:not(:last-of-type)
     margin-bottom: 0
+
+  &.lazy
+    border-left: 6px solid $color-alizarin
 
   em, var
     font-weight: normal

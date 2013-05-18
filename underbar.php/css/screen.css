@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
 html {
   margin: 0;
   padding: 0;
@@ -95,7 +95,7 @@ dl, ol, p, pre, ul, table {
 }
 
 body {
-  font-family: "Proxima Nova", "Lato", "Helvetica", "Arial", sans-serif;
+  font-family: "Proxima Nova", "Avenir", "Corbel", "Helvetica", "Arial", sans-serif;
   font-size: 14px;
   color: #2c3e50;
   -webkit-text-size-adjust: 100%;
@@ -114,7 +114,7 @@ a:hover {
 }
 
 pre {
-  font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", "Bitstram Vera Sans Mono", monospace;
+  font-family: "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace;
   background-color: #ecf0f1;
   padding: 0.75em;
   overflow: auto;
@@ -145,7 +145,25 @@ em {
 }
 
 ul, ol {
-  padding-left: 1.5em;
+  padding-left: 2.5em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td, th {
+  padding: 0.75em 0.5em;
+}
+
+th {
+  font-weight: bold;
+}
+
+tr:nth-child(odd) td {
+  background-color: #ecf0f1;
 }
 
 #header a {
@@ -172,7 +190,9 @@ ul, ol {
   padding: 1.3333333333333333em 8px;
   color: #2c3e50;
 }
-#header h1 p, #header h2 p {
+#header h1 small, #header h2 small {
+  display: block;
+  font-size: inherit;
   font-weight: normal;
   text-transform: none;
   margin: 0;
@@ -205,19 +225,20 @@ ul, ol {
   color: #bdc3c7;
 }
 #main aside {
-  text-align: center;
-  padding: 0.75em 1em;
+  padding: 0.75em 0em;
   margin-bottom: 3em;
 }
 #main .social-buttons {
   overflow: hidden;
   *zoom: 1;
-  display: inline-block;
+  height: 1.5em;
+  overflow: visible;
+  text-align: center;
   list-style: none;
   margin: 0;
 }
 #main .social-buttons li {
-  float: left;
+  display: inline-block;
 }
 #main .social-buttons .hatena-bookmark-button-frame {
   width: 130px !important;
@@ -335,25 +356,15 @@ ul, ol {
     padding-left: 240px;
   }
 }
-dl.arguments {
-  padding-left: 6px;
-  border-left: 6px solid #3498db;
-}
-dl.arguments dt {
-  float: left;
-  width: 4em;
-  overflow: hidden;
-  clear: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .function {
   padding-left: 6px;
   border-left: 6px solid #1abc9c;
 }
 .function:not(:last-of-type) {
   margin-bottom: 0;
+}
+.function.lazy {
+  border-left: 6px solid #e74c3c;
 }
 .function em, .function var {
   font-weight: normal;

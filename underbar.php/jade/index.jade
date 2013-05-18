@@ -19,7 +19,7 @@ html(lang="ja")
 
         h2
           a(href="#collections") Collections
-            p Array or traversable object
+            small Array or traversable object
         ul
           li: a(href="#each") each
           li: a(href="#map") map
@@ -54,7 +54,7 @@ html(lang="ja")
 
         h2
           a(href="#arrays") Arrays
-            p Numerical array
+            small Numerical array
         ul
           li: a(href="#first") first
           li: a(href="#first") first
@@ -83,10 +83,10 @@ html(lang="ja")
       header
         h1 Underbar.php
         p Functional array utility
-        p: a.btn(href="https://github.com/emonkak/underbar.php") GitHub Source
+        p: a.btn(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
       aside: ul.social-buttons
-        li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", allowtransparency="true", frameborder="0", scrolling="0", width="110", height="20")
+        li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", width="110", height="20")
         li: a.twitter-share-button(href="https://twitter.com/share") Tweet
         li: a.hatena-bookmark-button(href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/", data-hatena-bookmark-layout="standard-balloon")
           img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
@@ -121,14 +121,7 @@ html(lang="ja")
             h4.function
               <em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             p arrayの各要素に対して関数<var>$f</var>を呼び出します。
-              | <var>$f</var>は以下の3つの引数を取ります。
-            dl.arguments
-              dt: var $x
-              dd 配列の要素
-              dt: var $i
-              dd 配列の添字
-              dt: var $xs
-              dd 配列自身
+              | <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
             pre
               | >>> _::each([1, 2, 3], function($x, $i, $xs) {
               |   echo $x, PHP_EOL;
@@ -147,17 +140,10 @@ html(lang="ja")
 
           // map {{{
           section#map
-            h4.function
+            h4.function.lazy
               <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             p Arrayの各要素に対して関数<var>$f</var>を適用して新しい配列を返します。
-              | <var>$f</var>は以下の3つの引数を取ります。
-            dl.arguments
-              dt: var $x
-              dd 配列の要素
-              dt: var $i
-              dd 配列の添字
-              dt: var $xs
-              dd 配列自身
+              | <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
             pre
               | >>> _::map([1, 2, 3], function($x) {
               |   return $x * 3;
@@ -174,7 +160,7 @@ html(lang="ja")
           h3 Array Functions
           // first {{{
           section#first
-            h4.function
+            h4.function.lazy
               <em>array</em> first(<em>array</em> <var>$xs</var>)
             h4.function
               <em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
