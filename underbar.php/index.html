@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title>Underbar.php - Functional array utility</title>
+    <title>Underbar.php - an array utility like Underscore.js</title>
     <link href="css/screen.css" media="screen, projection" rel="stylesheet">
     <link href="css/print.css" media="print" rel="stylesheet">
   </head>
@@ -78,7 +78,7 @@
     <article id="main" role="main">
       <header>
         <h1>Underbar.php</h1>
-        <p>Functional array utility</p>
+        <p>an array utility like Underscore.js</p>
         <p><a href="https://github.com/emonkak/underbar.php" class="btn">GitHub Repository</a></p>
       </header>
       <aside>
@@ -95,19 +95,55 @@
       </aside>
       <section id="introduction">
         <h2>Introduction</h2>
-        <p>Underbar.phpは配列操作のための便利な関数群を提供する<a href="http://underscorejs.org/">Underscore.js</a>ライクなPHPのライブラリです。</p>
-        <h3>Example</h3>
-        <h3>Features</h3>
-        <ul>
-          <li>遅延リスト</li>
-          <li>Enumerableトレイト</li>
-          <li>mapの並列処理</li>
-          <li>Haskell由来の関数</li>
-        </ul>
+        <p>
+          Underbar.phpは配列操作のための便利な関数群を提供する
+          <a href="http://underscorejs.org/">Underscore.js</a>ライクなPHPのライブラリです。
+        </p>
+        <p>
+          Underbar.phpはUnderscore.jsの移植ではなく配列操作に特化したライブラリで、
+          Underscore.jsの関数操作の関数(<code>bind()</code>, <code>partical()</code>, etc...)や、
+          オブジェクト判定系の関数(<code>isString()</code>, <code>isArray()</code>)などは実装されていません。
+          他、PHP組み込みの関数と機能が重複しているものは実装していません。
+        </p>
+        <p>
+          Underscore.jsとの最も大きな違いは遅延リスト(遅延ストリーム)が扱える点です。
+          遅延リストとは要素の計算が遅延されるコンテナで、具体的なPHPの表現で言うと<code><a href="http://php.net/manual/ja/class.traversable.php">Traversable</a></code>インターフェイスを実装したオブジェクトを指します。
+          遅延リストは要素が都度生成され余分な計算をしないことから、配列を生成するよりメモリ使用量を大きく抑えられることがあります。
+        </p>
+        <p>
+          <code>map()</code>などの配列を返す関数のほとんどは、<code>Traversable</code>なオブジェクトを返すことが可能です。
+          また、配列を引数に取るあらゆる関数は同時に<code>Traversable</code>なオブジェクトを取ることもできます。
+        </p>
+        <h5>map()を使った例</h5>
+        <pre>use Underbar\Strict as S;  // 配列版
+use Underbar\Lazy as L;  // 遅延リスト版
+ 
+$xs = [1, 2, 3, 4];
+$twice = function($n) { $n * 2 };
+ 
+$ys = S::map($xs, $twice);
+$zs = L::map($xs, $twice);
+ 
+var_dump(is_array($ys));  // true
+var_dump(is_array($zs));  // false
+var_dump($ys instanceof Traversable);  // false
+var_dump($zs instanceof Traversable);  // true
+ 
+var_dump($ys);  // [2, 4, 6, 8]
+var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</pre>
       </section>
       <section id="getting-started">
         <h2>Getting Started</h2>
-        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>
+          Underbar.phpの動作にはバージョン5.3以上のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要になるのでインストールして下さい。
+          続いてプロジェクトルートに以下のような内容のcomposer.jsonを作成します。
+        </p>
+        <pre>{
+    "require": {
+        "emonkak/underbar.php": "dev-master"
+    }
+}</pre>
+        <p>composer.jsonを作成したら同じディレクトリで<code>$ php composer.phar install</code>を実行するとUnderbar.phpのインストールは完了します。</p>
       </section>
       <section id="api">
         <h2>API</h2>

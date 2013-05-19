@@ -1,5 +1,5 @@
 $baseline-font-size: 16
-$baseline-line-height: 24
+$baseline-line-height: 28
 
 @function baseline-line-height($font-size)
   @if $font-size <= 0
@@ -43,11 +43,9 @@ h4
 
 h5
   @include baseline-font(18)
-  margin-bottom: baseline-margin(18)
 
 h6
   @include baseline-font(16)
-  margin-bottom: baseline-margin(16)
 
 dl, ol, p, pre, ul, table
   margin-bottom: baseline-margin(16)

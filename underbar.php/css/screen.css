@@ -51,52 +51,50 @@ a img {
 }
 
 body {
-  line-height: 1.5;
+  line-height: 1.75;
 }
 
 h1 {
   font-size: 3em;
-  line-height: 1;
-  margin-bottom: 0.5em;
+  line-height: 1.1666666666666667;
+  margin-bottom: 0.5833333333333334em;
 }
 
 h2 {
   font-size: 2.25em;
-  line-height: 1.3333333333333333;
-  margin-bottom: 0.6666666666666666em;
+  line-height: 1.5555555555555556;
+  margin-bottom: 0.7777777777777778em;
 }
 
 h3 {
   font-size: 1.5em;
-  line-height: 1;
-  margin-bottom: 1em;
+  line-height: 1.1666666666666667;
+  margin-bottom: 1.1666666666666667em;
 }
 
 h4 {
   font-size: 1.3125em;
-  line-height: 1.1428571428571428;
-  margin-bottom: 1.1428571428571428em;
-}
-
-h5 {
-  font-size: 1.125em;
   line-height: 1.3333333333333333;
   margin-bottom: 1.3333333333333333em;
 }
 
+h5 {
+  font-size: 1.125em;
+  line-height: 1.5555555555555556;
+}
+
 h6 {
   font-size: 1em;
-  line-height: 1.5;
-  margin-bottom: 1.5em;
+  line-height: 1.75;
 }
 
 dl, ol, p, pre, ul, table {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.75em;
 }
 
 body {
   font-family: "Proxima Nova", "Avenir", "Corbel", "Helvetica", "Arial", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   color: #2c3e50;
   -webkit-text-size-adjust: 100%;
 }
@@ -116,7 +114,7 @@ a:hover {
 pre {
   font-family: "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace;
   background-color: #ecf0f1;
-  padding: 0.75em;
+  padding: 0.875em;
   overflow: auto;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -155,7 +153,7 @@ table {
 }
 
 td, th {
-  padding: 0.75em 0.5em;
+  padding: 0.875em 0.5em;
 }
 
 th {
@@ -178,23 +176,21 @@ tr:nth-child(odd) td {
 }
 #header h1, #header h2 {
   font-size: 1.125em;
-  line-height: 1.3333333333333333;
+  line-height: 1.5555555555555556;
   background-color: #1abc9c;
-  text-transform: uppercase;
   margin: 0;
 }
 #header h1:hover, #header h2:hover {
   background: #2bcdad;
 }
 #header h1 a, #header h2 a {
-  padding: 1.3333333333333333em 8px;
+  padding: 1.5555555555555556em 8px;
   color: #2c3e50;
 }
 #header h1 small, #header h2 small {
   display: block;
   font-size: inherit;
   font-weight: normal;
-  text-transform: none;
   margin: 0;
 }
 #header li {
@@ -204,7 +200,7 @@ tr:nth-child(odd) td {
   background: #2c3e50;
 }
 #header li a {
-  padding: 0.375em 8px;
+  padding: 0.4375em 8px;
 }
 
 #main {
@@ -212,7 +208,7 @@ tr:nth-child(odd) td {
   *zoom: 1;
 }
 #main header {
-  padding: 6em 1.5em;
+  padding: 7em 1.5em;
   background-color: #ecf0f1;
   text-align: center;
 }
@@ -221,17 +217,17 @@ tr:nth-child(odd) td {
 }
 #main header p {
   font-size: 1.5em;
-  line-height: 1;
+  line-height: 1.1666666666666667;
   color: #bdc3c7;
 }
 #main aside {
-  padding: 0.75em 0em;
-  margin-bottom: 3em;
+  padding: 0.875em 0em;
+  margin-bottom: 3.5em;
 }
 #main .social-buttons {
   overflow: hidden;
   *zoom: 1;
-  height: 1.5em;
+  height: 1.75em;
   overflow: visible;
   text-align: center;
   list-style: none;
@@ -251,17 +247,17 @@ tr:nth-child(odd) td {
 }
 #main > section {
   padding: 0 1em;
-  margin: 0 auto 6em;
+  margin: 0 auto 7em;
 }
 #main section section {
-  margin: 0 auto 3em;
+  margin: 0 auto 3.5em;
 }
 
 #footer {
   background-color: #ecf0f1;
   text-align: center;
-  padding-top: 3em;
-  padding-bottom: 3em;
+  padding-top: 3.5em;
+  padding-bottom: 3.5em;
 }
 #footer p {
   margin: 0;
@@ -358,7 +354,7 @@ tr:nth-child(odd) td {
 }
 .function {
   padding-left: 6px;
-  border-left: 6px solid #1abc9c;
+  border-left: 6px solid #3498db;
 }
 .function:not(:last-of-type) {
   margin-bottom: 0;
@@ -412,7 +408,7 @@ ul.aliases li + li:before {
   background-color: #1abc9c;
   color: #ecf0f1;
   border-bottom: 2px solid #16a085;
-  padding: 0.75em 1em;
+  padding: 0.875em 1em;
 }
 .btn:hover {
   background-color: #2bcdad;
