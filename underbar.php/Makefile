@@ -16,6 +16,6 @@ css/%.css: sass/%.sass config.rb $(wildcard sass/_*.sass)
 	compass compile $<
 
 js/%.js: coffee/%.coffee
-	coffee -c $< -o $@
+	coffee -o $(dir $@) $<
 
 .PHONY: all clean
