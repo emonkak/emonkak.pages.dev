@@ -135,12 +135,13 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</pre>
       <section id="getting-started">
         <h2>Getting Started</h2>
         <p>
-          Underbar.phpの動作にはバージョン5.3以上のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要になるのでインストールして下さい。
-          続いてプロジェクトルートに以下のような内容のcomposer.jsonを作成します。
+          Underbar.phpの動作にはバージョン5.3以上のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要になります。
+          インストールが完了したらプロジェクトルートに以下のような内容のcomposer.jsonを作成します。
+          詳しいcomposer.jsonの書き方については<a href="http://getcomposer.org/doc/04-schema.md">こちら</a>を参照して下さい。
         </p>
         <pre>{
-    "require": {
-        "emonkak/underbar.php": "dev-master"
+    &quot;require&quot;: {
+        &quot;emonkak/underbar.php&quot;: &quot;dev-master&quot;
     }
 }</pre>
         <p>composer.jsonを作成したら同じディレクトリで<code>$ php composer.phar install</code>を実行するとUnderbar.phpのインストールは完了します。</p>
@@ -156,18 +157,18 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</pre>
               arrayの各要素に対して関数<var>$f</var>を呼び出します。
               <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
             </p>
-            <pre>>>> _::each([1, 2, 3], function($x, $i, $xs) {
+            <pre>&gt;&gt;&gt; _::each([1, 2, 3], function($x, $i, $xs) {
   echo $x, PHP_EOL;
 })
-=> 1
-=> 2
-=> 3
->>> _::each(['one' => 1, 'two' => 2, 'three' => 3], function($x, $k, $xs) {
+=&gt; 1
+=&gt; 2
+=&gt; 3
+&gt;&gt;&gt; _::each(['one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3], function($x, $k, $xs) {
   echo $k, $x, PHP_EOL;
 })
-=> one1
-=> two2
-=> three3</pre>
+=&gt; one1
+=&gt; two2
+=&gt; three3</pre>
             <div class="top"><a href="#">TOP</a></div>
           </section>
           <!-- }}}-->
@@ -178,14 +179,14 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</pre>
               Arrayの各要素に対して関数<var>$f</var>を適用して新しい配列を返します。
               <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
             </p>
-            <pre>>>> _::map([1, 2, 3], function($x) {
+            <pre>&gt;&gt;&gt; _::map([1, 2, 3], function($x) {
   return $x * 3;
 })
-=> [3, 6, 9]
->>> _::map(['one' => 1, 'two' => 2, 'three' => 3], function($x) {
+=&gt; [3, 6, 9]
+&gt;&gt;&gt; _::map(['one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3], function($x) {
   return $x * 3;
 })
-=> [3, 6, 9]</pre>
+=&gt; [3, 6, 9]</pre>
             <div class="top"><a href="#">TOP</a></div>
           </section>
           <!-- }}}-->
@@ -204,11 +205,11 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</pre>
               配列の最初の要素を返します。
               <var>$n</var>を指定した場合は先頭からn個分の要素を含む配列を返します。
             </p>
-            <pre>>>> _::first([1, 2, 3])
+            <pre>&gt;&gt;&gt; _::first([1, 2, 3])
 1
->>> _::first([1, 2, 3], 1)
+&gt;&gt;&gt; _::first([1, 2, 3], 1)
 [1]
->>> _::first([1, 2, 3], 2)
+&gt;&gt;&gt; _::first([1, 2, 3], 2)
 [1, 2]</pre>
             <div class="top"><a href="#">TOP</a></div>
           </section>

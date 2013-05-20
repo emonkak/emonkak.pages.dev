@@ -184,7 +184,7 @@ tr:nth-child(odd) td {
   background: #2bcdad;
 }
 #header h1 a, #header h2 a {
-  padding: 1.5555555555555556em 8px;
+  padding: 0.7777777777777778em 8px;
   color: #2c3e50;
 }
 #header h1 small, #header h2 small {
