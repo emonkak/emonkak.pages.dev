@@ -4,82 +4,77 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>Underbar.php - an array utility like Underscore.js</title>
-    <link href="css/screen.css" media="screen, projection" rel="stylesheet">
-    <link href="css/print.css" media="print" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
     <header id="header">
-      <h1><a href="#">Underbar.php</a><a href="#header" class="btn-nav">&#x2630;</a></h1>
-      <nav id="navigation" role="navigation">
-        <ul>
-          <li><a href="#introduction">Introduction</a></li>
-          <li><a href="#getting-started">Getting Started</a></li>
-        </ul>
-        <h2><a href="#collections">Collections<small>Array or traversable object</small></a></h2>
-        <ul>
-          <li><a href="#each">each</a></li>
-          <li><a href="#map">map</a></li>
-          <li><a href="#parMap">parMap</a></li>
-          <li><a href="#reduce">reduce</a></li>
-          <li><a href="#reduceRight">reduceRight</a></li>
-          <li><a href="#find">find</a></li>
-          <li><a href="#filter">filter</a></li>
-          <li><a href="#where">where</a></li>
-          <li><a href="#findWhere">findWhere</a></li>
-          <li><a href="#reject">reject</a></li>
-          <li><a href="#every">every</a></li>
-          <li><a href="#all">all</a></li>
-          <li><a href="#some">some</a></li>
-          <li><a href="#any">any</a></li>
-          <li><a href="#sum">sum</a></li>
-          <li><a href="#product">product</a></li>
-          <li><a href="#contains">contains</a></li>
-          <li><a href="#invoke">invoke</a></li>
-          <li><a href="#pluck">pluck</a></li>
-          <li><a href="#max">max</a></li>
-          <li><a href="#min">min</a></li>
-          <li><a href="#sortBy">sortBy</a></li>
-          <li><a href="#groupBy">groupBy</a></li>
-          <li><a href="#countBy">countBy</a></li>
-          <li><a href="#shuffle">shuffle</a></li>
-          <li><a href="#toArray">toArray</a></li>
-          <li><a href="#size">size</a></li>
-          <li><a href="#span">span</a></li>
-          <li><a href="#get">get</a></li>
-          <li><a href="#memorize">memorize</a></li>
-        </ul>
-        <h2><a href="#arrays">Arrays<small>Numerical array</small></a></h2>
-        <ul>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#first">first</a></li>
-          <li><a href="#initial">initial</a></li>
-          <li><a href="#last">last</a></li>
-        </ul>
+      <nav role="navigation">
+        <h1><a href="#"><strong>Underbar.php</strong><small>Version 1.0.0</small></a><a href="#header" class="button-menu">&#x2630;</a></h1>
+        <dl>
+          <dd><a href="#introduction">Introduction</a></dd>
+          <dd><a href="#getting-started">Getting Started</a></dd>
+          <dt><a href="#collections"><strong>Collections</strong><small>Array or Traversable Object</small></a></dt>
+          <dd><a href="#each">each</a></dd>
+          <dd><a href="#map">map</a></dd>
+          <dd><a href="#parMap">parMap</a></dd>
+          <dd><a href="#reduce">reduce</a></dd>
+          <dd><a href="#reduceRight">reduceRight</a></dd>
+          <dd><a href="#find">find</a></dd>
+          <dd><a href="#filter">filter</a></dd>
+          <dd><a href="#where">where</a></dd>
+          <dd><a href="#findWhere">findWhere</a></dd>
+          <dd><a href="#reject">reject</a></dd>
+          <dd><a href="#every">every</a></dd>
+          <dd><a href="#all">all</a></dd>
+          <dd><a href="#some">some</a></dd>
+          <dd><a href="#any">any</a></dd>
+          <dd><a href="#sum">sum</a></dd>
+          <dd><a href="#product">product</a></dd>
+          <dd><a href="#contains">contains</a></dd>
+          <dd><a href="#invoke">invoke</a></dd>
+          <dd><a href="#pluck">pluck</a></dd>
+          <dd><a href="#max">max</a></dd>
+          <dd><a href="#min">min</a></dd>
+          <dd><a href="#sortBy">sortBy</a></dd>
+          <dd><a href="#groupBy">groupBy</a></dd>
+          <dd><a href="#countBy">countBy</a></dd>
+          <dd><a href="#shuffle">shuffle</a></dd>
+          <dd><a href="#toArray">toArray</a></dd>
+          <dd><a href="#size">size</a></dd>
+          <dd><a href="#span">span</a></dd>
+          <dd><a href="#get">get</a></dd>
+          <dd><a href="#memorize">memorize</a></dd>
+          <dt><a href="#arrays"><strong>Arrays</strong><small>Numerical Array</small></a></dt>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#first">first</a></dd>
+          <dd><a href="#initial">initial</a></dd>
+          <dd><a href="#last">last</a></dd>
+        </dl>
       </nav>
     </header>
     <article id="main" role="main">
       <header>
         <h1>Underbar.php</h1>
         <p>an array utility like Underscore.js</p>
-        <p><a href="https://github.com/emonkak/underbar.php" class="btn">GitHub Repository</a></p>
+        <p><a href="https://github.com/emonkak/underbar.php" class="button">GitHub Repository</a></p>
       </header>
       <aside>
         <ul class="social-buttons">
@@ -114,7 +109,6 @@
           <code>map()</code>などの配列を返す関数のほとんどは、<code>Traversable</code>なオブジェクトを返すことが可能です。
           また、配列を引数に取るあらゆる関数は同時に<code>Traversable</code>なオブジェクトを取ることもできます。
         </p>
-        <h5>map()を使った例</h5>
         <pre>use Underbar\Strict as S;  // 配列版
 use Underbar\Lazy as L;  // 遅延リスト版
  
@@ -125,8 +119,8 @@ $ys = S::map($xs, $twice);
 $zs = L::map($xs, $twice);
  
 var_dump(is_array($ys));  // true
-var_dump(is_array($zs));  // false
 var_dump($ys instanceof Traversable);  // false
+var_dump(is_array($zs));  // false
 var_dump($zs instanceof Traversable);  // true
  
 var_dump($ys);  // [2, 4, 6, 8]
@@ -222,8 +216,8 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</pre>
       <p>Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a></p>
     </footer>
     <div id="fb-root"></div>
-    <script src="http://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <script src="//b.st-hatena.com/js/bookmark_button.js" async="async"></script>
     <script>
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

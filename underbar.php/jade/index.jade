@@ -5,85 +5,84 @@ html(lang="ja")
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
     title Underbar.php - an array utility like Underscore.js
-    link(href="css/screen.css", media="screen, projection", rel="stylesheet")
-    link(href="css/print.css", media="print", rel="stylesheet")
+    link(href="css/style.css", rel="stylesheet")
   body
     header#header
-      h1
-        a(href="#") Underbar.php
-        a.btn-nav(href="#header") &#x2630;
-      nav#navigation(role="navigation")
-        ul
-          li: a(href="#introduction") Introduction
-          li: a(href="#getting-started") Getting Started
+      nav(role="navigation")
+        h1
+          a(href="#")
+            strong Underbar.php
+            small Version 1.0.0
+          a.button-menu(href="#header") &#x2630;
+        dl
+          dd: a(href="#introduction") Introduction
+          dd: a(href="#getting-started") Getting Started
 
-        h2
-          a(href="#collections") Collections
-            small Array or traversable object
-        ul
-          li: a(href="#each") each
-          li: a(href="#map") map
-          li: a(href="#parMap") parMap
-          li: a(href="#reduce") reduce
-          li: a(href="#reduceRight") reduceRight
-          li: a(href="#find") find
-          li: a(href="#filter") filter
-          li: a(href="#where") where
-          li: a(href="#findWhere") findWhere
-          li: a(href="#reject") reject
-          li: a(href="#every") every
-          li: a(href="#all") all
-          li: a(href="#some") some
-          li: a(href="#any") any
-          li: a(href="#sum") sum
-          li: a(href="#product") product
-          li: a(href="#contains") contains
-          li: a(href="#invoke") invoke
-          li: a(href="#pluck") pluck
-          li: a(href="#max") max
-          li: a(href="#min") min
-          li: a(href="#sortBy") sortBy
-          li: a(href="#groupBy") groupBy
-          li: a(href="#countBy") countBy
-          li: a(href="#shuffle") shuffle
-          li: a(href="#toArray") toArray
-          li: a(href="#size") size
-          li: a(href="#span") span
-          li: a(href="#get") get
-          li: a(href="#memorize") memorize
+          dt: a(href="#collections")
+            strong Collections
+            small Array or Traversable Object
+          dd: a(href="#each") each
+          dd: a(href="#map") map
+          dd: a(href="#parMap") parMap
+          dd: a(href="#reduce") reduce
+          dd: a(href="#reduceRight") reduceRight
+          dd: a(href="#find") find
+          dd: a(href="#filter") filter
+          dd: a(href="#where") where
+          dd: a(href="#findWhere") findWhere
+          dd: a(href="#reject") reject
+          dd: a(href="#every") every
+          dd: a(href="#all") all
+          dd: a(href="#some") some
+          dd: a(href="#any") any
+          dd: a(href="#sum") sum
+          dd: a(href="#product") product
+          dd: a(href="#contains") contains
+          dd: a(href="#invoke") invoke
+          dd: a(href="#pluck") pluck
+          dd: a(href="#max") max
+          dd: a(href="#min") min
+          dd: a(href="#sortBy") sortBy
+          dd: a(href="#groupBy") groupBy
+          dd: a(href="#countBy") countBy
+          dd: a(href="#shuffle") shuffle
+          dd: a(href="#toArray") toArray
+          dd: a(href="#size") size
+          dd: a(href="#span") span
+          dd: a(href="#get") get
+          dd: a(href="#memorize") memorize
 
-        h2
-          a(href="#arrays") Arrays
-            small Numerical array
-        ul
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#first") first
-          li: a(href="#initial") initial
-          li: a(href="#last") last
+          dt: a(href="#arrays")
+            strong Arrays
+            small Numerical Array
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#first") first
+          dd: a(href="#initial") initial
+          dd: a(href="#last") last
 
     article#main(role="main")
       header
         h1 Underbar.php
         p an array utility like Underscore.js
-        p: a.btn(href="https://github.com/emonkak/underbar.php") GitHub Repository
+        p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
       aside: ul.social-buttons
         li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", width="110", height="20")
@@ -105,7 +104,6 @@ html(lang="ja")
           | 遅延リストは要素が都度生成され余分な計算をしないことから、配列を生成するよりメモリ使用量を大きく抑えられることがあります。
         p <code>map()</code>などの配列を返す関数のほとんどは、<code>Traversable</code>なオブジェクトを返すことが可能です。
           | また、配列を引数に取るあらゆる関数は同時に<code>Traversable</code>なオブジェクトを取ることもできます。
-        h5 map()を使った例
         pre
           | use Underbar\Strict as S;  // 配列版
           | use Underbar\Lazy as L;  // 遅延リスト版
@@ -117,8 +115,8 @@ html(lang="ja")
           | $zs = L::map($xs, $twice);
           | 
           | var_dump(is_array($ys));  // true
-          | var_dump(is_array($zs));  // false
           | var_dump($ys instanceof Traversable);  // false
+          | var_dump(is_array($zs));  // false
           | var_dump($zs instanceof Traversable);  // true
           | 
           | var_dump($ys);  // [2, 4, 6, 8]
@@ -209,9 +207,9 @@ html(lang="ja")
       p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
       p Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a>
     div#fb-root
-    script(src="http://b.st-hatena.com/js/bookmark_button.js", async="async")
     script
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    script(src="//b.st-hatena.com/js/bookmark_button.js", async="async")
     script
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

@@ -9,13 +9,20 @@
 @import "_baseline"
 @import "_color"
 
-@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro)
+@import url(//fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro)
 
 // Variables  {{{1
 
 $sidebar-width: 240px
 $content-width: 940px
-$responsive-min-width: 767px
+
+$white-color: #fff
+$dark-color: $color-wet-asphalt
+$black-color: $color-midnight-blue
+$light-color: $color-clouds
+$lightgray-color: $color-silver
+$gray-color: $color-asbestos
+$accent-color: $color-turquoise
 
 @mixin layout-one-column()
   @media screen and (max-width: 767px)
@@ -33,7 +40,8 @@ $responsive-min-width: 767px
 body
   font-family: "Proxima Nova", "Avenir", "Corbel", "Helvetica", "Arial", sans-serif
   font-size: 15px
-  color: $color-midnight-blue
+  color: $black-color
+  background-color: $white-color
   -webkit-text-size-adjust: 100%
   // @include baseline-grid
 
@@ -42,7 +50,7 @@ h1, h2, h3, h4, h5, h6
   // background: rgba(255, 0, 0, 0.2)
 
 a
-  color: $color-turquoise
+  color: $accent-color
   text-decoration: none
 
   &:hover
@@ -50,13 +58,13 @@ a
 
 pre
   font-family: "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace
-  background-color: $color-clouds
+  background-color: $light-color
   padding: 0.5em * baseline-line-height(16)
   overflow: auto
   @include border-radius(4px)
 
 code, var
-  background-color: $color-clouds
+  background-color: $light-color
   padding: 2px 4px
   white-space: nowrap
   @include border-radius(4px)
@@ -65,10 +73,7 @@ var
   font-style: normal
 
 em
-  color: $color-asbestos
-
-ul, ol
-  padding-left: 2.5em
+  color: $gray-color
 
 table
   width: 100%
@@ -82,7 +87,7 @@ th
   font-weight: bold
 
 tr:nth-child(odd) td
-  background-color: $color-clouds
+  background-color: $light-color
 
 
 
@@ -93,39 +98,45 @@ tr:nth-child(odd) td
   a
     display: block
     text-decoration: none
-    color: $color-clouds
+    color: $light-color
 
-  ul
+  h1
+    font-size: inherit
+    font-weight: normal
+    line-height: inherit
     margin: 0
-    padding: 0
-    list-style: none
 
-  h1, h2
-    @include baseline-font(18)
-    background-color: $color-turquoise
+  dl
+    background-color: $dark-color
     margin: 0
+
+  dt, h1
+    background-color: $accent-color
 
     &:hover
-      background: $color-turquoise + #111
+      background-color: lighten($accent-color, 5%)
 
     a
       padding: 0.5em * baseline-line-height(18) 8px
-      color: $color-midnight-blue
+      color: $black-color
+
+    strong
+      display: block
+      @include baseline-font(20)
 
     small
       display: block
       font-size: inherit
-      font-weight: normal
-      margin: 0
 
-  li
-    background: $color-wet-asphalt
-
+  dd
     &:hover
-      background: $color-midnight-blue
+      background-color: $black-color
+
+      a
+        color: $accent-color
 
     a
-      padding: 0.25em * baseline-line-height(16) 8px
+      padding: 0.125em * baseline-line-height(16) 0.5em
 
 
 
@@ -137,7 +148,7 @@ tr:nth-child(odd) td
 
   header
     padding: 4em * baseline-line-height(16) 1.5em
-    background-color: $color-clouds
+    background-color: $light-color
     text-align: center
 
     h1
@@ -145,7 +156,7 @@ tr:nth-child(odd) td
 
     p
       @include baseline-font(24)
-      color: $color-silver
+      color: $lightgray-color
 
   aside
     padding: 0.5em * baseline-line-height(16) 0em
@@ -184,7 +195,7 @@ tr:nth-child(odd) td
 // Footer  {{{1
 
 #footer
-  background-color: $color-clouds
+  background-color: $light-color
   text-align: center
   padding:
     top: 2em * baseline-line-height(16)
@@ -200,23 +211,32 @@ tr:nth-child(odd) td
 
 @include layout-one-column()
   #header
-    position: relative
-
-    &:target nav
-      max-height: 999px
+    &:target dl
       @include transition-timing-function(ease-in)
+      max-height: 100%
 
-    nav
-      position: absolute
-      @include transition-property(max-height)
+    h1
+      position: relative
+
+    dl
+      @include clearfix
+      @include transition-property(opacity max-height)
       @include transition-duration(0.2s)
       @include transition-timing-function(ease-out)
-      background-color: $color-wet-asphalt
+      position: absolute
+      background-color: $dark-color
       overflow: hidden
-      max-height: 0px
+      max-height: 0%
       z-index: 1
 
-    .btn-nav
+    dt
+      clear: left
+      position: relative
+
+    dd
+      float: left
+
+    .button-menu
       @include border-radius(4px)
       $height: 32px
       position: absolute
@@ -228,17 +248,11 @@ tr:nth-child(odd) td
       line-height: $height
       padding: 0
       margin-top: -($height / 2)
-      background-color: $color-wet-asphalt
-      color: $color-clouds
+      background-color: $dark-color
+      color: $light-color
 
-    .btn-nav:hover
-      background-color: $color-midnight-blue
-
-    ul
-      @include clearfix
-
-    li
-      float: left
+    .button-menu:hover
+      background-color: $black-color
 
 @include layout-two-column()
   #header
@@ -249,14 +263,11 @@ tr:nth-child(odd) td
     width: $sidebar-width
     overflow: auto
 
-    &::-webkit-scrollbar
-      width: 0
+    dd
+      text-indent: 0.5em
 
-    .btn-nav
+    .button-menu
       display: none
-
-    li
-      text-indent: 1em
 
   #main
     margin-left: $sidebar-width
@@ -274,13 +285,13 @@ tr:nth-child(odd) td
 
 .function
   padding-left: 6px
-  border-left: 6px solid $color-peter-river
+  border-left: 6px solid $dark-color
 
   &:not(:last-of-type)
     margin-bottom: 0
 
   &.lazy
-    border-left: 6px solid $color-alizarin
+    border-left: 6px solid $accent-color
 
   em, var
     font-weight: normal
@@ -305,7 +316,6 @@ ul.aliases
     content: ", "
 
 .top
-  display: block
   text-align: right
 
   a
@@ -315,15 +325,15 @@ ul.aliases
     &:hover
       background-color: $color-clouds
 
-.btn
+.button
   @include border-radius(4px)
   background-color: $color-turquoise
   color: $color-clouds
-  border-bottom: 2px solid $color-green-sea
+  border-bottom: 2px solid darken($accent-color, 10%)
   padding: 0.5em * baseline-line-height(16) 1em
 
   &:hover
-    background-color: $color-turquoise + #111
+    background-color: lighten($accent-color, 5%)
     text-decoration: none
 
 
