@@ -207,6 +207,7 @@ li > * {
 #header .title small {
   display: block;
   font-size: inherit;
+  font-weight: normal;
 }
 #header dd:hover {
   background-color: #2c3e50;
