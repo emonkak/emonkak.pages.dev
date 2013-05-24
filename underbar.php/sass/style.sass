@@ -17,8 +17,8 @@ $sidebar-width: 240px
 $content-width: 940px
 
 $white-color: #fff
-$dark-color: $color-wet-asphalt
 $black-color: $color-midnight-blue
+$dark-color: $color-wet-asphalt
 $light-color: $color-clouds
 $lightgray-color: $color-silver
 $gray-color: $color-asbestos
@@ -63,14 +63,16 @@ pre
   overflow: auto
   @include border-radius(4px)
 
-code, var
+  code
+    white-space: inherit
+    border: 0
+    padding: 0
+
+code
   background-color: $light-color
   padding: 2px 4px
   white-space: nowrap
   @include border-radius(4px)
-
-var
-  font-style: normal
 
 em
   color: $gray-color
@@ -89,6 +91,9 @@ th
 tr:nth-child(odd) td
   background-color: $light-color
 
+li > *
+  margin: 0
+
 
 
 
@@ -100,18 +105,15 @@ tr:nth-child(odd) td
     text-decoration: none
     color: $light-color
 
-  h1
-    font-size: inherit
-    font-weight: normal
-    line-height: inherit
-    margin: 0
-
   dl
     background-color: $dark-color
     margin: 0
 
-  dt, h1
+  .title
+    font-size: inherit
+    line-height: inherit
     background-color: $accent-color
+    margin: 0
 
     &:hover
       background-color: lighten($accent-color, 5%)
@@ -183,7 +185,7 @@ tr:nth-child(odd) td
       width: 110px !important
 
   > section
-    padding: 0 1em
+    padding: 0 2em
     margin: 0 auto 4em * baseline-line-height(16)
 
   section section
@@ -211,9 +213,13 @@ tr:nth-child(odd) td
 
 @include layout-one-column()
   #header
-    &:target dl
-      @include transition-timing-function(ease-in)
-      max-height: 100%
+    &:target
+      dl
+        @include transition-timing-function(ease-in)
+        max-height: 100%
+
+      a.button-menu
+        pointer-events: none
 
     h1
       position: relative
@@ -236,7 +242,7 @@ tr:nth-child(odd) td
     dd
       float: left
 
-    .button-menu
+    a.button-menu
       @include border-radius(4px)
       $height: 32px
       position: absolute
@@ -251,8 +257,8 @@ tr:nth-child(odd) td
       background-color: $dark-color
       color: $light-color
 
-    .button-menu:hover
-      background-color: $black-color
+      &:hover
+        background-color: $black-color
 
 @include layout-two-column()
   #header
@@ -284,36 +290,18 @@ tr:nth-child(odd) td
 // Classes  {{{1
 
 .function
-  padding-left: 6px
-  border-left: 6px solid $dark-color
+  h4
+    padding-left: 6px
+    border-left: 6px solid $dark-color
 
-  &:not(:last-of-type)
-    margin-bottom: 0
+    &:not(:last-of-type)
+      margin-bottom: 0
 
-  &.lazy
+    em, code
+      font-weight: normal
+
+  &.lazy h4
     border-left: 6px solid $accent-color
-
-  em, var
-    font-weight: normal
-    background: none
-    padding: 0
-
-ul.aliases
-  @include clearfix
-  list-style: none
-  padding: 0
-
-  li
-    float: left
-
-  li:first-child:before
-    content: "Aliases: "
-
-  li:only-child:before
-    content: "Alias: "
-
-  li + li:before
-    content: ", "
 
 .top
   text-align: right

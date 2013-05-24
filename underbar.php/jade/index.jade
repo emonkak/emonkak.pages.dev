@@ -4,12 +4,12 @@ html(lang="ja")
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
-    title Underbar.php - an array utility like Underscore.js
+    title Underbar.php - an array and lazy list utility, like Underscore.js
     link(href="css/style.css", rel="stylesheet")
   body
     header#header
       nav(role="navigation")
-        h1
+        h1.title
           a(href="#")
             strong Underbar.php
             small Version 1.0.0
@@ -18,7 +18,7 @@ html(lang="ja")
           dd: a(href="#introduction") Introduction
           dd: a(href="#getting-started") Getting Started
 
-          dt: a(href="#collections")
+          dt.title: a(href="#collections")
             strong Collections
             small Array or Traversable Object
           dd: a(href="#each") each
@@ -26,6 +26,7 @@ html(lang="ja")
           dd: a(href="#parMap") parMap
           dd: a(href="#reduce") reduce
           dd: a(href="#reduceRight") reduceRight
+          dd: a(href="#get") get
           dd: a(href="#find") find
           dd: a(href="#filter") filter
           dd: a(href="#where") where
@@ -40,6 +41,7 @@ html(lang="ja")
           dd: a(href="#contains") contains
           dd: a(href="#invoke") invoke
           dd: a(href="#pluck") pluck
+          dd: a(href="#span") span
           dd: a(href="#max") max
           dd: a(href="#min") min
           dd: a(href="#sortBy") sortBy
@@ -48,40 +50,54 @@ html(lang="ja")
           dd: a(href="#shuffle") shuffle
           dd: a(href="#toArray") toArray
           dd: a(href="#size") size
-          dd: a(href="#span") span
-          dd: a(href="#get") get
           dd: a(href="#memorize") memorize
 
-          dt: a(href="#arrays")
+          dt.title: a(href="#arrays")
             strong Arrays
             small Numerical Array
           dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
-          dd: a(href="#first") first
+          dd: a(href="#head") head
+          dd: a(href="#take") take
+          dd: a(href="#takeWhile") takeWhile
           dd: a(href="#initial") initial
           dd: a(href="#last") last
+          dd: a(href="#rest") rest
+          dd: a(href="#tail") tail
+          dd: a(href="#drop") drop
+          dd: a(href="#dropWhile") dropWhile
+          dd: a(href="#compact") compact
+          dd: a(href="#flatten") flatten
+          dd: a(href="#without") without
+          dd: a(href="#union") union
+          dd: a(href="#intersection") intersection
+          dd: a(href="#difference") difference
+          dd: a(href="#uniq") uniq
+          dd: a(href="#unique") unique
+          dd: a(href="#zip") zip
+          dd: a(href="#zipWith") zipWith
+          dd: a(href="#object") object
+          dd: a(href="#indexOf") indexOf
+          dd: a(href="#lastIndexOf") lastIndexOf
+          dd: a(href="#sortedIndex") sortedIndex
+          dd: a(href="#range") range
+          dd: a(href="#cycle") cycle
+          dd: a(href="#repeat") repeat
+          dd: a(href="#iterate") iterate
+          dd: a(href="#pop") pop
+          dd: a(href="#push") push
+          dd: a(href="#reverse") reverse
+          dd: a(href="#shift") shift
+          dd: a(href="#sort") sort
+          dd: a(href="#splice") splice
+          dd: a(href="#unshift") unshift
+          dd: a(href="#concat") concat
+          dd: a(href="#join") join
+          dd: a(href="#slice") slice
 
     article#main(role="main")
       header
         h1 Underbar.php
-        p an array utility like Underscore.js
+        p an array and lazy list utility, like Underscore.js
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
       aside: ul.social-buttons
@@ -92,116 +108,34 @@ html(lang="ja")
         li: div.fb-like(data-href="https://emonkak.github.io/underbar.php/", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
 
       section#introduction
-        h2 Introduction
-        p Underbar.phpは配列操作のための便利な関数群を提供する
-          | <a href="http://underscorejs.org/">Underscore.js</a>ライクなPHPのライブラリです。
-        p Underbar.phpはUnderscore.jsの移植ではなく配列操作に特化したライブラリで、
-          | Underscore.jsの関数操作の関数(<code>bind()</code>, <code>partical()</code>, etc...)や、
-          | オブジェクト判定系の関数(<code>isString()</code>, <code>isArray()</code>)などは実装されていません。
-          | 他、PHP組み込みの関数と機能が重複しているものは実装していません。
-        p Underscore.jsとの最も大きな違いは遅延リスト(遅延ストリーム)が扱える点です。
-          | 遅延リストとは要素の計算が遅延されるコンテナで、具体的なPHPの表現で言うと<code><a href="http://php.net/manual/ja/class.traversable.php">Traversable</a></code>インターフェイスを実装したオブジェクトを指します。
-          | 遅延リストは要素が都度生成され余分な計算をしないことから、配列を生成するよりメモリ使用量を大きく抑えられることがあります。
-        p <code>map()</code>などの配列を返す関数のほとんどは、<code>Traversable</code>なオブジェクトを返すことが可能です。
-          | また、配列を引数に取るあらゆる関数は同時に<code>Traversable</code>なオブジェクトを取ることもできます。
-        pre
-          | use Underbar\Strict as S;  // 配列版
-          | use Underbar\Lazy as L;  // 遅延リスト版
-          | 
-          | $xs = [1, 2, 3, 4];
-          | $twice = function($n) { $n * 2 };
-          | 
-          | $ys = S::map($xs, $twice);
-          | $zs = L::map($xs, $twice);
-          | 
-          | var_dump(is_array($ys));  // true
-          | var_dump($ys instanceof Traversable);  // false
-          | var_dump(is_array($zs));  // false
-          | var_dump($zs instanceof Traversable);  // true
-          | 
-          | var_dump($ys);  // [2, 4, 6, 8]
-          | var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]
+        include includes/introduction.markdown
 
       section#getting-started
-        h2 Getting Started
-        p Underbar.phpの動作にはバージョン5.3以上のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要になります。
-          | インストールが完了したらプロジェクトルートに以下のような内容のcomposer.jsonを作成します。
-          | 詳しいcomposer.jsonの書き方については<a href="http://getcomposer.org/doc/04-schema.md">こちら</a>を参照して下さい。
-        pre
-          | {
-          |     "require": {
-          |         "emonkak/underbar.php": "dev-master"
-          |     }
-          | }
-        p composer.jsonを作成したら同じディレクトリで<code>$ php composer.phar install</code>を実行するとUnderbar.phpのインストールは完了します。
+        include includes/getting-started.markdown
 
-      section#api
-        h2 API
+      section#classes-and-trait
+        include includes/classes-and-trait.markdown
+
+      section#functions
+        h2 Functions
 
         section#collections
           h3 Collection Functions
-          // each {{{
-          section#each
-            h4.function
-              <em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            p arrayの各要素に対して関数<var>$f</var>を呼び出します。
-              | <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
-            pre
-              | >>> _::each([1, 2, 3], function($x, $i, $xs) {
-              |   echo $x, PHP_EOL;
-              | })
-              | => 1
-              | => 2
-              | => 3
-              | >>> _::each(['one' => 1, 'two' => 2, 'three' => 3], function($x, $k, $xs) {
-              |   echo $k, $x, PHP_EOL;
-              | })
-              | => one1
-              | => two2
-              | => three3
-            div.top: a(href="#") TOP
-          // }}}
 
-          // map {{{
-          section#map
-            h4.function.lazy
-              <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            p Arrayの各要素に対して関数<var>$f</var>を適用して新しい配列を返します。
-              | <var>$f</var>は<code>(element, index, array)</code>の3つの引数を取ります。
-            pre
-              | >>> _::map([1, 2, 3], function($x) {
-              |   return $x * 3;
-              | })
-              | => [3, 6, 9]
-              | >>> _::map(['one' => 1, 'two' => 2, 'three' => 3], function($x) {
-              |   return $x * 3;
-              | })
-              | => [3, 6, 9]
+          section.function#each
+            include includes/collections/each.markdown
             div.top: a(href="#") TOP
-          // }}}
+
+          section.function.lazy#map
+            include includes/collections/map.markdown
+            div.top: a(href="#") TOP
 
         section#arrays
           h3 Array Functions
-          // first {{{
-          section#first
-            h4.function.lazy
-              <em>array</em> first(<em>array</em> <var>$xs</var>)
-            h4.function
-              <em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
-            ul.aliases
-              li: strong head
-              li: strong take
-            p 配列の最初の要素を返します。
-              | <var>$n</var>を指定した場合は先頭からn個分の要素を含む配列を返します。
-            pre
-              | >>> _::first([1, 2, 3])
-              | 1
-              | >>> _::first([1, 2, 3], 1)
-              | [1]
-              | >>> _::first([1, 2, 3], 2)
-              | [1, 2]
+
+          section.function.lazy#first
+            include includes/arrays/first.markdown
             div.top: a(href="#") TOP
-          // }}}
 
     footer#footer
       p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
