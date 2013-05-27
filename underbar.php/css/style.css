@@ -124,7 +124,7 @@ a:hover {
 }
 
 pre {
-  font-family: "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace;
+  font-family: "TheSans Mono", "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace;
   background-color: #ecf0f1;
   padding: 0.875em;
   overflow: auto;
@@ -140,7 +140,7 @@ pre code {
   padding: 0;
 }
 
-code {
+code, var {
   background-color: #ecf0f1;
   padding: 2px 4px;
   white-space: nowrap;
@@ -151,6 +151,10 @@ code {
   border-radius: 4px;
 }
 
+var {
+  font-style: normal;
+}
+
 em {
   color: #7f8c8d;
 }
@@ -159,18 +163,28 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  border: 2px solid #ecf0f1;
 }
 
 td, th {
   padding: 0.875em 0.5em;
 }
 
-th {
-  font-weight: bold;
+th, td {
+  padding: 0.4375em 0.5em;
 }
 
-tr:nth-child(odd) td {
+th {
+  font-weight: bold;
   background-color: #ecf0f1;
+}
+
+td {
+  border-bottom: 1px solid #ecf0f1;
+}
+
+ul, ol {
+  padding-left: 1.5em;
 }
 
 li > * {
@@ -224,7 +238,9 @@ li > * {
   *zoom: 1;
 }
 #main header {
-  padding: 7em 1.5em;
+  position: relative;
+  padding: 7em 0;
+  margin-bottom: 7em;
   background-color: #ecf0f1;
   text-align: center;
 }
@@ -236,15 +252,13 @@ li > * {
   line-height: 1.1666666666666667;
   color: #bdc3c7;
 }
-#main aside {
-  padding: 0.875em 0em;
-  margin-bottom: 3.5em;
-}
 #main .social-buttons {
   overflow: hidden;
   *zoom: 1;
+  position: absolute;
+  bottom: -2.625em;
   height: 1.75em;
-  overflow: visible;
+  width: 100%;
   text-align: center;
   list-style: none;
   margin: 0;
@@ -262,10 +276,9 @@ li > * {
   width: 110px !important;
 }
 #main > section {
-  padding: 0 2em;
-  margin: 0 auto 7em;
+  padding: 0 1em;
 }
-#main section section {
+#main section {
   margin: 0 auto 3.5em;
 }
 
@@ -290,20 +303,24 @@ li > * {
   #header:target a.button-menu {
     pointer-events: none;
   }
+  #header:target a.button-menu, #header a.button-menu:hover {
+    background-color: #2c3e50;
+    color: #1abc9c;
+  }
   #header h1 {
     position: relative;
   }
   #header dl {
     overflow: hidden;
     *zoom: 1;
-    -webkit-transition-property: opacity, max-height;
-    -moz-transition-property: opacity, max-height;
-    -o-transition-property: opacity, max-height;
-    transition-property: opacity max-height;
-    -webkit-transition-duration: 0.2s;
-    -moz-transition-duration: 0.2s;
-    -o-transition-duration: 0.2s;
-    transition-duration: 0.2s;
+    -webkit-transition-property: max-height;
+    -moz-transition-property: max-height;
+    -o-transition-property: max-height;
+    transition-property: max-height;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s;
     -webkit-transition-timing-function: ease-out;
     -moz-transition-timing-function: ease-out;
     -o-transition-timing-function: ease-out;
@@ -339,9 +356,6 @@ li > * {
     background-color: #34495e;
     color: #ecf0f1;
   }
-  #header a.button-menu:hover {
-    background-color: #2c3e50;
-  }
 }
 @media screen and (min-width: 768px) {
   #header {
@@ -363,6 +377,7 @@ li > * {
     margin-left: 240px;
   }
   #main > section {
+    padding: 0 2em;
     max-width: 700px;
   }
 
@@ -370,18 +385,58 @@ li > * {
     padding-left: 240px;
   }
 }
-.function h4 {
+.api {
   padding-left: 6px;
   border-left: 6px solid #34495e;
 }
-.function h4:not(:last-of-type) {
+.api.lazy {
+  border-left: 6px solid #1abc9c;
+}
+.api:not(:last-of-type) {
   margin-bottom: 0;
 }
-.function h4 em, .function h4 code {
+.api em, .api var {
   font-weight: normal;
 }
-.function.lazy h4 {
-  border-left: 6px solid #1abc9c;
+.api small {
+  font-weight: normal;
+  font-size: 80%;
+  color: #7f8c8d;
+}
+
+.aliases {
+  overflow: hidden;
+  *zoom: 1;
+  list-style: none;
+  padding: 0;
+}
+.aliases li {
+  float: left;
+}
+.aliases li:first-child:before {
+  content: "Aliases: ";
+}
+.aliases li:only-child:before {
+  content: "Alias: ";
+}
+.aliases li + li:before {
+  content: ", ";
+}
+
+.extends {
+  overflow: hidden;
+  *zoom: 1;
+  list-style: none;
+  padding: 0;
+}
+.extends li {
+  float: left;
+}
+.extends li:first-child:before {
+  content: "Extends: ";
+}
+.extends li + li:before {
+  content: "\a0>\a0";
 }
 
 .top {

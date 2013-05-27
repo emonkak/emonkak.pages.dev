@@ -1,8 +1,3 @@
-#### *array* first(*array* `$xs`)
-#### *mixed* first(*array* `$xs`, *int* `$n`)
-
-Aliases: **head**, **take**
-
 配列の最初の要素を返します。
 `$n`を指定した場合は先頭からn個分の要素を含む配列を返します。
 

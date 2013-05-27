@@ -57,7 +57,7 @@ a
     text-decoration: underline
 
 pre
-  font-family: "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace
+  font-family: "TheSans Mono", "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace
   background-color: $light-color
   padding: 0.5em * baseline-line-height(16)
   overflow: auto
@@ -68,11 +68,14 @@ pre
     border: 0
     padding: 0
 
-code
+code, var
   background-color: $light-color
   padding: 2px 4px
   white-space: nowrap
   @include border-radius(4px)
+
+var
+  font-style: normal
 
 em
   color: $gray-color
@@ -81,15 +84,23 @@ table
   width: 100%
   border-collapse: collapse
   border-spacing: 0
+  border: 2px solid $light-color
 
 td, th
   padding: 0.5em * baseline-line-height(16) 0.5em
 
+th, td
+  padding: 0.25em * baseline-line-height(16) 0.5em
+
 th
   font-weight: bold
-
-tr:nth-child(odd) td
   background-color: $light-color
+
+td
+  border-bottom: 1px solid $light-color
+
+ul, ol
+  padding-left: 1.5em
 
 li > *
   margin: 0
@@ -150,7 +161,9 @@ li > *
   @include clearfix
 
   header
-    padding: 4em * baseline-line-height(16) 1.5em
+    position: relative
+    padding: 4em * baseline-line-height(16) 0
+    margin-bottom: 4em * baseline-line-height(16)
     background-color: $light-color
     text-align: center
 
@@ -161,14 +174,12 @@ li > *
       @include baseline-font(24)
       color: $lightgray-color
 
-  aside
-    padding: 0.5em * baseline-line-height(16) 0em
-    margin-bottom: 2em * baseline-line-height(16)
-
   .social-buttons
     @include clearfix
+    position: absolute
+    bottom: -(1.5em * baseline-line-height(16))
     height: 1em * baseline-line-height(16)
-    overflow: visible
+    width: 100%
     text-align: center
     list-style: none
     margin: 0
@@ -186,10 +197,9 @@ li > *
       width: 110px !important
 
   > section
-    padding: 0 2em
-    margin: 0 auto 4em * baseline-line-height(16)
+    padding: 0 1em
 
-  section section
+  section
     margin: 0 auto 2em * baseline-line-height(16)
 
 
@@ -222,13 +232,17 @@ li > *
       a.button-menu
         pointer-events: none
 
+    &:target a.button-menu, a.button-menu:hover
+      background-color: $black-color
+      color: $accent-color
+
     h1
       position: relative
 
     dl
       @include clearfix
-      @include transition-property(opacity max-height)
-      @include transition-duration(0.2s)
+      @include transition-property(max-height)
+      @include transition-duration(0.25s)
       @include transition-timing-function(ease-out)
       position: absolute
       background-color: $dark-color
@@ -258,9 +272,6 @@ li > *
       background-color: $dark-color
       color: $light-color
 
-      &:hover
-        background-color: $black-color
-
 @include layout-two-column()
   #header
     position: fixed
@@ -280,6 +291,7 @@ li > *
     margin-left: $sidebar-width
 
     > section
+      padding: 0 2em
       max-width: $content-width - $sidebar-width
 
   #footer
@@ -290,19 +302,54 @@ li > *
 
 // Classes  {{{1
 
-.function
-  h4
-    padding-left: 6px
-    border-left: 6px solid $dark-color
+.api
+  padding-left: 6px
+  border-left: 6px solid $dark-color
 
-    &:not(:last-of-type)
-      margin-bottom: 0
-
-    em, code
-      font-weight: normal
-
-  &.lazy h4
+  &.lazy
     border-left: 6px solid $accent-color
+
+  &:not(:last-of-type)
+    margin-bottom: 0
+
+  em, var
+    font-weight: normal
+
+  small
+    font-weight: normal
+    font-size: 80%
+    color: $gray-color
+
+.aliases
+  @include clearfix
+  list-style: none
+  padding: 0
+
+  li
+    float: left
+
+  li:first-child:before
+    content: "Aliases: "
+
+  li:only-child:before
+    content: "Alias: "
+
+  li + li:before
+    content: ", "
+
+.extends
+  @include clearfix
+  list-style: none
+  padding: 0
+
+  li
+    float: left
+
+  li:first-child:before
+    content: "Extends: "
+
+  li + li:before
+    content: "\a0>\a0"
 
 .top
   text-align: right

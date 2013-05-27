@@ -13,76 +13,83 @@
         <dl>
           <dd><a href="#introduction">Introduction</a></dd>
           <dd><a href="#getting-started">Getting Started</a></dd>
+          <dt class="title"><a href="#classes"><strong>Classes</strong><small>Underbar Namespace</small></a></dt>
+          <dd><a href="#class-Strict">Strict</a></dd>
+          <dd><a href="#class-Lazy">Lazy</a></dd>
+          <dd><a href="#class-LazyIterator">LazyIterator</a></dd>
+          <dd><a href="#class-LazyGenerator">LazyGenerator</a></dd>
+          <dd><a href="#class-UnsafeLazyGenerator">UnsafeLazyGenerator</a></dd>
+          <dd><a href="#class-Enumerable">Enumerable</a></dd>
           <dt class="title"><a href="#collections"><strong>Collections</strong><small>Array or Traversable Object</small></a></dt>
-          <dd><a href="#each">each</a></dd>
-          <dd><a href="#map">map</a></dd>
-          <dd><a href="#parMap">parMap</a></dd>
-          <dd><a href="#reduce">reduce</a></dd>
-          <dd><a href="#reduceRight">reduceRight</a></dd>
-          <dd><a href="#get">get</a></dd>
-          <dd><a href="#find">find</a></dd>
-          <dd><a href="#filter">filter</a></dd>
-          <dd><a href="#where">where</a></dd>
-          <dd><a href="#findWhere">findWhere</a></dd>
-          <dd><a href="#reject">reject</a></dd>
-          <dd><a href="#every">every</a></dd>
-          <dd><a href="#all">all</a></dd>
-          <dd><a href="#some">some</a></dd>
-          <dd><a href="#any">any</a></dd>
-          <dd><a href="#sum">sum</a></dd>
-          <dd><a href="#product">product</a></dd>
-          <dd><a href="#contains">contains</a></dd>
-          <dd><a href="#invoke">invoke</a></dd>
-          <dd><a href="#pluck">pluck</a></dd>
-          <dd><a href="#span">span</a></dd>
-          <dd><a href="#max">max</a></dd>
-          <dd><a href="#min">min</a></dd>
-          <dd><a href="#sortBy">sortBy</a></dd>
-          <dd><a href="#groupBy">groupBy</a></dd>
-          <dd><a href="#countBy">countBy</a></dd>
-          <dd><a href="#shuffle">shuffle</a></dd>
-          <dd><a href="#toArray">toArray</a></dd>
-          <dd><a href="#size">size</a></dd>
-          <dd><a href="#memorize">memorize</a></dd>
+          <dd><a href="#function-each">each</a></dd>
+          <dd><a href="#function-map">map</a></dd>
+          <dd><a href="#function-parMap">parMap</a></dd>
+          <dd><a href="#function-reduce">reduce</a></dd>
+          <dd><a href="#function-reduceRight">reduceRight</a></dd>
+          <dd><a href="#function-get">get</a></dd>
+          <dd><a href="#function-find">find</a></dd>
+          <dd><a href="#function-filter">filter</a></dd>
+          <dd><a href="#function-where">where</a></dd>
+          <dd><a href="#function-findWhere">findWhere</a></dd>
+          <dd><a href="#function-reject">reject</a></dd>
+          <dd><a href="#function-every">every</a></dd>
+          <dd><a href="#function-all">all</a></dd>
+          <dd><a href="#function-some">some</a></dd>
+          <dd><a href="#function-any">any</a></dd>
+          <dd><a href="#function-sum">sum</a></dd>
+          <dd><a href="#function-product">product</a></dd>
+          <dd><a href="#function-contains">contains</a></dd>
+          <dd><a href="#function-invoke">invoke</a></dd>
+          <dd><a href="#function-pluck">pluck</a></dd>
+          <dd><a href="#function-span">span</a></dd>
+          <dd><a href="#function-max">max</a></dd>
+          <dd><a href="#function-min">min</a></dd>
+          <dd><a href="#function-sortBy">sortBy</a></dd>
+          <dd><a href="#function-groupBy">groupBy</a></dd>
+          <dd><a href="#function-countBy">countBy</a></dd>
+          <dd><a href="#function-shuffle">shuffle</a></dd>
+          <dd><a href="#function-toArray">toArray</a></dd>
+          <dd><a href="#function-size">size</a></dd>
+          <dd><a href="#function-memorize">memorize</a></dd>
           <dt class="title"><a href="#arrays"><strong>Arrays</strong><small>Numerical Array</small></a></dt>
-          <dd><a href="#first">first</a></dd>
-          <dd><a href="#head">head</a></dd>
-          <dd><a href="#take">take</a></dd>
-          <dd><a href="#takeWhile">takeWhile</a></dd>
-          <dd><a href="#initial">initial</a></dd>
-          <dd><a href="#last">last</a></dd>
-          <dd><a href="#rest">rest</a></dd>
-          <dd><a href="#tail">tail</a></dd>
-          <dd><a href="#drop">drop</a></dd>
-          <dd><a href="#dropWhile">dropWhile</a></dd>
-          <dd><a href="#compact">compact</a></dd>
-          <dd><a href="#flatten">flatten</a></dd>
-          <dd><a href="#without">without</a></dd>
-          <dd><a href="#union">union</a></dd>
-          <dd><a href="#intersection">intersection</a></dd>
-          <dd><a href="#difference">difference</a></dd>
-          <dd><a href="#uniq">uniq</a></dd>
-          <dd><a href="#unique">unique</a></dd>
-          <dd><a href="#zip">zip</a></dd>
-          <dd><a href="#zipWith">zipWith</a></dd>
-          <dd><a href="#object">object</a></dd>
-          <dd><a href="#indexOf">indexOf</a></dd>
-          <dd><a href="#lastIndexOf">lastIndexOf</a></dd>
-          <dd><a href="#sortedIndex">sortedIndex</a></dd>
-          <dd><a href="#range">range</a></dd>
-          <dd><a href="#cycle">cycle</a></dd>
-          <dd><a href="#repeat">repeat</a></dd>
-          <dd><a href="#iterate">iterate</a></dd>
-          <dd><a href="#pop">pop</a></dd>
-          <dd><a href="#push">push</a></dd>
-          <dd><a href="#reverse">reverse</a></dd>
-          <dd><a href="#shift">shift</a></dd>
-          <dd><a href="#sort">sort</a></dd>
-          <dd><a href="#splice">splice</a></dd>
-          <dd><a href="#unshift">unshift</a></dd>
-          <dd><a href="#concat">concat</a></dd>
-          <dd><a href="#join">join</a></dd>
-          <dd><a href="#slice">slice</a></dd>
+          <dd><a href="#function-first">first</a></dd>
+          <dd><a href="#function-head">head</a></dd>
+          <dd><a href="#function-take">take</a></dd>
+          <dd><a href="#function-takeWhile">takeWhile</a></dd>
+          <dd><a href="#function-initial">initial</a></dd>
+          <dd><a href="#function-last">last</a></dd>
+          <dd><a href="#function-rest">rest</a></dd>
+          <dd><a href="#function-tail">tail</a></dd>
+          <dd><a href="#function-drop">drop</a></dd>
+          <dd><a href="#function-dropWhile">dropWhile</a></dd>
+          <dd><a href="#function-compact">compact</a></dd>
+          <dd><a href="#function-flatten">flatten</a></dd>
+          <dd><a href="#function-without">without</a></dd>
+          <dd><a href="#function-union">union</a></dd>
+          <dd><a href="#function-intersection">intersection</a></dd>
+          <dd><a href="#function-difference">difference</a></dd>
+          <dd><a href="#function-uniq">uniq</a></dd>
+          <dd><a href="#function-unique">unique</a></dd>
+          <dd><a href="#function-zip">zip</a></dd>
+          <dd><a href="#function-zipWith">zipWith</a></dd>
+          <dd><a href="#function-object">object</a></dd>
+          <dd><a href="#function-indexOf">indexOf</a></dd>
+          <dd><a href="#function-lastIndexOf">lastIndexOf</a></dd>
+          <dd><a href="#function-sortedIndex">sortedIndex</a></dd>
+          <dd><a href="#function-range">range</a></dd>
+          <dd><a href="#function-cycle">cycle</a></dd>
+          <dd><a href="#function-repeat">repeat</a></dd>
+          <dd><a href="#function-iterate">iterate</a></dd>
+          <dd><a href="#function-pop">pop</a></dd>
+          <dd><a href="#function-push">push</a></dd>
+          <dd><a href="#function-reverse">reverse</a></dd>
+          <dd><a href="#function-shift">shift</a></dd>
+          <dd><a href="#function-sort">sort</a></dd>
+          <dd><a href="#function-splice">splice</a></dd>
+          <dd><a href="#function-unshift">unshift</a></dd>
+          <dd><a href="#function-concat">concat</a></dd>
+          <dd><a href="#function-join">join</a></dd>
+          <dd><a href="#function-slice">slice</a></dd>
         </dl>
       </nav>
     </header>
@@ -91,8 +98,6 @@
         <h1>Underbar.php</h1>
         <p>an array and lazy list utility, like Underscore.js</p>
         <p><a href="https://github.com/emonkak/underbar.php" class="button">GitHub Repository</a></p>
-      </header>
-      <aside>
         <ul class="social-buttons">
           <li>
             <iframe src="http://ghbtns.com/github-btn.html?user=emonkak&amp;repo=underbar.php&amp;type=watch&amp;count=true" width="110" height="20" class="github-watch-button-frame"></iframe>
@@ -103,35 +108,58 @@
             <div data-href="https://emonkak.github.io/underbar.php/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" class="fb-like"></div>
           </li>
         </ul>
-      </aside>
-      <section id="introduction"><h2>Introduction</h2>
-<p>Underbar.phpは配列と遅延リストに関する便利な関数を提供する<a href="http://underscorejs.org/">Underscore.js</a>に似たPHPのライブラリです。
-Underscore.jsのPHPへの移植ではないのでAPIにいくつかの違いはありますが、基本的にはUnderscore.jsと互換性のある動作をします。</p>
-<p>Underscore.jsとの最も大きな違いは遅延リスト(遅延ストリーム)が扱える点です。
-遅延リストとは要素の計算が遅延されるコンテナで、具体的なPHPの実装で言うと<a href="http://php.net/manual/ja/class.traversable.php">Traversable</a>インターフェイスを実装したオブジェクトを指します。
-遅延リストの要素は必要になった時点で生成されるため、配列を生成するよりメモリ使用量を大きく抑えられる場合があります。</p>
-<p><code>map()</code>などの配列を返す関数のほとんどは、<code>Traversable</code>なオブジェクト(遅延リスト)を返すことできるAPIが用意されています。
-また、配列を引数に取るあらゆる関数は<code>Traversable</code>なオブジェクトを取ることもできます。</p>
-<pre><code>use Underbar\Strict as S;  // 正格リスト(配列)版
-use Underbar\Lazy as L;  // 遅延リスト版
+      </header>
+      <section id="introduction">
+        <h2>Introduction</h2><p>Underbar.phpは<a href="http://underscorejs.org/">Underscore.js</a>ライクな便利な関数群を提供するPHPのライブラリです。
+Underscore.jsの純粋な移植ではないのでいくつかの違いがあります。</p>
+<ul>
+<li>遅延リスト(遅延ストリーム)のサポート</li>
+<li><a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なクラスに<a href="#arrays">Arrays</a>と<a href="#objects">Objects</a>の関数をmixinする<a href="#class-Enumerable"><code>Enumerable</code></a>トレイト</li>
+<li>いくつかの関数を追加<ul>
+<li><strong>Collections</strong>: <a href="#function-parMap"><code>parMap</code></a>, <a href="#function-get"><code>get</code></a>, <a href="#function-span"><code>span</code></a>, <a href="#function-memoize"><code>memoize</code></a></li>
+<li><strong>Arrays</strong>: <a href="#function-takeWhile"><code>takeWhile</code></a>, <a href="#function-dropWhile"><code>dropWhile</code></a>, <a href="#function-cycle"><code>cycle</code></a>, <a href="#function-repeat"><code>repeat</code></a>, <a href="#function-iterate"><code>iterate</code></a></li>
+<li><strong>Objects</strong>: <a href="#function-isTraversable"><code>isTraversable</code></a></li>
+</ul>
+</li>
+<li>使用頻度が高くないもの、PHP組み込みの関数と重複しているもの、PHPでは実現が困難なものは未実装<ul>
+<li><strong>Functions</strong>: <code>bind</code>, <code>bindAll</code>, <code>partial</code>, <code>memoize</code>, <code>delay</code>, <code>defer</code>, <code>throttle</code>, <code>debounce</code>, <code>once</code>, <code>after</code>, <code>wrap</code>, <code>compose</code></li>
+<li><strong>Objects</strong>: <code>isEqual</code>, <code>isEmpty</code>, <code>isElement</code>, <code>isObject</code>, <code>isArguments</code>, <code>isFunction</code>, <code>isNumber</code>, <code>isFinite</code>, <code>isBoolean</code>, <code>isDate</code>, <code>isRegExp</code>, <code>isNaN</code>, <code>isNull</code>, <code>isUndefined</code></li>
+<li><strong>Utility</strong>: <code>noConflict</code>, <code>times</code>, <code>random</code>, <code>mixin</code>, <code>uniqueid</code>, <code>escape</code>, <code>unescape</code>, <code>result</code>, <code>template</code></li>
+</ul>
+</li>
+</ul>
+<p>以下に配列の要素を2倍にする手続きを配列と遅延リストそれぞれ返す場合について例示します。</p>
+<pre><code>use Underbar\Strict as S;  // 配列版クラス
+use Underbar\Lazy as L;    // 遅延リスト版クラス
 
 $xs = [1, 2, 3, 4];
-$twice = function($n) { $n * 2 };
+$twice = function($n) { return $n * 2; };
 
 $ys = S::map($xs, $twice);
-$zs = L::map($xs, $twice);
-
 var_dump(is_array($ys));  // true
 var_dump($ys instanceof Traversable);  // false
+var_dump($ys);  // [2, 4, 6, 8]
+
+$zs = L::map($xs, $twice);
 var_dump(is_array($zs));  // false
 var_dump($zs instanceof Traversable);  // true
-
-var_dump($ys);  // [2, 4, 6, 8]
 var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</code></pre>
+<p>このように配列版(<a href="#class-Strict"><code>Strict</code></a>)と遅延リスト版(<a href="#class-Lazy"><code>Lazy</code></a>)のクラスは互換性のあるインターフェイスを持っているので容易に切り替えができます。</p>
+<p>Underscore.jsのように<a href="#function-chain"><code>chain</code></a>を使ってメソッドチェインで配列を処理することもできます。</p>
+<pre><code>use Underbar\Lazy as _;
+
+// Fibonacci sequence
+echo _::chain([1, 1])
+    -&gt;iterate(function($pair) { return [$pair[1], _::sum($pair)]; })
+    -&gt;map(function($pair) { return _::first($pair); })
+    -&gt;take(10)
+    -&gt;toArray()
+    -&gt;join()
+    -&gt;value();  // =&gt; 1,1,2,3,5,8,13,21,34,55</code></pre>
 
       </section>
-      <section id="getting-started"><h2>Getting Started</h2>
-<p>Underbar.phpの動作にはバージョン5.3以上のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要です。
+      <section id="getting-started">
+        <h2>Getting Started</h2><p>Underbar.phpの動作にはバージョン5.3以上のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要です。
 インストールが完了したらプロジェクトルートに以下のような内容のcomposer.jsonを作成します。
 詳しいcomposer.jsonの書き方については<a href="http://getcomposer.org/doc/04-schema.md">こちら</a>を参照して下さい。</p>
 <pre><code>{
@@ -142,70 +170,90 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</code></pre>
 <p>composer.jsonを作成したら同じディレクトリで<code>$ php composer.phar install</code>を実行するとUnderbar.phpのインストールは完了します。</p>
 
       </section>
-      <section id="classes-and-trait"><h2>Classes and Trait</h2>
-<ul>
-<li><p><code>Underbar\Strict</code></p>
-<p>正格リストを提供</p>
-</li>
-<li><p><code>Underbar\Lazy</code></p>
-<p><a href="http://php.net/manual/ja/function.class-alias.php"><code>class_alias()</code></a>によって作成されたエイリアスクラスです。
-<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>が利用可能であれば<code>Underbar\LazyGenerator</code>を、利用できなければ<code>Underbar\LazyIterator</code>を参照します。</p>
-</li>
-<li><p><code>Underbar\LazyIterator</code> extends <code>Underbar\Strict</code></p>
-</li>
-<li><p><code>Underbar\LazyGenerator</code> extends <code>Underbar\Strict</code></p>
-</li>
-<li><p><code>Underbar\Enumerable</code></p>
-</li>
-<li><p><code>Underbar\Internal\*</code></p>
-<p>内部の実装で使われているクラスです。</p>
-</li>
-</ul>
+      <section id="classes">
+        <h2>Classes</h2>
+        <h3>Underbar Namespace</h3>
+        <section id="class-Strict">
+          <h4 class="api">Strict <small>Class</small></h4><p>複数個の要素を返す時に、配列として値を返すAPIを提供するクラスです。
+Underbar.phpのコアとなるクラスで、<a href="#functions">Functions</a>に定義されているすべての関数はこのクラスのstaticメソッドとして定義されいます。
+遅延リストを返す<a href="#class-LazyIterator"><code>LazyIterator</code></a>, <a href="#class-LazyGenerator"><code>LazyGenerator</code></a>はこのクラスの子クラスです。</p>
 
+        </section>
+        <section id="class-Lazy">
+          <h4 class="api">Lazy <small>Class Alias</small></h4><p>複数個の要素を返す時に、遅延リストとして値を返すAPIを提供するクラスへのエイリアスです。
+<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>が利用可能であれば<a href="#class-LazyGenerator"><code>LazyGenerator</code></a>を、利用できなければ<a href="#class-LazyIterator"><code>LazyIterator</code></a>を参照します。
+実装されているメソッドの種類は<a href="#class-Strict"><code>Strict</code></a>と同一で、遅延リストを返すように書き換え可能なメソッドについてはオーバーライドされています。</p>
+
+        </section>
+        <section id="class-LazyIterator">
+          <h4 class="api">LazyIterator <small>Class</small></h4><p>複数個の要素を返す時に、<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>を利用して遅延リストを返すAPIを提供するクラスへのエイリアスです。</p>
+
+        </section>
+        <section id="class-lazyGenerator">
+          <h4 class="api">LazyGenerator <small>Class</small></h4>
+          <ol class="extends">
+            <li><code><a href="#class-UnsafeLazyGenerator">UnsafeLazyGenerator</a></code></li>
+            <li><code><strong>LazyGenerator</strong></code></li>
+          </ol><p>複数個の要素を返す時に、<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を利用して遅延リストを返すAPIを提供するクラスです。
+<a href="#class-LazyIterator"><code>LazyIterator</code></a>よりも高速するので、クラスエイリアスの<a href="#class-Lazy"><code>Lazy</code></a>はこちらを優先します。</p>
+<p><code>Generator</code>はforeachなどで2回走査しようとすると例外が発生しますが、
+このクラスの<code>Generator</code>を返すメソッドには<code>Generator</code>を都度生成させるためのラッパー(<code>Internal\RewindableGenerator</code>)を噛ますので例外セーフです。</p>
+
+        </section>
+        <section id="class-UnsafeLazyGenerator">
+          <h4 class="api">UnsafeLazyGenerator <small>Class</small></h4><p><a href="#class-LazyGenerator"><code>Underbar\LazyGenerator</code></a>の例外セーフではないバージョンです。
+ラッパーを噛まさないので少しだけパフォーマンスが良いです。</p>
+
+        </section>
+        <section id="class-Enumerable">
+          <h4 class="api">Enumerable <small>Trait</small></h4>
+        </section>
       </section>
       <section id="functions">
         <h2>Functions</h2>
         <section id="collections">
           <h3>Collection Functions</h3>
-          <section id="each" class="function"><h4><em>void</em> each(<em>array</em> <code>$xs</code>, <em>callable</em> <code>$f</code>)</h4>
-<p><em>array</em>の各要素に対して関数<code>$f</code>を呼び出します。
+          <section id="function-each">
+            <h4 class="api"><em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><em>array</em>の各要素に対して関数<code>$f</code>を呼び出します。
 <code>$f</code>は<code>(element, index, array)</code>の3つの引数を取ります。</p>
 <pre><code>&gt;&gt;&gt; _::each([1, 2, 3], function($x, $i, $xs) {
-  echo $x, PHP_EOL;
-})
-=&gt; 1
-=&gt; 2
-=&gt; 3
-&gt;&gt;&gt; _::each([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], function($x, $k, $xs) {
-  echo $k, $x, PHP_EOL;
-})
-=&gt; one1
-=&gt; two2
-=&gt; three3</code></pre>
+...   echo $x, PHP_EOL;
+... })
+1
+2
+3
+&gt;&gt;&gt; $xs = [&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]
+... _::each($xs, function($x, $k, $xs) {
+...   echo $k, &#39;-&#39;, $x, PHP_EOL;
+... });
+one-1
+two-2
+three-3</code></pre>
 
-            <div class="top"><a href="#">TOP</a></div>
           </section>
-          <section id="map" class="function lazy"><h4><em>array</em> map(<em>array</em> <code>$xs</code>, <em>callable</em> <code>$f</code>)</h4>
-<p>Arrayの各要素に対して関数<code>$f</code>を適用して新しい配列を返します。
+          <section id="function-map">
+            <h4 class="api lazy"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p>Arrayの各要素に対して関数<code>$f</code>を適用して新しい配列を返します。
 <code>$f</code>は<code>(element, index, array)</code>の3つの引数を取ります。</p>
 <pre><code>&gt;&gt;&gt; _::map([1, 2, 3], function($x) {
-  return $x * 3;
-})
-=&gt; [3, 6, 9]
+...   return $x * 3;
+... })
+[3, 6, 9]
 &gt;&gt;&gt; _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], function($x) {
-  return $x * 3;
-})
-=&gt; [3, 6, 9]</code></pre>
+...   return $x * 3;
+... })
+[3, 6, 9]</code></pre>
 
-            <div class="top"><a href="#">TOP</a></div>
           </section>
         </section>
         <section id="arrays">
           <h3>Array Functions</h3>
-          <section id="first" class="function lazy"><h4><em>array</em> first(<em>array</em> <code>$xs</code>)</h4>
-<h4><em>mixed</em> first(<em>array</em> <code>$xs</code>, <em>int</em> <code>$n</code>)</h4>
-<p>Aliases: <strong>head</strong>, <strong>take</strong></p>
-<p>配列の最初の要素を返します。
+          <section id="function-first">
+            <h4 class="api lazy"><em>array</em> first(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="api"><em>array</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
+            <ul class="aliases">
+              <li><code>head()</code></li>
+              <li><code>take()</code></li>
+            </ul><p>配列の最初の要素を返します。
 <code>$n</code>を指定した場合は先頭からn個分の要素を含む配列を返します。</p>
 <pre><code>&gt;&gt;&gt; _::first([1, 2, 3])
 1
@@ -214,7 +262,6 @@ var_dump(iterator_to_array($ys));  // [2, 4, 6, 8]</code></pre>
 &gt;&gt;&gt; _::first([1, 2, 3], 2)
 [1, 2]</code></pre>
 
-            <div class="top"><a href="#">TOP</a></div>
           </section>
         </section>
       </section>
