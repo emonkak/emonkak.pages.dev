@@ -5,7 +5,7 @@ html(lang="ja")
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
     title Underbar.php - an array and lazy list utility, like Underscore.js
-    link(href="css/style.css", rel="stylesheet")
+    link(href="css/styles.css", rel="stylesheet")
   body
     header#header
       nav(role="navigation")
@@ -17,92 +17,83 @@ html(lang="ja")
         dl
           dd: a(href="#introduction") Introduction
           dd: a(href="#getting-started") Getting Started
-
-          dt.title: a(href="#classes")
-            strong Classes
-            small Underbar Namespace
-          dd: a(href="#class-Strict") Strict
-          dd: a(href="#class-Lazy") Lazy
-          dd: a(href="#class-LazyIterator") LazyIterator
-          dd: a(href="#class-LazyGenerator") LazyGenerator
-          dd: a(href="#class-UnsafeLazyGenerator") UnsafeLazyGenerator
-          dd: a(href="#class-Enumerable") Enumerable
+          dd: a(href="#classes") Classes
 
           dt.title: a(href="#collections")
             strong Collections
-            small Array or Traversable Object
-          dd: a(href="#function-each") each
-          dd: a(href="#function-map") map
-          dd: a(href="#function-parMap") parMap
-          dd: a(href="#function-reduce") reduce
-          dd: a(href="#function-reduceRight") reduceRight
-          dd: a(href="#function-get") get
-          dd: a(href="#function-find") find
-          dd: a(href="#function-filter") filter
-          dd: a(href="#function-where") where
-          dd: a(href="#function-findWhere") findWhere
-          dd: a(href="#function-reject") reject
-          dd: a(href="#function-every") every
-          dd: a(href="#function-all") all
-          dd: a(href="#function-some") some
-          dd: a(href="#function-any") any
-          dd: a(href="#function-sum") sum
-          dd: a(href="#function-product") product
-          dd: a(href="#function-contains") contains
-          dd: a(href="#function-invoke") invoke
-          dd: a(href="#function-pluck") pluck
-          dd: a(href="#function-span") span
-          dd: a(href="#function-max") max
-          dd: a(href="#function-min") min
-          dd: a(href="#function-sortBy") sortBy
-          dd: a(href="#function-groupBy") groupBy
-          dd: a(href="#function-countBy") countBy
-          dd: a(href="#function-shuffle") shuffle
-          dd: a(href="#function-toArray") toArray
-          dd: a(href="#function-size") size
-          dd: a(href="#function-memorize") memorize
+            small Array or Traversable object
+          dd: a(href="#each") each
+          dd: a(href="#map") map
+          dd: a(href="#reduce") reduce
+          dd: a(href="#reduceRight") reduceRight
+          dd: a(href="#get") get
+          dd: a(href="#find") find
+          dd: a(href="#filter") filter
+          dd: a(href="#where") where
+          dd: a(href="#findWhere") findWhere
+          dd: a(href="#reject") reject
+          dd: a(href="#every") every
+          dd: a(href="#all") all
+          dd: a(href="#some") some
+          dd: a(href="#any") any
+          dd: a(href="#sum") sum
+          dd: a(href="#product") product
+          dd: a(href="#contains") contains
+          dd: a(href="#invoke") invoke
+          dd: a(href="#pluck") pluck
+          dd: a(href="#span") span
+          dd: a(href="#max") max
+          dd: a(href="#min") min
+          dd: a(href="#sortBy") sortBy
+          dd: a(href="#groupBy") groupBy
+          dd: a(href="#countBy") countBy
+          dd: a(href="#shuffle") shuffle
+          dd: a(href="#toArray") toArray
+          dd: a(href="#size") size
+          dd: a(href="#memorize") memorize
 
           dt.title: a(href="#arrays")
             strong Arrays
-            small Numerical Array
-          dd: a(href="#function-first") first
-          dd: a(href="#function-head") head
-          dd: a(href="#function-take") take
-          dd: a(href="#function-takeWhile") takeWhile
-          dd: a(href="#function-initial") initial
-          dd: a(href="#function-last") last
-          dd: a(href="#function-rest") rest
-          dd: a(href="#function-tail") tail
-          dd: a(href="#function-drop") drop
-          dd: a(href="#function-dropWhile") dropWhile
-          dd: a(href="#function-compact") compact
-          dd: a(href="#function-flatten") flatten
-          dd: a(href="#function-without") without
-          dd: a(href="#function-union") union
-          dd: a(href="#function-intersection") intersection
-          dd: a(href="#function-difference") difference
-          dd: a(href="#function-uniq") uniq
-          dd: a(href="#function-unique") unique
-          dd: a(href="#function-zip") zip
-          dd: a(href="#function-zipWith") zipWith
-          dd: a(href="#function-object") object
-          dd: a(href="#function-indexOf") indexOf
-          dd: a(href="#function-lastIndexOf") lastIndexOf
-          dd: a(href="#function-sortedIndex") sortedIndex
-          dd: a(href="#function-range") range
-          dd: a(href="#function-cycle") cycle
-          dd: a(href="#function-repeat") repeat
-          dd: a(href="#function-iterate") iterate
-          dd: a(href="#function-pop") pop
-          dd: a(href="#function-push") push
-          dd: a(href="#function-reverse") reverse
-          dd: a(href="#function-shift") shift
-          dd: a(href="#function-sort") sort
-          dd: a(href="#function-splice") splice
-          dd: a(href="#function-unshift") unshift
-          dd: a(href="#function-concat") concat
-          dd: a(href="#function-join") join
-          dd: a(href="#function-slice") slice
+            small Numerical array
+          dd: a(href="#first") first
+          dd: a(href="#head") head
+          dd: a(href="#take") take
+          dd: a(href="#takeWhile") takeWhile
+          dd: a(href="#initial") initial
+          dd: a(href="#last") last
+          dd: a(href="#rest") rest
+          dd: a(href="#tail") tail
+          dd: a(href="#drop") drop
+          dd: a(href="#dropWhile") dropWhile
+          dd: a(href="#compact") compact
+          dd: a(href="#flatten") flatten
+          dd: a(href="#without") without
+          dd: a(href="#union") union
+          dd: a(href="#intersection") intersection
+          dd: a(href="#difference") difference
+          dd: a(href="#uniq") uniq
+          dd: a(href="#unique") unique
+          dd: a(href="#zip") zip
+          dd: a(href="#zipWith") zipWith
+          dd: a(href="#object") object
+          dd: a(href="#indexOf") indexOf
+          dd: a(href="#lastIndexOf") lastIndexOf
+          dd: a(href="#sortedIndex") sortedIndex
+          dd: a(href="#range") range
+          dd: a(href="#cycle") cycle
+          dd: a(href="#repeat") repeat
+          dd: a(href="#iterate") iterate
+          dd: a(href="#parMap") parMap
+          dd: a(href="#pop") pop
+          dd: a(href="#push") push
+          dd: a(href="#reverse") reverse
+          dd: a(href="#shift") shift
+          dd: a(href="#sort") sort
+          dd: a(href="#splice") splice
+          dd: a(href="#unshift") unshift
+          dd: a(href="#concat") concat
+          dd: a(href="#join") join
+          dd: a(href="#slice") slice
 
     article#main(role="main")
       header
@@ -110,12 +101,12 @@ html(lang="ja")
         p an array and lazy list utility, like Underscore.js
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
-        ul.social-buttons
-          li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", width="110", height="20")
-          li: a.twitter-share-button(href="https://twitter.com/share") Tweet
-          li: a.hatena-bookmark-button(href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/", data-hatena-bookmark-layout="standard-balloon")
-            img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
-          li: div.fb-like(data-href="https://emonkak.github.io/underbar.php/", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
+        - if (false)
+          ul.social-buttons
+            li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", width="110", height="20")
+            li: a.twitter-share-button(href="https://twitter.com/share") Tweet
+            li: a.hatena-bookmark-button(href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/", data-hatena-bookmark-layout="standard-balloon")
+              img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
 
       section#introduction
         h2 Introduction
@@ -129,32 +120,40 @@ html(lang="ja")
         h2 Classes
         h3 Underbar Namespace
 
-        section#class-Strict
+        article#Strict
           h4.api Strict <small>Class</small>
           include includes/classes/Strict.markdown
 
-        section#class-Lazy
-          h4.api Lazy <small>Class Alias</small>
+        article#Lazy
+          h4.api.lazy Lazy <small>Alias</small>
           include includes/classes/Lazy.markdown
 
-        section#class-LazyIterator
-          h4.api LazyIterator <small>Class</small>
+        article#LazyIterator
+          h4.api.lazy LazyIterator <small>Class</small>
+          ol.extends
+            li: code: a(href="#Strict") Strict
+            li: code: em LazyIterator
           include includes/classes/LazyIterator.markdown
 
-        section#class-lazyGenerator
-          h4.api LazyGenerator <small>Class</small>
+        article#lazyGenerator
+          h4.api.lazy LazyGenerator <small>Class</small>
           ol.extends
-            li: code: a(href="#class-UnsafeLazyGenerator") UnsafeLazyGenerator
-            li: code: strong LazyGenerator
+            li: code: a(href="#UnsafeLazyGenerator") UnsafeLazyGenerator
+            li: code: em LazyGenerator
           include includes/classes/LazyGenerator.markdown
 
-        section#class-UnsafeLazyGenerator
-          h4.api UnsafeLazyGenerator <small>Class</small>
+        article#UnsafeLazyGenerator
+          h4.api.lazy UnsafeLazyGenerator <small>Class</small>
+          ol.extends
+            li: code: a(href="#Strict") Strict
+            li: code: em UnsafeLazyGenerator
           include includes/classes/UnsafeLazyGenerator.markdown
 
-        section#class-Enumerable
-          h4.api Enumerable <small>Trait</small>
+        article#Enumerable
+          h4.api.lazy Enumerable <small>Trait</small>
           include includes/classes/Enumrable.markdown
+
+        h3 Underbar\Internal Namespace
 
       section#functions
         h2 Functions
@@ -162,37 +161,53 @@ html(lang="ja")
         section#collections
           h3 Collection Functions
 
-          section#function-each
+          article#each
             h4.api <em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include includes/functions/each.markdown
 
-          section#function-map
+          article#map
             h4.api.lazy <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include includes/functions/map.markdown
+
+          article#reduce
+            h4.api <em>mixed</em> reduce(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            ul.aliases
+              li: code inject()
+              li: code foldl()
+            include includes/functions/reduce.markdown
+
+          article#reduceRight
+            h4.api <em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            ul.aliases
+              li: code foldr()
+            include includes/functions/reduceRight.markdown
 
         section#arrays
           h3 Array Functions
 
-          section#function-first
+          article#first
             h4.api.lazy <em>array</em> first(<em>array</em> <var>$xs</var>)
-            h4.api <em>array</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
+            h4.api <em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             ul.aliases
               li: code head()
               li: code take()
             include includes/functions/first.markdown
 
+          article#parMap
+            h4.api <em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
+            include includes/functions/parMap.markdown
+
     footer#footer
       p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
       p Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a>
-    div#fb-root
+
+    script(src="js/prism.js", async)
+    script(src="//b.st-hatena.com/js/bookmark_button.js", async)
     script
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-    script(src="//b.st-hatena.com/js/bookmark_button.js", async="async")
-    script
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-41380289-1', 'emonkak.github.io');
+      ga('send', 'pageview');

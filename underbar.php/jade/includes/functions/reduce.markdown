@@ -1,0 +1,9 @@
+左結合で`$xs`の要素の畳み込んだ結果を返します。
+`$f`は`($acc, $value, $key, $xs)`の4つの引数を取ります。
+
+```php
+_::reduce([1, 2, 3], function($acc, $n) {
+    return $acc + $n;
+}, 0);
+// 6
+```

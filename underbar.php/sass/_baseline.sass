@@ -1,9 +1,7 @@
 $baseline-font-size: 16
 $baseline-line-height: 28
 
-@function baseline-line-height($font-size)
-  @if $font-size <= 0
-    $font-size: $baseline-font-size
+@function baseline-line-height($font-size: $baseline-font-size)
   $line-height: $baseline-line-height / $font-size
   @return if($line-height < 1.0, $line-height * 2, $line-height)
 
@@ -18,12 +16,12 @@ $baseline-line-height: 28
   line-height: baseline-line-height($font-size)
 
 .baseline-grid
-  $grid-size: 1em * baseline-line-height(16)
+  $grid-size: 1em * baseline-line-height()
   @include background-image(linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px))
   background-size: $grid-size $grid-size
 
 body
-  line-height: baseline-line-height(16)
+  line-height: baseline-line-height()
 
 h1
   @include baseline-font(48)

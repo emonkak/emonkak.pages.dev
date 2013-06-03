@@ -8,13 +8,16 @@
 
 @import "_baseline"
 @import "_color"
+@import "_highlight"
 
-@import url(//fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro)
+@import url(//fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,600)
 
 // Variables  {{{1
 
 $sidebar-width: 240px
 $content-width: 940px
+
+$font-size: 15px
 
 $white-color: #fff
 $black-color: $color-midnight-blue
@@ -24,26 +27,40 @@ $lightgray-color: $color-silver
 $gray-color: $color-asbestos
 $accent-color: $color-turquoise
 
+
+
+
+// Mixins  {{{1
+
 @mixin layout-one-column()
-  @media screen and (max-width: 767px)
+  @media screen and (max-width: 768px)
     @content
 
 @mixin layout-two-column()
-  @media screen and (min-width: 768px)
+  @media screen and (min-width: 769px)
     @content
 
+@mixin my-float-list()
+  @include clearfix
+  list-style: none
+  margin-left: 0
+
+  li
+    float: left
 
 
 
-// Common  {{{1
+
+// Common
 
 body
-  font-family: "Proxima Nova", "Avenir", "Corbel", "Helvetica", "Arial", sans-serif
-  font-size: 15px
+  // @extend .baseline-grid
+  font-family: "Proxima Nova", "Lato", "Helvetica Neue", "Helvetica", sans-serif
+  font-size: $font-size
   color: $black-color
   background-color: $white-color
   -webkit-text-size-adjust: 100%
-  // @include baseline-grid
+  -webkit-font-smoothing: antialiased
 
 h1, h2, h3, h4, h5, h6
   font-weight: bold
@@ -57,28 +74,37 @@ a
     text-decoration: underline
 
 pre
-  font-family: "TheSans Mono", "Consolas", "Menlo", "Monaco", "Bitstram Vera Sans Mono", "Source Code Pro", monospace
+  font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", monospace
   background-color: $light-color
-  padding: 0.5em * baseline-line-height(16)
+  padding: 0.5em * baseline-line-height()
   overflow: auto
-  @include border-radius(4px)
 
   code
     white-space: inherit
-    border: 0
-    padding: 0
 
-code, var
-  background-color: $light-color
+code
   padding: 2px 4px
+  background-color: $light-color
   white-space: nowrap
-  @include border-radius(4px)
+  line-height: 0
+
+em
+  font-weight: bold
+
+strong
+  color: $white-color
+  background-color: $accent-color
+  padding: 2px 4px
+  font-weight: bold
 
 var
   font-style: normal
 
-em
-  color: $gray-color
+ul, ol
+  margin-left: 1.5em
+
+li > ul, li > ol
+  margin-bottom: 0
 
 table
   width: 100%
@@ -87,10 +113,10 @@ table
   border: 2px solid $light-color
 
 td, th
-  padding: 0.5em * baseline-line-height(16) 0.5em
+  padding: 0.5em * baseline-line-height() 0.5em
 
 th, td
-  padding: 0.25em * baseline-line-height(16) 0.5em
+  padding: 0.25em * baseline-line-height() 0.5em
 
 th
   font-weight: bold
@@ -98,12 +124,6 @@ th
 
 td
   border-bottom: 1px solid $light-color
-
-ul, ol
-  padding-left: 1.5em
-
-li > *
-  margin: 0
 
 
 
@@ -130,12 +150,15 @@ li > *
       background-color: lighten($accent-color, 5%)
 
     a
-      padding: 0.5em * baseline-line-height(16) 8px
+      padding: 0.5em * baseline-line-height() 8px
       color: $black-color
 
     strong
-      display: block
       @include baseline-font(20)
+      display: block
+      color: inherit
+      background-color: inherit
+      padding: 0
 
     small
       display: block
@@ -150,7 +173,7 @@ li > *
         color: $accent-color
 
     a
-      padding: 0.125em * baseline-line-height(16) 0.5em
+      padding: 0.125em * baseline-line-height() 0.5em
 
 
 
@@ -162,13 +185,13 @@ li > *
 
   header
     position: relative
-    padding: 4em * baseline-line-height(16) 0
-    margin-bottom: 4em * baseline-line-height(16)
+    padding: 4em * baseline-line-height() 1em
+    margin-bottom: 4em * baseline-line-height()
     background-color: $light-color
     text-align: center
 
     h1
-      margin: 0
+      margin-bottom: 0
 
     p
       @include baseline-font(24)
@@ -177,8 +200,8 @@ li > *
   .social-buttons
     @include clearfix
     position: absolute
-    bottom: -(1.5em * baseline-line-height(16))
-    height: 1em * baseline-line-height(16)
+    bottom: -(1.5em * baseline-line-height())
+    height: 1em * baseline-line-height()
     width: 100%
     text-align: center
     list-style: none
@@ -200,7 +223,7 @@ li > *
     padding: 0 1em
 
   section
-    margin: 0 auto 2em * baseline-line-height(16)
+    margin: 0 auto 4em * baseline-line-height()
 
 
 
@@ -211,8 +234,8 @@ li > *
   background-color: $light-color
   text-align: center
   padding:
-    top: 2em * baseline-line-height(16)
-    bottom: 2em * baseline-line-height(16)
+    top: 2em * baseline-line-height()
+    bottom: 2em * baseline-line-height()
 
   p
     margin: 0
@@ -227,9 +250,9 @@ li > *
     &:target
       dl
         @include transition-timing-function(ease-in)
-        max-height: 100%
+        max-height: 999px
 
-      a.button-menu
+      .button-menu
         pointer-events: none
 
     &:target a.button-menu, a.button-menu:hover
@@ -247,7 +270,7 @@ li > *
       position: absolute
       background-color: $dark-color
       overflow: hidden
-      max-height: 0%
+      max-height: 0
       z-index: 1
 
     dt
@@ -315,18 +338,16 @@ li > *
   em, var
     font-weight: normal
 
+  em
+    color: $gray-color
+
   small
     font-weight: normal
     font-size: 80%
     color: $gray-color
 
 .aliases
-  @include clearfix
-  list-style: none
-  padding: 0
-
-  li
-    float: left
+  @include my-float-list
 
   li:first-child:before
     content: "Aliases: "
@@ -338,12 +359,7 @@ li > *
     content: ", "
 
 .extends
-  @include clearfix
-  list-style: none
-  padding: 0
-
-  li
-    float: left
+  @include my-float-list
 
   li:first-child:before
     content: "Extends: "
@@ -366,7 +382,7 @@ li > *
   background-color: $color-turquoise
   color: $color-clouds
   border-bottom: 2px solid darken($accent-color, 10%)
-  padding: 0.5em * baseline-line-height(16) 1em
+  padding: 0.5em * baseline-line-height() 1em
 
   &:hover
     background-color: lighten($accent-color, 5%)

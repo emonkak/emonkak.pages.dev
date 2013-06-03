@@ -1,5 +1,6 @@
-複数個の要素を返す時に、[`Generator`](http://php.net/manual/ja/class.generator.php)を利用して遅延リストを返すAPIを提供するクラスです。
-[`LazyIterator`](#class-LazyIterator)よりも高速するので、クラスエイリアスの[`Lazy`](#class-Lazy)はこちらを優先します。
+[`Generator`][generator]による遅延リスト版のAPIを提供するクラスです。
+[`Generator`][generator]はforeachなどによる反復処理を繰り返して実行することはできませんが、このクラスでは[`Generator`][generator]を返すメソッドについてラッパー([`Internal\RewindableGenerator`](#RewindableGenerator))を噛ますことで反復処理の繰り返しを可能にしています。
+ラッパーが不要な場合は[`UnsafeLazyGenerator`](#UnsafeLazyGenerator)を利用できます。
 
-`Generator`はforeachなどで2回走査しようとすると例外が発生しますが、
-このクラスの`Generator`を返すメソッドには`Generator`を都度生成させるためのラッパー(`Internal\RewindableGenerator`)を噛ますので例外セーフです。
+[generator]: http://php.net/manual/ja/class.generator.php
+[iterator]: http://php.net/manual/ja/class.iterator.php
