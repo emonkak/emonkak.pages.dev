@@ -158,6 +158,7 @@ echo _::chain([1, 1])
     -&gt;join()
     -&gt;value();  // 1,1,2,3,5,8,13,21,34,55</code></pre>
 
+        <p class="top"><a href="#">TOP</a></p>
       </section>
       <section id="getting-started">
         <h2>Getting Started</h2><p>Underbar.phpの動作には<em>バージョン5.3以上</em>のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要です。
@@ -172,6 +173,7 @@ echo _::chain([1, 1])
 <pre><code>$ php composer.phar install</code></pre>
 <p>を実行するとUnderbar.phpのインストールは完了です。</p>
 
+        <p class="top"><a href="#">TOP</a></p>
       </section>
       <section id="classes">
         <h2>Classes</h2>
@@ -182,12 +184,14 @@ echo _::chain([1, 1])
 Underbar.phpのコアとなるクラスで、<a href="#functions">Functions</a>に定義されているすべての関数はこのクラスのstaticメソッドとして定義されいます。
 遅延リストを返す<a href="#class-LazyIterator"><code>LazyIterator</code></a>と<a href="#class-LazyGenerator"><code>LazyGenerator</code></a>はこのクラスを継承しています。</p>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="Lazy">
             <h4 class="api lazy">Lazy <small>Alias</small></h4><p>遅延リスト版のAPIを提供するクラスへのエイリアスです。
 <a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>が利用可能であれば<a href="#class-LazyGenerator"><code>LazyGenerator</code></a>を、利用できなければ<a href="#class-LazyIterator"><code>LazyIterator</code></a>を参照します。
 実装されているメソッドの種類は<a href="#class-Strict"><code>Strict</code></a>と同じで、遅延リストを返すように書き換え可能なメソッドについてはオーバーライドされています。</p>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="LazyIterator">
             <h4 class="api lazy">LazyIterator <small>Class</small></h4>
@@ -196,6 +200,7 @@ Underbar.phpのコアとなるクラスで、<a href="#functions">Functions</a>�
               <li><code><em>LazyIterator</em></code></li>
             </ol><p><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リスト版のAPIを提供するクラスへのエイリアスです。</p>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="lazyGenerator">
             <h4 class="api lazy">LazyGenerator <small>Class</small></h4>
@@ -206,6 +211,7 @@ Underbar.phpのコアとなるクラスで、<a href="#functions">Functions</a>�
 <a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>はforeachなどによる反復処理を繰り返して実行することはできませんが、このクラスでは<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を返すメソッドについてラッパー(<a href="#RewindableGenerator"><code>Internal\RewindableGenerator</code></a>)を噛ますことで反復処理の繰り返しを可能にしています。
 ラッパーが不要な場合は<a href="#UnsafeLazyGenerator"><code>UnsafeLazyGenerator</code></a>を利用できます。</p>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="UnsafeLazyGenerator">
             <h4 class="api lazy">UnsafeLazyGenerator <small>Class</small></h4>
@@ -215,15 +221,18 @@ Underbar.phpのコアとなるクラスで、<a href="#functions">Functions</a>�
             </ol><p><a href="#class-LazyGenerator"><code>LazyGenerator</code></a>の例外セーフではないバージョンです。
 ラッパーのオーバーヘッドを回避することができます。</p>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="Enumerable">
             <h4 class="api lazy">Enumerable <small>Trait</small></h4>
+            <p class="top"><a href="#">TOP</a></p>
           </article>
         </section>
         <section id="Underbar-Internal">
           <h3>Underbar\Internal Namespace</h3>
           <article id="Parallel">
             <h4 class="api">Parallel <small>Class</small></h4>
+            <p class="top"><a href="#">TOP</a></p>
           </article>
         </section>
       </section>
@@ -244,6 +253,7 @@ _::each($xs, function($x, $k, $xs) {
 });
 // one-1, two-2, three-3を順番に出力</code></pre>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="map">
             <h4 class="api lazy"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を適用して新しい配列を返します。
@@ -257,6 +267,7 @@ _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], 
 });
 // [3, 6, 9]</code></pre>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="reduce">
             <h4 class="api"><em>mixed</em> reduce(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
@@ -270,6 +281,7 @@ _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], 
 }, 0);
 // 6</code></pre>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="reduceRight">
             <h4 class="api"><em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
@@ -283,6 +295,7 @@ _::reduceRight($xss, function($acc, $xs) {
 }, []);
 // [4, 5, 2, 3, 0, 1]</code></pre>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
         </section>
         <section id="arrays">
@@ -302,6 +315,7 @@ _::first([1, 2, 3], 1);
 _::first([1, 2, 3], 2);
 // [1, 2]</code></pre>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
           <article id="parMap">
             <h4 class="api"><em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)</h4><p><a href="#map"><code>map()</code></a>の並列実行版です。
@@ -318,14 +332,15 @@ foreach ($xs as $x) {
     var_dump($x);  // 3, 6, 9が順不同に出力されます
 }</code></pre>
 
+            <p class="top"><a href="#">TOP</a></p>
           </article>
         </section>
       </section>
+      <footer id="footer">
+        <p>Developed by <a href="http://twitter.com/emonkak">@emonkak</a></p>
+        <p>Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a></p>
+      </footer>
     </article>
-    <footer id="footer">
-      <p>Developed by <a href="http://twitter.com/emonkak">@emonkak</a></p>
-      <p>Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a></p>
-    </footer>
     <script src="js/prism.js" async></script>
     <script src="//b.st-hatena.com/js/bookmark_button.js" async></script>
     <script>

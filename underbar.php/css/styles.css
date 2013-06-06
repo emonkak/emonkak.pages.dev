@@ -320,7 +320,7 @@ td {
   padding: 0 1em;
 }
 #main section {
-  margin: 0 0 7em;
+  margin-bottom: 7em;
 }
 
 #footer {
@@ -370,7 +370,6 @@ td {
     -o-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
     position: absolute;
-    background-color: #34495e;
     overflow: hidden;
     max-height: 0;
     z-index: 1;
@@ -406,10 +405,6 @@ td {
   #main > section {
     padding: 0 2em;
     max-width: 940px;
-  }
-
-  #footer {
-    padding-left: 240px;
   }
 }
 .api {

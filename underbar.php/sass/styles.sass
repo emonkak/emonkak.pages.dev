@@ -227,7 +227,7 @@ td
     padding: 0 1em
 
   section
-    margin: 0 0 4em * baseline-line-height()
+    margin-bottom: 4em * baseline-line-height()
 
 
 
@@ -275,7 +275,6 @@ td
       @include transition-duration(0.25s)
       @include transition-timing-function(ease-out)
       position: absolute
-      background-color: $dark-color
       overflow: hidden
       max-height: 0
       z-index: 1
@@ -309,9 +308,6 @@ td
     > section
       padding: 0 2em
       max-width: $content-width
-
-  #footer
-    padding-left: $sidebar-width
 
 
 

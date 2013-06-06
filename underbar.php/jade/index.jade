@@ -127,10 +127,12 @@ html(lang="ja")
       section#introduction
         h2 Introduction
         include includes/introduction.markdown
+        p.top: a(href="#") TOP
 
       section#getting-started
         h2 Getting Started
         include includes/getting-started.markdown
+        p.top: a(href="#") TOP
 
       section#classes
         h2 Classes
@@ -141,10 +143,12 @@ html(lang="ja")
           article#Strict
             h4.api Strict <small>Class</small>
             include includes/classes/Strict.markdown
+            p.top: a(href="#") TOP
 
           article#Lazy
             h4.api.lazy Lazy <small>Alias</small>
             include includes/classes/Lazy.markdown
+            p.top: a(href="#") TOP
 
           article#LazyIterator
             h4.api.lazy LazyIterator <small>Class</small>
@@ -152,6 +156,7 @@ html(lang="ja")
               li: code: a(href="#Strict") Strict
               li: code: em LazyIterator
             include includes/classes/LazyIterator.markdown
+            p.top: a(href="#") TOP
 
           article#lazyGenerator
             h4.api.lazy LazyGenerator <small>Class</small>
@@ -159,6 +164,7 @@ html(lang="ja")
               li: code: a(href="#UnsafeLazyGenerator") UnsafeLazyGenerator
               li: code: em LazyGenerator
             include includes/classes/LazyGenerator.markdown
+            p.top: a(href="#") TOP
 
           article#UnsafeLazyGenerator
             h4.api.lazy UnsafeLazyGenerator <small>Class</small>
@@ -166,10 +172,12 @@ html(lang="ja")
               li: code: a(href="#Strict") Strict
               li: code: em UnsafeLazyGenerator
             include includes/classes/UnsafeLazyGenerator.markdown
+            p.top: a(href="#") TOP
 
           article#Enumerable
             h4.api.lazy Enumerable <small>Trait</small>
             include includes/classes/Enumrable.markdown
+            p.top: a(href="#") TOP
 
         section#Underbar-Internal
           h3 Underbar\Internal Namespace
@@ -177,6 +185,7 @@ html(lang="ja")
           article#Parallel
             h4.api Parallel <small>Class</small>
             include includes/classes/Parallel.markdown
+            p.top: a(href="#") TOP
 
       section#functions
         h2 Functions
@@ -187,10 +196,12 @@ html(lang="ja")
           article#each
             h4.api <em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include includes/functions/each.markdown
+            p.top: a(href="#") TOP
 
           article#map
             h4.api.lazy <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include includes/functions/map.markdown
+            p.top: a(href="#") TOP
 
           article#reduce
             h4.api <em>mixed</em> reduce(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
@@ -198,12 +209,14 @@ html(lang="ja")
               li: code inject()
               li: code foldl()
             include includes/functions/reduce.markdown
+            p.top: a(href="#") TOP
 
           article#reduceRight
             h4.api <em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
             ul.aliases
               li: code foldr()
             include includes/functions/reduceRight.markdown
+            p.top: a(href="#") TOP
 
         section#arrays
           h3 Array Functions
@@ -215,14 +228,16 @@ html(lang="ja")
               li: code head()
               li: code take()
             include includes/functions/first.markdown
+            p.top: a(href="#") TOP
 
           article#parMap
             h4.api <em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
             include includes/functions/parMap.markdown
+            p.top: a(href="#") TOP
 
-    footer#footer
-      p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
-      p Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a>
+      footer#footer
+        p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
+        p Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a>
 
     script(src="js/prism.js", async)
     script(src="//b.st-hatena.com/js/bookmark_button.js", async)
