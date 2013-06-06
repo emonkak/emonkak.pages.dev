@@ -8,13 +8,26 @@
   </head>
   <body>
     <header id="header">
+      <h1 class="title"><a href="#">
+          <h2>Underbar.php</h2><small>Version 1.0.0</small></a><a href="#header" class="button-menu">&#x2630;</a></h1>
       <nav role="navigation">
-        <h1 class="title"><a href="#"><strong>Underbar.php</strong><small>Version 1.0.0</small></a><a href="#header" class="button-menu">&#x2630;</a></h1>
         <dl>
           <dd><a href="#introduction">Introduction</a></dd>
           <dd><a href="#getting-started">Getting Started</a></dd>
-          <dd><a href="#classes">Classes</a></dd>
-          <dt class="title"><a href="#collections"><strong>Collections</strong><small>Array or Traversable object</small></a></dt>
+          <dt class="title"><a href="#Underbar">
+              <h2>Main Classes</h2><small>Underbar namespace</small></a></dt>
+          <dd><a href="#Strict">Strict</a></dd>
+          <dd><a href="#Lazy">Lazy</a></dd>
+          <dd><a href="#LazyIterator">LazyIterator</a></dd>
+          <dd><a href="#LazyGenerator">LazyGenerator</a></dd>
+          <dt class="title"><a href="#Underbar-Internal">
+              <h2>Internal Classes</h2><small>Underbar\Internal namespace</small></a></dt>
+          <dd><a href="#Strict">Strict</a></dd>
+          <dd><a href="#Lazy">Lazy</a></dd>
+          <dd><a href="#LazyIterator">LazyIterator</a></dd>
+          <dd><a href="#LazyGenerator">LazyGenerator</a></dd>
+          <dt class="title"><a href="#collections">
+              <h2>Collection Functions</h2><small>Array or Traversable object</small></a></dt>
           <dd><a href="#each">each</a></dd>
           <dd><a href="#map">map</a></dd>
           <dd><a href="#reduce">reduce</a></dd>
@@ -44,7 +57,8 @@
           <dd><a href="#toArray">toArray</a></dd>
           <dd><a href="#size">size</a></dd>
           <dd><a href="#memorize">memorize</a></dd>
-          <dt class="title"><a href="#arrays"><strong>Arrays</strong><small>Numerical array</small></a></dt>
+          <dt class="title"><a href="#arrays">
+              <h2>Array Functions</h2><small>Numerical array</small></a></dt>
           <dd><a href="#first">first</a></dd>
           <dd><a href="#head">head</a></dd>
           <dd><a href="#take">take</a></dd>
@@ -92,6 +106,13 @@
         <h1>Underbar.php</h1>
         <p>an array and lazy list utility, like Underscore.js</p>
         <p><a href="https://github.com/emonkak/underbar.php" class="button">GitHub Repository</a></p>
+        <ul class="social-buttons">
+          <li>
+            <iframe src="http://ghbtns.com/github-btn.html?user=emonkak&amp;repo=underbar.php&amp;type=watch&amp;count=true" width="110" height="20" class="github-watch-button-frame"></iframe>
+          </li>
+          <li><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></li>
+          <li><a href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/" data-hatena-bookmark-layout="standard-balloon" class="hatena-bookmark-button"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"></a></li>
+        </ul>
       </header>
       <section id="introduction">
         <h2>Introduction</h2><p><em>Underbar.php</em>は<a href="http://underscorejs.org/">Underscore.js</a>ライクな便利な関数を提供するPHPのライブラリです。
@@ -154,50 +175,57 @@ echo _::chain([1, 1])
       </section>
       <section id="classes">
         <h2>Classes</h2>
-        <h3>Underbar Namespace</h3>
-        <article id="Strict">
-          <h4 class="api">Strict <small>Class</small></h4><p>配列版のAPIを提供するクラスです。
+        <section id="Underbar">
+          <h3>Underbar Namespace</h3>
+          <article id="Strict">
+            <h4 class="api">Strict <small>Class</small></h4><p>配列版のAPIを提供するクラスです。
 Underbar.phpのコアとなるクラスで、<a href="#functions">Functions</a>に定義されているすべての関数はこのクラスのstaticメソッドとして定義されいます。
 遅延リストを返す<a href="#class-LazyIterator"><code>LazyIterator</code></a>と<a href="#class-LazyGenerator"><code>LazyGenerator</code></a>はこのクラスを継承しています。</p>
 
-        </article>
-        <article id="Lazy">
-          <h4 class="api lazy">Lazy <small>Alias</small></h4><p>遅延リスト版のAPIを提供するクラスへのエイリアスです。
+          </article>
+          <article id="Lazy">
+            <h4 class="api lazy">Lazy <small>Alias</small></h4><p>遅延リスト版のAPIを提供するクラスへのエイリアスです。
 <a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>が利用可能であれば<a href="#class-LazyGenerator"><code>LazyGenerator</code></a>を、利用できなければ<a href="#class-LazyIterator"><code>LazyIterator</code></a>を参照します。
 実装されているメソッドの種類は<a href="#class-Strict"><code>Strict</code></a>と同じで、遅延リストを返すように書き換え可能なメソッドについてはオーバーライドされています。</p>
 
-        </article>
-        <article id="LazyIterator">
-          <h4 class="api lazy">LazyIterator <small>Class</small></h4>
-          <ol class="extends">
-            <li><code><a href="#Strict">Strict</a></code></li>
-            <li><code><em>LazyIterator</em></code></li>
-          </ol><p><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リスト版のAPIを提供するクラスへのエイリアスです。</p>
+          </article>
+          <article id="LazyIterator">
+            <h4 class="api lazy">LazyIterator <small>Class</small></h4>
+            <ol class="extends">
+              <li><code><a href="#Strict">Strict</a></code></li>
+              <li><code><em>LazyIterator</em></code></li>
+            </ol><p><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リスト版のAPIを提供するクラスへのエイリアスです。</p>
 
-        </article>
-        <article id="lazyGenerator">
-          <h4 class="api lazy">LazyGenerator <small>Class</small></h4>
-          <ol class="extends">
-            <li><code><a href="#UnsafeLazyGenerator">UnsafeLazyGenerator</a></code></li>
-            <li><code><em>LazyGenerator</em></code></li>
-          </ol><p><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>による遅延リスト版のAPIを提供するクラスです。
+          </article>
+          <article id="lazyGenerator">
+            <h4 class="api lazy">LazyGenerator <small>Class</small></h4>
+            <ol class="extends">
+              <li><code><a href="#UnsafeLazyGenerator">UnsafeLazyGenerator</a></code></li>
+              <li><code><em>LazyGenerator</em></code></li>
+            </ol><p><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>による遅延リスト版のAPIを提供するクラスです。
 <a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>はforeachなどによる反復処理を繰り返して実行することはできませんが、このクラスでは<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を返すメソッドについてラッパー(<a href="#RewindableGenerator"><code>Internal\RewindableGenerator</code></a>)を噛ますことで反復処理の繰り返しを可能にしています。
 ラッパーが不要な場合は<a href="#UnsafeLazyGenerator"><code>UnsafeLazyGenerator</code></a>を利用できます。</p>
 
-        </article>
-        <article id="UnsafeLazyGenerator">
-          <h4 class="api lazy">UnsafeLazyGenerator <small>Class</small></h4>
-          <ol class="extends">
-            <li><code><a href="#Strict">Strict</a></code></li>
-            <li><code><em>UnsafeLazyGenerator</em></code></li>
-          </ol><p><a href="#class-LazyGenerator"><code>LazyGenerator</code></a>の例外セーフではないバージョンです。
+          </article>
+          <article id="UnsafeLazyGenerator">
+            <h4 class="api lazy">UnsafeLazyGenerator <small>Class</small></h4>
+            <ol class="extends">
+              <li><code><a href="#Strict">Strict</a></code></li>
+              <li><code><em>UnsafeLazyGenerator</em></code></li>
+            </ol><p><a href="#class-LazyGenerator"><code>LazyGenerator</code></a>の例外セーフではないバージョンです。
 ラッパーのオーバーヘッドを回避することができます。</p>
 
-        </article>
-        <article id="Enumerable">
-          <h4 class="api lazy">Enumerable <small>Trait</small></h4>
-        </article>
-        <h3>Underbar\Internal Namespace</h3>
+          </article>
+          <article id="Enumerable">
+            <h4 class="api lazy">Enumerable <small>Trait</small></h4>
+          </article>
+        </section>
+        <section id="Underbar-Internal">
+          <h3>Underbar\Internal Namespace</h3>
+          <article id="Parallel">
+            <h4 class="api">Parallel <small>Class</small></h4>
+          </article>
+        </section>
       </section>
       <section id="functions">
         <h2>Functions</h2>

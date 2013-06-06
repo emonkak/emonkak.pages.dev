@@ -1,7 +1,6 @@
 @import "blueprint/reset"
 @import "compass/css3"
 @import "compass/css3/background-size"
-@import "compass/css3/border-radius"
 @import "compass/css3/opacity"
 @import "compass/css3/transition"
 @import "compass/utilities/general/clearfix"
@@ -10,7 +9,7 @@
 @import "_color"
 @import "_highlight"
 
-@import url(//fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,600)
+@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,600)
 
 // Variables  {{{1
 
@@ -55,7 +54,7 @@ $accent-color: $color-turquoise
 
 body
   // @extend .baseline-grid
-  font-family: "Proxima Nova", "Lato", "Helvetica Neue", "Helvetica", sans-serif
+  font-family: "Gill Sans", "Corbel", "Helvetica Neue", "Helvetica", sans-serif
   font-size: $font-size
   color: $black-color
   background-color: $white-color
@@ -153,12 +152,12 @@ td
       padding: 0.5em * baseline-line-height() 8px
       color: $black-color
 
-    strong
+    h2
       @include baseline-font(20)
-      display: block
       color: inherit
       background-color: inherit
       padding: 0
+      margin: 0
 
     small
       display: block
@@ -191,7 +190,7 @@ td
     text-align: center
 
     h1
-      margin-bottom: 0
+      margin: 0
 
     p
       @include baseline-font(24)
@@ -201,7 +200,6 @@ td
     @include clearfix
     position: absolute
     bottom: -(1.5em * baseline-line-height())
-    height: 1em * baseline-line-height()
     width: 100%
     text-align: center
     list-style: none
@@ -281,7 +279,6 @@ td
       float: left
 
     a.button-menu
-      @include border-radius(4px)
       $height: 32px
       position: absolute
       top: 50%
@@ -333,7 +330,7 @@ td
     border-left: 6px solid $accent-color
 
   &:not(:last-of-type)
-    margin-bottom: 0
+    margin: 0
 
   em, var
     font-weight: normal
@@ -343,7 +340,7 @@ td
 
   small
     font-weight: normal
-    font-size: 80%
+    font-size: 1rem * baseline-font-size(16)
     color: $gray-color
 
 .aliases
@@ -378,10 +375,8 @@ td
       background-color: $color-clouds
 
 .button
-  @include border-radius(4px)
   background-color: $color-turquoise
   color: $color-clouds
-  border-bottom: 2px solid darken($accent-color, 10%)
   padding: 0.5em * baseline-line-height() 1em
 
   &:hover

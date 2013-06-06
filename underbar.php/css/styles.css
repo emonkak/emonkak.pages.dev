@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,600);
+@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
 html {
   margin: 0;
   padding: 0;
@@ -121,7 +121,7 @@ dl, ol, p, pre, ul, table {
 }
 
 body {
-  font-family: "Proxima Nova", "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-family: "Gill Sans", "Corbel", "Helvetica Neue", "Helvetica", sans-serif;
   font-size: 15px;
   color: #2c3e50;
   background-color: white;
@@ -227,13 +227,13 @@ td {
   padding: 0.875em 8px;
   color: #2c3e50;
 }
-#header .title strong {
+#header .title h2 {
   font-size: 1.25em;
   line-height: 1.4;
-  display: block;
   color: inherit;
   background-color: inherit;
   padding: 0;
+  margin: 0;
 }
 #header .title small {
   display: block;
@@ -262,7 +262,7 @@ td {
   text-align: center;
 }
 #main header h1 {
-  margin-bottom: 0;
+  margin: 0;
 }
 #main header p {
   font-size: 1.5em;
@@ -274,7 +274,6 @@ td {
   *zoom: 1;
   position: absolute;
   bottom: -2.625em;
-  height: 1.75em;
   width: 100%;
   text-align: center;
   list-style: none;
@@ -356,11 +355,6 @@ td {
     float: left;
   }
   #header a.button-menu {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
     position: absolute;
     top: 50%;
     right: 8px;
@@ -410,7 +404,7 @@ td {
   border-left: 6px solid #1abc9c;
 }
 .api:not(:last-of-type) {
-  margin-bottom: 0;
+  margin: 0;
 }
 .api em, .api var {
   font-weight: normal;
@@ -420,7 +414,7 @@ td {
 }
 .api small {
   font-weight: normal;
-  font-size: 80%;
+  font-size: 1rem;
   color: #7f8c8d;
 }
 
@@ -471,14 +465,8 @@ td {
 }
 
 .button {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
   background-color: #1abc9c;
   color: #ecf0f1;
-  border-bottom: 2px solid #148f77;
   padding: 0.875em 1em;
 }
 .button:hover {

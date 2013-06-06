@@ -8,19 +8,36 @@ html(lang="ja")
     link(href="css/styles.css", rel="stylesheet")
   body
     header#header
+      h1.title
+        a(href="#")
+          h2 Underbar.php
+          small Version 1.0.0
+        a.button-menu(href="#header") &#x2630;
+
       nav(role="navigation")
-        h1.title
-          a(href="#")
-            strong Underbar.php
-            small Version 1.0.0
-          a.button-menu(href="#header") &#x2630;
         dl
           dd: a(href="#introduction") Introduction
           dd: a(href="#getting-started") Getting Started
-          dd: a(href="#classes") Classes
+
+          dt.title: a(href="#Underbar")
+            h2 Main Classes
+            small Underbar namespace
+          dd: a(href="#Strict") Strict
+          dd: a(href="#Lazy") Lazy
+          dd: a(href="#LazyIterator") LazyIterator
+          dd: a(href="#LazyGenerator") LazyGenerator
+
+          dt.title: a(href="#Underbar-Internal")
+            h2 Internal Classes
+            small Underbar\Internal namespace
+          dd: a(href="#Strict") Strict
+          dd: a(href="#Lazy") Lazy
+          dd: a(href="#LazyIterator") LazyIterator
+          dd: a(href="#LazyGenerator") LazyGenerator
+
 
           dt.title: a(href="#collections")
-            strong Collections
+            h2 Collection Functions
             small Array or Traversable object
           dd: a(href="#each") each
           dd: a(href="#map") map
@@ -53,7 +70,7 @@ html(lang="ja")
           dd: a(href="#memorize") memorize
 
           dt.title: a(href="#arrays")
-            strong Arrays
+            h2 Array Functions
             small Numerical array
           dd: a(href="#first") first
           dd: a(href="#head") head
@@ -101,12 +118,11 @@ html(lang="ja")
         p an array and lazy list utility, like Underscore.js
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
-        - if (false)
-          ul.social-buttons
-            li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", width="110", height="20")
-            li: a.twitter-share-button(href="https://twitter.com/share") Tweet
-            li: a.hatena-bookmark-button(href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/", data-hatena-bookmark-layout="standard-balloon")
-              img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
+        ul.social-buttons
+          li: iframe.github-watch-button-frame(src="http://ghbtns.com/github-btn.html?user=emonkak&repo=underbar.php&type=watch&count=true", width="110", height="20")
+          li: a.twitter-share-button(href="https://twitter.com/share") Tweet
+          li: a.hatena-bookmark-button(href="http://b.hatena.ne.jp/entry/https://emonkak.github.io/underbar.php/", data-hatena-bookmark-layout="standard-balloon")
+            img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
 
       section#introduction
         h2 Introduction
@@ -118,42 +134,49 @@ html(lang="ja")
 
       section#classes
         h2 Classes
-        h3 Underbar Namespace
 
-        article#Strict
-          h4.api Strict <small>Class</small>
-          include includes/classes/Strict.markdown
+        section#Underbar
+          h3 Underbar Namespace
 
-        article#Lazy
-          h4.api.lazy Lazy <small>Alias</small>
-          include includes/classes/Lazy.markdown
+          article#Strict
+            h4.api Strict <small>Class</small>
+            include includes/classes/Strict.markdown
 
-        article#LazyIterator
-          h4.api.lazy LazyIterator <small>Class</small>
-          ol.extends
-            li: code: a(href="#Strict") Strict
-            li: code: em LazyIterator
-          include includes/classes/LazyIterator.markdown
+          article#Lazy
+            h4.api.lazy Lazy <small>Alias</small>
+            include includes/classes/Lazy.markdown
 
-        article#lazyGenerator
-          h4.api.lazy LazyGenerator <small>Class</small>
-          ol.extends
-            li: code: a(href="#UnsafeLazyGenerator") UnsafeLazyGenerator
-            li: code: em LazyGenerator
-          include includes/classes/LazyGenerator.markdown
+          article#LazyIterator
+            h4.api.lazy LazyIterator <small>Class</small>
+            ol.extends
+              li: code: a(href="#Strict") Strict
+              li: code: em LazyIterator
+            include includes/classes/LazyIterator.markdown
 
-        article#UnsafeLazyGenerator
-          h4.api.lazy UnsafeLazyGenerator <small>Class</small>
-          ol.extends
-            li: code: a(href="#Strict") Strict
-            li: code: em UnsafeLazyGenerator
-          include includes/classes/UnsafeLazyGenerator.markdown
+          article#lazyGenerator
+            h4.api.lazy LazyGenerator <small>Class</small>
+            ol.extends
+              li: code: a(href="#UnsafeLazyGenerator") UnsafeLazyGenerator
+              li: code: em LazyGenerator
+            include includes/classes/LazyGenerator.markdown
 
-        article#Enumerable
-          h4.api.lazy Enumerable <small>Trait</small>
-          include includes/classes/Enumrable.markdown
+          article#UnsafeLazyGenerator
+            h4.api.lazy UnsafeLazyGenerator <small>Class</small>
+            ol.extends
+              li: code: a(href="#Strict") Strict
+              li: code: em UnsafeLazyGenerator
+            include includes/classes/UnsafeLazyGenerator.markdown
 
-        h3 Underbar\Internal Namespace
+          article#Enumerable
+            h4.api.lazy Enumerable <small>Trait</small>
+            include includes/classes/Enumrable.markdown
+
+        section#Underbar-Internal
+          h3 Underbar\Internal Namespace
+
+          article#Parallel
+            h4.api Parallel <small>Class</small>
+            include includes/classes/Parallel.markdown
 
       section#functions
         h2 Functions
