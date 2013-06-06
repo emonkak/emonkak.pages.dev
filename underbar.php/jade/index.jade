@@ -158,7 +158,7 @@ html(lang="ja")
             include includes/classes/LazyIterator.markdown
             p.top: a(href="#") TOP
 
-          article#lazyGenerator
+          article#LazyGenerator
             h4.api.lazy LazyGenerator <small>Class</small>
             ol.extends
               li: code: a(href="#UnsafeLazyGenerator") UnsafeLazyGenerator
@@ -241,6 +241,7 @@ html(lang="ja")
 
     script(src="js/prism.js", async)
     script(src="//b.st-hatena.com/js/bookmark_button.js", async)
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js")
     script
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -249,3 +250,12 @@ html(lang="ja")
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-41380289-1', 'emonkak.github.io');
       ga('send', 'pageview');
+    :coffeescript
+      $('#main a[href^="#"], nav a[href^="#"]').on 'click', (e) ->
+        e.preventDefault()
+        $target = if @hash.length > 1 then $(@hash) else $('body')
+        if $target.length
+          $('html, body').stop().animate
+            scrollTop: $target.offset().top
+          , 500, 'swing', => window.location.hash = @hash
+          false
