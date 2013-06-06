@@ -208,13 +208,25 @@ td {
 #header a {
   display: block;
   text-decoration: none;
-  color: #ecf0f1;
 }
 #header dl {
   background-color: #34495e;
+  color: #ecf0f1;
   margin: 0;
 }
 #header .title {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  -o-transition-property: background, color;
+  transition-property: background color;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
   font-size: inherit;
   line-height: inherit;
   background-color: #1abc9c;
@@ -223,7 +235,7 @@ td {
 #header .title:hover {
   background-color: #1dd2af;
 }
-#header .title a {
+#header .title a:first-child {
   padding: 0.875em 8px;
   color: #2c3e50;
 }
@@ -240,13 +252,26 @@ td {
   font-size: inherit;
   font-weight: normal;
 }
+#header dd {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  -o-transition-property: background, color;
+  transition-property: background color;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
 #header dd:hover {
   background-color: #2c3e50;
-}
-#header dd:hover a {
   color: #1abc9c;
 }
 #header dd a {
+  color: inherit;
   padding: 0.21875em 0.5em;
 }
 
@@ -295,7 +320,7 @@ td {
   padding: 0 1em;
 }
 #main section {
-  margin: 0 auto 7em;
+  margin: 0 0 7em;
 }
 
 #footer {
@@ -318,10 +343,13 @@ td {
   }
   #header:target .button-menu {
     pointer-events: none;
-  }
-  #header:target a.button-menu, #header a.button-menu:hover {
     background-color: #2c3e50;
     color: #1abc9c;
+  }
+  #header .button-menu {
+    position: absolute;
+    top: 50%;
+    right: 8px;
   }
   #header h1 {
     position: relative;
@@ -354,19 +382,6 @@ td {
   #header dd {
     float: left;
   }
-  #header a.button-menu {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    width: 48px;
-    height: 32px;
-    text-align: center;
-    line-height: 32px;
-    padding: 0;
-    margin-top: -16px;
-    background-color: #34495e;
-    color: #ecf0f1;
-  }
 }
 @media screen and (min-width: 769px) {
   #header {
@@ -390,7 +405,7 @@ td {
   }
   #main > section {
     padding: 0 2em;
-    max-width: 700px;
+    max-width: 940px;
   }
 
   #footer {
@@ -466,6 +481,18 @@ td {
 }
 
 .button {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  -o-transition-property: background, color;
+  transition-property: background color;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
   background-color: #1abc9c;
   color: #ecf0f1;
   padding: 0.875em 1em;
@@ -473,4 +500,31 @@ td {
 .button:hover {
   background-color: #1dd2af;
   text-decoration: none;
+}
+
+.button-menu {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  -o-transition-property: background, color;
+  transition-property: background color;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  width: 48px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  padding: 0;
+  margin-top: -16px;
+  background-color: #34495e;
+  color: #ecf0f1;
+}
+.button-menu:hover {
+  background-color: #2c3e50;
+  color: #1abc9c;
 }

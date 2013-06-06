@@ -133,13 +133,16 @@ td
   a
     display: block
     text-decoration: none
-    color: $light-color
 
   dl
     background-color: $dark-color
+    color: $light-color
     margin: 0
 
   .title
+    @include transition-property(background color)
+    @include transition-duration(0.25s)
+    @include transition-timing-function(ease-out)
     font-size: inherit
     line-height: inherit
     background-color: $accent-color
@@ -148,7 +151,7 @@ td
     &:hover
       background-color: lighten($accent-color, 5%)
 
-    a
+    a:first-child
       padding: 0.5em * baseline-line-height() 8px
       color: $black-color
 
@@ -165,13 +168,16 @@ td
       font-weight: normal
 
   dd
+    @include transition-property(background color)
+    @include transition-duration(0.25s)
+    @include transition-timing-function(ease-out)
+
     &:hover
       background-color: $black-color
-
-      a
-        color: $accent-color
+      color: $accent-color
 
     a
+      color: inherit
       padding: 0.125em * baseline-line-height() 0.5em
 
 
@@ -221,7 +227,7 @@ td
     padding: 0 1em
 
   section
-    margin: 0 auto 4em * baseline-line-height()
+    margin: 0 0 4em * baseline-line-height()
 
 
 
@@ -252,10 +258,13 @@ td
 
       .button-menu
         pointer-events: none
+        background-color: $black-color
+        color: $accent-color
 
-    &:target a.button-menu, a.button-menu:hover
-      background-color: $black-color
-      color: $accent-color
+    .button-menu
+      position: absolute
+      top: 50%
+      right: 8px
 
     h1
       position: relative
@@ -278,20 +287,6 @@ td
     dd
       float: left
 
-    a.button-menu
-      $height: 32px
-      position: absolute
-      top: 50%
-      right: 8px
-      width: 48px
-      height: $height
-      text-align: center
-      line-height: $height
-      padding: 0
-      margin-top: -($height / 2)
-      background-color: $dark-color
-      color: $light-color
-
 @include layout-two-column()
   #header
     position: fixed
@@ -313,7 +308,7 @@ td
 
     > section
       padding: 0 2em
-      max-width: $content-width - $sidebar-width
+      max-width: $content-width
 
   #footer
     padding-left: $sidebar-width
@@ -376,6 +371,9 @@ td
       background-color: $color-clouds
 
 .button
+  @include transition-property(background color)
+  @include transition-duration(0.25s)
+  @include transition-timing-function(ease-out)
   background-color: $color-turquoise
   color: $color-clouds
   padding: 0.5em * baseline-line-height() 1em
@@ -384,6 +382,23 @@ td
     background-color: lighten($accent-color, 5%)
     text-decoration: none
 
+.button-menu
+  @include transition-property(background color)
+  @include transition-duration(0.25s)
+  @include transition-timing-function(ease-out)
+  $height: 32px
+  width: 48px
+  height: $height
+  text-align: center
+  line-height: $height
+  padding: 0
+  margin-top: -($height / 2)
+  background-color: $dark-color
+  color: $light-color
+
+  &:hover
+    background-color: $black-color
+    color: $accent-color
 
 
 
