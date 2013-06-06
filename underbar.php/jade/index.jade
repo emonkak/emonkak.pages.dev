@@ -251,11 +251,15 @@ html(lang="ja")
       ga('create', 'UA-41380289-1', 'emonkak.github.io');
       ga('send', 'pageview');
     :coffeescript
-      $('#main a[href^="#"], nav a[href^="#"]').on 'click', (e) ->
+      $('a[href^="#"]').on 'click', (e) ->
         e.preventDefault()
         $target = if @hash.length > 1 then $(@hash) else $('body')
+
         if $target.length
+          offsetTop = $target.offset().top
+          difference = Math.abs(offsetTop - $(window).scrollTop())
+
           $('html, body').stop().animate
-            scrollTop: $target.offset().top
-          , 500, 'swing', => window.location.hash = @hash
+            scrollTop: offsetTop
+          , Math.min(difference, 500), 'swing', => window.location.hash = @hash
           false

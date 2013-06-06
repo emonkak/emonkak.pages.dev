@@ -354,15 +354,17 @@ foreach ($xs as $x) {
       ga('send', 'pageview');
     </script><script type="text/javascript">
 (function() {
-  $('#main a[href^="#"], nav a[href^="#"]').on('click', function(e) {
-    var $target,
+  $('a[href^="#"]').on('click', function(e) {
+    var $target, difference, offsetTop,
       _this = this;
     e.preventDefault();
     $target = this.hash.length > 1 ? $(this.hash) : $('body');
     if ($target.length) {
+      offsetTop = $target.offset().top;
+      difference = Math.abs(offsetTop - $(window).scrollTop());
       $('html, body').stop().animate({
-        scrollTop: $target.offset().top
-      }, 500, 'swing', function() {
+        scrollTop: offsetTop
+      }, Math.min(difference, 500), 'swing', function() {
         return window.location.hash = _this.hash;
       });
       return false;
