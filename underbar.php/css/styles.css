@@ -239,9 +239,10 @@ td {
   padding: 0.875em 8px;
   color: #2c3e50;
 }
-#header .title h2 {
+#header .title strong {
   font-size: 1.25em;
   line-height: 1.4;
+  display: block;
   color: inherit;
   background-color: inherit;
   padding: 0;
