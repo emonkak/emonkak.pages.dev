@@ -376,6 +376,7 @@ td {
     left: 0;
     width: 240px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
   #header dd {
     text-indent: 0.5em;
