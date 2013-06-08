@@ -9,7 +9,7 @@
 @import "_color"
 @import "_highlight"
 
-@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,600)
+@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic)
 
 // Variables  {{{1
 
@@ -25,6 +25,7 @@ $light-color: $color-clouds
 $lightgray-color: $color-silver
 $gray-color: $color-asbestos
 $accent-color: $color-turquoise
+$alt-accent-color: $color-green-sea
 
 
 
@@ -73,7 +74,7 @@ a
     text-decoration: underline
 
 pre
-  font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", monospace
+  font-family: "Ubuntu Mono", "Consolas", "Menlo", "Monaco", monospace
   background-color: $light-color
   padding: 0.5em * baseline-line-height()
   overflow: auto
@@ -109,20 +110,15 @@ table
   width: 100%
   border-collapse: collapse
   border-spacing: 0
-  border: 2px solid $light-color
 
-td, th
-  padding: 0.5em * baseline-line-height() 0.5em
+tbody tr:nth-child(odd)
+  background-color: $light-color
 
 th, td
-  padding: 0.25em * baseline-line-height() 0.5em
+  padding: 0 0.5em
 
 th
   font-weight: bold
-  background-color: $light-color
-
-td
-  border-bottom: 1px solid $light-color
 
 
 
@@ -136,24 +132,25 @@ td
 
   dl
     background-color: $dark-color
-    color: $light-color
     margin: 0
 
   .title
     @include transition-property(background color)
     @include transition-duration(0.25s)
     @include transition-timing-function(ease-out)
+    box-sizing: border-box
     font-size: inherit
     line-height: inherit
     background-color: $accent-color
+    color: $black-color
     margin: 0
 
     &:hover
       background-color: lighten($accent-color, 5%)
 
     a:first-child
+      color: inherit
       padding: 0.5em * baseline-line-height() 8px
-      color: $black-color
 
     strong
       @include baseline-font(20)
@@ -172,10 +169,15 @@ td
     @include transition-property(background color)
     @include transition-duration(0.25s)
     @include transition-timing-function(ease-out)
+    color: $light-color
 
     &:hover
       background-color: $black-color
       color: $accent-color
+
+    &.active
+      background-color: $alt-accent-color
+      color: $light-color
 
     a
       color: inherit
@@ -187,8 +189,6 @@ td
 // Main  {{{1
 
 #main
-  @include clearfix
-
   header
     position: relative
     padding: 4em * baseline-line-height() 1em

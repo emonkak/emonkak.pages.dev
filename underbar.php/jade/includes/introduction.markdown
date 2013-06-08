@@ -49,3 +49,8 @@ echo _::chain([1, 1])
     ->join()
     ->value();  // 1,1,2,3,5,8,13,21,34,55
 ```
+
+First Header | Second Header
+------------ | -------------
+Content Cell | Content Cell
+Content Cell | Content Cell

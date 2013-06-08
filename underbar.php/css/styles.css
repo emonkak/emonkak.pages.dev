@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
+@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 html {
   margin: 0;
   padding: 0;
@@ -142,7 +142,7 @@ a:hover {
 }
 
 pre {
-  font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", monospace;
+  font-family: "Ubuntu Mono", "Consolas", "Menlo", "Monaco", monospace;
   background-color: #ecf0f1;
   padding: 0.875em;
   overflow: auto;
@@ -185,24 +185,18 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 2px solid #ecf0f1;
 }
 
-td, th {
-  padding: 0.875em 0.5em;
+tbody tr:nth-child(odd) {
+  background-color: #ecf0f1;
 }
 
 th, td {
-  padding: 0.4375em 0.5em;
+  padding: 0 0.5em;
 }
 
 th {
   font-weight: bold;
-  background-color: #ecf0f1;
-}
-
-td {
-  border-bottom: 1px solid #ecf0f1;
 }
 
 #header a {
@@ -211,7 +205,6 @@ td {
 }
 #header dl {
   background-color: #34495e;
-  color: #ecf0f1;
   margin: 0;
 }
 #header .title {
@@ -227,17 +220,19 @@ td {
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  box-sizing: border-box;
   font-size: inherit;
   line-height: inherit;
   background-color: #1abc9c;
+  color: #2c3e50;
   margin: 0;
 }
 #header .title:hover {
   background-color: #1dd2af;
 }
 #header .title a:first-child {
+  color: inherit;
   padding: 0.875em 8px;
-  color: #2c3e50;
 }
 #header .title strong {
   font-size: 1.25em;
@@ -266,20 +261,21 @@ td {
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  color: #ecf0f1;
 }
 #header dd:hover {
   background-color: #2c3e50;
   color: #1abc9c;
+}
+#header dd.active {
+  background-color: #16a085;
+  color: #ecf0f1;
 }
 #header dd a {
   color: inherit;
   padding: 0.21875em 0.5em;
 }
 
-#main {
-  overflow: hidden;
-  *zoom: 1;
-}
 #main header {
   position: relative;
   padding: 7em 1em;

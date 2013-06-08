@@ -12,7 +12,7 @@ clean:
 	rm -f $(HTMLS) $(STYLESHEETS) $(JAVASCRIPTS)
 
 %.html: jade/%.jade $(JADE_INCLUDES)
-	jade -o "{filename: \"$<\"}" -P < $< \
+	jade -O "{filename: \"$<\"}" -P < $< \
 	| sed -e 's/<code class="lang-/<code class="language-/' > $@
 
 css/%.css: sass/%.sass config.rb $(wildcard sass/_*.sass)
