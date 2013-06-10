@@ -1,5 +1,5 @@
 *Underbar.php*は[Underscore.js](http://underscorejs.org/)ライクな便利な関数を提供するPHPのライブラリです。
-Underscore.jsの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、*Underbar.php*は純粋な移植ではないのでいくつかの違いがあります。
+Underscore.jsの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、*Underbar.php*は純粋な移植ライブラリではないのでいくつかの違いがあります。
 
 - 遅延リスト(遅延ストリーム)のサポート
 - [Collections](#collections)、[Arrays](#arrays)、[Objects](#objects)の関数をmixinする[`Enumerable`](#Enumerable)トレイト

@@ -63,8 +63,8 @@ body
   -webkit-font-smoothing: antialiased
 
 h1, h2, h3, h4, h5, h6
-  font-weight: bold
   // background: rgba(255, 0, 0, 0.2)
+  font-weight: bold
 
 a
   color: $accent-color
@@ -145,7 +145,7 @@ th
     color: $black-color
     margin: 0
 
-    &:hover
+    &:hover, &.active
       background-color: lighten($accent-color, 5%)
 
     a:first-child
@@ -194,23 +194,22 @@ th
     padding: 4em * baseline-line-height() 1em
     margin-bottom: 4em * baseline-line-height()
     background-color: $light-color
-    text-align: center
 
     h1
       margin: 0
+      text-align: center
 
     p
       @include baseline-font(24)
       color: $lightgray-color
+      text-align: center
 
   .social-buttons
     @include clearfix
-    position: absolute
-    bottom: -(1.5em * baseline-line-height())
-    width: 100%
+    margin: -(3.5em * baseline-line-height()) 0 (3.5em * baseline-line-height())
+    height: 1em * baseline-line-height()
     text-align: center
     list-style: none
-    margin: 0
 
     li
       display: inline-block
@@ -225,7 +224,9 @@ th
       width: 110px !important
 
   > section
-    padding: 0 1em
+    margin-left: 1em
+    margin-right: 1em
+    max-width: $content-width
 
   section
     margin-bottom: 4em * baseline-line-height()
@@ -237,13 +238,13 @@ th
 
 #footer
   background-color: $light-color
-  text-align: center
   padding:
     top: 2em * baseline-line-height()
     bottom: 2em * baseline-line-height()
 
   p
     margin: 0
+    text-align: center
 
 
 
@@ -307,8 +308,8 @@ th
     margin-left: $sidebar-width
 
     > section
-      padding: 0 2em
-      max-width: $content-width
+      margin-left: 2em
+      margin-right: 2em
 
 
 

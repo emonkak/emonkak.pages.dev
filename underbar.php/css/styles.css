@@ -227,7 +227,7 @@ th {
   color: #2c3e50;
   margin: 0;
 }
-#header .title:hover {
+#header .title:hover, #header .title.active {
   background-color: #1dd2af;
 }
 #header .title a:first-child {
@@ -281,25 +281,24 @@ th {
   padding: 7em 1em;
   margin-bottom: 7em;
   background-color: #ecf0f1;
-  text-align: center;
 }
 #main header h1 {
   margin: 0;
+  text-align: center;
 }
 #main header p {
   font-size: 1.5em;
   line-height: 1.1666666666666667;
   color: #bdc3c7;
+  text-align: center;
 }
 #main .social-buttons {
   overflow: hidden;
   *zoom: 1;
-  position: absolute;
-  bottom: -2.625em;
-  width: 100%;
+  margin: -6.125em 0 6.125em;
+  height: 1.75em;
   text-align: center;
   list-style: none;
-  margin: 0;
 }
 #main .social-buttons li {
   display: inline-block;
@@ -314,7 +313,9 @@ th {
   width: 110px !important;
 }
 #main > section {
-  padding: 0 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  max-width: 940px;
 }
 #main section {
   margin-bottom: 7em;
@@ -322,12 +323,12 @@ th {
 
 #footer {
   background-color: #ecf0f1;
-  text-align: center;
   padding-top: 3.5em;
   padding-bottom: 3.5em;
 }
 #footer p {
   margin: 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -400,8 +401,8 @@ th {
     margin-left: 240px;
   }
   #main > section {
-    padding: 0 2em;
-    max-width: 940px;
+    margin-left: 2em;
+    margin-right: 2em;
   }
 }
 .api {

@@ -108,8 +108,7 @@
       $('html, body').stop().animate({
         scrollTop: offsetTop
       }, Math.min(difference, 500), 'swing', function() {
-        window.location.hash = _this.hash;
-        return scrollSpy.onScroll();
+        return window.location.hash = _this.hash;
       });
       return false;
     }

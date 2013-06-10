@@ -81,8 +81,6 @@ $('a[href^="#"]').on 'click', (e) ->
 
     $('html, body').stop().animate
       scrollTop: offsetTop
-    , Math.min(difference, 500), 'swing', =>
-      window.location.hash = @hash
-      scrollSpy.onScroll()
+    , Math.min(difference, 500), 'swing', => window.location.hash = @hash
 
     false
