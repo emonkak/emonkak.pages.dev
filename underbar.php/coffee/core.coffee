@@ -1,16 +1,18 @@
+# Classes  {{{1
+
 class ScrollSpy
   constructor: (container) ->
-    @container = container
-    @handler = _.throttle _.bind(@onScroll, this), 100
+    @$container = $(container)
+    @onScroll = _.throttle _.bind(@onScroll, this), 100
     @watches = []
     @insides = {}
 
   start: ->
-    $(@container).on 'scroll', @handler
+    @$container.on 'scroll', @onScroll
     @onScroll()
 
   stop: ->
-    $(@container).off 'scroll', @handler
+    @$container.off 'scroll', @onScroll
 
   observe: (el) ->
     @watches.push el
@@ -30,9 +32,8 @@ class ScrollSpy
       false
 
   onScroll: ->
-    $container = $(@container)
-    scrollTop = $container.scrollTop()
-    scrollBottom = scrollTop + $container.height()
+    scrollTop = @$container.scrollTop()
+    scrollBottom = scrollTop + @$container.height()
 
     for el in @watches
       hash = el.hash
@@ -50,28 +51,46 @@ class ScrollSpy
     return
 
 
-# Scroll Spy
+
+# Variables  {{{1
+
+isFocusToHeader = false
+isSmoothScrooling = false
+$header = $('#header').on
+  mouseenter: ->
+    isFocusToHeader = true
+  mouseleave: ->
+    isFocusToHeader = false
+
+
+
+
+# Scroll Spy  {{{1
+
 scrollSpy = new ScrollSpy(window)
 scrollSpy.onEnter = (el) ->
-  $el = $(el).parent().addClass('active').end()
+  $active = $(el).parent().addClass('active')
 
-  $header = $('#header')
-  scrollTop = $header.scrollTop()
-  scrollBottom = scrollTop + $header.height()
-  offsetTop = scrollTop + $el.position().top
-
-  unless scrollTop <= offsetTop <= scrollBottom
-    $header.stop().animate scrollTop: offsetTop
+  if !isFocusToHeader || isSmoothScrooling
+    scrollTop = $header.scrollTop()
+    offsetTop = $active.position().top
+    height = $header.height()
+    $header.stop().animate
+      scrollTop: scrollTop + offsetTop - (height / 2)
 
 scrollSpy.onLeave = (el) ->
   $(el).parent().removeClass('active')
 
+# Register menu items to the scroll spy.
 $('#header a[href^="#"]').each -> scrollSpy.observe this
 
 scrollSpy.start()
 
-# Smooth scroll
-$('a[href^="#"]').on 'click', (e) ->
+
+
+# Smooth scroll  {{{1
+
+$(document).on 'click', 'a[href^="#"]', (e) ->
   e.preventDefault()
   $target = $(if @hash.length > 1 then @hash else 'body')
 
@@ -79,8 +98,12 @@ $('a[href^="#"]').on 'click', (e) ->
     offsetTop = $target.offset().top
     difference = Math.abs(offsetTop - $(window).scrollTop())
 
+    isSmoothScrooling = true
     $('html, body').stop().animate
       scrollTop: offsetTop
-    , Math.min(difference, 500), 'swing', => window.location.hash = @hash
+    , Math.min(difference, 500), 'swing', =>
+      window.location.hash = @hash
+      scrollSpy.onScroll()
+      isSmoothScrooling = false
 
     false
