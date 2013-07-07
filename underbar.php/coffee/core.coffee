@@ -80,7 +80,7 @@ scrollSpy.onLeave = (el) ->
   $(el).parent().removeClass('active')
 
 # Register menu items to the scroll spy.
-$('#header a[href^="#"]').each -> scrollSpy.observe this
+$('#header dd a[href^="#"]').each -> scrollSpy.observe this
 
 scrollSpy.start()
 

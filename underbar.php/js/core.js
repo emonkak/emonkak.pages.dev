@@ -102,7 +102,7 @@
     return $(el).parent().removeClass('active');
   };
 
-  $('#header a[href^="#"]').each(function() {
+  $('#header dd a[href^="#"]').each(function() {
     return scrollSpy.observe(this);
   });
 
