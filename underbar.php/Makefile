@@ -4,7 +4,7 @@ HTMLS=$(patsubst jade/%.jade,%.html,$(wildcard jade/*.jade))
 STYLESHEETS=$(patsubst sass/%.sass,css/%.css,$(wildcard sass/[^_]*.sass))
 JAVASCRIPTS=$(patsubst coffee/%.coffee,js/%.js,$(wildcard coffee/*.coffee))
 
-JADE_INCLUDES=$(shell find jade/includes)
+JADE_INCLUDES=$(shell find jade/ja_JP)
 
 all: $(HTMLS) $(STYLESHEETS) $(JAVASCRIPTS)
 

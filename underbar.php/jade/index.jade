@@ -4,118 +4,109 @@ html(lang="ja")
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
-    title Underbar.php - an array and iterator utility, like Underscore.js
+    meta(name="keywords", content="php,library,iterator,array,underscore.js")
+    meta(name="description", content="an array and iterator utility, like Underscore.js")
+    title Underbar.php - An array and iterator utility, like Underscore.js
     link(href="css/styles.css", rel="stylesheet")
     script(src="//b.st-hatena.com/js/bookmark_button.js", async)
   body
-    header#header
-      h1.title
+    header#header: nav(role="navigation")
+      div.title
         a(href="#logo")
           strong Underbar.php
           small Version 1.0.0
         a.button-menu(href="#header") &#x2630;
 
-      nav(role="navigation")
-        dl
-          dd: a(href="#introduction") Introduction
-          dd: a(href="#getting-started") Getting Started
+      dl
+        dd: a(href="#introduction") Introduction
+        dd: a(href="#getting-started") Getting Started
 
-          dt.title: a(href="#Underbar")
-            strong Main Classes
-            small Underbar namespace
-          dd: a(href="#Strict") Strict
-          dd: a(href="#Lazy") Lazy
-          dd: a(href="#LazyIterator") LazyIterator
-          dd: a(href="#LazyGenerator") LazyGenerator
+        dt.title: a(href="#classes")
+          strong Classes
+          small Underbar namespace
+        dd: a(href="#Strict") Strict
+        dd: a(href="#Lazy") Lazy
+        dd: a(href="#LazyIterator") LazyIterator
+        dd: a(href="#LazyGenerator") LazyGenerator
+        dd: a(href="#LazySafeGenerator") LazySafeGenerator
+        dd: a(href="#Enumerable") Enumerable
 
-          dt.title: a(href="#Underbar-Internal")
-            strong Internal Classes
-            small Underbar\Internal namespace
-          dd: a(href="#Strict") Strict
-          dd: a(href="#Lazy") Lazy
-          dd: a(href="#LazyIterator") LazyIterator
-          dd: a(href="#LazyGenerator") LazyGenerator
+        dt.title: a(href="#collections")
+          strong Collection Functions
+          small For array or traversable object
+        dd: a(href="#each") each
+        dd: a(href="#map") map
+        dd: a(href="#reduce") reduce
+        dd: a(href="#reduceRight") reduceRight
+        dd: a(href="#scanl") scanl
+        dd: a(href="#scanr") scanr
+        dd: a(href="#find") find
+        dd: a(href="#filter") filter
+        dd: a(href="#where") where
+        dd: a(href="#findWhere") findWhere
+        dd: a(href="#reject") reject
+        dd: a(href="#every") every
+        dd: a(href="#some") some
+        dd: a(href="#contains") contains
+        dd: a(href="#invoke") invoke
+        dd: a(href="#pluck") pluck
+        dd: a(href="#max") max
+        dd: a(href="#min") min
+        dd: a(href="#sum") sum
+        dd: a(href="#product") product
+        dd: a(href="#sortBy") sortBy
+        dd: a(href="#groupBy") groupBy
+        dd: a(href="#countBy") countBy
+        dd: a(href="#shuffle") shuffle
+        dd: a(href="#toArray") toArray
+        dd: a(href="#memoize") memoize
+        dd: a(href="#size") size
 
-          dt.title: a(href="#collections")
-            strong Collection Functions
-            small Array or Traversable object
-          dd: a(href="#each") each
-          dd: a(href="#map") map
-          dd: a(href="#reduce") reduce
-          dd: a(href="#reduceRight") reduceRight
-          dd: a(href="#get") get
-          dd: a(href="#find") find
-          dd: a(href="#filter") filter
-          dd: a(href="#where") where
-          dd: a(href="#findWhere") findWhere
-          dd: a(href="#reject") reject
-          dd: a(href="#every") every
-          dd: a(href="#all") all
-          dd: a(href="#some") some
-          dd: a(href="#any") any
-          dd: a(href="#sum") sum
-          dd: a(href="#product") product
-          dd: a(href="#contains") contains
-          dd: a(href="#invoke") invoke
-          dd: a(href="#pluck") pluck
-          dd: a(href="#span") span
-          dd: a(href="#max") max
-          dd: a(href="#min") min
-          dd: a(href="#sortBy") sortBy
-          dd: a(href="#groupBy") groupBy
-          dd: a(href="#countBy") countBy
-          dd: a(href="#shuffle") shuffle
-          dd: a(href="#toArray") toArray
-          dd: a(href="#size") size
-          dd: a(href="#memorize") memorize
-
-          dt.title: a(href="#arrays")
-            strong Array Functions
-            small Numerical array
-          dd: a(href="#first") first
-          dd: a(href="#head") head
-          dd: a(href="#take") take
-          dd: a(href="#takeWhile") takeWhile
-          dd: a(href="#initial") initial
-          dd: a(href="#last") last
-          dd: a(href="#rest") rest
-          dd: a(href="#tail") tail
-          dd: a(href="#drop") drop
-          dd: a(href="#dropWhile") dropWhile
-          dd: a(href="#compact") compact
-          dd: a(href="#flatten") flatten
-          dd: a(href="#without") without
-          dd: a(href="#union") union
-          dd: a(href="#intersection") intersection
-          dd: a(href="#difference") difference
-          dd: a(href="#uniq") uniq
-          dd: a(href="#unique") unique
-          dd: a(href="#zip") zip
-          dd: a(href="#zipWith") zipWith
-          dd: a(href="#object") object
-          dd: a(href="#indexOf") indexOf
-          dd: a(href="#lastIndexOf") lastIndexOf
-          dd: a(href="#sortedIndex") sortedIndex
-          dd: a(href="#range") range
-          dd: a(href="#cycle") cycle
-          dd: a(href="#repeat") repeat
-          dd: a(href="#iterate") iterate
-          dd: a(href="#parMap") parMap
-          dd: a(href="#pop") pop
-          dd: a(href="#push") push
-          dd: a(href="#reverse") reverse
-          dd: a(href="#shift") shift
-          dd: a(href="#sort") sort
-          dd: a(href="#splice") splice
-          dd: a(href="#unshift") unshift
-          dd: a(href="#concat") concat
-          dd: a(href="#join") join
-          dd: a(href="#slice") slice
+        dt.title: a(href="#arrays")
+          strong Array Functions
+          small For numerical array
+        dd: a(href="#first") first
+        dd: a(href="#takeWhile") takeWhile
+        dd: a(href="#initial") initial
+        dd: a(href="#last") last
+        dd: a(href="#rest") rest
+        dd: a(href="#dropWhile") dropWhile
+        dd: a(href="#span") span
+        dd: a(href="#compact") compact
+        dd: a(href="#flatten") flatten
+        dd: a(href="#without") without
+        dd: a(href="#union") union
+        dd: a(href="#intersection") intersection
+        dd: a(href="#difference") difference
+        dd: a(href="#uniq") uniq
+        dd: a(href="#unique") unique
+        dd: a(href="#zip") zip
+        dd: a(href="#zipWith") zipWith
+        dd: a(href="#unzip") unzip
+        dd: a(href="#object") object
+        dd: a(href="#indexOf") indexOf
+        dd: a(href="#lastIndexOf") lastIndexOf
+        dd: a(href="#sortedIndex") sortedIndex
+        dd: a(href="#range") range
+        dd: a(href="#cycle") cycle
+        dd: a(href="#repeat") repeat
+        dd: a(href="#iterate") iterate
+        dd: a(href="#parMap") parMap
+        dd: a(href="#pop") pop
+        dd: a(href="#push") push
+        dd: a(href="#reverse") reverse
+        dd: a(href="#shift") shift
+        dd: a(href="#sort") sort
+        dd: a(href="#splice") splice
+        dd: a(href="#unshift") unshift
+        dd: a(href="#concat") concat
+        dd: a(href="#join") join
+        dd: a(href="#slice") slice
 
     article#main(role="main")
       header#logo
         h1 Underbar.php
-        p an array and iterator utility, like Underscore.js
+        p An array and iterator utility, like Underscore.js
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
       ul.social-buttons
@@ -125,115 +116,332 @@ html(lang="ja")
           img(src="http://b.st-hatena.com/images/entry-button/button-only.gif", alt="このエントリーをはてなブックマークに追加", width="20", height="20")
 
       section#introduction
-        h2 Introduction
-        include includes/introduction.markdown
+        include ja_JP/introduction.markdown
         p.top: a(href="#") TOP
 
       section#getting-started
-        h2 Getting Started
-        include includes/getting-started.markdown
+        include ja_JP/getting-started.markdown
         p.top: a(href="#") TOP
 
       section#classes
-        h2 Classes
+        include ja_JP/classes.markdown
 
         section#Underbar
           h3 Underbar Namespace
 
+          // Strict {{{
           article#Strict
             h4.api Strict <small>Class</small>
-            include includes/classes/Strict.markdown
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Strict.php") Source
+            include ja_JP/classes/Strict.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // Lazy  {{{
           article#Lazy
             h4.api.lazy Lazy <small>Alias</small>
-            include includes/classes/Lazy.markdown
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Lazy.php") Source
+            include ja_JP/classes/Lazy.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // LazyIterator  {{{
           article#LazyIterator
             h4.api.lazy LazyIterator <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyIterator.php") Source
             ol.extends
               li: code: a(href="#Strict") Strict
               li: code: em LazyIterator
-            include includes/classes/LazyIterator.markdown
+            include ja_JP/classes/LazyIterator.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // LazyGenerator  {{{
           article#LazyGenerator
             h4.api.lazy LazyGenerator <small>Class</small>
-            ol.extends
-              li: code: a(href="#UnsafeLazyGenerator") UnsafeLazyGenerator
-              li: code: em LazyGenerator
-            include includes/classes/LazyGenerator.markdown
-            p.top: a(href="#") TOP
-
-          article#UnsafeLazyGenerator
-            h4.api.lazy UnsafeLazyGenerator <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyGenerator.php") Source
             ol.extends
               li: code: a(href="#Strict") Strict
-              li: code: em UnsafeLazyGenerator
-            include includes/classes/UnsafeLazyGenerator.markdown
+              li: code: em LazyGenerator
+            include ja_JP/classes/LazyGenerator.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // LazySafeGenerator  {{{
+          article#LazySafeGenerator
+            h4.api.lazy LazySafeGenerator <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyUnsafeGenerator.php") Source
+            ol.extends
+              li: code: a(href="#Strict") Strict
+              li: code: a(href="#LazyGenerator") LazyGenerator
+              li: code: em LazyGenerator
+            include ja_JP/classes/LazySafeGenerator.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // Enumerable  {{{
           article#Enumerable
             h4.api.lazy Enumerable <small>Trait</small>
-            include includes/classes/Enumrable.markdown
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Enumerable.php") Source
+            include ja_JP/classes/Enumrable.markdown
             p.top: a(href="#") TOP
-
-        section#Underbar-Internal
-          h3 Underbar\Internal Namespace
-
-          article#Parallel
-            h4.api Parallel <small>Class</small>
-            include includes/classes/Parallel.markdown
-            p.top: a(href="#") TOP
+          // }}}
 
       section#functions
-        h2 Functions
+        include ja_JP/functions.markdown
 
         section#collections
           h3 Collection Functions
 
+          // each()  {{{
           article#each
             h4.api <em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            include includes/functions/each.markdown
+            include ja_JP/functions/each.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // map()  {{{
           article#map
-            h4.api.lazy <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            include includes/functions/map.markdown
+            h4.api <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            include ja_JP/functions/map.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // reduce()  {{{
           article#reduce
             h4.api <em>mixed</em> reduce(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
             ul.aliases
               li: code inject()
               li: code foldl()
-            include includes/functions/reduce.markdown
+            include ja_JP/functions/reduce.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // reduceRight()  {{{
           article#reduceRight
             h4.api <em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
             ul.aliases
               li: code foldr()
-            include includes/functions/reduceRight.markdown
+            include ja_JP/functions/reduceRight.markdown
             p.top: a(href="#") TOP
+          // }}}
+
+          // scanl()  {{{
+          article#scanl
+            h4.api <em>array</em> scanl(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            h4.api.lazy <em>Iterator</em> scanl(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            include ja_JP/functions/scanl.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // scanr()  {{{
+          article#scanr
+            h4.api <em>array</em> scanr(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            h4.api.lazy <em>Iterator</em> scanr(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            include ja_JP/functions/scanr.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // find()  {{{
+          article#find
+            h4.api <em>mixed</em> find(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            ul.aliases
+              li: code detect()
+            include ja_JP/functions/find.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // filter()  {{{
+          article#filter
+            h4.api <em>array</em> filter(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> filter(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            ul.aliases
+              li: code select()
+            include ja_JP/functions/filter.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // where()  {{{
+          article#where
+            h4.api <em>array</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
+            h4.api.lazy <em>Iterator</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
+            include ja_JP/functions/where.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // findWhere()  {{{
+          article#findWhere
+            h4.api <em>mixed</em> findWhere(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
+            include ja_JP/functions/findWhere.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // reject()  {{{
+          article#reject
+            h4.api <em>array</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            include ja_JP/functions/reject.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // every()  {{{
+          article#every
+            h4.api <em>bool</em> every(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f = null</var>])
+            ul.aliases
+              li: code all()
+            include ja_JP/functions/every.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // some()  {{{
+          article#some
+            h4.api <em>bool</em> some(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f = null</var>])
+            ul.aliases
+              li: code any()
+            include ja_JP/functions/some.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // contains()  {{{
+          article#contains
+            h4.api <em>bool</em> contains(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)
+            include ja_JP/functions/contains.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // invoke()  {{{
+          article#invoke
+            h4.api <em>array</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var>, [<em>mixed</em> <var>$argments...</var>])
+            h4.api.lazy <em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var>, [<em>mixed</em> <var>$argments...</var>])
+            include ja_JP/functions/invoke.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // pluck()  {{{
+          article#pluck
+            h4.api <em>array</em> pluck(<em>array</em> <var>$xs</var>, <em>string</em> <var>$property</var>)
+            h4.api.lazy <em>Iterator</em> pluck(<em>array</em> <var>$xs</var>, <em>string</em> <var>$property</var>)
+            include ja_JP/functions/pluck.markdown
+            p.top: a(href="#") TOP
+          // }}}
+ 
+          // max()  {{{
+          article#max
+            h4.api <em>int</em> max(<em>array</em> <var>$xs</var>)
+            h4.api <em>mixed</em> max(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            include ja_JP/functions/max.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // min()  {{{
+          article#min
+            h4.api <em>int</em> min(<em>array</em> <var>$xs</var>)
+            h4.api <em>mixed</em> min(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            include ja_JP/functions/min.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // sum()  {{{
+          article#sum
+            h4.api <em>int</em> sum(<em>array</em> <var>$xs</var>)
+            include ja_JP/functions/sum.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // product()  {{{
+          article#product
+            h4.api <em>int</em> product(<em>array</em> <var>$xs</var>)
+            include ja_JP/functions/product.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // sortBy()  {{{
+          article#sortBy
+            h4.api <em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            include ja_JP/functions/sortBy.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // groupBy()  {{{
+          article#groupBy
+            h4.api <em>array</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>, [<em>bool</em> <var>$isSorted = false</var>])
+            include ja_JP/functions/groupBy.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // countBy()  {{{
+          article#countBy
+            h4.api <em>array</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>, [<em>bool</em> <var>$isSorted = false</var>])
+            include ja_JP/functions/countBy.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // shuffle()  {{{
+          article#shuffle
+            h4.api <em>array</em> shuffle(<em>array</em> <var>$xs</var>)
+            include ja_JP/functions/shuffle.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // toArray()  {{{
+          article#toArray
+            h4.api <em>array</em> toArray(<em>mixed</em> <var>$xs</var>)
+            include ja_JP/functions/toArray.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // toList()  {{{
+          article#toList
+            h4.api <em>array</em> toList(<em>mixed</em> <var>$xs</var>)
+            include ja_JP/functions/toList.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // memoize()  {{{
+          article#memoize
+            h4.api <em>Iterator</em> memoize(<em>Iterator</em> <var>$xs</var>)
+            include ja_JP/functions/memoize.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // size()  {{{
+          article#size
+            h4.api <em>int</em> size(<em>mixed</em> <var>$xs</var>)
+            include ja_JP/functions/size.markdown
+            p.top: a(href="#") TOP
+          // }}}
 
         section#arrays
           h3 Array Functions
 
+          // first()  {{{
           article#first
             h4.api.lazy <em>array</em> first(<em>array</em> <var>$xs</var>)
             h4.api <em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             ul.aliases
               li: code head()
               li: code take()
-            include includes/functions/first.markdown
+            include ja_JP/functions/first.markdown
             p.top: a(href="#") TOP
+          // }}}
 
+          // parMap()  {{{
           article#parMap
             h4.api <em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
-            include includes/functions/parMap.markdown
+            include ja_JP/functions/parMap.markdown
             p.top: a(href="#") TOP
+          // }}}
+
+          // span()  {{{
+          article#span
+            h4.api <em>array</em> span(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            include ja_JP/functions/span.markdown
+            p.top: a(href="#") TOP
+          // }}}
 
       footer#footer
         p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>

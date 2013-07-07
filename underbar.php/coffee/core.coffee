@@ -55,12 +55,10 @@ class ScrollSpy
 # Variables  {{{1
 
 isFocusToHeader = false
-isSmoothScrooling = false
+isSmoothScrolling = false
 $header = $('#header').on
-  mouseenter: ->
-    isFocusToHeader = true
-  mouseleave: ->
-    isFocusToHeader = false
+  mouseenter: -> isFocusToHeader = true
+  mouseleave: -> isFocusToHeader = false
 
 
 
@@ -71,7 +69,7 @@ scrollSpy = new ScrollSpy(window)
 scrollSpy.onEnter = (el) ->
   $active = $(el).parent().addClass('active')
 
-  if !isFocusToHeader || isSmoothScrooling
+  if !isFocusToHeader || isSmoothScrolling
     scrollTop = $header.scrollTop()
     offsetTop = $active.position().top
     height = $header.height()
@@ -98,12 +96,12 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
     offsetTop = $target.offset().top
     difference = Math.abs(offsetTop - $(window).scrollTop())
 
-    isSmoothScrooling = true
+    isSmoothScrolling = true
     $('html, body').stop().animate
       scrollTop: offsetTop
     , Math.min(difference, 500), 'swing', =>
       window.location.hash = @hash
       scrollSpy.onScroll()
-      isSmoothScrooling = false
+      isSmoothScrolling = false
 
     false

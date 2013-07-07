@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
 html {
   margin: 0;
   padding: 0;
@@ -121,7 +121,7 @@ dl, ol, p, pre, ul, table {
 }
 
 body {
-  font-family: "Gill Sans", "Calibri", "Helvetica Neue", "Helvetica", sans-serif;
+  font-family: "Proxima Nova", "Gill Sans", "Calibri", "Helvetica", sans-serif;
   font-size: 15px;
   color: #2c3e50;
   background-color: white;
@@ -142,7 +142,7 @@ a:hover {
 }
 
 pre {
-  font-family: "Ubuntu Mono", "Consolas", "Menlo", "Monaco", monospace;
+  font-family: "Source Code Pro", "Monaco", "Consolas", monospace;
   background-color: #ecf0f1;
   padding: 0.875em;
   overflow: auto;
@@ -162,7 +162,7 @@ em {
   font-weight: bold;
 }
 
-strong {
+strong, .source {
   color: white;
   background-color: #1abc9c;
   padding: 2px 4px;
@@ -205,6 +205,7 @@ th {
 }
 #header dl {
   background-color: #34495e;
+  color: #ecf0f1;
   margin: 0;
 }
 #header .title {
@@ -220,9 +221,7 @@ th {
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
-  box-sizing: border-box;
-  font-size: inherit;
-  line-height: inherit;
+  position: relative;
   background-color: #1abc9c;
   color: #2c3e50;
   margin: 0;
@@ -234,7 +233,7 @@ th {
   color: inherit;
   padding: 0.875em 8px;
 }
-#header .title strong {
+#header .title strong, #header .title .source {
   font-size: 1.25em;
   line-height: 1.4;
   display: block;
@@ -261,7 +260,6 @@ th {
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
-  color: #ecf0f1;
 }
 #header dd:hover {
   background-color: #2c3e50;
@@ -270,6 +268,12 @@ th {
 #header dd.active {
   background-color: #16a085;
   color: #ecf0f1;
+}
+#header dd.active + dd.active {
+  background-color: #138a72;
+}
+#header dd.active + dd.active + dd.active {
+  background-color: #107360;
 }
 #header dd a {
   color: inherit;
@@ -283,8 +287,11 @@ th {
   background-color: #ecf0f1;
 }
 #main header h1 {
+  font-size: 4em;
+  line-height: 0.875;
   margin: 0;
   text-align: center;
+  font-weight: 100;
 }
 #main header p {
   font-size: 1.5em;
@@ -332,6 +339,15 @@ th {
 }
 
 @media screen and (max-width: 768px) {
+  #main header h1 {
+    font-size: 3em;
+    line-height: 1.1666666666666667;
+  }
+
+  #header {
+    position: absolute;
+    z-index: 1;
+  }
   #header:target dl {
     -webkit-transition-timing-function: ease-in;
     -moz-transition-timing-function: ease-in;
@@ -349,9 +365,6 @@ th {
     top: 50%;
     right: 8px;
   }
-  #header h1 {
-    position: relative;
-  }
   #header dl {
     overflow: hidden;
     *zoom: 1;
@@ -367,10 +380,8 @@ th {
     -moz-transition-timing-function: ease-out;
     -o-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
-    position: absolute;
     overflow: hidden;
     max-height: 0;
-    z-index: 1;
   }
   #header dt {
     clear: left;
@@ -378,6 +389,10 @@ th {
   }
   #header dd {
     float: left;
+  }
+
+  #main header {
+    padding-top: 12.25em;
   }
 }
 @media screen and (min-width: 769px) {
@@ -405,6 +420,16 @@ th {
     margin-right: 2em;
   }
 }
+.aliases, .extends {
+  overflow: hidden;
+  *zoom: 1;
+  list-style: none;
+  margin-left: 0;
+}
+.aliases li, .extends li {
+  float: left;
+}
+
 .api {
   padding-left: 6px;
   border-left: 6px solid #34495e;
@@ -427,15 +452,28 @@ th {
   color: #7f8c8d;
 }
 
-.aliases {
-  overflow: hidden;
-  *zoom: 1;
-  list-style: none;
-  margin-left: 0;
+.source {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  -o-transition-property: background, color;
+  transition-property: background color;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0 0.5em;
 }
-.aliases li {
-  float: left;
+.source:hover {
+  background-color: #1dd2af;
+  text-decoration: none;
 }
+
 .aliases li:first-child:before {
   content: "Aliases: ";
 }
@@ -446,15 +484,6 @@ th {
   content: ", ";
 }
 
-.extends {
-  overflow: hidden;
-  *zoom: 1;
-  list-style: none;
-  margin-left: 0;
-}
-.extends li {
-  float: left;
-}
 .extends li:first-child:before {
   content: "Extends: ";
 }
@@ -470,7 +499,7 @@ th {
   text-decoration: none;
 }
 .top a:hover {
-  background-color: #ecf0f1;
+  border-bottom: none;
 }
 
 .button {
@@ -487,7 +516,7 @@ th {
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
   background-color: #1abc9c;
-  color: #ecf0f1;
+  color: white;
   padding: 0.875em 1em;
 }
 .button:hover {

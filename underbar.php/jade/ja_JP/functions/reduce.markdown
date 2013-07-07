@@ -2,8 +2,8 @@
 `$f`は`($acc, $value, $key, $xs)`の4つの引数を取ります。
 
 ```php
-_::reduce([1, 2, 3], function($acc, $n) {
+$sum = _::reduce([1, 2, 3], function($acc, $n) {
     return $acc + $n;
 }, 0);
-// 6
+// => 6
 ```

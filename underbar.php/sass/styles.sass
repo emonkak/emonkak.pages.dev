@@ -6,10 +6,10 @@
 @import "compass/utilities/general/clearfix"
 
 @import "_baseline"
-@import "_color"
+@import "_flatui-colors"
 @import "_highlight"
 
-@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic)
+@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,700)
 
 // Variables  {{{1
 
@@ -19,13 +19,13 @@ $content-width: 940px
 $font-size: 15px
 
 $white-color: #fff
-$black-color: $color-midnight-blue
-$dark-color: $color-wet-asphalt
-$light-color: $color-clouds
-$lightgray-color: $color-silver
-$gray-color: $color-asbestos
-$accent-color: $color-turquoise
-$alt-accent-color: $color-green-sea
+$black-color: $flatui-colors-midnight-blue
+$dark-color: $flatui-colors-wet-asphalt
+$light-color: $flatui-colors-clouds
+$lightgray-color: $flatui-colors-silver
+$gray-color: $flatui-colors-asbestos
+$accent-color: $flatui-colors-turquoise
+$dark-accent-color: $flatui-colors-green-sea
 
 
 
@@ -40,14 +40,6 @@ $alt-accent-color: $color-green-sea
   @media screen and (min-width: 769px)
     @content
 
-@mixin my-float-list()
-  @include clearfix
-  list-style: none
-  margin-left: 0
-
-  li
-    float: left
-
 
 
 
@@ -55,7 +47,7 @@ $alt-accent-color: $color-green-sea
 
 body
   // @extend .baseline-grid
-  font-family: "Gill Sans", "Calibri", "Helvetica Neue", "Helvetica", sans-serif
+  font-family: "Proxima Nova", "Gill Sans", "Calibri", "Helvetica", sans-serif
   font-size: $font-size
   color: $black-color
   background-color: $white-color
@@ -74,7 +66,7 @@ a
     text-decoration: underline
 
 pre
-  font-family: "Ubuntu Mono", "Consolas", "Menlo", "Monaco", monospace
+  font-family: "Source Code Pro", "Monaco", "Consolas", monospace
   background-color: $light-color
   padding: 0.5em * baseline-line-height()
   overflow: auto
@@ -132,15 +124,14 @@ th
 
   dl
     background-color: $dark-color
+    color: $light-color
     margin: 0
 
   .title
     @include transition-property(background color)
     @include transition-duration(0.25s)
     @include transition-timing-function(ease-out)
-    box-sizing: border-box
-    font-size: inherit
-    line-height: inherit
+    position: relative
     background-color: $accent-color
     color: $black-color
     margin: 0
@@ -169,15 +160,20 @@ th
     @include transition-property(background color)
     @include transition-duration(0.25s)
     @include transition-timing-function(ease-out)
-    color: $light-color
 
     &:hover
       background-color: $black-color
       color: $accent-color
 
     &.active
-      background-color: $alt-accent-color
+      background-color: $dark-accent-color
       color: $light-color
+
+    &.active + dd.active
+      background-color: darken($dark-accent-color, 5%)
+
+    &.active + dd.active + dd.active
+      background-color: darken($dark-accent-color, 10%)
 
     a
       color: inherit
@@ -196,8 +192,10 @@ th
     background-color: $light-color
 
     h1
+      @include baseline-font(64)
       margin: 0
       text-align: center
+      font-weight: 100
 
     p
       @include baseline-font(24)
@@ -250,9 +248,16 @@ th
 
 
 // Layout  {{{1
+// One Column  {{{2
 
 @include layout-one-column()
+  #main header h1
+    @include baseline-font(48)
+
   #header
+    position: absolute
+    z-index: 1
+
     &:target
       dl
         @include transition-timing-function(ease-in)
@@ -268,18 +273,13 @@ th
       top: 50%
       right: 8px
 
-    h1
-      position: relative
-
     dl
       @include clearfix
       @include transition-property(max-height)
       @include transition-duration(0.25s)
       @include transition-timing-function(ease-out)
-      position: absolute
       overflow: hidden
       max-height: 0
-      z-index: 1
 
     dt
       clear: left
@@ -287,6 +287,15 @@ th
 
     dd
       float: left
+
+  #main
+    header
+      padding-top: 7em * baseline-line-height()
+
+
+
+
+// Two Column  {{{2
 
 @include layout-two-column()
   #header
@@ -315,8 +324,18 @@ th
 
 
 // Classes  {{{1
+%float-list  // {{{2
+  @include clearfix
+  list-style: none
+  margin-left: 0
 
-.api
+  li
+    float: left
+
+
+
+
+.api  // {{{2
   padding-left: 6px
   border-left: 6px solid $dark-color
 
@@ -337,8 +356,27 @@ th
     font-size: 1rem * baseline-font-size(16)
     color: $gray-color
 
-.aliases
-  @include my-float-list
+
+
+
+.source  // {{{2
+  @extend strong
+  @include transition-property(background color)
+  @include transition-duration(0.25s)
+  @include transition-timing-function(ease-out)
+  font-size: 1rem * baseline-font-size(16)
+  font-weight: normal
+  margin: 0 0.5em
+
+  &:hover
+    background-color: lighten($accent-color, 5%)
+    text-decoration: none
+
+
+
+
+.aliases  // {{{2
+  @extend %float-list
 
   li:first-child:before
     content: "Aliases: "
@@ -349,8 +387,11 @@ th
   li + li:before
     content: ", "
 
-.extends
-  @include my-float-list
+
+
+
+.extends  // {{{2
+  @extend %float-list
 
   li:first-child:before
     content: "Extends: "
@@ -358,29 +399,38 @@ th
   li + li:before
     content: "\a0>\a0"
 
-.top
+
+
+
+.top  // {{{2
   text-align: right
 
   a
-    border-bottom: 2px solid $color-turquoise
+    border-bottom: 2px solid $accent-color
     text-decoration: none
 
     &:hover
-      background-color: $color-clouds
+      border-bottom: none
 
-.button
+
+
+
+.button  // {{{2
   @include transition-property(background color)
   @include transition-duration(0.25s)
   @include transition-timing-function(ease-out)
-  background-color: $color-turquoise
-  color: $color-clouds
+  background-color: $accent-color
+  color: $white-color
   padding: 0.5em * baseline-line-height() 1em
 
   &:hover
     background-color: lighten($accent-color, 5%)
     text-decoration: none
 
-.button-menu
+
+
+
+.button-menu  // {{{2
   @include transition-property(background color)
   @include transition-duration(0.25s)
   @include transition-timing-function(ease-out)
