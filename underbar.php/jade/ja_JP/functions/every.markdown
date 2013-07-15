@@ -2,5 +2,5 @@
 
 ```php
 _::every([true, 1, null, 'yes']);
-// => false
+=> false
 ```

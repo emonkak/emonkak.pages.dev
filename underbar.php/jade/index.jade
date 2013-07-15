@@ -66,10 +66,10 @@ html(lang="ja")
           strong Array Functions
           small For numerical array
         dd: a(href="#first") first
-        dd: a(href="#takeWhile") takeWhile
         dd: a(href="#initial") initial
         dd: a(href="#last") last
         dd: a(href="#rest") rest
+        dd: a(href="#takeWhile") takeWhile
         dd: a(href="#dropWhile") dropWhile
         dd: a(href="#span") span
         dd: a(href="#compact") compact
@@ -79,7 +79,6 @@ html(lang="ja")
         dd: a(href="#intersection") intersection
         dd: a(href="#difference") difference
         dd: a(href="#uniq") uniq
-        dd: a(href="#unique") unique
         dd: a(href="#zip") zip
         dd: a(href="#zipWith") zipWith
         dd: a(href="#unzip") unzip
@@ -287,7 +286,7 @@ html(lang="ja")
 
           // every()  {{{
           article#every
-            h4.api <em>bool</em> every(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f = null</var>])
+            h4.api <em>bool</em> every(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f = null</var>])
             ul.aliases
               li: code all()
             include ja_JP/functions/every.markdown
@@ -312,8 +311,8 @@ html(lang="ja")
 
           // invoke()  {{{
           article#invoke
-            h4.api <em>array</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var>, [<em>mixed</em> <var>$argments...</var>])
-            h4.api.lazy <em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var>, [<em>mixed</em> <var>$argments...</var>])
+            h4.api <em>array</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])
+            h4.api.lazy <em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])
             include ja_JP/functions/invoke.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -325,7 +324,7 @@ html(lang="ja")
             include ja_JP/functions/pluck.markdown
             p.top: a(href="#") TOP
           // }}}
- 
+
           // max()  {{{
           article#max
             h4.api <em>int</em> max(<em>array</em> <var>$xs</var>)
@@ -367,7 +366,7 @@ html(lang="ja")
           // groupBy()  {{{
           article#groupBy
             h4.api <em>array</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>, [<em>bool</em> <var>$isSorted = false</var>])
+            h4.api.lazy <em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>bool</em> <var>$isSorted = false</var>])
             include ja_JP/functions/groupBy.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -375,7 +374,7 @@ html(lang="ja")
           // countBy()  {{{
           article#countBy
             h4.api <em>array</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>, [<em>bool</em> <var>$isSorted = false</var>])
+            h4.api.lazy <em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>bool</em> <var>$isSorted = false</var>])
             include ja_JP/functions/countBy.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -429,10 +428,46 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
-          // parMap()  {{{
-          article#parMap
-            h4.api <em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
-            include ja_JP/functions/parMap.markdown
+          // initial()  {{{
+          article#initial
+            h4.api <em>array</em> initial(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)
+            h4.api.lazy <em>Iterator</em> initial(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)
+            include ja_JP/functions/initial.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // last()  {{{
+          article#last
+            h4.api <em>array</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)
+            h4.api.lazy <em>Iterator</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)
+            include ja_JP/functions/last.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // rest()  {{{
+          article#rest
+            h4.api <em>array</em> rest(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)
+            h4.api.lazy <em>Iterator</em> rest(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)
+            ul.aliases
+              li: code tail()
+              li: code drop()
+            include ja_JP/functions/rest.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // takeWhile()  {{{
+          article#takeWhile
+            h4.api <em>array</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)
+            h4.api.lazy <em>Iterator</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)
+            include ja_JP/functions/takeWhile.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // dropWhile()  {{{
+          article#dropWhile
+            h4.api <em>array</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)
+            h4.api.lazy <em>Iterator</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)
+            include ja_JP/functions/dropWhile.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -440,6 +475,104 @@ html(lang="ja")
           article#span
             h4.api <em>array</em> span(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/span.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // compact()  {{{
+          article#compact
+            h4.api <em>array</em> compact(<em>array</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> compact(<em>array</em> <var>$xs</var>)
+            include ja_JP/functions/compact.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // flatten()  {{{
+          article#flatten
+            h4.api <em>array</em> flatten(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$shallow = false</var>)
+            h4.api.lazy <em>Iterator</em> flatten(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$shallow = false</var>)
+            include ja_JP/functions/flatten.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // without()  {{{
+          article#without
+            h4.api <em>array</em> without(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
+            h4.api.lazy <em>Iterator</em> without(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
+            include ja_JP/functions/without.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // union()  {{{
+          article#union
+            h4.api <em>array</em> union(<em>array</em> <var>$xss...</var>)
+            h4.api.lazy <em>Iterator</em> union(<em>array</em> <var>$xss...</var>)
+            include ja_JP/functions/union.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // intersection()  {{{
+          article#intersection
+            h4.api <em>array</em> intersection(<em>array</em> <var>$xss...</var>)
+            include ja_JP/functions/intersection.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // difference()  {{{
+          article#difference
+            h4.api <em>array</em> difference(<em>array</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)
+            h4.api.lazy <em>Iterator</em> difference(<em>array</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)
+            include ja_JP/functions/difference.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // uniq()  {{{
+          article#uniq
+            h4.api <em>array</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f = null</var>])
+            h4.api <em>array</em> uniq(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f = null</var>])
+            h4.api.lazy <em>Iterator</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f = null</var>])
+            h4.api.lazy <em>Iterator</em> uniq(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f = null</var>])
+            ul.aliases
+              li: code unique()
+            include ja_JP/functions/uniq.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // zip()  {{{
+          article#zip
+            h4.api <em>array</em> zip(<em>array</em> <var>$xss...</var>)
+            h4.api.lazy <em>Iterator</em> zip(<em>array</em> <var>$xss...</var>)
+            include ja_JP/functions/zip.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // zipWith()  {{{
+          article#zipWith
+            h4.api <em>array</em> zipWith(<em>array</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> zipWith(<em>array</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)
+            include ja_JP/functions/zipWith.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // unzip()  {{{
+          article#unzip
+            h4.api <em>array</em> unzip(<em>array</em> <var>$xss</var>)
+            h4.api.lazy <em>Iterator</em> unzip(<em>array</em> <var>$xss</var>)
+            include ja_JP/functions/unzip.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // object()  {{{
+          article#object
+            h4.api <em>array</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values = null</var>])
+            h4.api.lazy <em>Iterator</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values = null</var>])
+            include ja_JP/functions/object.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // parMap()  {{{
+          article#parMap
+            h4.api <em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
+            include ja_JP/functions/parMap.markdown
             p.top: a(href="#") TOP
           // }}}
 

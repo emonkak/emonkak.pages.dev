@@ -121,12 +121,11 @@ dl, ol, p, pre, ul, table {
 }
 
 body {
-  font-family: "Proxima Nova", "Gill Sans", "Calibri", "Helvetica", sans-serif;
+  font-family: "Gill Sans", "Calibri", "Helvetica", sans-serif;
   font-size: 15px;
   color: #2c3e50;
   background-color: white;
   -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {

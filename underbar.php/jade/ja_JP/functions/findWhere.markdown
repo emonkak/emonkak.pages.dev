@@ -8,5 +8,5 @@ $members = [
     ['name' => 'Ai Kayano', 'sex' => 'female', 'age' => 25]
 ];
 _::findWhere($members, ['sex' => 'female', 'age' => 17]);
-// => ["name" => "Yukari Tamura", "sex" => "female", "age" => 17]
+=> ["name" => "Yukari Tamura", "sex" => "female", "age" => 17]
 ```

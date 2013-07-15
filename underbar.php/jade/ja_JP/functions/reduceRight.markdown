@@ -6,5 +6,5 @@ $xss = [[0, 1], [2, 3], [4, 5]];
 $flat = _::reduceRight($xss, function($acc, $xs) {
     return array_merge($acc, $xs);
 }, []);
-// => [4, 5, 2, 3, 0, 1]
+=> [4, 5, 2, 3, 0, 1]
 ```

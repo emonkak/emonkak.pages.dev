@@ -9,5 +9,6 @@ $fibs = _::chain(array(0, 1))
     ->map(function($pair) { return $pair[0]; })
     ->memoize()
     ->value();
-$fibs[10];  // => 55
+$fibs[10];
+=> 55
 ```

@@ -2,5 +2,5 @@
 
 ```php
 _::some([true, 1, null, 'yes']);
-// => true
+=> true
 ```

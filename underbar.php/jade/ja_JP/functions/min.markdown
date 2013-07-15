@@ -10,5 +10,5 @@ $stooges = [
     ['name' => 'curly', 'age' => 60]
 ];
 _::min($stooges, 'age');
-// => ["name" => "moe", "age" => 40]
+=> ["name" => "moe", "age" => 40]
 ```

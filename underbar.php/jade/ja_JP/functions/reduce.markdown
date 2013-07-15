@@ -5,5 +5,5 @@
 $sum = _::reduce([1, 2, 3], function($acc, $n) {
     return $acc + $n;
 }, 0);
-// => 6
+=> 6
 ```

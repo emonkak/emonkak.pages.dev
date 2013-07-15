@@ -7,6 +7,6 @@
 _::countBy([1, 2, 3, 4, 5], function($n) {
   return $n % 2 === 0 ? 'even' : 'odd';
 });
-// => ["odd" => 3, "even" => 2]
+=> ["odd" => 3, "even" => 2]
 ```
 

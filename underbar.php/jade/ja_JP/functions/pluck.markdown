@@ -7,5 +7,5 @@ $stooges = [
     ['name' => 'curly', 'age' => 60]
 ];
 _::pluck($stooges, 'name');
-// => ["moe", "larry", "curly"]
+=> ["moe", "larry", "curly"]
 ```

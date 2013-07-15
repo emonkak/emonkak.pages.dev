@@ -9,6 +9,6 @@ $members = [
     ['name' => 'Kana Hanazawa', 'sex' => 'female', 'age' => 24]
 ];
 _::where($members, ['sex' => 'female', 'age' => 24]);
-// => [["name" => "Yuka Iguchi", "sex" => "female", "age" => 24],
-//     ["name" => "Kana Hanazawa", "sex" => "female", "age" => 24]]
+=> [["name" => "Yuka Iguchi", "sex" => "female", "age" => 24],
+    ["name" => "Kana Hanazawa", "sex" => "female", "age" => 24]]
 ```

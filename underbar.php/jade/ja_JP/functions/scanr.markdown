@@ -6,6 +6,6 @@ Haskellの[`scanr`](http://hackage.haskell.org/packages/archive/base/latest/doc/
 _::scanl(_::range(0, 10), function($acc, $n) {
   return $acc + $n;
 }, 0);
-// [0, 1, 3, 6, 10, 15, 21, 28, 36, 45]
+=> [0, 1, 3, 6, 10, 15, 21, 28, 36, 45]
 ```
 

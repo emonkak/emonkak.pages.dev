@@ -10,5 +10,5 @@ $stooges = [
     ['name' => 'curly', 'age' => 60]
 ];
 _::max($stooges, 'age');
-// => ["name" => "curly", "age" => 60]
+=> ["name" => "curly", "age" => 60]
 ```
