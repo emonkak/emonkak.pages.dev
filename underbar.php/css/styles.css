@@ -108,16 +108,13 @@ dl, ol, p, pre, ul, table {
 }
 .token.comment {
   font-style: italic;
-  color: #7f8c8d;
+  color: #999988;
 }
-.token.number, .token.string {
-  color: #c0392b;
+.token.number, .token.variable {
+  color: teal;
 }
-.token.variable {
-  color: #2980b9;
-}
-.token.punctuation {
-  color: #7f8c8d;
+.token.string {
+  color: #dd1144;
 }
 
 body {
@@ -141,7 +138,7 @@ a:hover {
 }
 
 pre {
-  font-family: "Source Code Pro", "Monaco", "Consolas", monospace;
+  font-family: "Consolas", "Source Code Pro", monospace;
   background-color: #ecf0f1;
   padding: 0.875em;
   overflow: auto;
