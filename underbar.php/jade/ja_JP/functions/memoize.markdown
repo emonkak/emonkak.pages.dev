@@ -1,5 +1,4 @@
 `$xs`を一度計算した要素をキャッシュする`MemoizeIterator`でラップします。
-これを利用して`Generator`を反復可能にすることもできます。
 
 ```php
 $fibs = _::chain(array(0, 1))

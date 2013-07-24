@@ -1,5 +1,6 @@
 [`Generator`](http://php.net/manual/ja/class.generator.php)を返すAPIを提供するクラスです。
-`Generator`は巻き戻せない`Iterator`なので、2回目の走査で例外が発生することに注意して下さい。
+`Generator`は走査を繰り返すと例外が発生することに注意して下さい。
+これを回避したい場合は[`LazySafeGenerator`](#LazySafeGenerator)を利用できます。
 
 ```php
 use Underbar\LazyGenerator as _;

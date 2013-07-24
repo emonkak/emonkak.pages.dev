@@ -109,7 +109,7 @@
   scrollSpy.start();
 
   $(document).on('click', 'a[href^="#"]', function(e) {
-    var $target, difference, offsetTop,
+    var $target, difference, duration, offsetTop,
       _this = this;
     e.preventDefault();
     $target = $(this.hash.length > 1 ? this.hash : 'body');
@@ -117,9 +117,10 @@
       offsetTop = $target.offset().top;
       difference = Math.abs(offsetTop - $(window).scrollTop());
       isSmoothScrolling = true;
+      duration = Math.min(difference, 500);
       $('html, body').stop().animate({
         scrollTop: offsetTop
-      }, Math.min(difference, 500), 'swing', function() {
+      }, duration, 'swing', function() {
         window.location.hash = _this.hash;
         scrollSpy.onScroll();
         return isSmoothScrolling = false;
@@ -127,5 +128,7 @@
       return false;
     }
   });
+
+  $('a[href^="http://"], a[href^="https://"]').attr('target', '_blank');
 
 }).call(this);

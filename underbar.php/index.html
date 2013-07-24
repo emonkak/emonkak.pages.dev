@@ -12,18 +12,18 @@
   <body>
     <header id="header">
       <nav role="navigation">
-        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 1.0.0</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
+        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.1.0</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
         <dl>
           <dd><a href="#introduction">Introduction</a></dd>
           <dd><a href="#getting-started">Getting Started</a></dd>
           <dt class="title"><a href="#classes"><strong>Classes</strong><small>Underbar namespace</small></a></dt>
-          <dd><a href="#Strict">Strict</a></dd>
+          <dd><a href="#Eager">Eager</a></dd>
           <dd><a href="#Lazy">Lazy</a></dd>
           <dd><a href="#LazyIterator">LazyIterator</a></dd>
           <dd><a href="#LazyGenerator">LazyGenerator</a></dd>
           <dd><a href="#LazySafeGenerator">LazySafeGenerator</a></dd>
           <dd><a href="#Enumerable">Enumerable</a></dd>
-          <dt class="title"><a href="#collections"><strong>Collection Functions</strong><small>For array or traversable object</small></a></dt>
+          <dt class="title"><a href="#collections"><strong>Collection Functions</strong><small>Every traversable value</small></a></dt>
           <dd><a href="#each">each</a></dd>
           <dd><a href="#map">map</a></dd>
           <dd><a href="#reduce">reduce</a></dd>
@@ -49,16 +49,16 @@
           <dd><a href="#countBy">countBy</a></dd>
           <dd><a href="#shuffle">shuffle</a></dd>
           <dd><a href="#toArray">toArray</a></dd>
+          <dd><a href="#toList">toList</a></dd>
           <dd><a href="#memoize">memoize</a></dd>
           <dd><a href="#size">size</a></dd>
-          <dt class="title"><a href="#arrays"><strong>Array Functions</strong><small>For numerical array</small></a></dt>
+          <dt class="title"><a href="#arrays"><strong>Array Functions</strong><small>Numerical array</small></a></dt>
           <dd><a href="#first">first</a></dd>
           <dd><a href="#initial">initial</a></dd>
           <dd><a href="#last">last</a></dd>
           <dd><a href="#rest">rest</a></dd>
           <dd><a href="#takeWhile">takeWhile</a></dd>
           <dd><a href="#dropWhile">dropWhile</a></dd>
-          <dd><a href="#span">span</a></dd>
           <dd><a href="#compact">compact</a></dd>
           <dd><a href="#flatten">flatten</a></dd>
           <dd><a href="#without">without</a></dd>
@@ -69,6 +69,7 @@
           <dd><a href="#zip">zip</a></dd>
           <dd><a href="#zipWith">zipWith</a></dd>
           <dd><a href="#unzip">unzip</a></dd>
+          <dd><a href="#span">span</a></dd>
           <dd><a href="#object">object</a></dd>
           <dd><a href="#indexOf">indexOf</a></dd>
           <dd><a href="#lastIndexOf">lastIndexOf</a></dd>
@@ -77,7 +78,6 @@
           <dd><a href="#cycle">cycle</a></dd>
           <dd><a href="#repeat">repeat</a></dd>
           <dd><a href="#iterate">iterate</a></dd>
-          <dd><a href="#parMap">parMap</a></dd>
           <dd><a href="#pop">pop</a></dd>
           <dd><a href="#push">push</a></dd>
           <dd><a href="#reverse">reverse</a></dd>
@@ -88,6 +88,22 @@
           <dd><a href="#concat">concat</a></dd>
           <dd><a href="#join">join</a></dd>
           <dd><a href="#slice">slice</a></dd>
+          <dt class="title"><a href="#objects"><strong>Object Functions</strong><small>Associative array</small></a></dt>
+          <dd><a href="#keys">keys</a></dd>
+          <dd><a href="#values">values</a></dd>
+          <dd><a href="#pairs">pairs</a></dd>
+          <dd><a href="#invert">invert</a></dd>
+          <dd><a href="#extend">extend</a></dd>
+          <dd><a href="#pick">pick</a></dd>
+          <dd><a href="#omit">omit</a></dd>
+          <dd><a href="#defaults">defaults</a></dd>
+          <dd><a href="#tap">tap</a></dd>
+          <dd><a href="#isArray">isArray</a></dd>
+          <dd><a href="#isTraversable">isTraversable</a></dd>
+          <dt class="title"><a href="#parallel"><strong>Parallel</strong><small>Parallel processing</small></a></dt>
+          <dd><a href="#parMap">parMap</a></dd>
+          <dt class="title"><a href="#chaining"><strong>Chaining</strong><small>Method chaining</small></a></dt>
+          <dd><a href="#chain">chain</a></dd>
         </dl>
       </nav>
     </header>
@@ -106,21 +122,25 @@
       </ul>
       <section id="introduction"><h2>Introduction</h2>
 <p>Underbar.phpは<a href="http://underscorejs.org/">Underscore.js</a>のような便利なユーティリティを提供するPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、Underbar.phpは配列とIteratorに関する操作に特化しています。</p>
+Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、Underbar.phpは<a href="http://php.net/manual/ja/class.iterator.php">Iterator</a>を利用した遅延リストを扱えるのが特徴です。</p>
+<p>Underscore.jsとの互換性を最優先に設計されているわけではないため、
+Underscore.jsにはある関数がなかったり、逆に新しく追加された関数があったりもします。
+同名の関数は基本的にUnderscore.jsと互換性のある動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
 <h3>Features</h3>
 <ul>
-<li><a href="http://php.net/manual/ja/class.iterator.php">Iterator</a>による遅延リスト(遅延ストリーム)のサポート</li>
-<li><a href="http://php.net/manual/ja/class.traversable.php">Traversable</a>なクラスにメソッドを追加する<a href="#Enumerable"><code>Enumerable</code></a>トレイト</li>
-<li>underscore.jsにはない関数をいくつか追加<ul>
-<li><em>Collections</em>: <a href="#parMap"><code>parMap()</code></a>, <a href="#scanl"><code>scanl()</code></a>, <a href="#scanr"><code>scanr()</code></a>, <a href="#span"><code>span()</code></a>, <a href="#memoize"><code>memoize()</code></a></li>
+<li><a href="http://php.net/manual/ja/class.iterator.php">Iterator</a>による遅延リストのサポート</li>
+<li>Rubyの<a href="http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html">Enumerable</a>のような<a href="#Enumerable"><code>Enumerable</code></a>トレイト</li>
+<li>underscore.jsにはない新たに追加された関数<ul>
+<li><em>Collections</em>: <a href="#scanl"><code>scanl()</code></a>, <a href="#scanr"><code>scanr()</code></a>, <a href="#span"><code>span()</code></a>, <a href="#toList"><code>toList</code></a>, <a href="#memoize"><code>memoize()</code></a></li>
 <li><em>Arrays</em>: <a href="#takeWhile"><code>takeWhile()</code></a>, <a href="#dropWhile"><code>dropWhile()</code></a>, <a href="#cycle"><code>cycle()</code></a>, <a href="#repeat"><code>repeat()</code></a>, <a href="#iterate"><code>iterate()</code></a></li>
 <li><em>Objects</em>: <a href="#isTraversable"><code>isTraversable()</code></a></li>
+<li><em>Parallel</em>: <a href="#parMap"><code>parMap()</code></a></li>
 </ul>
 </li>
 </ul>
 <h3>Example</h3>
 <p>以下は配列の要素を2倍にして新しい配列を返す例です。</p>
-<pre><code class="language-php">use Underbar\Strict as _;  // Array version class
+<pre><code class="language-php">use Underbar\Eager as _;  // Array version class
 
 $xs = _::map([1, 2, 3, 4], function($n) { return $n * 2; });
 var_dump(is_array($xs));  // true
@@ -131,7 +151,7 @@ var_dump($xs);  // [2, 4, 6, 8]</code></pre>
 $xs = _::map([1, 2, 3, 4], function($n) { return $n * 2; });
 var_dump($xs instanceof Traversable);  // true
 var_dump(iterator_to_array($xs));  // [2, 4, 6, 8]</code></pre>
-<p>このように配列版(<a href="#Strict"><code>Strict</code></a>)とIterator版(<a href="#Lazy"><code>Lazy</code></a>)のクラスは互換性のあるインターフェイスを持っているので容易に切り替えることができます。</p>
+<p>このように<a href="#Eager"><code>Eager</code></a>と<a href="#Lazy"><code>Lazy</code></a>は互換性があるので容易に切り替えることができます。</p>
 <p>Underscore.jsのように<a href="#chain"><code>chain()</code></a>を使ってメソッドチェインで処理を書くこともできます。</p>
 <pre><code class="language-php">use Underbar\Lazy as _;
 
@@ -147,6 +167,7 @@ echo _::chain([1, 1])
       </section>
       <section id="getting-started"><h2>Getting Started</h2>
 <p>Underbar.phpの動作には<em>バージョン5.3以上</em>のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要です。
+ただし<a href="#Enumerable"><code>Enumerable</code></a>を利用するにはとはトレイトサポートの追加された5.4以上の処理系が必要です。
 インストールが完了したらプロジェクトルートに以下のような内容のcomposer.jsonを作成して下さい。
 詳しいcomposer.jsonの書き方については<a href="http://getcomposer.org/doc/04-schema.md">こちら</a>を参照して下さい。</p>
 <pre><code class="language-javascript">{
@@ -165,11 +186,10 @@ echo _::chain([1, 1])
 
         <section id="Underbar">
           <h3>Underbar Namespace</h3>
-          <!-- Strict {{{-->
-          <article id="Strict">
-            <h4 class="api">Strict <small>Class</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Strict.php" class="source">Source</a></h4><p>配列版を返すAPIを提供するクラスです。
-Underbar.phpのコアとなるクラスで、すべての関数はこのクラスのstaticメソッドとして定義されています。
-Iteratorを返すAPIを提供する<a href="#class-LazyIterator"><code>LazyIterator</code></a>と<a href="#class-LazyGenerator"><code>LazyGenerator</code></a>はこのクラスを継承しています。</p>
+          <!-- Eager {{{-->
+          <article id="Eager">
+            <h4 class="api">Eager <small>Class</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Eager.php" class="source">Source</a></h4><p>配列を返すAPIを提供するクラスです。
+Underbar.phpの中心となるクラスで、すべての関数はこのクラスのstaticメソッドとして定義されています。</p>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -178,7 +198,7 @@ Iteratorを返すAPIを提供する<a href="#class-LazyIterator"><code>LazyItera
           <article id="Lazy">
             <h4 class="api lazy">Lazy <small>Alias</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Lazy.php" class="source">Source</a></h4><p>Iteratorを返すAPIを提供するクラスへのエイリアスです。
 <a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>が利用可能であれば<a href="#LazyGenerator"><code>LazyGenerator</code></a>を、利用できなければ<a href="#LazyIterator"><code>LazyIterator</code></a>を参照します。</p>
-<p>オートローダーでロードされる前に同名のエイリアスを定義することで、
+<p>オートローダーでロードされる前に同名のエイリアスを先に定義することで、
 定義を上書きすることもできます。</p>
 <pre><code class="language-php">class_alias(&#39;Underbar\\LazySafeGenerator&#39;, &#39;Underbar\\Lazy&#39;);</code></pre>
 
@@ -189,7 +209,7 @@ Iteratorを返すAPIを提供する<a href="#class-LazyIterator"><code>LazyItera
           <article id="LazyIterator">
             <h4 class="api lazy">LazyIterator <small>Class</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyIterator.php" class="source">Source</a></h4>
             <ol class="extends">
-              <li><code><a href="#Strict">Strict</a></code></li>
+              <li><code><a href="#Eager">Eager</a></code></li>
               <li><code><em>LazyIterator</em></code></li>
             </ol><p><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>を返すAPIを提供するクラスです。</p>
 
@@ -200,10 +220,11 @@ Iteratorを返すAPIを提供する<a href="#class-LazyIterator"><code>LazyItera
           <article id="LazyGenerator">
             <h4 class="api lazy">LazyGenerator <small>Class</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyGenerator.php" class="source">Source</a></h4>
             <ol class="extends">
-              <li><code><a href="#Strict">Strict</a></code></li>
+              <li><code><a href="#Eager">Eager</a></code></li>
               <li><code><em>LazyGenerator</em></code></li>
             </ol><p><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を返すAPIを提供するクラスです。
-<code>Generator</code>は巻き戻せない<code>Iterator</code>なので、2回目の走査で例外が発生することに注意して下さい。</p>
+<code>Generator</code>は走査を繰り返すと例外が発生することに注意して下さい。
+これを回避したい場合は<a href="#LazySafeGenerator"><code>LazySafeGenerator</code></a>を利用できます。</p>
 <pre><code class="language-php">use Underbar\LazyGenerator as _;
 
 $xs = _::range(10);
@@ -219,18 +240,18 @@ foreach ($xs as $x);</code></pre>
           <article id="LazySafeGenerator">
             <h4 class="api lazy">LazySafeGenerator <small>Class</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyUnsafeGenerator.php" class="source">Source</a></h4>
             <ol class="extends">
-              <li><code><a href="#Strict">Strict</a></code></li>
+              <li><code><a href="#Eager">Eager</a></code></li>
               <li><code><a href="#LazyGenerator">LazyGenerator</a></code></li>
-              <li><code><em>LazyGenerator</em></code></li>
+              <li><code><em>LazySafeGenerator</em></code></li>
             </ol><p><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を返すAPIを提供するクラスです。
-<code>Generator</code>は走査を繰り返すと例外が発生しますが、このクラスのAPIは<code>Generator</code>を<code>RewindableGenerator</code>でラップして反復可能にしています。</p>
+<code>Generator</code>は走査を繰り返すと例外が発生しますが、このクラスのAPIは<code>Generator</code>の生成関数をラップして反復可能にしています。</p>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
           <!-- Enumerable  {{{-->
           <article id="Enumerable">
-            <h4 class="api lazy">Enumerable <small>Trait</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Enumerable.php" class="source">Source</a></h4><p><code>Traversable</code>なクラスにUnderbar.phpの関数をmixinするためのトレイトです。</p>
+            <h4 class="api lazy">Enumerable <small>Trait</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Enumerable.php" class="source">Source</a></h4><p><code>Traversable</code>なクラスに<a href="#Lazy"><code>Lazy</code></a>の関数をmixinするためのトレイトです。</p>
 <pre><code class="language-php">class Collection implements IteratorAggregate
 {
     use Underbar\Enumerable;
@@ -250,7 +271,16 @@ foreach ($xs as $x);</code></pre>
 
 $collection = new Collection(1, 2, 3);
 $collection-&gt;map(function($n) { return $n * 2; });
-=&gt; [2, 4, 6]</code></pre>
+=&gt; [2, 4, 6]
+
+$twiceCycle = $collection
+    -&gt;chain()
+    -&gt;cycle()
+    -&gt;map(function($n) { return $n * 2; })
+    -&gt;take(6)
+    -&gt;join(&#39;, &#39;)
+    -&gt;value();
+=&gt; &#39;2, 4, 6, 2, 4, 6&#39;</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -258,8 +288,9 @@ $collection-&gt;map(function($n) { return $n * 2; });
         </section>
       </section>
       <section id="functions"><h2>Functions</h2>
-<p><a href="#Strict"><code>Strict</code></a>、<a href="#Lazy"><code>Lazy</code></a>、<a href="#LazyIterator"><code>LazyIterator</code></a>、<a href="#LazyGenerator"><code>LazyGenerator</code></a>、<a href="#LazySafeGenerator"><code>LazySafeGenerator</code></a>クラスで利用可能な関数の一覧です。
-<code>Iterator</code>を返す関数はLazyから始まるクラスでのみ利用できます。</p>
+<p><a href="#Eager"><code>Eager</code></a>、<a href="#Lazy"><code>Lazy</code></a>、<a href="#LazyIterator"><code>LazyIterator</code></a>、<a href="#LazyGenerator"><code>LazyGenerator</code></a>、<a href="#LazySafeGenerator"><code>LazySafeGenerator</code></a>クラスで利用可能な関数の一覧です。
+左のマーカーが<strong>色付き</strong>の<code>Iterator</code>を返す関数は<a href="#Lazy"><code>Lazy</code></a>系のクラスでのみ利用できます。</p>
+<p>引数に<code>array</code>を要求するすべての関数は<a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトも同時に取ることができます。</p>
 
         <section id="collections">
           <h3>Collection Functions</h3>
@@ -303,7 +334,7 @@ _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], 
             <ul class="aliases">
               <li><code>inject()</code></li>
               <li><code>foldl()</code></li>
-            </ul><p>左結合で<code>$xs</code>の要素の畳み込んだ結果を返します。
+            </ul><p><code>$xs</code>の要素の左結合で畳み込んだ結果を返します。
 <code>$f</code>は<code>($acc, $value, $key, $xs)</code>の4つの引数を取ります。</p>
 <pre><code class="language-php">$sum = _::reduce([1, 2, 3], function($acc, $n) {
     return $acc + $n;
@@ -318,7 +349,7 @@ _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], 
             <h4 class="api"><em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
             <ul class="aliases">
               <li><code>foldr()</code></li>
-            </ul><p>右結合で<code>$xs</code>の要素の畳み込んだ結果を返します。
+            </ul><p><code>$xs</code>の要素を右結合で畳み込んだ結果を返します。
 <code>$f</code>は<code>($acc, $value, $key, $xs)</code>の4つの引数を取ります。</p>
 <pre><code class="language-php">$xss = [[0, 1], [2, 3], [4, 5]];
 $flat = _::reduceRight($xss, function($acc, $xs) {
@@ -379,11 +410,12 @@ $flat = _::reduceRight($xss, function($acc, $xs) {
             <ul class="aliases">
               <li><code>select()</code></li>
             </ul><p><code>$xs</code>の要素について<code>$f</code>が<code>true</code>を返すものを選択します。
-逆の操作を行う関数として<a href="#reject"><code>reject()</code></a>があります。</p>
+逆の操作を行なう関数として<a href="#reject"><code>reject()</code></a>があります。</p>
+<p>フィルタリングした後の配列のキーは常に維持されることに注意して下さい。</p>
 <pre><code class="language-php">$evens = _::filter([1, 2, 3, 4, 5, 6], function($n) {
     return $n % 2 === 0;
 });
-=&gt; [2, 4, 6]</code></pre>
+=&gt; [1 =&gt; 2, 3 =&gt; 4, 5 =&gt; 6]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -393,15 +425,15 @@ $flat = _::reduceRight($xss, function($acc, $xs) {
             <h4 class="api"><em>array</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4>
             <h4 class="api lazy"><em>Iterator</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4><p><code>$xs</code>の要素から<code>$properties</code>のキーと値のペアに一致するものを選択します。</p>
 <pre><code class="language-php">$members = [
-    [&#39;name&#39; =&gt; &#39;Yui Ogura&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 17],
-    [&#39;name&#39; =&gt; &#39;Rina Hidaka&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 19],
-    [&#39;name&#39; =&gt; &#39;Yuka Iguchi&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 24],
-    [&#39;name&#39; =&gt; &#39;Yoko Hikasa&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 27],
-    [&#39;name&#39; =&gt; &#39;Kana Hanazawa&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 24]
+    [&#39;name&#39; =&gt; &#39;Yui Ogura&#39;, &#39;age&#39; =&gt; 17],
+    [&#39;name&#39; =&gt; &#39;Rina Hidaka&#39;, &#39;age&#39; =&gt; 19],
+    [&#39;name&#39; =&gt; &#39;Yuka Iguchi&#39;, &#39;age&#39; =&gt; 24],
+    [&#39;name&#39; =&gt; &#39;Yoko Hikasa&#39;, &#39;age&#39; =&gt; 27],
+    [&#39;name&#39; =&gt; &#39;Kana Hanazawa&#39;, &#39;age&#39; =&gt; 24]
 ];
-_::where($members, [&#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 24]);
-=&gt; [[&quot;name&quot; =&gt; &quot;Yuka Iguchi&quot;, &quot;sex&quot; =&gt; &quot;female&quot;, &quot;age&quot; =&gt; 24],
-    [&quot;name&quot; =&gt; &quot;Kana Hanazawa&quot;, &quot;sex&quot; =&gt; &quot;female&quot;, &quot;age&quot; =&gt; 24]]</code></pre>
+_::where($members, [&#39;age&#39; =&gt; 24]);
+=&gt; [[&quot;name&quot; =&gt; &quot;Yuka Iguchi&quot;, &quot;age&quot; =&gt; 24],
+    [&quot;name&quot; =&gt; &quot;Kana Hanazawa&quot;, &quot;age&quot; =&gt; 24]]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -409,14 +441,13 @@ _::where($members, [&#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 24
           <!-- findWhere()  {{{-->
           <article id="findWhere">
             <h4 class="api"><em>mixed</em> findWhere(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4><p><code>$xs</code>の要素から<code>$properties</code>のキーと値のペアに最初に一致するものを返します。
-見付からない場合は<code>null</code>を返します。</p>
+見付からなかった場合は<code>null</code>を返します。</p>
 <pre><code class="language-php">$members = [
-    [&#39;name&#39; =&gt; &#39;Yukari Tamura&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 17],
-    [&#39;name&#39; =&gt; &#39;Chinatsu Akasaki&#39;, &#39;sex&#39; =&gt; &#39;female&#39;],
-    [&#39;name&#39; =&gt; &#39;Ai Kayano&#39;, &#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 25]
+    [&#39;name&#39; =&gt; &#39;Yukari Tamura&#39;, &#39;age&#39; =&gt; 17],
+    [&#39;name&#39; =&gt; &#39;Yui Horie&#39;, &#39;age&#39; =&gt; 17]
 ];
-_::findWhere($members, [&#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt; 17]);
-=&gt; [&quot;name&quot; =&gt; &quot;Yukari Tamura&quot;, &quot;sex&quot; =&gt; &quot;female&quot;, &quot;age&quot; =&gt; 17]</code></pre>
+_::findWhere($members, [&#39;age&#39; =&gt; 17]);
+=&gt; [&quot;name&quot; =&gt; &quot;Yukari Tamura&quot;, &quot;age&quot; =&gt; 17]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -426,17 +457,18 @@ _::findWhere($members, [&#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt
             <h4 class="api"><em>array</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
             <h4 class="api lazy"><em>Iterator</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の要素について<code>$f</code>が<code>true</code>を返すものを除外します。
 逆の操作を行う関数として<a href="#filter"><code>filter()</code></a>があります。</p>
-<pre><code class="language-php">$evens = _::filter([1, 2, 3, 4, 5, 6], function($n) {
+<p>フィルタリングした後の配列のキーは常に維持されることに注意して下さい。</p>
+<pre><code class="language-php">$odds = _::reject([1, 2, 3, 4, 5, 6], function($n) {
     return $n % 2 === 0;
 });
-=&gt; [1, 3, 5]</code></pre>
+=&gt; [0 =&gt; 1, 2 =&gt; 3, 4 =&gt; 5]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
           <!-- every()  {{{-->
           <article id="every">
-            <h4 class="api"><em>bool</em> every(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f = null</var>])</h4>
+            <h4 class="api"><em>boolean</em> every(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
             <ul class="aliases">
               <li><code>all()</code></li>
             </ul><p><code>$xs</code>の要素がすべて<code>true</code>として評価される値であれば<code>true</code>を返します。</p>
@@ -448,7 +480,7 @@ _::findWhere($members, [&#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt
           <!-- }}}-->
           <!-- some()  {{{-->
           <article id="some">
-            <h4 class="api"><em>bool</em> some(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f = null</var>])</h4>
+            <h4 class="api"><em>boolean</em> some(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f</var>])</h4>
             <ul class="aliases">
               <li><code>any()</code></li>
             </ul><p><code>$xs</code>の要素の中に<code>true</code>として評価される値が1つでもあれば<code>true</code>を返します。</p>
@@ -460,8 +492,8 @@ _::findWhere($members, [&#39;sex&#39; =&gt; &#39;female&#39;, &#39;age&#39; =&gt
           <!-- }}}-->
           <!-- contains()  {{{-->
           <article id="contains">
-            <h4 class="api"><em>bool</em> contains(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)</h4><p><code>$xs</code>の要素に<code>$target</code>が含まれていれば<code>true</code>を返します。
-比較は<code>==</code>演算子を使って行われます。</p>
+            <h4 class="api"><em>boolean</em> contains(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)</h4><p><code>$xs</code>の要素に<code>$target</code>が含まれていれば<code>true</code>を返します。
+比較は<code>===</code>演算子を使って厳密に行われます。</p>
 <pre><code class="language-php">_::contains([1, 2, 3], 3);
 =&gt; true</code></pre>
 
@@ -499,7 +531,7 @@ _::pluck($stooges, &#39;name&#39;);
           <article id="max">
             <h4 class="api"><em>int</em> max(<em>array</em> <var>$xs</var>)</h4>
             <h4 class="api"><em>mixed</em> max(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素の中の<em>最大</em>の値を返します。
-<code>$f</code>に関数を指定した場合は、その関数を適用した結果を基準にして最大の値を返します。
+<code>$f</code>に関数を指定した場合は、その関数を適用した結果を基準にします。
 <code>$f</code>に文字列を指定した場合は、該当のプロパティを基準にします。
 <code>$xs</code>が空の時は<code>-INF</code>を返します。</p>
 <pre><code class="language-php">$stooges = [
@@ -517,7 +549,7 @@ _::max($stooges, &#39;age&#39;);
           <article id="min">
             <h4 class="api"><em>int</em> min(<em>array</em> <var>$xs</var>)</h4>
             <h4 class="api"><em>mixed</em> min(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素の中の<em>最小</em>の値を返します。
-<code>$f</code>に関数を指定した場合は、その関数を適用した結果を基準にして最小の値を返します。
+<code>$f</code>に関数を指定した場合は、その関数を適用した結果を基準にします。
 <code>$f</code>に文字列を指定した場合は、該当のプロパティを基準にします。
 <code>$xs</code>が空の時は<code>INF</code>を返します。</p>
 <pre><code class="language-php">$stooges = [
@@ -554,9 +586,9 @@ _::min($stooges, &#39;age&#39;);
             <h4 class="api"><em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
             <h4 class="api lazy"><em>Iterator</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>を比較関数<code>$f</code>を使ってソートします。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。
-比較関数は事前にすべての要素に対して計算するのでO(n)のオーターです。</p>
+比較関数は事前にすべての要素に対して計算するので、要素の数だけしか呼び出されません。</p>
 <p><code>Iterator</code>を返す場合はソート後の値を取り出す操作(<code>pluck()</code>)だけが遅延されます。
-ソート操作自体は遅延されません。</p>
+ソートの操作自体は遅延されません。</p>
 <pre><code class="language-php">_::sortBy([1, 2, 3, 4, 5, 6], function($n) { return sin($n); });
 =&gt; [5, 4, 6, 3, 1, 2]</code></pre>
 
@@ -566,10 +598,10 @@ _::min($stooges, &#39;age&#39;);
           <!-- groupBy()  {{{-->
           <article id="groupBy">
             <h4 class="api"><em>array</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>bool</em> <var>$isSorted = false</var>])</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にグループ化します。
+            <h4 class="api lazy"><em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にグループ化します。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。</p>
 <p>グループ化の基準にするキーでソートされていることが保証されているなら、
-<code>$isSorted</code>を<code>true</code>にすることでLazy系のクラスで<code>Iterator</code>を返すことができます。</p>
+<code>$isSorted</code>を<code>true</code>にすることで<code>Iterator</code>を返すことができます。</p>
 <pre><code class="language-php">_::groupBy([1.3, 2.1, 2.4], function($n) { return floor($n); });
 =&gt; [1 =&gt; [1.3], 2 =&gt; [2.1, 2.4]]</code></pre>
 
@@ -579,7 +611,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- countBy()  {{{-->
           <article id="countBy">
             <h4 class="api"><em>array</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>bool</em> <var>$isSorted = false</var>])</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にカウントします。
+            <h4 class="api lazy"><em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にカウントします。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。
 カウントの基準にするキーでソートされていることが保証されているなら、
 <code>$isSorted</code>を<code>true</code>にすることで<code>Iterator</code>を返すことができます。</p>
@@ -594,7 +626,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- shuffle()  {{{-->
           <article id="shuffle">
             <h4 class="api"><em>array</em> shuffle(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素をシャッフルします。
-内部でPHP組込みの<a href="http://php.net/manual/ja/function.shuffle.php"><code>shuffle()</code></a>を利用しています。</p>
+内部で組込みの<a href="http://php.net/manual/ja/function.shuffle.php"><code>shuffle()</code></a>を利用しています。</p>
 <pre><code class="language-php">_::shuffle([1, 2, 3, 4, 5, 6]);
 =&gt; [4, 1, 6, 3, 5, 2]</code></pre>
 
@@ -603,7 +635,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- toArray()  {{{-->
           <article id="toArray">
-            <h4 class="api"><em>array</em> toArray(<em>mixed</em> <var>$xs</var>)</h4><p>指定した値をキーを維持した連想配列にします。
+            <h4 class="api"><em>array</em> toArray(<em>mixed</em> <var>$xs</var>)</h4><p>指定した値をキーを維持したまま連想配列にします。
 文字列が与えられた時は文字の配列を返します。</p>
 <pre><code class="language-php">_::toArray(new ArrayObject([&#39;a&#39; =&gt; 1, &#39;b&#39; =&gt; 2, &#39;c&#39; =&gt; 3]));
 =&gt; [&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2, &quot;c&quot; =&gt; 3]</code></pre>
@@ -613,7 +645,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- toList()  {{{-->
           <article id="toList">
-            <h4 class="api"><em>array</em> toList(<em>mixed</em> <var>$xs</var>)</h4><p>指定した値を連番のキーで構成される配列にします。
+            <h4 class="api"><em>array</em> toList(<em>mixed</em> <var>$xs</var>)</h4><p>指定した値をキーを破棄して連番のインデックスの配列にします。
 文字列が与えられた時は文字の配列を返します。</p>
 <pre><code class="language-php">_::toList(new ArrayObject([&#39;a&#39; =&gt; 1, &#39;b&#39; =&gt; 2, &#39;c&#39; =&gt; 3]));
 =&gt; [1, 2, 3]</code></pre>
@@ -623,8 +655,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- memoize()  {{{-->
           <article id="memoize">
-            <h4 class="api"><em>Iterator</em> memoize(<em>Iterator</em> <var>$xs</var>)</h4><p><code>$xs</code>を一度計算した要素をキャッシュする<code>MemoizeIterator</code>でラップします。
-これを利用して<code>Generator</code>を反復可能にすることもできます。</p>
+            <h4 class="api"><em>Iterator</em> memoize(<em>Iterator</em> <var>$xs</var>)</h4><p><code>$xs</code>を一度計算した要素をキャッシュする<code>MemoizeIterator</code>でラップします。</p>
 <pre><code class="language-php">$fibs = _::chain(array(0, 1))
     -&gt;iterate(function($pair) {
         return array($pair[1], $pair[0] + $pair[1]);
@@ -640,7 +671,7 @@ $fibs[10];
           <!-- }}}-->
           <!-- size()  {{{-->
           <article id="size">
-            <h4 class="api"><em>int</em> size(<em>mixed</em> <var>$xs</var>)</h4><p><code>$xs</code>のサイズを返します。</p>
+            <h4 class="api"><em>int</em> size(<em>mixed</em> <var>$xs</var>)</h4><p>配列の場合は要素数を、<code>Iterator</code>の場合は長さを、文字列の場合は文字数を返します。</p>
 <pre><code class="language-php">_::size([&quot;one&quot; =&gt; 1, &quot;two&quot; =&gt; 2, &quot;three&quot; =&gt; 3]);
 =&gt; 3</code></pre>
 
@@ -652,8 +683,9 @@ $fibs[10];
           <h3>Array Functions</h3>
           <!-- first()  {{{-->
           <article id="first">
-            <h4 class="api lazy"><em>array</em> first(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api"><em>mixed</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
+            <h4 class="api"><em>mixed</em> first(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="api"><em>array</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
             <ul class="aliases">
               <li><code>head()</code></li>
               <li><code>take()</code></li>
@@ -671,8 +703,8 @@ _::first([1, 2, 3], 2);
           <!-- }}}-->
           <!-- initial()  {{{-->
           <article id="initial">
-            <h4 class="api"><em>array</em> initial(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> initial(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)</h4><p><code>$xs</code>の末尾から<code>$n</code>個の要素を除いた新しい配列を返します。</p>
+            <h4 class="api"><em>array</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4><p><code>$xs</code>の末尾から<code>$n</code>個の要素を除いた新しい配列を返します。</p>
 <pre><code class="language-php">_::initial([5, 4, 3, 2, 1]);
 =&gt; [5, 4, 3, 2]</code></pre>
 
@@ -681,8 +713,8 @@ _::first([1, 2, 3], 2);
           <!-- }}}-->
           <!-- last()  {{{-->
           <article id="last">
-            <h4 class="api"><em>array</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)</h4><p><code>$xs</code>の最後の要素を返します。
+            <h4 class="api"><em>array</em> last(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> last(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4><p><code>$xs</code>の最後の要素を返します。
 <code>$n</code>に2以上の値が指定された時は末尾の<code>$n</code>個の要素を返します。</p>
 <pre><code class="language-php">_::last([5, 4, 3, 2, 1]);
 =&gt; 1
@@ -694,8 +726,8 @@ _::last([5, 4, 3, 2, 1], 2);
           <!-- }}}-->
           <!-- rest()  {{{-->
           <article id="rest">
-            <h4 class="api"><em>array</em> rest(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> rest(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n = 1</var>)</h4>
+            <h4 class="api"><em>array</em> rest(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> rest(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
             <ul class="aliases">
               <li><code>tail()</code></li>
               <li><code>drop()</code></li>
@@ -708,8 +740,8 @@ _::last([5, 4, 3, 2, 1], 2);
           <!-- }}}-->
           <!-- takeWhile()  {{{-->
           <article id="takeWhile">
-            <h4 class="api"><em>array</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)</h4>
-            <h4 class="api lazy"><em>Iterator</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素の配列を返します。</p>
+            <h4 class="api"><em>array</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素の配列を返します。</p>
 <pre><code class="language-php">_::takeWhile([1, 2, 3, 4, 5, 1, 2, 3], function($x) {
     return $x &lt; 3;
 });
@@ -720,8 +752,8 @@ _::last([5, 4, 3, 2, 1], 2);
           <!-- }}}-->
           <!-- dropWhile()  {{{-->
           <article id="dropWhile">
-            <h4 class="api"><em>array</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)</h4>
-            <h4 class="api lazy"><em>Iterator</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> $f)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素を除いた配列を返します。</p>
+            <h4 class="api"><em>array</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素を除いた配列を返します。</p>
 <pre><code class="language-php">_::dropWhile([1, 2, 3, 4, 5, 1, 2, 3], function($x) {
     return $x &lt; 3;
 });
@@ -730,23 +762,10 @@ _::last([5, 4, 3, 2, 1], 2);
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
-          <!-- span()  {{{-->
-          <article id="span">
-            <h4 class="api"><em>array</em> span(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p>Haskellの<a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/Prelude.html#v:span"><code>span</code></a>からの移植です。
-<code>$xs</code>の要素に対して<code>$f</code>が最後に<code>false</code>を返すまでの要素と、それ以降の要素に分割します。
-<code>span($xs, $f)</code>は<code>[takeWhile($xs, $f), dropWhile($xs, $f)]</code>と等価な操作です。</p>
-<pre><code class="language-php">list ($xs, $ys) = _::span([1, 2, 3, 4, 1, 2, 3, 4], function($x) {
-  return $x &lt; 3;
-}, 0);
-=&gt; [[1, 2], [3, 4, 1, 2, 3, 4]]</code></pre>
-
-            <p class="top"><a href="#">TOP</a></p>
-          </article>
-          <!-- }}}-->
           <!-- compact()  {{{-->
           <article id="compact">
             <h4 class="api"><em>array</em> compact(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> compact(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の中から<code>false</code>して評価される値を除いた新しい配列を返します。</p>
+            <h4 class="api lazy"><em>Iterator</em> compact(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の中から<code>false</code>として評価される値を除いた新しい配列を返します。</p>
 <pre><code class="language-php">_::compact([0, 1, false, 2, &#39;&#39;, 3]);
 =&gt; [1, 2, 3]</code></pre>
 
@@ -755,8 +774,8 @@ _::last([5, 4, 3, 2, 1], 2);
           <!-- }}}-->
           <!-- flatten()  {{{-->
           <article id="flatten">
-            <h4 class="api"><em>array</em> flatten(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$shallow = false</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> flatten(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$shallow = false</var>)</h4><p>ネストした配列を平坦化します。
+            <h4 class="api"><em>array</em> flatten(<em>array</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> flatten(<em>array</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])</h4><p>ネストした配列を平坦化します。
 <code>$shallow</code>が<code>true</code>の時は1つ分の深さしか平坦化しません。</p>
 <pre><code class="language-php">_::flatten([1, [2], [3, [[4]]]]);
 =&gt; [1, 2, 3, 4]
@@ -780,7 +799,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- union()  {{{-->
           <article id="union">
             <h4 class="api"><em>array</em> union(<em>array</em> <var>$xss...</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> union(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列を結合した値がユニークな配列を返します</p>
+            <h4 class="api lazy"><em>Iterator</em> union(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列<code>$xss</code>を結合した上で、値が一意になる配列を返します。
+<code>concat()</code>した後に<code>uniq()</code>を呼び出すのと等価です。</p>
 <pre><code class="language-php">_::union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
 =&gt; [1, 2, 3, 101, 10]</code></pre>
 
@@ -789,7 +809,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- intersection()  {{{-->
           <article id="intersection">
-            <h4 class="api"><em>array</em> intersection(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列すべてに存在する値でのみ構成される配列を新しく返します。</p>
+            <h4 class="api"><em>array</em> intersection(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列すべてに存在する値でのみ構成される配列を新しく返します。
+内部で組み込みの<a href="http://php.net/manual/ja/function.array-intersect.php"><code>array_intersect()</code></a>を呼び出しています。</p>
 <pre><code class="language-php">_::intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
 =&gt; [1, 2]</code></pre>
 
@@ -808,16 +829,17 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- uniq()  {{{-->
           <article id="uniq">
-            <h4 class="api"><em>array</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f = null</var>])</h4>
-            <h4 class="api"><em>array</em> uniq(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f = null</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f = null</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> uniq(<em>array</em> <var>$xs</var>, <em>bool</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f = null</var>])</h4>
+            <h4 class="api"><em>array</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api"><em>array</em> uniq(<em>array</em> <var>$xs</var>, <em>boolean</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> uniq(<em>array</em> <var>$xs</var>, <em>boolean</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f</var>])</h4>
             <ul class="aliases">
               <li><code>unique()</code></li>
             </ul><p><code>$xs</code>から要素の重複を排除します。
-比較は<code>===</code>を使って厳密に行われます。
-<code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。
-<code>$isSorted</code>が<code>true</code>の時はより高速な比較アルゴリズムが利用されます。</p>
+<code>$f</code>に関数が与えられた場合は<code>$f</code>を適用した結果を基準にします。
+<code>$f</code>に文字列が与えられた場合は該当するプロパティを基準にします。
+比較は<code>===</code>を使って厳密に行われます。</p>
+<p><code>$isSorted</code>が<code>true</code>の時は重複判定の際に一つ前の要素しか確認しません。</p>
 <pre><code class="language-php">_::uniq([1, 2, 1, 3, 1, 4]);
 =&gt; [1, 2, 3, 4]</code></pre>
 
@@ -829,7 +851,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
             <h4 class="api"><em>array</em> zip(<em>array</em> <var>$xss...</var>)</h4>
             <h4 class="api lazy"><em>Iterator</em> zip(<em>array</em> <var>$xss...</var>)</h4><p><code>$xss</code>の各要素のインデックスが対応するもの同士を配列にして返します。</p>
 <p>指定した配列の長さが違う場合は小さいものに合わせます。
-これはUnderscore.jsの挙動と違いますが、引数に無限ストリームが含まれている時に計算が終わらないためにこのような実装になっています。</p>
+この挙動はUnderscore.jsとは違いますが、
+引数に無限リストが含まれている時に計算が終了しなくなるためこのような実装になっています。</p>
 <pre><code class="language-php">_::zip([&#39;moe&#39;, &#39;larry&#39;, &#39;curly&#39;], [30, 40, 50], [true, false, false]);
 =&gt; [[&quot;moe&quot;, 30, true], [&quot;larry&quot;, 40, false], [&quot;curly&quot;, 50, false]]</code></pre>
 
@@ -851,18 +874,31 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- unzip()  {{{-->
           <article id="unzip">
             <h4 class="api"><em>array</em> unzip(<em>array</em> <var>$xss</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> unzip(<em>array</em> <var>$xss</var>)</h4><p><a href="#zip"><code>zip()</code></a>と同じですが、引数に配列の配列を受けとります。</p>
+            <h4 class="api lazy"><em>Iterator</em> unzip(<em>array</em> <var>$xss</var>)</h4><p>動作自体は<a href="#zip"><code>zip()</code></a>と同じですが、引数に配列の配列を受けとります。</p>
 <pre><code class="language-php">_::unzip([[&#39;moe&#39;, &#39;larry&#39;, &#39;curly&#39;], [30, 40, 50], [true, false, false]]);
 =&gt; [[&quot;moe&quot;, 30, true], [&quot;larry&quot;, 40, false], [&quot;curly&quot;, 50, false]]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
+          <!-- span()  {{{-->
+          <article id="span">
+            <h4 class="api"><em>array</em> span(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p>Haskellの<a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/Prelude.html#v:span"><code>span</code></a>からの移植です。
+<code>$xs</code>の要素に対して<code>$f</code>が最後に<code>false</code>を返すまでの要素と、それ以降の要素に分割します。
+<code>span($xs, $f)</code>は<code>[takeWhile($xs, $f), dropWhile($xs, $f)]</code>と等価な操作です。</p>
+<pre><code class="language-php">list ($xs, $ys) = _::span([1, 2, 3, 4, 1, 2, 3, 4], function($x) {
+  return $x &lt; 3;
+}, 0);
+=&gt; [[1, 2], [3, 4, 1, 2, 3, 4]]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
           <!-- object()  {{{-->
           <article id="object">
-            <h4 class="api"><em>array</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values = null</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values = null</var>])</h4><p><code>$xs</code>の要素のキーと値のペアから連想配列を作成します。
-<code>$values</code>が与えられた場合は<code>$xs</code>はキーのリストとして解釈されます。</p>
+            <h4 class="api"><em>array</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])</h4><p><code>$xs</code>の要素をキーとして<code>$values</code>の要素を値として連想配列を作成します。
+<code>$values</code>が与えらなかった場合は<code>$xs</code>にキーと値のペアが格納されていることを期待します。</p>
 <pre><code class="language-php">_::object([&#39;moe&#39;, &#39;larry&#39;, &#39;curly&#39;], [30, 40, 50]);
 =&gt; [&quot;moe&quot; =&gt; 30, &quot;larry&quot; =&gt; 40, &quot;curly&quot; =&gt; 50]
 
@@ -872,26 +908,485 @@ _::object([[&#39;moe&#39;, 30], [&#39;larry&#39;, 40], [&#39;curly&#39;, 50]]);
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
+          <!-- indexOf()  {{{-->
+          <article id="indexOf">
+            <h4 class="api"><em>array</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4>
+            <h4 class="api"><em>array</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><code>$xs</code>の中から<code>$value</code>のあるインデックスを探します。
+存在しなかった場合は<code>-1</code>を返します。
+<code>$fromIndex</code>を指定した場合はそのインデックスから探索を開始します。</p>
+<p>ソート済みの配列であれば<code>$isSorted</code>に<code>true</code>を指定することで、二分探索による効率的な探索を実行できます。</p>
+<pre><code class="language-php">_::indexOf([1, 2, 3], 2);
+=&gt; 1</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- lastIndexOf()  {{{-->
+          <article id="lastIndexOf">
+            <h4 class="api"><em>array</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><a href="#indexOf"><code>indexOf()</code></a>の末尾から探索するバージョンです。</p>
+<pre><code class="language-php">_::lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+=&gt; 4</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- sortedIndex()  {{{-->
+          <article id="sortedIndex">
+            <h4 class="api"><em>array</em> sortedIndex(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>callable|string</em> <var>$f</var>])</h4><p>二分探索を実行して<code>$value</code>の挿入位置を調べます。</p>
+<pre><code class="language-php">_::sortedIndex([10, 20, 30, 40, 50], 35);
+=&gt; 3
+
+$stooges = [
+    [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 40],
+    [&#39;name&#39; =&gt; &#39;curly&#39;, &#39;age&#39; =&gt; 60]
+];
+_::sortedIndex($stooges, [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&gt; 50], &#39;age&#39;);
+=&gt; 1</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- range()  {{{-->
+          <article id="range">
+            <h4 class="api"><em>array</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4><p><code>$start</code>から<code>$step</code>ごとにインクリメントされた<code>$end</code>までの数値の配列を返します。
+<code>$step</code>に負の値を設定するとデクリメントされます。
+PHP組込みの<a href="http://php.net/manual/ja/function.range.php">range()</a>とは違って<code>$end</code>自体は含まれません。</p>
+<pre><code class="language-php">_::range(10);
+=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+_::range(1, 11);
+=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+_::range(0, 30, 5);
+=&gt; [0, 5, 10, 15, 20, 25]
+
+_::range(0, -10, -1);
+=&gt; [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+
+_::range(0);
+=&gt; []</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- cycle()  {{{-->
+          <article id="cycle">
+            <h4 class="api"><em>array</em> cycle(<em>array</em> <var>$xs</var>, <em>int</em>, <var>$n</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> cycle(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n</var>])</h4><p><code>$xs</code>の要素が<code>$n</code>で指定された回数だけ繰り返された配列を返します。
+<code>$n</code>が与えられなかった場合は繰り返しを無限に続けます。
+<a href="#Eager"><code>Eager</code></a>から<code>$n</code>を与えずに呼び出された場合は<a href="http://php.net/manual/ja/class.overflowexception.php"><code>OverflowException</code></a>が発生します。</p>
+<pre><code class="language-php">_::cycle([1, 2], 2);
+=&gt; [1, 2, 1, 2]
+
+_::chain([1, 2, 3])-&gt;cycle()-&gt;take(5)-&gt;toList()-&gt;value();
+=&gt; [1, 2, 3, 1, 2]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- repeat()  {{{-->
+          <article id="repeat">
+            <h4 class="api"><em>array</em> repeat(<em>mixed</em> <var>$value</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> repeat(<em>mixed</em> <var>$value</var>, <em>int</em>, <var>$n</var>)</h4><p><code>$value</code>が<code>$n</code>個分繰り返される配列を返します。
+<code>$n</code>が与えられなかった場合は<code>$value</code>を無限に繰り返し続けます。
+<code>Eager</code>から呼び出された時に<code>$n</code>が与えられなかった場合は<a href="http://php.net/manual/ja/class.overflowexception.php"><code>Overflowexception</code></a>が発生します。</p>
+<pre><code class="language-php">_::repeat(1, 2);
+=&gt; [1, 1]
+
+_::chain(1)-&gt;repeat()-&gt;take(5)-&gt;toList()-&gt;value();
+=&gt; [1, 1, 1, 1, 1]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- iterate()  {{{-->
+          <article id="iterate">
+            <h4 class="api lazy"><em>Iterator</em> iterate(<em>mixed</em> <var>$acc</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$acc</code>に対して<code>$f</code>を繰り返し適用していく<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>を返します。
+<a href="#Eager"><code>Eager</code></a>から呼び出された場合は<a href="http://php.net/manual/ja/class.overflowexception.php"><code>OverflowException</code></a>が発生します。</p>
+<pre><code class="language-php">_::chain(0)
+  -&gt;iterate(function($n) {
+    return $n + 1;
+  })
+  -&gt;take(5)
+  -&gt;toList()
+  -&gt;value();
+=&gt; [0, 1, 2, 3, 4]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- pop()  {{{-->
+          <article id="pop">
+            <h4 class="api"><em>array</em> pop(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>から末尾の要素を一つ取り除きます。
+返り値は取り除かれた要素ではなく、配列そのものであることに注意して下さい。
+<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>に対して呼び出された場合は配列に変換されます。</p>
+<pre><code class="language-php">_::pop([1, 2, 3]);
+=&gt; [1, 2]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- push()  {{{-->
+          <article id="push">
+            <h4 class="api"><em>array</em> push(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])</h4><p><code>$xs</code>の末尾に<code>$values</code>を追加します。
+<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>に対して呼び出された場合は配列に変換されます。</p>
+<pre><code class="language-php">_::push([1, 2, 3], 4)
+=&gt; [1, 2, 3, 4]
+
+_::push([1, 2, 3], 4, 5)
+=&gt; [1, 2, 3, 4, 5]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- reverse()  {{{-->
+          <article id="reverse">
+            <h4 class="api"><em>array</em> reverse(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の順序を逆順にした配列を返します。</p>
+<pre><code class="language-php">_::reverse([1, 2, 3]);
+=&gt; [3, 2, 1]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- shift()  {{{-->
+          <article id="shift">
+            <h4 class="api"><em>array</em> shift(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>から先頭の要素を一つ取り除きます。
+返り値は取り除かれた要素ではなく、配列そのものであることに注意して下さい。
+<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>に対して呼び出された場合は配列に変換されます。</p>
+<pre><code class="language-php">_::shift([1, 2, 3]);
+=&gt; [2, 3]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- sort()  {{{-->
+          <article id="sort">
+            <h4 class="api"><em>array</em> sort(<em>array</em> <var>$xs</var> [, <em>callable</em> <var>$compare</var>])</h4><p><code>$xs</code>をPHP組み込みの<a href="http://www.php.net/manual/ja/function.sort.php"><code>sort</code></a>を使って要素を昇順にソートします。
+比較関数<code>$compare</code>が与えられた場合は<a href="http://www.php.net/manual/ja/function.usort.php"><code>usort</code></a>でソートされます。</p>
+<pre><code class="language-php">_::sort([2, 3, 1]);
+=&gt; [1, 2, 3]
+
+_::sort([2, 3, 1], function($x, $y) {
+    if ($x === $y) return 0;
+    return $x &lt; $y ? 1 : -1;
+});
+=&gt; [3, 2, 1]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- splice()  {{{-->
+          <article id="splice">
+            <h4 class="api"><em>array</em> splice(<em>array</em> <var>$xs</var>, <em>int</em> <var>$index</var>, <em>int</em> <var>$n</var>)</h4><p><code>$xs</code>の要素を<code>$index</code>から<code>$n</code>個取り除いて新しい要素<code>$values</code>を追加します。
+<code>$values</code>を指定しなかった場合は単に要素を取り除きます。
+内部でPHP組み込みの<a href="http://php.net/manual/ja/function.array-splice.php"><code>array_splice</code></a>を利用しています。</p>
+<pre><code class="language-php">$myFish = [&#39;angel&#39;, &#39;clown&#39;, &#39;mandarin&#39;, &#39;surgeon&#39;];
+
+_::splice($myFish, 2, 0, &#39;drum&#39;);
+=&gt; [&quot;angel&quot;, &quot;clown&quot;, &quot;drum&quot;, &quot;mandarin&quot;, &quot;surgeon&quot;]
+
+_::splice($myFish, 1, 2);
+=&gt; [&quot;angel&quot;, &quot;surgeon&quot;];</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- unshift()  {{{-->
+          <article id="unshift">
+            <h4 class="api"><em>array</em> unshift(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])</h4><p><code>$xs</code>の先頭に<code>$values</code>を追加します。
+<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>に対して呼び出された場合は配列に変換されます。</p>
+<pre><code class="language-php">_::unshift([1, 2, 3], 4)
+=&gt; [4, 1, 2, 3]
+
+_::unshift([1, 2, 3], 4, 5)
+=&gt; [4, 5, 1, 2, 3]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- concat()  {{{-->
+          <article id="concat">
+            <h4 class="api"><em>array</em> concat(<em>array</em> <var>$xss...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> concat(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定された配列<code>$xss</code>を1つの配列に結合します。</p>
+<pre><code class="language-php">_::concat([1, 2, 3], [4, 5, 6])
+=&gt; [1, 2, 3, 4, 5, 6]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- join()  {{{-->
+          <article id="join">
+            <h4 class="api"><em>array</em> join(<em>array</em> <var>$xs</var> [ , <em>string</em> <var>$separator = ","</var>])</h4><p><code>$xs</code>の要素を<code>$separator</code>を区切文字として文字列に結合します。
+PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>implode</code></a>と等価な処理です。</p>
+<pre><code class="language-php">_::join([&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;], &#39;,&#39;)
+=&gt; &quot;foo,bar,baz&quot;</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- slice()  {{{-->
+          <article id="slice">
+            <h4 class="api"><em>array</em> slice(<em>array</em> <var>$xs</var>, <em>int</em> <var>$begin</var>, <em>int</em> <var>$end</var>)</h4><p><code>$xs</code>から<code>$begin</code>から<code>$end</code>までのインデックスの要素を切り出します。
+<code>take(drop($xs, $begin), $end - $begin)</code>と等価な操作です。
+内部で組み込みの<a href="http://php.net/manual/ja/function.array-slice.php"><code>array_slice()</code></a>が呼び出されます。</p>
+<p><code>$begin</code>と<code>$end</code>に負の値が指定された場合は末尾から数えたインデックスを示します。
+<code>$end</code>が省略された場合は配列の末尾までを対象とします。</p>
+<pre><code class="language-php">_::slice([1, 2, 3, 4, 5], 2);
+=&gt; [3, 4, 5]
+
+_::slice($xs, -2);
+=&gt; [4, 5]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+        </section>
+        <section id="objects">
+          <h3>Object Functions</h3>
+          <!-- keys()  {{{-->
+          <article id="keys">
+            <h4 class="api"><em>array</em> keys(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> keys(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>からキーをすべて取得します。</p>
+<pre><code class="language-php">_::keys([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]);
+=&gt; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- values()  {{{-->
+          <article id="values">
+            <h4 class="api"><em>array</em> values(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> values(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>から値をすべて取得します。</p>
+<pre><code class="language-php">_::values([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]);
+=&gt; [1, 2, 3]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- pairs()  {{{-->
+          <article id="pairs">
+            <h4 class="api"><em>array</em> pairs(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> pairs(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の各要素をキーと値のペアの配列にして返します。</p>
+<pre><code class="language-php">_::pairs([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]);
+=&gt; [[&quot;one&quot;, 1], [&quot;two&quot;, 2], [&quot;three&quot;, 3]]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- invert()  {{{-->
+          <article id="invert">
+            <h4 class="api"><em>array</em> invert(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>のキーと値を入れ替えます。
+キーが重複した場合は前のものを上書きします。
+組み込みの<a href="http://www.php.net/manual/ja/function.array-flip.php"><code>array_flip()</code></a>と等価な操作です。</p>
+<pre><code class="language-php">_::invert([&quot;Moe&quot; =&gt; &quot;Moses&quot;, &quot;Larry&quot; =&gt; &quot;Louis&quot;, &quot;Curly&quot; =&gt; &quot;Jerome&quot;]);
+=&gt; [&quot;Moses&quot; =&gt; &quot;Moe&quot;, &quot;Louis&quot; =&gt; &quot;Larry&quot;, &#39;Jerome&#39; =&gt; &quot;Curly&quot;];</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- extend()  {{{-->
+          <article id="extend">
+            <h4 class="api"><em>array</em> extend(<em>array</em> <var>$destination</var> [, <em>array</em> <var>$sources...</var>])</h4><p><code>$destination</code>を与えられた<code>$sources</code>で拡張します。
+同名のキーが存在した場合は前のものを上書きします。
+組み込みの<a href="http://php.net/manual/ja/function.array-merge.php"><code>array_merge()</code></a>と等価な操作です。</p>
+<pre><code class="language-php">_::extend([&#39;name&#39; =&gt; &#39;moe&#39;], [&#39;age&#39; =&gt; 50]);
+=&gt; [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- pick()  {{{-->
+          <article id="pick">
+            <h4 class="api"><em>array</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4><p><code>$xs</code>の要素の中から<code>$keys</code>で指定されたキーの値を取り出します。</p>
+<pre><code class="language-php">_::pick([&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50, &#39;userid&#39; =&gt; &#39;moe1&#39;], &#39;name&#39;, &#39;age&#39;);
+=&gt; [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- omit()  {{{-->
+          <article id="omit">
+            <h4 class="api"><em>array</em> omit(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> omit(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4><p><code>$xs</code>の要素の中から<code>$keys</code>で指定されたキーの<em>以外</em>の値を取り出します。</p>
+<pre><code class="language-php">_::pick([&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50, &#39;userid&#39; =&gt; &#39;moe1&#39;], &#39;userid&#39;);
+=&gt; [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- defaults()  {{{-->
+          <article id="defaults">
+            <h4 class="api"><em>array</em> defaults(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> defaults(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])</h4><p><code>$xs</code>に存在しないキーの値を<code>$defaults</code>から補完します。
+<code>isset()</code>でキーの存在を確認しているので<code>null</code>は存在しないものとして扱われます。</p>
+<pre><code class="language-php">$iceCream = [&#39;flavor&#39; =&gt; &#39;chocolate&#39;];
+_::defaults($iceCream, [&#39;flavor&#39; =&gt; &#39;vanilla&#39;, &#39;sprinkles&#39; =&gt; &#39;lots&#39;]);
+=&gt; [&quot;flavor&quot; =&gt; &quot;chocolate&quot;, sprinkles =&gt; &quot;lots&quot;]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- tap()  {{{-->
+          <article id="tap">
+            <h4 class="api"><em>array</em> tap(<em>mixed</em> <var>$value</var>, <em>callable</em> <var>$interceptor</var>)</h4><p><code>$value</code>を引数として<code>$interceptor</code>を呼び出して<code>$value</code>をそのまま返します。</p>
+<pre><code class="language-php">_::chain([1, 2, 3, 200])
+  -&gt;filter(function($num) { return $num % 2 == 0; })
+  -&gt;tap(function($num) { var_dump($num); })
+  -&gt;map(function($num) { return $num * $num; })
+  -&gt;value();
+=&gt; // [1 =&gt; 2, 3 =&gt; 200] (var_dump)
+=&gt; [1 =&gt; 4, 3 =&gt; 40000]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- isArray()  {{{-->
+          <article id="isArray">
+            <h4 class="api"><em>boolean</em> isArray(<em>mixed</em> <var>$value</var>)</h4><p><code>$value</code>が配列か<a href="http://php.net/manual/ja/class.arrayaccess.php"><code>ArrayAccess</code></a>インターフェイスを実装しているオブジェクトかどうかを返します。</p>
+<pre><code class="language-php">_::isArray([1, 2, 3]);
+=&gt; true
+
+_::isArray(new ArrayObject());
+=&gt; true
+
+_::isArray(new EmptyIterator());
+=&gt; false</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- isTraversable()  {{{-->
+          <article id="isTraversable">
+            <h4 class="api"><em>boolean</em> isTraversable(<em>mixed</em> <var>$value</var>)</h4><p><code>$value</code>が配列か<a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>インターフェイスが実装されたオブジェクトかどうかを返します。</p>
+<pre><code class="language-php">_::isTraversable([1, 2, 3]);
+=&gt; true
+
+_::isTraversable(new EmptyIterator());
+=&gt; true
+
+_::isTraversable(new stdClass());
+=&gt; false</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+        </section>
+        <section id="parallel">
+          <h3>Parallel</h3>
           <!-- parMap()  {{{-->
           <article id="parMap">
-            <h4 class="api"><em>Internal\Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)</h4><p><a href="#map"><code>map()</code></a>の並列実行版です。
-<code>$xs</code>の各要素に対して関数<code>$f</code>を並列に適用する<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>を返します。
-<code>$f</code>は引数<code>(element)</code>を1つだけ取る関数です。
-<code>$n</code>は同時に起動するワーカープロセスの数です。</p>
-<p><code>$n</code>が2以上の時は複数のワーカープロセスによって処理されるため、返ってくる要素の順序は不定です。</p>
+            <h4 class="api"><em>Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)</h4><p><a href="#map"><code>map()</code></a>の並列実行版です。
+<code>$xs</code>の各要素に対して関数<code>$f</code>を並列に適用した結果を返す<code>Parallel</code>オブジェクトを返します。
+<code>Parallel</code>クラスは<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>インターフェイスと<a href="http://php.net/manual/ja/class.countable.php"><code>Countable</code></a>インターフェイスを実装しています。</p>
+<p><code>$f</code>は引数<code>(element)</code>を1つだけ取る関数です。
+<code>$n</code>は同時に起動するワーカープロセスの数です。
+<code>$n</code>が2以上の時は複数のワーカープロセスによって処理されるため、返ってくる要素の順序は不定です。</p>
+<p><code>parMap()</code>は内部で<code>pcntl_fork()</code>を利用しているので処理系が<code>--enable-pcntl</code>を指定してコンパイルされている必要があります。</p>
+<h5><code>Parallel</code>で利用可能なメソッド</h5>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="left">Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">void <em>fork</em>()</td>
+<td align="left">ワーカープロセスを1つ起動させる</td>
+</tr>
+<tr>
+<td align="left">void <em>terminate</em>()</td>
+<td align="left">ワーカープロセスを1つ停止させる</td>
+</tr>
+<tr>
+<td align="left">int <em>processes</em>()</td>
+<td align="left">現在起動中のワーカープロセスの数を取得する</td>
+</tr>
+<tr>
+<td align="left">void <em>push</em>($value)</td>
+<td align="left">処理したい値を追加する</td>
+</tr>
+<tr>
+<td align="left">void <em>pushAll</em>($values)</td>
+<td align="left">処理したい値を複数追加する</td>
+</tr>
+<tr>
+<td align="left">mixed <em>result</em>()</td>
+<td align="left">処理の結果を1つ取り出す</td>
+</tr>
+<tr>
+<td align="left">int <em>count</em>()</td>
+<td align="left">未処理のタスクの数を返す</td>
+</tr>
+</tbody>
+</table>
 <pre><code class="language-php">$xs =_::parMap([1, 2, 3], function($x) {
     sleep(2);
     return $x * 3;
 });
-// デフォルトは4並列で実行されるので約2秒ですべての計算が終わります。
+// 4並列で実行されるので約2秒ですべての計算が終わる
 foreach ($xs as $x) {
-    var_dump($x);  // 3, 6, 9が順不同に出力されます
+    var_dump($x);  // 3, 6, 9が順不同に出力される
 }</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
         </section>
+        <section id="chaining">
+          <h3>Chaining</h3>
+          <!-- chain()  {{{-->
+          <article id="chain">
+            <h4 class="api"><em>Wrapper</em> chain(<em>mixed</em> <var>$value</var>)</h4><p><code>$value</code>をメソッドチェインで処理するための<code>Wrapper</code>で包んで返します。</p>
+<h5><code>Wrapper</code>で利用可能なメソッド</h5>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="left">Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Wrapper <em>eager</em>()</td>
+<td align="left"><code>Eager</code>に切り替える</td>
+</tr>
+<tr>
+<td align="left">Wrapper <em>lazy</em>()</td>
+<td align="left"><code>Lazy</code>に切り替える</td>
+</tr>
+<tr>
+<td align="left">Wrapper <em>value</em>()</td>
+<td align="left">ラッパーから値を取り出す</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-php">$stooges = [
+    [&#39;name&#39; =&gt; &#39;curly&#39;, &#39;age&#39; =&gt; 25],
+    [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 21],
+    [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&gt; 23]
+];
+$youngest = _::chain($stooges)
+  -&gt;sortBy(function($stooge){ return $stooge[&#39;age&#39;]; })
+  -&gt;map(function($stooge){ return $stooge[&#39;name&#39;] . &#39; is &#39; . $stooge[&#39;age&#39;]; })
+  -&gt;first()
+  -&gt;value();
+=&gt; &quot;moe is 21&quot;</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+        </section>
+      </section>
+      <section id="change-log"><h2>Change Log</h2>
+<h3>0.1.0 - Jul 24, 2013</h3>
+<ul>
+<li>Initial release</li>
+</ul>
+
       </section>
       <footer id="footer">
         <p>Developed by <a href="http://twitter.com/emonkak">@emonkak</a></p>

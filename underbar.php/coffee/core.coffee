@@ -97,11 +97,19 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
     difference = Math.abs(offsetTop - $(window).scrollTop())
 
     isSmoothScrolling = true
+    duration = Math.min(difference, 500)
     $('html, body').stop().animate
       scrollTop: offsetTop
-    , Math.min(difference, 500), 'swing', =>
+    , duration, 'swing', =>
       window.location.hash = @hash
       scrollSpy.onScroll()
       isSmoothScrolling = false
 
     false
+
+
+
+
+# Add target=_blank   {{{1
+
+$('a[href^="http://"], a[href^="https://"]').attr('target', '_blank')

@@ -2,7 +2,7 @@
 `$f`に文字列を指定した場合は該当するプロパティを基準にします。
 
 グループ化の基準にするキーでソートされていることが保証されているなら、
-`$isSorted`を`true`にすることでLazy系のクラスで`Iterator`を返すことができます。
+`$isSorted`を`true`にすることで`Iterator`を返すことができます。
 
 ```php
 _::groupBy([1.3, 2.1, 2.4], function($n) { return floor($n); });

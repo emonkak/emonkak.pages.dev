@@ -2,23 +2,28 @@ Introduction
 ------------
 
 Underbar.phpは[Underscore.js](http://underscorejs.org/)のような便利なユーティリティを提供するPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、Underbar.phpは配列とIteratorに関する操作に特化しています。
+Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、Underbar.phpは[Iterator](http://php.net/manual/ja/class.iterator.php)を利用した遅延リストを扱えるのが特徴です。
+
+Underscore.jsとの互換性を最優先に設計されているわけではないため、
+Underscore.jsにはある関数がなかったり、逆に新しく追加された関数があったりもします。
+同名の関数は基本的にUnderscore.jsと互換性のある動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。
 
 ### Features
 
-- [Iterator](http://php.net/manual/ja/class.iterator.php)による遅延リスト(遅延ストリーム)のサポート
-- [Traversable](http://php.net/manual/ja/class.traversable.php)なクラスにメソッドを追加する[`Enumerable`](#Enumerable)トレイト
-- underscore.jsにはない関数をいくつか追加
-  - *Collections*: [`parMap()`](#parMap), [`scanl()`](#scanl), [`scanr()`](#scanr), [`span()`](#span), [`memoize()`](#memoize)
+- [Iterator](http://php.net/manual/ja/class.iterator.php)による遅延リストのサポート
+- Rubyの[Enumerable](http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html)のような[`Enumerable`](#Enumerable)トレイト
+- underscore.jsにはない新たに追加された関数
+  - *Collections*: [`scanl()`](#scanl), [`scanr()`](#scanr), [`span()`](#span), [`toList`](#toList), [`memoize()`](#memoize)
   - *Arrays*: [`takeWhile()`](#takeWhile), [`dropWhile()`](#dropWhile), [`cycle()`](#cycle), [`repeat()`](#repeat), [`iterate()`](#iterate)
   - *Objects*: [`isTraversable()`](#isTraversable)
+  - *Parallel*: [`parMap()`](#parMap)
 
 ### Example
 
 以下は配列の要素を2倍にして新しい配列を返す例です。
 
 ```php
-use Underbar\Strict as _;  // Array version class
+use Underbar\Eager as _;  // Array version class
 
 $xs = _::map([1, 2, 3, 4], function($n) { return $n * 2; });
 var_dump(is_array($xs));  // true
@@ -35,7 +40,7 @@ var_dump($xs instanceof Traversable);  // true
 var_dump(iterator_to_array($xs));  // [2, 4, 6, 8]
 ```
 
-このように配列版([`Strict`](#Strict))とIterator版([`Lazy`](#Lazy))のクラスは互換性のあるインターフェイスを持っているので容易に切り替えることができます。
+このように[`Eager`](#Eager)と[`Lazy`](#Lazy)は互換性があるので容易に切り替えることができます。
 
 Underscore.jsのように[`chain()`](#chain)を使ってメソッドチェインで処理を書くこともできます。
 

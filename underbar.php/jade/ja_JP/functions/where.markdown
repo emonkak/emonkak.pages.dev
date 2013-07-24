@@ -2,13 +2,13 @@
 
 ```php
 $members = [
-    ['name' => 'Yui Ogura', 'sex' => 'female', 'age' => 17],
-    ['name' => 'Rina Hidaka', 'sex' => 'female', 'age' => 19],
-    ['name' => 'Yuka Iguchi', 'sex' => 'female', 'age' => 24],
-    ['name' => 'Yoko Hikasa', 'sex' => 'female', 'age' => 27],
-    ['name' => 'Kana Hanazawa', 'sex' => 'female', 'age' => 24]
+    ['name' => 'Yui Ogura', 'age' => 17],
+    ['name' => 'Rina Hidaka', 'age' => 19],
+    ['name' => 'Yuka Iguchi', 'age' => 24],
+    ['name' => 'Yoko Hikasa', 'age' => 27],
+    ['name' => 'Kana Hanazawa', 'age' => 24]
 ];
-_::where($members, ['sex' => 'female', 'age' => 24]);
-=> [["name" => "Yuka Iguchi", "sex" => "female", "age" => 24],
-    ["name" => "Kana Hanazawa", "sex" => "female", "age" => 24]]
+_::where($members, ['age' => 24]);
+=> [["name" => "Yuka Iguchi", "age" => 24],
+    ["name" => "Kana Hanazawa", "age" => 24]]
 ```
