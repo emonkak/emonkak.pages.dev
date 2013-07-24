@@ -7,7 +7,6 @@
 
 @import "_baseline"
 @import "_flatui-colors"
-@import "_highlight"
 
 @import url(//fonts.googleapis.com/css?family=Lato:100,400,700|Source+Code+Pro:400,700)
 
@@ -39,6 +38,108 @@ $dark-accent-color: $flatui-colors-green-sea
 @mixin layout-two-column()
   @media screen and (min-width: 769px)
     @content
+
+
+
+
+// Common
+
+body
+  // @extend .baseline-grid
+  font-family: "Proxima Nova", "Lato", "Helvetica", sans-serif
+  font-size: $font-size
+  color: $black-color
+  background-color: $white-color
+  -webkit-text-size-adjust: 100%
+
+h1, h2, h3, h4, h5, h6
+  // background: rgba(255, 0, 0, 0.2)
+  font-weight: bold
+
+a
+  color: $accent-color
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+pre
+  font-family: "Consolas", "Source Code Pro", monospace
+  background-color: $light-color
+  padding: 0.5em * baseline-line-height()
+  overflow: auto
+
+  code
+    white-space: inherit
+
+code
+  padding: 2px 4px
+  background-color: $light-color
+  white-space: nowrap
+  line-height: 0
+
+em
+  font-weight: bold
+
+strong
+  color: $white-color
+  background-color: $accent-color
+  padding: 2px 4px
+  font-weight: bold
+
+var
+  font-style: normal
+
+ul, ol
+  margin-left: 1.5em
+
+li > ul, li > ol
+  margin-bottom: 0
+
+table
+  width: 100%
+  border-collapse: collapse
+  border-spacing: 0
+
+tbody tr:nth-child(odd)
+  background-color: $light-color
+
+th, td
+  padding: 0 0.5em
+
+th
+  font-weight: bold
+
+
+
+
+// Syntax highlight  {{{1
+
+.token
+  &.keyword
+    font-weight: bold
+
+  &.comment
+    font-style: italic
+    color: #999988
+
+  &.number,
+  &.variable,
+  &.this
+    color: #008080
+
+  &.string
+    color: #d14
+
+  &.function
+    color: #0086B3
+
+    .punctuation
+      color: $black-color
+
+  &.class-name
+    color: #445588
+    font-weight: bold
 
 
 
