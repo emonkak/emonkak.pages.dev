@@ -12,7 +12,7 @@
   <body>
     <header id="header">
       <nav role="navigation">
-        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.1.0</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
+        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.1.1</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
         <dl>
           <dd><a href="#introduction">Introduction</a></dd>
           <dd><a href="#getting-started">Getting Started</a></dd>
@@ -167,7 +167,7 @@ echo _::chain([1, 1])
       </section>
       <section id="getting-started"><h2>Getting Started</h2>
 <p>Underbar.phpの動作には<em>バージョン5.3以上</em>のPHP処理系と、<a href="http://getcomposer.org/">Composer</a>が必要です。
-ただし<a href="#Enumerable"><code>Enumerable</code></a>を利用するにはとはトレイトサポートの追加された5.4以上の処理系が必要です。
+ただし<a href="#Enumerable"><code>Enumerable</code></a>を利用するにはとはトレイトサポートが追加された5.4以上の処理系が必要です。
 インストールが完了したらプロジェクトルートに以下のような内容のcomposer.jsonを作成して下さい。
 詳しいcomposer.jsonの書き方については<a href="http://getcomposer.org/doc/04-schema.md">こちら</a>を参照して下さい。</p>
 <pre><code class="language-javascript">{
@@ -224,14 +224,13 @@ Underbar.phpの中心となるクラスで、すべての関数はこのクラ�
               <li><code><em>LazyGenerator</em></code></li>
             </ol><p><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を返すAPIを提供するクラスです。
 <code>Generator</code>は走査を繰り返すと例外が発生することに注意して下さい。
-これを回避したい場合は<a href="#LazySafeGenerator"><code>LazySafeGenerator</code></a>を利用できます。</p>
+<a href="#LazySafeGenerator"><code>LazySafeGenerator</code></a>を利用することで例外を回避することもできます。</p>
 <pre><code class="language-php">use Underbar\LazyGenerator as _;
 
 $xs = _::range(10);
 foreach ($xs as $x);
 // &#39;Exception&#39; with message &#39;Cannot traverse an already closed generator&#39;
 foreach ($xs as $x);</code></pre>
-<p><code>Generator</code>を巻き戻したい場合は<a href="#LazySafeGenerator"><code>LazySafeGenerator</code></a>が利用できます。</p>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -251,7 +250,8 @@ foreach ($xs as $x);</code></pre>
           <!-- }}}-->
           <!-- Enumerable  {{{-->
           <article id="Enumerable">
-            <h4 class="api lazy">Enumerable <small>Trait</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Enumerable.php" class="source">Source</a></h4><p><code>Traversable</code>なクラスに<a href="#Lazy"><code>Lazy</code></a>の関数をmixinするためのトレイトです。</p>
+            <h4 class="api lazy">Enumerable <small>Trait</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Enumerable.php" class="source">Source</a></h4><p><code>Traversable</code>なクラスに<a href="#Eager"><code>Eager</code></a>の関数をmixinするためのトレイトです。
+<code>lazy()</code>を呼び出すと以降の処理を<a href="#Lazy"><code>Lazy</code></a>の<a href="#chain"><code>chain()</code></a>を呼び出してメソッドチェインで処理できます。</p>
 <pre><code class="language-php">class Collection implements IteratorAggregate
 {
     use Underbar\Enumerable;
@@ -274,7 +274,7 @@ $collection-&gt;map(function($n) { return $n * 2; });
 =&gt; [2, 4, 6]
 
 $twiceCycle = $collection
-    -&gt;chain()
+    -&gt;lazy()
     -&gt;cycle()
     -&gt;map(function($n) { return $n * 2; })
     -&gt;take(6)
@@ -503,7 +503,7 @@ _::findWhere($members, [&#39;age&#39; =&gt; 17]);
           <!-- invoke()  {{{-->
           <article id="invoke">
             <h4 class="api"><em>array</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4><p><code>$xs</code>の要素をオブジェクトを見なして指定した<code>$method</code>を呼び出します。</p>
+            <h4 class="api lazy"><em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4><p><code>$xs</code>の要素をオブジェクトと見なして指定した<code>$method</code>を呼び出します。</p>
 <pre><code class="language-php">$xs = [new DateTime(&#39;2000-01-01&#39;), new DateTime(&#39;2013-01-01&#39;)];
 _::invoke($xs, &#39;format&#39;, &#39;Y-m-d H:i:s&#39;);
 =&gt; [&quot;2000-01-01 00:00:00&quot;,
@@ -658,7 +658,7 @@ _::min($stooges, &#39;age&#39;);
             <h4 class="api"><em>Iterator</em> memoize(<em>Iterator</em> <var>$xs</var>)</h4><p><code>$xs</code>を一度計算した要素をキャッシュする<code>MemoizeIterator</code>でラップします。</p>
 <pre><code class="language-php">$fibs = _::chain(array(0, 1))
     -&gt;iterate(function($pair) {
-        return array($pair[1], $pair[0] + $pair[1]);
+        return [$pair[1], $pair[0] + $pair[1]];
     })
     -&gt;map(function($pair) { return $pair[0]; })
     -&gt;memoize()
@@ -1223,7 +1223,7 @@ _::slice($xs, -2);
 <code>isset()</code>でキーの存在を確認しているので<code>null</code>は存在しないものとして扱われます。</p>
 <pre><code class="language-php">$iceCream = [&#39;flavor&#39; =&gt; &#39;chocolate&#39;];
 _::defaults($iceCream, [&#39;flavor&#39; =&gt; &#39;vanilla&#39;, &#39;sprinkles&#39; =&gt; &#39;lots&#39;]);
-=&gt; [&quot;flavor&quot; =&gt; &quot;chocolate&quot;, sprinkles =&gt; &quot;lots&quot;]</code></pre>
+=&gt; [&quot;flavor&quot; =&gt; &quot;chocolate&quot;, &quot;sprinkles&quot; =&gt; &quot;lots&quot;]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -1385,6 +1385,10 @@ $youngest = _::chain($stooges)
 <h3>0.1.0 - Jul 24, 2013</h3>
 <ul>
 <li>Initial release</li>
+</ul>
+<h3>0.1.1 - Jul 25, 2013</h3>
+<ul>
+<li><a href="#Enumerable"><code>Enumerable</code></a>のデフォルトクラスを<a href="#Eager"><code>Eager</code></a>にして<a href="#lazy"><code>lazy()</code></a>メドッドを実装</li>
 </ul>
 
       </section>

@@ -3,7 +3,7 @@
 ```php
 $fibs = _::chain(array(0, 1))
     ->iterate(function($pair) {
-        return array($pair[1], $pair[0] + $pair[1]);
+        return [$pair[1], $pair[0] + $pair[1]];
     })
     ->map(function($pair) { return $pair[0]; })
     ->memoize()

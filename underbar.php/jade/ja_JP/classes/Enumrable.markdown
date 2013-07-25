@@ -1,4 +1,5 @@
-`Traversable`なクラスに[`Lazy`](#Lazy)の関数をmixinするためのトレイトです。
+`Traversable`なクラスに[`Eager`](#Eager)の関数をmixinするためのトレイトです。
+`lazy()`を呼び出すと以降の処理を[`Lazy`](#Lazy)の[`chain()`](#chain)を呼び出してメソッドチェインで処理できます。
 
 ```php
 class Collection implements IteratorAggregate
@@ -23,7 +24,7 @@ $collection->map(function($n) { return $n * 2; });
 => [2, 4, 6]
 
 $twiceCycle = $collection
-    ->chain()
+    ->lazy()
     ->cycle()
     ->map(function($n) { return $n * 2; })
     ->take(6)

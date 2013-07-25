@@ -4,5 +4,5 @@
 ```php
 $iceCream = ['flavor' => 'chocolate'];
 _::defaults($iceCream, ['flavor' => 'vanilla', 'sprinkles' => 'lots']);
-=> ["flavor" => "chocolate", sprinkles => "lots"]
+=> ["flavor" => "chocolate", "sprinkles" => "lots"]
 ```
