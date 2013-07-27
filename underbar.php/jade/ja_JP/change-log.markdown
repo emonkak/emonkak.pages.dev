@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+### 0.1.2 - Jul 27, 2013
+
+- [`Enumerable`](#Enumerable)の可変長引数のメソッドが正しく動作していなかったのを修正
+
 ### 0.1.1 - Jul 25, 2013
 
 - [`Enumerable`](#Enumerable)のデフォルトクラスを[`Eager`](#Eager)に変更して[`lazy()`](#lazy)メソッドを実装
