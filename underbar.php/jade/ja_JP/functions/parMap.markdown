@@ -21,7 +21,7 @@
 | int *count*()           | 未処理のタスクの数を返す
 
 ```php
-$xs =_::parMap([1, 2, 3], function($x) {
+$xs = _::parMap([1, 2, 3], function($x) {
     sleep(2);
     return $x * 3;
 });
