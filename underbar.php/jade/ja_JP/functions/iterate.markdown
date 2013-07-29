@@ -1,5 +1,5 @@
 `$acc`に対して`$f`を繰り返し適用していく[`Iterator`](http://php.net/manual/ja/class.iterator.php)を返します。
-[`Eager`](#Eager)から呼び出された場合は[`OverflowException`](http://php.net/manual/ja/class.overflowexception.php)が発生します。
+[`ArrayImpl`](#ArrayImpl)から呼び出された場合は[`OverflowException`](http://php.net/manual/ja/class.overflowexception.php)が発生します。
 
 ```php
 _::chain(0)

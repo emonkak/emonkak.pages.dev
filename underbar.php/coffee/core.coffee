@@ -5,7 +5,6 @@ class ScrollSpy
     @$container = $(container)
     @onScroll = _.throttle _.bind(@onScroll, this), 100
     @watches = []
-    @insides = {}
 
   start: ->
     @$container.on 'scroll', @onScroll
@@ -37,16 +36,17 @@ class ScrollSpy
 
     for el in @watches
       hash = el.hash
+      $el = $(el)
       $target = $(if hash.length > 1 then hash else 'body')
       continue if $target.length is 0
 
       if @contains($target, scrollTop, scrollBottom)
-        unless hash of @insides
+        unless $el.data 'inside'
           @onEnter.call this, el, $target[0] if @onEnter
-          @insides[hash] = el
-      else if hash of @insides
+          $el.data 'inside', true
+      else if $el.data 'inside'
         @onLeave.call this, el, $target[0] if @onLeave
-        delete @insides[hash]
+        $el.data 'inside', false
 
     return
 

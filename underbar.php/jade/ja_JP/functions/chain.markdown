@@ -1,12 +1,8 @@
 `$value`をメソッドチェインで処理するための`Wrapper`で包んで返します。
+`Wrapper`は[`Enumerable`](#Enumerable)をmix-inしたメソッドチェイン用のクラスです。
 
-##### `Wrapper`で利用可能なメソッド
-
-| Method            | Destination
-|:------------------|:------------
-| Wrapper *eager*() | `Eager`に切り替える
-| Wrapper *lazy*()  | `Lazy`に切り替える
-| Wrapper *value*() | ラッパーから値を取り出す
+[`toArray()`](#toArray)か[`toList()`](#toList)以外の`array`か`Iterator`を返す関数の場合は、返り値を新たな`Wrapper`のインスタンスで包んで返します。
+それ以外の値を返す関数では値をそのまま返します。
 
 ```php
 $stooges = [
@@ -17,7 +13,6 @@ $stooges = [
 $youngest = _::chain($stooges)
   ->sortBy(function($stooge){ return $stooge['age']; })
   ->map(function($stooge){ return $stooge['name'] . ' is ' . $stooge['age']; })
-  ->first()
-  ->value();
+  ->first();
 => "moe is 21"
 ```

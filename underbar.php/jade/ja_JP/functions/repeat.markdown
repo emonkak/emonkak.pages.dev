@@ -1,6 +1,6 @@
 `$value`が`$n`個分繰り返される配列を返します。
 `$n`が与えられなかった場合は`$value`を無限に繰り返し続けます。
-`Eager`から呼び出された時に`$n`が与えられなかった場合は[`Overflowexception`](http://php.net/manual/ja/class.overflowexception.php)が発生します。
+`ArrayImpl`から呼び出された時に`$n`が与えられなかった場合は[`Overflowexception`](http://php.net/manual/ja/class.overflowexception.php)が発生します。
 
 ```php
 _::repeat(1, 2);

@@ -7,7 +7,6 @@
       this.$container = $(container);
       this.onScroll = _.throttle(_.bind(this.onScroll, this), 100);
       this.watches = [];
-      this.insides = {};
     }
 
     ScrollSpy.prototype.start = function() {
@@ -39,29 +38,30 @@
     };
 
     ScrollSpy.prototype.onScroll = function() {
-      var $target, el, hash, scrollBottom, scrollTop, _i, _len, _ref;
+      var $el, $target, el, hash, scrollBottom, scrollTop, _i, _len, _ref;
       scrollTop = this.$container.scrollTop();
       scrollBottom = scrollTop + this.$container.height();
       _ref = this.watches;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         el = _ref[_i];
         hash = el.hash;
+        $el = $(el);
         $target = $(hash.length > 1 ? hash : 'body');
         if ($target.length === 0) {
           continue;
         }
         if (this.contains($target, scrollTop, scrollBottom)) {
-          if (!(hash in this.insides)) {
+          if (!$el.data('inside')) {
             if (this.onEnter) {
               this.onEnter.call(this, el, $target[0]);
             }
-            this.insides[hash] = el;
+            $el.data('inside', true);
           }
-        } else if (hash in this.insides) {
+        } else if ($el.data('inside')) {
           if (this.onLeave) {
             this.onLeave.call(this, el, $target[0]);
           }
-          delete this.insides[hash];
+          $el.data('inside', false);
         }
       }
     };

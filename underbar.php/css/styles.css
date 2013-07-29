@@ -104,7 +104,7 @@ dl, ol, p, pre, ul, table {
 }
 
 body {
-  font-family: "Proxima Nova", "Lato", "Helvetica", sans-serif;
+  font-family: "Lato", "Helvetica", sans-serif;
   font-size: 15px;
   color: #2c3e50;
   background-color: white;
@@ -169,7 +169,7 @@ table {
   border-spacing: 0;
 }
 
-tbody tr:nth-child(odd) {
+thead tr th {
   background-color: #ecf0f1;
 }
 
@@ -202,84 +202,6 @@ th {
 }
 .token.class-name {
   color: #445588;
-  font-weight: bold;
-}
-
-body {
-  font-family: "Proxima Nova", "Lato", "Helvetica", sans-serif;
-  font-size: 15px;
-  color: #2c3e50;
-  background-color: white;
-  -webkit-text-size-adjust: 100%;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-}
-
-a {
-  color: #1abc9c;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-pre {
-  font-family: "Consolas", "Source Code Pro", monospace;
-  background-color: #ecf0f1;
-  padding: 0.875em;
-  overflow: auto;
-}
-pre code {
-  white-space: inherit;
-}
-
-code {
-  padding: 2px 4px;
-  background-color: #ecf0f1;
-  white-space: nowrap;
-  line-height: 0;
-}
-
-em {
-  font-weight: bold;
-}
-
-strong, .source {
-  color: white;
-  background-color: #1abc9c;
-  padding: 2px 4px;
-  font-weight: bold;
-}
-
-var {
-  font-style: normal;
-}
-
-ul, ol {
-  margin-left: 1.5em;
-}
-
-li > ul, li > ol {
-  margin-bottom: 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: #ecf0f1;
-}
-
-th, td {
-  padding: 0 0.5em;
-}
-
-th {
   font-weight: bold;
 }
 
@@ -524,6 +446,9 @@ th {
 }
 .api.lazy {
   border-left: 6px solid #1abc9c;
+}
+.api.stream {
+  border-left: 6px solid #3498db;
 }
 .api:not(:last-of-type) {
   margin: 0;

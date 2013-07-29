@@ -6,7 +6,7 @@ html(lang="ja")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
     meta(name="keywords", content="php,library,iterator,array,underscore.js")
     meta(name="description", content="an array and iterator utility, like Underscore.js")
-    title Underbar.php - An array and iterator utility, like Underscore.js
+    title Underbar.php - A list processing library for PHP, like underscore.js.
     link(href="css/styles.css", rel="stylesheet")
     script(src="//b.st-hatena.com/js/bookmark_button.js", async)
   body
@@ -14,39 +14,45 @@ html(lang="ja")
       div.title
         a(href="#logo")
           strong Underbar.php
-          small Version 0.1.2
+          small Version 0.2.0
         a.button-menu(href="#header") &#x2630;
 
       dl
         dd: a(href="#introduction") Introduction
         dd: a(href="#getting-started") Getting Started
+        dd: a(href="#change-log") Change Log
 
         dt.title: a(href="#classes")
           strong Classes
-          small Underbar namespace
-        dd: a(href="#Eager") Eager
-        dd: a(href="#Lazy") Lazy
-        dd: a(href="#LazyIterator") LazyIterator
-        dd: a(href="#LazyGenerator") LazyGenerator
-        dd: a(href="#LazySafeGenerator") LazySafeGenerator
+          small Underbar Implementors
+        dd: a(href="#AbstractImpl") AbstractImpl
+        dd: a(href="#ArrayImpl") ArrayImpl
+        dd: a(href="#IteratorImpl") IteratorImpl
+        dd: a(href="#GeneratorImpl") GeneratorImpl
         dd: a(href="#Enumerable") Enumerable
 
         dt.title: a(href="#collections")
           strong Collection Functions
-          small Every traversable value
+          small For every traversable value
         dd: a(href="#each") each
         dd: a(href="#map") map
+        dd: a(href="#map") collect
+        dd: a(href="#reduce") reduce
+        dd: a(href="#reduce") inject
         dd: a(href="#reduce") reduce
         dd: a(href="#reduceRight") reduceRight
-        dd: a(href="#scanl") scanl
-        dd: a(href="#scanr") scanr
+        dd: a(href="#reduceRight") foldr
         dd: a(href="#find") find
+        dd: a(href="#find") detect
         dd: a(href="#filter") filter
+        dd: a(href="#filter") select
         dd: a(href="#where") where
         dd: a(href="#findWhere") findWhere
         dd: a(href="#reject") reject
         dd: a(href="#every") every
+        dd: a(href="#every") all
         dd: a(href="#some") some
+        dd: a(href="#some") any
         dd: a(href="#contains") contains
         dd: a(href="#invoke") invoke
         dd: a(href="#pluck") pluck
@@ -58,18 +64,22 @@ html(lang="ja")
         dd: a(href="#groupBy") groupBy
         dd: a(href="#countBy") countBy
         dd: a(href="#shuffle") shuffle
+        dd: a(href="#memoize") memoize
         dd: a(href="#toArray") toArray
         dd: a(href="#toList") toList
-        dd: a(href="#memoize") memoize
         dd: a(href="#size") size
 
         dt.title: a(href="#arrays")
           strong Array Functions
-          small Numerical array
+          small For numerical array
         dd: a(href="#first") first
+        dd: a(href="#first") head
+        dd: a(href="#first") take
         dd: a(href="#initial") initial
         dd: a(href="#last") last
         dd: a(href="#rest") rest
+        dd: a(href="#rest") tail
+        dd: a(href="#rest") drop
         dd: a(href="#takeWhile") takeWhile
         dd: a(href="#dropWhile") dropWhile
         dd: a(href="#compact") compact
@@ -79,10 +89,10 @@ html(lang="ja")
         dd: a(href="#intersection") intersection
         dd: a(href="#difference") difference
         dd: a(href="#uniq") uniq
+        dd: a(href="#unique") unique
         dd: a(href="#zip") zip
         dd: a(href="#zipWith") zipWith
         dd: a(href="#unzip") unzip
-        dd: a(href="#span") span
         dd: a(href="#object") object
         dd: a(href="#indexOf") indexOf
         dd: a(href="#lastIndexOf") lastIndexOf
@@ -91,20 +101,14 @@ html(lang="ja")
         dd: a(href="#cycle") cycle
         dd: a(href="#repeat") repeat
         dd: a(href="#iterate") iterate
-        dd: a(href="#pop") pop
-        dd: a(href="#push") push
         dd: a(href="#reverse") reverse
-        dd: a(href="#shift") shift
         dd: a(href="#sort") sort
-        dd: a(href="#splice") splice
-        dd: a(href="#unshift") unshift
         dd: a(href="#concat") concat
         dd: a(href="#join") join
-        dd: a(href="#slice") slice
 
         dt.title: a(href="#objects")
           strong Object Functions
-          small Associative array
+          small For associative array
         dd: a(href="#keys") keys
         dd: a(href="#values") values
         dd: a(href="#pairs") pairs
@@ -114,8 +118,6 @@ html(lang="ja")
         dd: a(href="#omit") omit
         dd: a(href="#defaults") defaults
         dd: a(href="#tap") tap
-        dd: a(href="#isArray") isArray
-        dd: a(href="#isTraversable") isTraversable
 
         dt.title: a(href="#parallel")
           strong Parallel
@@ -130,7 +132,7 @@ html(lang="ja")
     article#main(role="main")
       header#logo
         h1 Underbar.php
-        p An array and iterator utility, like Underscore.js
+        p A list processing library for PHP, like underscore.js.
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
       ul.social-buttons
@@ -147,59 +149,54 @@ html(lang="ja")
         include ja_JP/getting-started.markdown
         p.top: a(href="#") TOP
 
+      section#change-log
+        include ja_JP/change-log.markdown
+        p.top: a(href="#") TOP
+
       section#classes
         include ja_JP/classes.markdown
 
         section#Underbar
           h3 Underbar Namespace
 
-          // Eager {{{
-          article#Eager
-            h4.api Eager <small>Class</small>
-              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Eager.php") Source
-            include ja_JP/classes/Eager.markdown
+          // AbstractImpl {{{
+          article#AbstractImpl
+            h4.api AbstractImpl <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/AbstractImpl.php") Source
+            include ja_JP/classes/AbstractImpl.markdown
             p.top: a(href="#") TOP
           // }}}
 
-          // Lazy  {{{
-          article#Lazy
-            h4.api.lazy Lazy <small>Alias</small>
-              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Lazy.php") Source
-            include ja_JP/classes/Lazy.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // LazyIterator  {{{
-          article#LazyIterator
-            h4.api.lazy LazyIterator <small>Class</small>
-              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyIterator.php") Source
+          // ArrayImpl {{{
+          article#ArrayImpl
+            h4.api ArrayImpl <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/ArrayImpl.php") Source
             ol.extends
-              li: code: a(href="#Eager") Eager
-              li: code: em LazyIterator
-            include ja_JP/classes/LazyIterator.markdown
+              li: code: a(href="#AbstractImpl") AbstractImpl
+              li: code: em ArrayImpl
+            include ja_JP/classes/ArrayImpl.markdown
             p.top: a(href="#") TOP
           // }}}
 
-          // LazyGenerator  {{{
-          article#LazyGenerator
-            h4.api.lazy LazyGenerator <small>Class</small>
-              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyGenerator.php") Source
+          // IteratorImpl  {{{
+          article#IteratorImpl
+            h4.api.lazy IteratorImpl <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/IteratorImpl.php") Source
             ol.extends
-              li: code: a(href="#Eager") Eager
-              li: code: em LazyGenerator
-            include ja_JP/classes/LazyGenerator.markdown
+              li: code: a(href="#AbstractImpl") AbstractImpl
+              li: code: em IteratorImpl
+            include ja_JP/classes/IteratorImpl.markdown
             p.top: a(href="#") TOP
           // }}}
 
-          // LazySafeGenerator  {{{
-          article#LazySafeGenerator
-            h4.api.lazy LazySafeGenerator <small>Class</small>
-              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/LazyUnsafeGenerator.php") Source
+          // GeneratorImpl  {{{
+          article#GeneratorImpl
+            h4.api.lazy GeneratorImpl <small>Class</small>
+              a.source(href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/GeneratorImpl.php") Source
             ol.extends
-              li: code: a(href="#Eager") Eager
-              li: code: a(href="#LazyGenerator") LazyGenerator
-              li: code: em LazySafeGenerator
-            include ja_JP/classes/LazySafeGenerator.markdown
+              li: code: a(href="#AbstractImpl") AbstractImpl
+              li: code: em GeneratorImpl
+            include ja_JP/classes/GeneratorImpl.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -248,22 +245,6 @@ html(lang="ja")
             ul.aliases
               li: code foldr()
             include ja_JP/functions/reduceRight.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // scanl()  {{{
-          article#scanl
-            h4.api <em>array</em> scanl(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
-            h4.api.lazy <em>Iterator</em> scanl(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
-            include ja_JP/functions/scanl.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // scanr()  {{{
-          article#scanr
-            h4.api <em>array</em> scanr(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
-            h4.api.lazy <em>Iterator</em> scanr(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
-            include ja_JP/functions/scanr.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -383,7 +364,7 @@ html(lang="ja")
           // sortBy()  {{{
           article#sortBy
             h4.api <em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api.stream <em>Iterator</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/sortBy.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -391,7 +372,7 @@ html(lang="ja")
           // groupBy()  {{{
           article#groupBy
             h4.api <em>array</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>boolean</em> <var>$isSorted = false</var>])
+            h4.api.stream <em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/groupBy.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -399,7 +380,7 @@ html(lang="ja")
           // countBy()  {{{
           article#countBy
             h4.api <em>array</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var> [, <em>boolean</em> <var>$isSorted = false</var>])
+            h4.api.stream <em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/countBy.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -407,7 +388,16 @@ html(lang="ja")
           // shuffle()  {{{
           article#shuffle
             h4.api <em>array</em> shuffle(<em>array</em> <var>$xs</var>)
+            h4.api.stream <em>Iterator</em> shuffle(<em>array</em> <var>$xs</var>)
             include ja_JP/functions/shuffle.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // memoize()  {{{
+          article#memoize
+            h4.api <em>array</em> memoize(<em>Iterator</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> memoize(<em>Iterator</em> <var>$xs</var>)
+            include ja_JP/functions/memoize.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -422,13 +412,6 @@ html(lang="ja")
           article#toList
             h4.api <em>array</em> toList(<em>mixed</em> <var>$xs</var>)
             include ja_JP/functions/toList.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // memoize()  {{{
-          article#memoize
-            h4.api <em>Iterator</em> memoize(<em>Iterator</em> <var>$xs</var>)
-            include ja_JP/functions/memoize.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -464,8 +447,9 @@ html(lang="ja")
 
           // last()  {{{
           article#last
-            h4.api <em>array</em> last(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
-            h4.api.lazy <em>Iterator</em> last(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
+            h4.api <em>mixed</em> last(<em>array</em> <var>$xs</var>)
+            h4.api <em>SplQueue</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
+            h4.api.stream <em>Iterator</em> Iterator(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             include ja_JP/functions/last.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -580,13 +564,6 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
-          // span()  {{{
-          article#span
-            h4.api <em>array</em> span(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            include ja_JP/functions/span.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
           // object()  {{{
           article#object
             h4.api <em>array</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])
@@ -648,52 +625,19 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
-          // pop()  {{{
-          article#pop
-            h4.api <em>array</em> pop(<em>array</em> <var>$xs</var>)
-            include ja_JP/functions/pop.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // push()  {{{
-          article#push
-            h4.api <em>array</em> push(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
-            include ja_JP/functions/push.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
           // reverse()  {{{
           article#reverse
             h4.api <em>array</em> reverse(<em>array</em> <var>$xs</var>)
+            h4.api.stream <em>Iterator</em> reverse(<em>array</em> <var>$xs</var>)
             include ja_JP/functions/reverse.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // shift()  {{{
-          article#shift
-            h4.api <em>array</em> shift(<em>array</em> <var>$xs</var>)
-            include ja_JP/functions/shift.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // sort()  {{{
           article#sort
             h4.api <em>array</em> sort(<em>array</em> <var>$xs</var> [, <em>callable</em> <var>$compare</var>])
+            h4.api.stream <em>Iterator</em> sort(<em>array</em> <var>$xs</var>)
             include ja_JP/functions/sort.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // splice()  {{{
-          article#splice
-            h4.api <em>array</em> splice(<em>array</em> <var>$xs</var>, <em>int</em> <var>$index</var>, <em>int</em> <var>$n</var>)
-            include ja_JP/functions/splice.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // unshift()  {{{
-          article#unshift
-            h4.api <em>array</em> unshift(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
-            include ja_JP/functions/unshift.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -709,13 +653,6 @@ html(lang="ja")
           article#join
             h4.api <em>array</em> join(<em>array</em> <var>$xs</var> [ , <em>string</em> <var>$separator = ","</var>])
             include ja_JP/functions/join.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // slice()  {{{
-          article#slice
-            h4.api <em>array</em> slice(<em>array</em> <var>$xs</var>, <em>int</em> <var>$begin</var>, <em>int</em> <var>$end</var>)
-            include ja_JP/functions/slice.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -791,20 +728,6 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
-          // isArray()  {{{
-          article#isArray
-            h4.api <em>boolean</em> isArray(<em>mixed</em> <var>$value</var>)
-            include ja_JP/functions/isArray.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
-          // isTraversable()  {{{
-          article#isTraversable
-            h4.api <em>boolean</em> isTraversable(<em>mixed</em> <var>$value</var>)
-            include ja_JP/functions/isTraversable.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
         section#parallel
           h3 Parallel
 
@@ -824,9 +747,6 @@ html(lang="ja")
             include ja_JP/functions/chain.markdown
             p.top: a(href="#") TOP
           // }}}
-
-      section#change-log
-        include ja_JP/change-log.markdown
 
       footer#footer
         p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>

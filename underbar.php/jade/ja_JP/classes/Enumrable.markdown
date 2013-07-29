@@ -1,5 +1,14 @@
-`Traversable`なクラスに[`Eager`](#Eager)の関数をmixinするためのトレイトです。
-`lazy()`を呼び出すと以降の処理を[`Lazy`](#Lazy)の[`chain()`](#chain)を呼び出してメソッドチェインで処理できます。
+Underbar.phpの手続きをmixinするためのトレイトです。
+このトレイトのソースはスクリプトによって自動生成されています。
+
+利用する際は以下の抽象メソッドを対象のクラスに実装する必要があります。
+
+| Method                    | Description
+|:--------------------------|:-----------
+| string *getUndebarImpl*() | Underbar.phpの実装クラスを取得する
+| value *value*()           | Underbar.phpの手続きに与える値を返す
+
+Version 0.2から`chain()`がこのトレイトに依存するようになりました。
 
 ```php
 class Collection implements IteratorAggregate
@@ -17,18 +26,29 @@ class Collection implements IteratorAggregate
     {
         return new ArrayIterator($this->array);
     }
+
+    public function getUndebarImpl()
+    {
+        return 'Underbar\\IteratorImpl';
+    }
+
+    public function value()
+    {
+        return $this->array;
+    }
 }
 
-$collection = new Collection(1, 2, 3);
-$collection->map(function($n) { return $n * 2; });
-=> [2, 4, 6]
+$collection = new Collection(1, 2, 3, 4, 5);
+$collection
+    ->filter(function($n) { return $n % 2 === 0; })
+    ->map(function($n) { return $n * 2; })
+    ->toList();
+=> [4, 8]
 
 $twiceCycle = $collection
-    ->lazy()
     ->cycle()
     ->map(function($n) { return $n * 2; })
     ->take(6)
-    ->join(', ')
-    ->value();
+    ->join(', ');
 => '2, 4, 6, 2, 4, 6'
 ```
