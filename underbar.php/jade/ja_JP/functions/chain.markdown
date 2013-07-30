@@ -1,8 +1,8 @@
 `$value`をメソッドチェインで処理するための`Wrapper`で包んで返します。
 `Wrapper`は[`Enumerable`](#Enumerable)をmix-inしたメソッドチェイン用のクラスです。
 
-[`toArray()`](#toArray)か[`toList()`](#toList)以外の`array`か`Iterator`を返す関数の場合は、返り値を新たな`Wrapper`のインスタンスで包んで返します。
-それ以外の値を返す関数では値をそのまま返します。
+チェイン中に[`toArray()`](#toArray)か[`toList()`](#toList)以外の`array`か`Iterator`を返す関数を呼び出した場合は、返り値を新たな`Wrapper`のインスタンスで包んで返します。
+それ以外の値を返す関数を呼び出した時は値をそのまま返します。
 
 ```php
 $stooges = [
