@@ -356,7 +356,8 @@ $twiceCycle = $collection
           <h3>Collection Functions</h3>
           <!-- each()  {{{-->
           <article id="each">
-            <h4 class="api"><em>void</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><em>array</em>の各要素に対して関数<code>$f</code>を呼び出します。
+            <h4 class="api"><em>array</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api"><em>Iterator</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を呼び出して<code>$xs</code>をそのまま返します。
 <code>$f</code>は<code>(element, key, array)</code>の3つの引数を取ります。</p>
 <pre><code class="language-php">_::each([1, 2, 3], function($x, $k, $xs) {
     // 1, 2, 3を順番に出力
