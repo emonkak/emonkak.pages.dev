@@ -359,7 +359,7 @@ th {
     -moz-transition-timing-function: ease-in;
     -o-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
-    max-height: 999px;
+    max-height: 1500px;
   }
   #header:target .button-menu {
     pointer-events: none;
@@ -378,10 +378,10 @@ th {
     -moz-transition-property: max-height;
     -o-transition-property: max-height;
     transition-property: max-height;
-    -webkit-transition-duration: 0.25s;
-    -moz-transition-duration: 0.25s;
-    -o-transition-duration: 0.25s;
-    transition-duration: 0.25s;
+    -webkit-transition-duration: 5s;
+    -moz-transition-duration: 5s;
+    -o-transition-duration: 5s;
+    transition-duration: 5s;
     -webkit-transition-timing-function: ease-out;
     -moz-transition-timing-function: ease-out;
     -o-transition-timing-function: ease-out;

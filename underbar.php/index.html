@@ -23,7 +23,7 @@
           <dd><a href="#IteratorImpl">IteratorImpl</a></dd>
           <dd><a href="#GeneratorImpl">GeneratorImpl</a></dd>
           <dd><a href="#Enumerable">Enumerable</a></dd>
-          <dt class="title"><a href="#collections"><strong>Collection Functions</strong><small>For every traversable value</small></a></dt>
+          <dt class="title"><a href="#collections"><strong>Collections</strong><small>Every array</small></a></dt>
           <dd><a href="#each">each</a></dd>
           <dd><a href="#map">map</a></dd>
           <dd><a href="#map">collect</a></dd>
@@ -58,7 +58,7 @@
           <dd><a href="#toArray">toArray</a></dd>
           <dd><a href="#toList">toList</a></dd>
           <dd><a href="#size">size</a></dd>
-          <dt class="title"><a href="#arrays"><strong>Array Functions</strong><small>For numerical array</small></a></dt>
+          <dt class="title"><a href="#arrays"><strong>Arrays</strong><small>Numerical array</small></a></dt>
           <dd><a href="#first">first</a></dd>
           <dd><a href="#first">head</a></dd>
           <dd><a href="#first">take</a></dd>
@@ -84,7 +84,6 @@
           <dd><a href="#indexOf">indexOf</a></dd>
           <dd><a href="#lastIndexOf">lastIndexOf</a></dd>
           <dd><a href="#sortedIndex">sortedIndex</a></dd>
-          <dd><a href="#range">range</a></dd>
           <dd><a href="#cycle">cycle</a></dd>
           <dd><a href="#repeat">repeat</a></dd>
           <dd><a href="#iterate">iterate</a></dd>
@@ -92,7 +91,7 @@
           <dd><a href="#sort">sort</a></dd>
           <dd><a href="#concat">concat</a></dd>
           <dd><a href="#join">join</a></dd>
-          <dt class="title"><a href="#objects"><strong>Object Functions</strong><small>For associative array</small></a></dt>
+          <dt class="title"><a href="#objects"><strong>Objects</strong><small>Non-numerical array</small></a></dt>
           <dd><a href="#keys">keys</a></dd>
           <dd><a href="#values">values</a></dd>
           <dd><a href="#pairs">pairs</a></dd>
@@ -102,6 +101,8 @@
           <dd><a href="#omit">omit</a></dd>
           <dd><a href="#defaults">defaults</a></dd>
           <dd><a href="#tap">tap</a></dd>
+          <dt class="title"><a href="#utility"><strong>Utility</strong><small>Utility functions</small>
+              <dd><a href="#range">range</a></dd></a></dt>
           <dt class="title"><a href="#parallel"><strong>Parallel</strong><small>Parallel processing</small></a></dt>
           <dd><a href="#parMap">parMap</a></dd>
           <dt class="title"><a href="#chaining"><strong>Chaining</strong><small>Method chaining</small></a></dt>
@@ -965,30 +966,6 @@ _::sortedIndex($stooges, [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
-          <!-- range()  {{{-->
-          <article id="range">
-            <h4 class="api"><em>array</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4><p><code>$start</code>から<code>$step</code>ごとにインクリメントされた<code>$end</code>までの数値の配列を返します。
-<code>$step</code>に負の値を設定するとデクリメントされます。
-PHP組込みの<a href="http://php.net/manual/ja/function.range.php">range()</a>とは違って<code>$end</code>自体は含まれません。</p>
-<pre><code class="language-php">_::range(10);
-=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-_::range(1, 11);
-=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-_::range(0, 30, 5);
-=&gt; [0, 5, 10, 15, 20, 25]
-
-_::range(0, -10, -1);
-=&gt; [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
-
-_::range(0);
-=&gt; []</code></pre>
-
-            <p class="top"><a href="#">TOP</a></p>
-          </article>
-          <!-- }}}-->
           <!-- cycle()  {{{-->
           <article id="cycle">
             <h4 class="api"><em>array</em> cycle(<em>array</em> <var>$xs</var>, <em>int</em>, <var>$n</var>)</h4>
@@ -1184,8 +1161,35 @@ _::defaults($iceCream, [&#39;flavor&#39; =&gt; &#39;vanilla&#39;, &#39;sprinkles
           </article>
           <!-- }}}-->
         </section>
+        <section id="utility">
+          <h3>Utility Functions</h3>
+          <!-- range()  {{{-->
+          <article id="range">
+            <h4 class="api"><em>array</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4><p><code>$start</code>から<code>$step</code>ごとにインクリメントされた<code>$end</code>までの数値の配列を返します。
+<code>$step</code>に負の値を設定するとデクリメントされます。
+PHP組込みの<a href="http://php.net/manual/ja/function.range.php">range()</a>とは違って<code>$end</code>自体は含まれません。</p>
+<pre><code class="language-php">_::range(10);
+=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+_::range(1, 11);
+=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+_::range(0, 30, 5);
+=&gt; [0, 5, 10, 15, 20, 25]
+
+_::range(0, -10, -1);
+=&gt; [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+
+_::range(0);
+=&gt; []</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+        </section>
         <section id="parallel">
-          <h3>Parallel</h3>
+          <h3>Parallel Functions</h3>
           <!-- parMap()  {{{-->
           <article id="parMap">
             <h4 class="api"><em>Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)</h4><p><a href="#map"><code>map()</code></a>の並列実行版です。
@@ -1253,8 +1257,8 @@ foreach ($xs as $x) {
           <article id="chain">
             <h4 class="api"><em>Wrapper</em> chain(<em>mixed</em> <var>$value</var>)</h4><p><code>$value</code>をメソッドチェインで処理するための<code>Wrapper</code>で包んで返します。
 <code>Wrapper</code>は<a href="#Enumerable"><code>Enumerable</code></a>をmix-inしたメソッドチェイン用のクラスです。</p>
-<p><a href="#toArray"><code>toArray()</code></a>か<a href="#toList"><code>toList()</code></a>以外の<code>array</code>か<code>Iterator</code>を返す関数の場合は、返り値を新たな<code>Wrapper</code>のインスタンスで包んで返します。
-それ以外の値を返す関数では値をそのまま返します。</p>
+<p>チェイン中に<a href="#toArray"><code>toArray()</code></a>か<a href="#toList"><code>toList()</code></a>以外の<code>array</code>か<code>Iterator</code>を返す関数を呼び出した場合は、返り値を新たな<code>Wrapper</code>のインスタンスで包んで返します。
+それ以外の値を返す関数を呼び出した時は値をそのまま返します。</p>
 <pre><code class="language-php">$stooges = [
     [&#39;name&#39; =&gt; &#39;curly&#39;, &#39;age&#39; =&gt; 25],
     [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 21],
