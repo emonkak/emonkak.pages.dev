@@ -20,7 +20,6 @@ html(lang="ja")
       dl
         dd: a(href="#introduction") Introduction
         dd: a(href="#getting-started") Getting Started
-        dd: a(href="#change-log") Change Log
 
         dt.title: a(href="#classes")
           strong Classes
@@ -60,6 +59,7 @@ html(lang="ja")
         dd: a(href="#min") min
         dd: a(href="#sum") sum
         dd: a(href="#product") product
+        dd: a(href="#average") average
         dd: a(href="#sortBy") sortBy
         dd: a(href="#groupBy") groupBy
         dd: a(href="#countBy") countBy
@@ -151,10 +151,6 @@ html(lang="ja")
 
       section#getting-started
         include ja_JP/getting-started.markdown
-        p.top: a(href="#") TOP
-
-      section#change-log
-        include ja_JP/change-log.markdown
         p.top: a(href="#") TOP
 
       section#classes
@@ -366,6 +362,13 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
+          // average()  {{{
+          article#average
+            h4.api <em>float</em> average(<em>array</em> <var>$xs</var>)
+            include ja_JP/functions/average.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
           // sortBy()  {{{
           article#sortBy
             h4.api <em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
@@ -536,9 +539,7 @@ html(lang="ja")
           // uniq()  {{{
           article#uniq
             h4.api <em>array</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
-            h4.api <em>array</em> uniq(<em>array</em> <var>$xs</var>, <em>boolean</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f</var>])
             h4.api.lazy <em>Iterator</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
-            h4.api.lazy <em>Iterator</em> uniq(<em>array</em> <var>$xs</var>, <em>boolean</em> <var>$isSorted</var> [, <em>callable|string</em> <var>$f</var>])
             ul.aliases
               li: code unique()
             include ja_JP/functions/uniq.markdown
@@ -754,6 +755,10 @@ html(lang="ja")
             include ja_JP/functions/chain.markdown
             p.top: a(href="#") TOP
           // }}}
+
+      section#change-log
+        include ja_JP/change-log.markdown
+        p.top: a(href="#") TOP
 
       footer#footer
         p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
