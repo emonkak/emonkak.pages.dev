@@ -1,6 +1,12 @@
 Change Log
 ----------
 
+### 0.2.1 - Aug 3, 2013
+
+- [`uniq()`](#uniq)の`$isSorted`引数を削除
+- [`intersection()`](#intersection)の遅延版を実装
+- [`uniq()`](#uniq)と[`intersection()`](#intersection)の実装に`Underbar\Internal\Set`を使うようにした
+
 ### 0.2.0 - Jul 30, 2013
 
 - クラス構造を全面的に刷新

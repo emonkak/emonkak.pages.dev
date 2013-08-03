@@ -102,8 +102,12 @@ table
   border-collapse: collapse
   border-spacing: 0
 
-thead tr th
-  background-color: $light-color
+thead tr
+  background: $accent-color
+  color: $white-color
+
+tbody tr:nth-child(even)
+  background: $light-color
 
 th, td
   padding: 0 0.5em
@@ -117,7 +121,9 @@ th
 // Syntax highlight  {{{1
 
 .token
-  &.keyword
+  &.keyword,
+  &.operator,
+  &.boolean
     font-weight: bold
 
   &.comment

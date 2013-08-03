@@ -125,15 +125,15 @@
       </ul>
       <section id="introduction"><h2>Introduction</h2>
 <p>Underbar.phpは<a href="http://underscorejs.org/">Underscore.js</a>のようなリスト処理のためのPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、Underbar.phpはUnderscore.jsとの完全な互換を目指してはいません。</p>
-<p>しかし同名の関数は基本的にUnderscore.jsと互換性のある動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
+Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、Underbar.phpはUnderscore.jsとの互換を最優先にはしてはいません。</p>
+<p>しかし、同名の関数は基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
 <h3>Features</h3>
 <ul>
 <li><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リストのサポート</li>
 <li><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>による遅延リストのサポート</li>
 <li><a href="http://lodash.com/">Lo-Dash</a>のような<a href="#chain"><code>chain()</code></a>による直感的なメソッドチェイン</li>
 <li>Rubyの<a href="http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html">Enumerable</a>のような<a href="#Enumerable"><code>Enumerable</code></a>トレイト</li>
-<li>underscore.jsにはない関数を新たに追加<ul>
+<li>Underscore.jsにはない関数を新たに追加<ul>
 <li><em>Collections:</em> <a href="#memoize"><code>memoize()</code></a> <a href="#toList"><code>toList</code></a></li>
 <li><em>Arrays:</em> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a></li>
 <li><em>Parallel:</em> <a href="#parMap"><code>parMap()</code></a></li>
@@ -194,7 +194,7 @@ echo _::chain([1, 1])
 <thead>
 <tr>
 <th align="left">Category</th>
-<th align="left">Abstract methods</th>
+<th align="left">Methods</th>
 </tr>
 </thead>
 <tbody>
@@ -204,7 +204,7 @@ echo _::chain([1, 1])
 </tr>
 <tr>
 <td align="left"><em>Arrays</em></td>
-<td align="left"><a href="#firstN"><code>firstN()</code></a> <a href="#lastN"><code>lastN()</code></a> <a href="#initial"><code>initial()</code></a> <a href="#rest"><code>rest()</code></a> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#unzip"><code>unzip()</code></a> <a href="#flatten"><code>flatten()</code></a> <a href="#range"><code>range()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a> <a href="#reverse"><code>reverse()</code></a> <a href="#sort"><code>sort()</code></a> <a href="#concat"><code>concat()</code></a></td>
+<td align="left"><a href="#firstN"><code>firstN()</code></a> <a href="#lastN"><code>lastN()</code></a> <a href="#initial"><code>initial()</code></a> <a href="#rest"><code>rest()</code></a> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#unzip"><code>unzip()</code></a> <a href="#flatten"><code>flatten()</code></a> <a href="#intersection"><code>intersection()</code></a> <a href="#range"><code>range()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a> <a href="#reverse"><code>reverse()</code></a> <a href="#sort"><code>sort()</code></a> <a href="#concat"><code>concat()</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -256,7 +256,7 @@ foreach ($xs as $x);</code></pre>
           <article id="Enumerable">
             <h4 class="api lazy">Enumerable <small>Trait</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/Enumerable.php" class="source">Source</a></h4><p>Underbar.phpの手続きをmixinするためのトレイトです。
 このトレイトのソースはスクリプトによって自動生成されています。</p>
-<p>利用する際は以下の抽象メソッドを対象のクラスに実装する必要があります。</p>
+<p>利用する際は対象のクラスに以下の抽象メソッドを実装する必要があります。</p>
 <table>
 <thead>
 <tr>
@@ -825,8 +825,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- intersection()  {{{-->
           <article id="intersection">
-            <h4 class="api"><em>array</em> intersection(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列すべてに存在する値でのみ構成される配列を新しく返します。
-内部で組み込みの<a href="http://php.net/manual/ja/function.array-intersect.php"><code>array_intersect()</code></a>を呼び出しています。</p>
+            <h4 class="api"><em>array</em> intersection(<em>array</em> <var>$xss...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> intersection(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列すべてに存在する値でのみ構成される配列を新しく返します。</p>
 <pre><code class="language-php">_::intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
 =&gt; [1, 2]</code></pre>
 
@@ -1256,6 +1256,12 @@ $youngest = _::chain($stooges)
         </section>
       </section>
       <section id="change-log"><h2>Change Log</h2>
+<h3>0.2.1 - Aug 3, 2013</h3>
+<ul>
+<li><a href="#uniq"><code>uniq()</code></a>の<code>$isSorted</code>引数を削除</li>
+<li><a href="#intersection"><code>intersection()</code></a>の遅延版を実装</li>
+<li><a href="#uniq"><code>uniq()</code></a>と<a href="#intersection"><code>intersection()</code></a>の実装に<code>Underbar\Internal\Set</code>を使うようにした</li>
+</ul>
 <h3>0.2.0 - Jul 30, 2013</h3>
 <ul>
 <li>クラス構造を全面的に刷新</li>

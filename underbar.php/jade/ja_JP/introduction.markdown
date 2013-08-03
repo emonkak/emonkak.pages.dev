@@ -2,9 +2,9 @@ Introduction
 ------------
 
 Underbar.phpは[Underscore.js](http://underscorejs.org/)のようなリスト処理のためのPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、Underbar.phpはUnderscore.jsとの完全な互換を目指してはいません。
+Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、Underbar.phpはUnderscore.jsとの互換を最優先にはしてはいません。
 
-しかし同名の関数は基本的にUnderscore.jsと互換性のある動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。
+しかし、同名の関数は基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。
 
 ### Features
 
@@ -12,7 +12,7 @@ Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianh
 - [`Generator`](http://php.net/manual/ja/class.generator.php)による遅延リストのサポート
 - [Lo-Dash](http://lodash.com/)のような[`chain()`](#chain)による直感的なメソッドチェイン
 - Rubyの[Enumerable](http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html)のような[`Enumerable`](#Enumerable)トレイト
-- underscore.jsにはない関数を新たに追加
+- Underscore.jsにはない関数を新たに追加
   - *Collections:* [`memoize()`](#memoize) [`toList`](#toList)
   - *Arrays:* [`takeWhile()`](#takeWhile) [`dropWhile()`](#dropWhile) [`cycle()`](#cycle) [`repeat()`](#repeat) [`iterate()`](#iterate)
   - *Parallel:* [`parMap()`](#parMap)
