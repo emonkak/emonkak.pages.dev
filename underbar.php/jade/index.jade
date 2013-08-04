@@ -4,9 +4,9 @@ html(lang="ja")
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
-    meta(name="keywords", content="php,library,iterator,array,underscore.js")
-    meta(name="description", content="an array and iterator utility, like Underscore.js")
-    title Underbar.php - A collection processing library for PHP, like underscore.js.
+    meta(name="keywords", content="array,collection,generator,iterator,lazy,library,parallel,php,underscore.js")
+    meta(name="description", content="Underbar.php - A collection processing library for PHP, like Underscore.js.")
+    title Underbar.php - A collection processing library for PHP, like Underscore.js.
     link(href="css/styles.css", rel="stylesheet")
     script(src="//b.st-hatena.com/js/bookmark_button.js", async)
   body
@@ -14,7 +14,7 @@ html(lang="ja")
       div.title
         a(href="#logo")
           strong Underbar.php
-          small Version 0.2.1
+          small Version 0.2.2
         a.button-menu(href="#header") &#x2630;
 
       dl
@@ -23,7 +23,6 @@ html(lang="ja")
 
         dt.title: a(href="#classes")
           strong Classes
-          small Underbar Implementors
         dd: a(href="#AbstractImpl") AbstractImpl
         dd: a(href="#ArrayImpl") ArrayImpl
         dd: a(href="#IteratorImpl") IteratorImpl
@@ -31,8 +30,7 @@ html(lang="ja")
         dd: a(href="#Enumerable") Enumerable
 
         dt.title: a(href="#collections")
-          strong Collections
-          small Every array
+          strong Collection Functions
         dd: a(href="#each") each
         dd: a(href="#map") map
         dd: a(href="#map") collect
@@ -70,13 +68,14 @@ html(lang="ja")
         dd: a(href="#size") size
 
         dt.title: a(href="#arrays")
-          strong Arrays
-          small Numerical array
+          strong Array Functions
         dd: a(href="#first") first
         dd: a(href="#first") head
         dd: a(href="#first") take
+        dd: a(href="#firstOrElse") firstOrElse
         dd: a(href="#initial") initial
         dd: a(href="#last") last
+        dd: a(href="#lastOrElse") lastOrElse
         dd: a(href="#rest") rest
         dd: a(href="#rest") tail
         dd: a(href="#rest") drop
@@ -106,37 +105,39 @@ html(lang="ja")
         dd: a(href="#join") join
 
         dt.title: a(href="#objects")
-          strong Objects
-          small Non-numerical array
+          strong Object functions
         dd: a(href="#keys") keys
         dd: a(href="#values") values
         dd: a(href="#pairs") pairs
         dd: a(href="#invert") invert
         dd: a(href="#extend") extend
+        dd: a(href="#get") get
+        dd: a(href="#getOrElse") getOrElse
         dd: a(href="#pick") pick
         dd: a(href="#omit") omit
         dd: a(href="#defaults") defaults
         dd: a(href="#tap") tap
 
         dt.title: a(href="#utility")
-          strong Utility
-          small Utility functions
+          strong Utility Functions
+          dd: a(href="#identity") identity
           dd: a(href="#range") range
 
         dt.title: a(href="#parallel")
-          strong Parallel
-          small Parallel processing
+          strong Parallel Functions
         dd: a(href="#parMap") parMap
 
         dt.title: a(href="#chaining")
           strong Chaining
-          small Method chaining
         dd: a(href="#chain") chain
+
+        dt.title: a(href="#change-log")
+          strong Change Log
 
     article#main(role="main")
       header#logo
         h1 Underbar.php
-        p A collection processing library for PHP, like underscore.js.
+        p A collection processing library for PHP, like Underscore.js.
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
 
       ul.social-buttons
@@ -445,6 +446,13 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
+          // firstOrElse()  {{{
+          article#firstOrElse
+            h4.api <em>mixed</em> firstOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)
+            include ja_JP/functions/firstOrElse.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
           // initial()  {{{
           article#initial
             h4.api <em>array</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
@@ -459,6 +467,13 @@ html(lang="ja")
             h4.api <em>SplQueue</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             h4.api.stream <em>Iterator</em> Iterator(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             include ja_JP/functions/last.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // lastOrElse()  {{{
+          article#lastOrElse
+            h4.api <em>mixed</em> lastOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)
+            include ja_JP/functions/lastOrElse.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -696,6 +711,20 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
+          // get()  {{{
+          article#get
+            h4.api <em>mixed</em> get(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>)
+            include ja_JP/functions/get.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // getOrElse()  {{{
+          article#getOrElse
+            h4.api <em>mixed</em> getOrElse(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>, <em>mixed</em> <var>$default</var>)
+            include ja_JP/functions/getOrElse.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
           // pick()  {{{
           article#pick
             h4.api <em>array</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
@@ -729,6 +758,13 @@ html(lang="ja")
 
         section#utility
           h3 Utility Functions
+          // identity()  {{{
+          article#identity
+            h4.api <em>array</em> identity(<em>mixed</em> <var>$value</var>)
+            include ja_JP/functions/identity.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
           // range()  {{{
           article#range
             h4.api <em>array</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])

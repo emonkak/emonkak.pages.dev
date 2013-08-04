@@ -144,7 +144,7 @@ em {
   font-weight: bold;
 }
 
-strong, .source {
+strong {
   color: white;
   background-color: #1abc9c;
   padding: 2px 4px;
@@ -167,6 +167,9 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #ecf0f1;
+  margin-top: -1px;
+  margin-bottom: calc(1.75em - 1px);
 }
 
 thead tr {
@@ -210,6 +213,9 @@ th {
   font-weight: bold;
 }
 
+#header {
+  -webkit-font-smoothing: antialiased;
+}
 #header a {
   display: block;
   text-decoration: none;
@@ -244,7 +250,7 @@ th {
   color: inherit;
   padding: 0.875em 8px;
 }
-#header .title strong, #header .title .source {
+#header .title strong {
   font-size: 1.25em;
   line-height: 1.4;
   display: block;
@@ -351,8 +357,8 @@ th {
 
 @media screen and (max-width: 768px) {
   #main header h1 {
-    font-size: 3em;
-    line-height: 1.1666666666666667;
+    font-size: 3.375em;
+    line-height: 1.037037037037037;
   }
 
   #header {
@@ -483,8 +489,11 @@ th {
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  color: white;
+  background-color: #1abc9c;
   font-size: 1rem;
   font-weight: normal;
+  padding: 2px 4px;
   margin: 0 0.5em;
 }
 .source:hover {

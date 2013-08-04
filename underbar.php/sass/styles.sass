@@ -101,6 +101,10 @@ table
   width: 100%
   border-collapse: collapse
   border-spacing: 0
+  border: 1px solid $light-color
+  margin:
+    top: -1px
+    bottom: calc(#{1em * baseline-line-height()} - 1px)
 
 thead tr
   background: $accent-color
@@ -154,6 +158,8 @@ th
 // Header  {{{1
 
 #header
+  -webkit-font-smoothing: antialiased
+
   a
     display: block
     text-decoration: none
@@ -288,7 +294,7 @@ th
 
 @include layout-one-column()
   #main header h1
-    @include baseline-font(48)
+    @include baseline-font(54)
 
   #header
     position: absolute
@@ -402,12 +408,14 @@ th
 
 
 .source  // {{{2
-  @extend strong
   @include transition-property(background color)
   @include transition-duration(0.25s)
   @include transition-timing-function(ease-out)
+  color: $white-color
+  background-color: $accent-color
   font-size: 1rem * baseline-font-size(16)
   font-weight: normal
+  padding: 2px 4px
   margin: 0 0.5em
 
   &:hover

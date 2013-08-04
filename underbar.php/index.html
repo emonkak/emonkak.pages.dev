@@ -3,26 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="keywords" content="php,library,iterator,array,underscore.js">
-    <meta name="description" content="an array and iterator utility, like Underscore.js">
-    <title>Underbar.php - A collection processing library for PHP, like underscore.js.</title>
+    <meta name="keywords" content="array,collection,generator,iterator,lazy,library,parallel,php,underscore.js">
+    <meta name="description" content="Underbar.php - A collection processing library for PHP, like Underscore.js.">
+    <title>Underbar.php - A collection processing library for PHP, like Underscore.js.</title>
     <link href="css/styles.css" rel="stylesheet">
     <script src="//b.st-hatena.com/js/bookmark_button.js" async></script>
   </head>
   <body>
     <header id="header">
       <nav role="navigation">
-        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.2.1</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
+        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.2.2</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
         <dl>
           <dd><a href="#introduction">Introduction</a></dd>
           <dd><a href="#getting-started">Getting Started</a></dd>
-          <dt class="title"><a href="#classes"><strong>Classes</strong><small>Underbar Implementors</small></a></dt>
+          <dt class="title"><a href="#classes"><strong>Classes</strong></a></dt>
           <dd><a href="#AbstractImpl">AbstractImpl</a></dd>
           <dd><a href="#ArrayImpl">ArrayImpl</a></dd>
           <dd><a href="#IteratorImpl">IteratorImpl</a></dd>
           <dd><a href="#GeneratorImpl">GeneratorImpl</a></dd>
           <dd><a href="#Enumerable">Enumerable</a></dd>
-          <dt class="title"><a href="#collections"><strong>Collections</strong><small>Every array</small></a></dt>
+          <dt class="title"><a href="#collections"><strong>Collection Functions</strong></a></dt>
           <dd><a href="#each">each</a></dd>
           <dd><a href="#map">map</a></dd>
           <dd><a href="#map">collect</a></dd>
@@ -58,12 +58,14 @@
           <dd><a href="#toArray">toArray</a></dd>
           <dd><a href="#toList">toList</a></dd>
           <dd><a href="#size">size</a></dd>
-          <dt class="title"><a href="#arrays"><strong>Arrays</strong><small>Numerical array</small></a></dt>
+          <dt class="title"><a href="#arrays"><strong>Array Functions</strong></a></dt>
           <dd><a href="#first">first</a></dd>
           <dd><a href="#first">head</a></dd>
           <dd><a href="#first">take</a></dd>
+          <dd><a href="#firstOrElse">firstOrElse</a></dd>
           <dd><a href="#initial">initial</a></dd>
           <dd><a href="#last">last</a></dd>
+          <dd><a href="#lastOrElse">lastOrElse</a></dd>
           <dd><a href="#rest">rest</a></dd>
           <dd><a href="#rest">tail</a></dd>
           <dd><a href="#rest">drop</a></dd>
@@ -91,29 +93,33 @@
           <dd><a href="#sort">sort</a></dd>
           <dd><a href="#concat">concat</a></dd>
           <dd><a href="#join">join</a></dd>
-          <dt class="title"><a href="#objects"><strong>Objects</strong><small>Non-numerical array</small></a></dt>
+          <dt class="title"><a href="#objects"><strong>Object functions</strong></a></dt>
           <dd><a href="#keys">keys</a></dd>
           <dd><a href="#values">values</a></dd>
           <dd><a href="#pairs">pairs</a></dd>
           <dd><a href="#invert">invert</a></dd>
           <dd><a href="#extend">extend</a></dd>
+          <dd><a href="#get">get</a></dd>
+          <dd><a href="#getOrElse">getOrElse</a></dd>
           <dd><a href="#pick">pick</a></dd>
           <dd><a href="#omit">omit</a></dd>
           <dd><a href="#defaults">defaults</a></dd>
           <dd><a href="#tap">tap</a></dd>
-          <dt class="title"><a href="#utility"><strong>Utility</strong><small>Utility functions</small>
+          <dt class="title"><a href="#utility"><strong>Utility Functions</strong>
+              <dd><a href="#identity">identity</a></dd>
               <dd><a href="#range">range</a></dd></a></dt>
-          <dt class="title"><a href="#parallel"><strong>Parallel</strong><small>Parallel processing</small></a></dt>
+          <dt class="title"><a href="#parallel"><strong>Parallel Functions</strong></a></dt>
           <dd><a href="#parMap">parMap</a></dd>
-          <dt class="title"><a href="#chaining"><strong>Chaining</strong><small>Method chaining</small></a></dt>
+          <dt class="title"><a href="#chaining"><strong>Chaining</strong></a></dt>
           <dd><a href="#chain">chain</a></dd>
+          <dt class="title"><a href="#change-log"><strong>Change Log</strong></a></dt>
         </dl>
       </nav>
     </header>
     <article id="main" role="main">
       <header id="logo">
         <h1>Underbar.php</h1>
-        <p>A collection processing library for PHP, like underscore.js.</p>
+        <p>A collection processing library for PHP, like Underscore.js.</p>
         <p><a href="https://github.com/emonkak/underbar.php" class="button">GitHub Repository</a></p>
       </header>
       <ul class="social-buttons">
@@ -204,7 +210,7 @@ echo _::chain([1, 1])
 </tr>
 <tr>
 <td align="left"><em>Arrays</em></td>
-<td align="left"><a href="#firstN"><code>firstN()</code></a> <a href="#lastN"><code>lastN()</code></a> <a href="#initial"><code>initial()</code></a> <a href="#rest"><code>rest()</code></a> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#unzip"><code>unzip()</code></a> <a href="#flatten"><code>flatten()</code></a> <a href="#intersection"><code>intersection()</code></a> <a href="#range"><code>range()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a> <a href="#reverse"><code>reverse()</code></a> <a href="#sort"><code>sort()</code></a> <a href="#concat"><code>concat()</code></a></td>
+<td align="left"><code>firstN()</code> <code>lastN()</code> <a href="#initial"><code>initial()</code></a> <a href="#rest"><code>rest()</code></a> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#unzip"><code>unzip()</code></a> <a href="#flatten"><code>flatten()</code></a> <a href="#intersection"><code>intersection()</code></a> <a href="#range"><code>range()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a> <a href="#reverse"><code>reverse()</code></a> <a href="#sort"><code>sort()</code></a> <a href="#concat"><code>concat()</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -716,6 +722,18 @@ _::first([1, 2, 3], 2);
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
+          <!-- firstOrElse()  {{{-->
+          <article id="firstOrElse">
+            <h4 class="api"><em>mixed</em> firstOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>の最初の要素を返します。見付からなかった場合は<code>$default</code>を返します。</p>
+<pre><code class="language-php">_::firstOrElse([1, 2, 3], 10);
+=&gt; 1
+
+_::firstOrElse([], 10);
+=&gt; 10</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
           <!-- initial()  {{{-->
           <article id="initial">
             <h4 class="api"><em>array</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
@@ -736,6 +754,18 @@ _::first([1, 2, 3], 2);
 =&gt; 1
 _::last([5, 4, 3, 2, 1], 2);
 =&gt; [2, 1]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- lastOrElse()  {{{-->
+          <article id="lastOrElse">
+            <h4 class="api"><em>mixed</em> lastOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>の最後の要素を返します。見付からなかった場合は<code>$default</code>を返します。</p>
+<pre><code class="language-php">_::lastOrElse([1, 2, 3], 10);
+=&gt; 3
+
+_::lastOrElse([], 10);
+=&gt; 10</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -1094,6 +1124,33 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
+          <!-- get()  {{{-->
+          <article id="get">
+            <h4 class="api"><em>mixed</em> get(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>)</h4><p><code>$xs</code>からキーが<code>$key</code>の値を取り出します。
+見つからなかった時は<code>null</code>を返します。
+<code>getOrElse($xs, $key, null)</code>と等価な操作です。</p>
+<pre><code class="language-php">_::get([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;], &#39;foo&#39;);
+=&gt; &quot;bar&quot;
+
+_::get([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;], &#39;piyo&#39;);
+=&gt; null</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- getOrElse()  {{{-->
+          <article id="getOrElse">
+            <h4 class="api"><em>mixed</em> getOrElse(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>からキーが<code>$key</code>の値を取り出します。
+見つからなかった時は<code>$default</code>を返します。</p>
+<pre><code class="language-php">_::getOrElse([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;], &#39;foo&#39;, &#39;payo&#39;);
+=&gt; &quot;bar&quot;
+
+_::getOrElse([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;], &#39;piyo&#39;, &#39;payo&#39;);
+=&gt; &quot;payo&quot;</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
           <!-- pick()  {{{-->
           <article id="pick">
             <h4 class="api"><em>array</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
@@ -1143,12 +1200,22 @@ _::defaults($iceCream, [&#39;flavor&#39; =&gt; &#39;vanilla&#39;, &#39;sprinkles
         </section>
         <section id="utility">
           <h3>Utility Functions</h3>
+          <!-- identity()  {{{-->
+          <article id="identity">
+            <h4 class="api"><em>array</em> identity(<em>mixed</em> <var>$value</var>)</h4><p>与えられた値をそのまま返します。</p>
+<pre><code class="language-php">$moe = [&#39;name&#39; =&gt; &#39;moe&#39;];
+$moe === _::identity($moe);
+=&gt; true</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
           <!-- range()  {{{-->
           <article id="range">
             <h4 class="api"><em>array</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4>
             <h4 class="api lazy"><em>Iterator</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])</h4><p><code>$start</code>から<code>$step</code>ごとにインクリメントされた<code>$end</code>までの数値の配列を返します。
 <code>$step</code>に負の値を設定するとデクリメントされます。
-PHP組込みの<a href="http://php.net/manual/ja/function.range.php">range()</a>とは違って<code>$end</code>自体は含まれません。</p>
+PHP組込みの<a href="http://php.net/manual/ja/function.range.php"><code>range()</code></a>とは違って<code>$end</code>自体は含まれません。</p>
 <pre><code class="language-php">_::range(10);
 =&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -1256,11 +1323,18 @@ $youngest = _::chain($stooges)
         </section>
       </section>
       <section id="change-log"><h2>Change Log</h2>
+<h3>0.2.2 - Aug 4, 2013</h3>
+<ul>
+<li><a href="#IteratorImpl"><code>IteratorImpl</code></a>の内部実装の一部にSPLの<code>Iterator</code>を使うようにしてパフォーマンスを改善</li>
+<li><a href="#firstOrElse"><code>firstOrElse()</code></a>と<a href="#firstOrElse"><code>lastOrElse()</code></a>の実装</li>
+<li><a href="#get"><code>get()</code></a>と<a href="#getOrElse"><code>getOrElse()</code></a>の実装</li>
+</ul>
 <h3>0.2.1 - Aug 3, 2013</h3>
 <ul>
 <li><a href="#uniq"><code>uniq()</code></a>の<code>$isSorted</code>引数を削除</li>
 <li><a href="#intersection"><code>intersection()</code></a>の遅延版を実装</li>
 <li><a href="#uniq"><code>uniq()</code></a>と<a href="#intersection"><code>intersection()</code></a>の実装に<code>Underbar\Internal\Set</code>を使うようにした</li>
+<li><a href="#average"><code>average()</code></a>を実装</li>
 </ul>
 <h3>0.2.0 - Jul 30, 2013</h3>
 <ul>
@@ -1278,7 +1352,7 @@ $youngest = _::chain($stooges)
 </ul>
 <h3>0.1.1 - Jul 25, 2013</h3>
 <ul>
-<li><a href="#Enumerable"><code>Enumerable</code></a>のデフォルトクラスを<a href="#ArrayImpl"><code>ArrayImpl</code></a>に変更して<a href="#lazy"><code>lazy()</code></a>メソッドを実装</li>
+<li><a href="#Enumerable"><code>Enumerable</code></a>のデフォルトクラスを<a href="#ArrayImpl"><code>ArrayImpl</code></a>に変更して<code>lazy()</code>メソッドを実装</li>
 </ul>
 <h3>0.1.0 - Jul 24, 2013</h3>
 <ul>

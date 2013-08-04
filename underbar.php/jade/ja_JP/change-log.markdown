@@ -1,11 +1,18 @@
 Change Log
 ----------
 
+### 0.2.2 - Aug 4, 2013
+
+- [`IteratorImpl`](#IteratorImpl)の内部実装の一部にSPLの`Iterator`を使うようにしてパフォーマンスを改善
+- [`firstOrElse()`](#firstOrElse)と[`lastOrElse()`](#firstOrElse)の実装
+- [`get()`](#get)と[`getOrElse()`](#getOrElse)の実装
+
 ### 0.2.1 - Aug 3, 2013
 
 - [`uniq()`](#uniq)の`$isSorted`引数を削除
 - [`intersection()`](#intersection)の遅延版を実装
 - [`uniq()`](#uniq)と[`intersection()`](#intersection)の実装に`Underbar\Internal\Set`を使うようにした
+- [`average()`](#average)を実装
 
 ### 0.2.0 - Jul 30, 2013
 
@@ -23,7 +30,7 @@ Change Log
 
 ### 0.1.1 - Jul 25, 2013
 
-- [`Enumerable`](#Enumerable)のデフォルトクラスを[`ArrayImpl`](#ArrayImpl)に変更して[`lazy()`](#lazy)メソッドを実装
+- [`Enumerable`](#Enumerable)のデフォルトクラスを[`ArrayImpl`](#ArrayImpl)に変更して`lazy()`メソッドを実装
 
 ### 0.1.0 - Jul 24, 2013
 

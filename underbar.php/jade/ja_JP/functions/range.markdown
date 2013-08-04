@@ -1,6 +1,6 @@
 `$start`から`$step`ごとにインクリメントされた`$end`までの数値の配列を返します。
 `$step`に負の値を設定するとデクリメントされます。
-PHP組込みの[range()](http://php.net/manual/ja/function.range.php)とは違って`$end`自体は含まれません。
+PHP組込みの[`range()`](http://php.net/manual/ja/function.range.php)とは違って`$end`自体は含まれません。
 
 ```php
 _::range(10);
