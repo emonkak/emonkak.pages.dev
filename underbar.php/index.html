@@ -12,7 +12,7 @@
   <body>
     <header id="header">
       <nav role="navigation">
-        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.2.2</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
+        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.2.3</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
         <dl>
           <dd><a href="#introduction">Introduction</a></dd>
           <dd><a href="#getting-started">Getting Started</a></dd>
@@ -107,7 +107,8 @@
           <dd><a href="#tap">tap</a></dd>
           <dt class="title"><a href="#utility"><strong>Utility Functions</strong>
               <dd><a href="#identity">identity</a></dd>
-              <dd><a href="#range">range</a></dd></a></dt>
+              <dd><a href="#range">range</a></dd>
+              <dd><a href="#lazy">lazy</a></dd></a></dt>
           <dt class="title"><a href="#parallel"><strong>Parallel Functions</strong></a></dt>
           <dd><a href="#parMap">parMap</a></dd>
           <dt class="title"><a href="#chaining"><strong>Chaining</strong></a></dt>
@@ -355,9 +356,11 @@ _::each($xs, function($x, $k, $xs) {
           <!-- }}}-->
           <!-- map()  {{{-->
           <article id="map">
-            <h4 class="api"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を適用します。
+            <h4 class="api"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を適用します。
 <code>$f</code>は<code>(element, key, array)</code>の3つの引数を取ります。</p>
+<p><code>$g</code>が与えられた場合はキーに対しても関数を適用します。
+<code>$g</code>は<code>(key, element, array)</code>の3つの引数を取ります。</p>
 <pre><code class="language-php">_::map([1, 2, 3], function($x) {
     return $x * 3;
 });
@@ -1104,7 +1107,8 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <!-- }}}-->
           <!-- invert()  {{{-->
           <article id="invert">
-            <h4 class="api"><em>array</em> invert(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>のキーと値を入れ替えます。
+            <h4 class="api"><em>array</em> invert(<em>array</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> invert(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>のキーと値を入れ替えます。
 キーが重複した場合は前のものを上書きします。
 組み込みの<a href="http://www.php.net/manual/ja/function.array-flip.php"><code>array_flip()</code></a>と等価な操作です。</p>
 <pre><code class="language-php">_::invert([&quot;Moe&quot; =&gt; &quot;Moses&quot;, &quot;Larry&quot; =&gt; &quot;Louis&quot;, &quot;Curly&quot; =&gt; &quot;Jerome&quot;]);
@@ -1234,6 +1238,25 @@ _::range(0);
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
+          <!-- lazy()  {{{-->
+          <article id="lazy">
+            <h4 class="api"><em>IteratorAggregate</em> lazy(<em>callable</em> <var>$f</var>)</h4><p><a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトを返す関数<code>$f</code>の実行結果をソースとする<a href="http://php.net/manual/ja/class.iteratoraggregate.php"><code>IteratorAggregate</code></a>を返します。
+これを利用して<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>の複数回の走査を可能にすることもできます。</p>
+<pre><code class="language-php">$xs = _::lazy(function() {
+    yield 1;
+    yield 2;
+    yield 3;
+});
+foreach ($xs as $x) {
+    echo $x;  // 1, 2, 3
+}
+foreach ($xs as $x) {
+    echo $x;  // 1, 2, 3
+}</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
         </section>
         <section id="parallel">
           <h3>Parallel Functions</h3>
@@ -1323,18 +1346,25 @@ $youngest = _::chain($stooges)
         </section>
       </section>
       <section id="change-log"><h2>Change Log</h2>
+<h3>0.2.3 - Aug 7, 2013</h3>
+<ul>
+<li><a href="#lazy"><code>lazy()</code></a>の追加</li>
+<li><a href="#map"><code>map()</code></a>の第3引数にキーの選択関数を指定できるようにした</li>
+<li><a href="#invert"><code>invert()</code></a>が<code>Iterator</code>を返せるようにした</li>
+<li><a href="#parMap"><code>parMap()</code></a>で利用される<code>Parallel</code>クラスのデストラクタでワーカープロセスの終了を待つようにした</li>
+</ul>
 <h3>0.2.2 - Aug 4, 2013</h3>
 <ul>
 <li><a href="#IteratorImpl"><code>IteratorImpl</code></a>の内部実装の一部にSPLの<code>Iterator</code>を使うようにしてパフォーマンスを改善</li>
-<li><a href="#firstOrElse"><code>firstOrElse()</code></a>と<a href="#firstOrElse"><code>lastOrElse()</code></a>の実装</li>
-<li><a href="#get"><code>get()</code></a>と<a href="#getOrElse"><code>getOrElse()</code></a>の実装</li>
+<li><a href="#firstOrElse"><code>firstOrElse()</code></a>と<a href="#firstOrElse"><code>lastOrElse()</code></a>の追加</li>
+<li><a href="#get"><code>get()</code></a>と<a href="#getOrElse"><code>getOrElse()</code></a>の追加</li>
 </ul>
 <h3>0.2.1 - Aug 3, 2013</h3>
 <ul>
 <li><a href="#uniq"><code>uniq()</code></a>の<code>$isSorted</code>引数を削除</li>
 <li><a href="#intersection"><code>intersection()</code></a>の遅延版を実装</li>
 <li><a href="#uniq"><code>uniq()</code></a>と<a href="#intersection"><code>intersection()</code></a>の実装に<code>Underbar\Internal\Set</code>を使うようにした</li>
-<li><a href="#average"><code>average()</code></a>を実装</li>
+<li><a href="#average"><code>average()</code></a>を追加</li>
 </ul>
 <h3>0.2.0 - Jul 30, 2013</h3>
 <ul>

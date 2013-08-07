@@ -1,18 +1,25 @@
 Change Log
 ----------
 
+### 0.2.3 - Aug 7, 2013
+
+- [`lazy()`](#lazy)の追加
+- [`map()`](#map)の第3引数にキーの選択関数を指定できるようにした
+- [`invert()`](#invert)が`Iterator`を返せるようにした
+- [`parMap()`](#parMap)で利用される`Parallel`クラスのデストラクタでワーカープロセスの終了を待つようにした
+
 ### 0.2.2 - Aug 4, 2013
 
 - [`IteratorImpl`](#IteratorImpl)の内部実装の一部にSPLの`Iterator`を使うようにしてパフォーマンスを改善
-- [`firstOrElse()`](#firstOrElse)と[`lastOrElse()`](#firstOrElse)の実装
-- [`get()`](#get)と[`getOrElse()`](#getOrElse)の実装
+- [`firstOrElse()`](#firstOrElse)と[`lastOrElse()`](#firstOrElse)の追加
+- [`get()`](#get)と[`getOrElse()`](#getOrElse)の追加
 
 ### 0.2.1 - Aug 3, 2013
 
 - [`uniq()`](#uniq)の`$isSorted`引数を削除
 - [`intersection()`](#intersection)の遅延版を実装
 - [`uniq()`](#uniq)と[`intersection()`](#intersection)の実装に`Underbar\Internal\Set`を使うようにした
-- [`average()`](#average)を実装
+- [`average()`](#average)を追加
 
 ### 0.2.0 - Jul 30, 2013
 

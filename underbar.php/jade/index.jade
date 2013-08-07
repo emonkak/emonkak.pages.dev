@@ -14,7 +14,7 @@ html(lang="ja")
       div.title
         a(href="#logo")
           strong Underbar.php
-          small Version 0.2.2
+          small Version 0.2.3
         a.button-menu(href="#header") &#x2630;
 
       dl
@@ -122,6 +122,7 @@ html(lang="ja")
           strong Utility Functions
           dd: a(href="#identity") identity
           dd: a(href="#range") range
+          dd: a(href="#lazy") lazy
 
         dt.title: a(href="#parallel")
           strong Parallel Functions
@@ -225,8 +226,8 @@ html(lang="ja")
 
           // map()  {{{
           article#map
-            h4.api <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])
+            h4.api.lazy <em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])
             include ja_JP/functions/map.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -700,6 +701,7 @@ html(lang="ja")
           // invert()  {{{
           article#invert
             h4.api <em>array</em> invert(<em>array</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> invert(<em>array</em> <var>$xs</var>)
             include ja_JP/functions/invert.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -770,6 +772,13 @@ html(lang="ja")
             h4.api <em>array</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])
             h4.api.lazy <em>Iterator</em> range(<em>int</em> <var>$start</var>, <em>int</em> <var>$end</var> [, <em>int</em> <var>$step = 1</var>])
             include ja_JP/functions/range.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // lazy()  {{{
+          article#lazy
+            h4.api <em>IteratorAggregate</em> lazy(<em>callable</em> <var>$f</var>)
+            include ja_JP/functions/lazy.markdown
             p.top: a(href="#") TOP
           // }}}
 
