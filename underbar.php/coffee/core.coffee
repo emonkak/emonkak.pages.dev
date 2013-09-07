@@ -67,7 +67,7 @@ $header = $('#header').on
 
 scrollSpy = new ScrollSpy(window)
 scrollSpy.onEnter = (el) ->
-  $active = $(el).parent().addClass('active')
+  $active = $(el).parent().addClass('is-active')
 
   if !isFocusToHeader || isSmoothScrolling
     scrollTop = $header.scrollTop()
@@ -77,10 +77,11 @@ scrollSpy.onEnter = (el) ->
       scrollTop: scrollTop + offsetTop - (height / 2)
 
 scrollSpy.onLeave = (el) ->
-  $(el).parent().removeClass('active')
+  $(el).parent().removeClass('is-active')
 
 # Register menu items to the scroll spy.
-$('#header dd a[href^="#"]').each -> scrollSpy.observe this
+$('.menu a[href^="#"]').each ->
+  scrollSpy.observe this
 
 scrollSpy.start()
 

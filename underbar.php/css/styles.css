@@ -1,4 +1,3 @@
-@import url(//fonts.googleapis.com/css?family=Lato:100,400,700|Source+Code+Pro:400,700);
 html {
   margin: 0;
   padding: 0;
@@ -104,8 +103,8 @@ dl, ol, p, pre, ul, table {
 }
 
 body {
-  font-family: "Lato", "Helvetica", sans-serif;
-  font-size: 15px;
+  font-family: "Myriad Pro", "Calibri", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
   color: #2c3e50;
   background-color: white;
   -webkit-text-size-adjust: 100%;
@@ -128,7 +127,7 @@ p {
 }
 
 pre {
-  font-family: "Consolas", "Source Code Pro", monospace;
+  font-family: "Consolas", "Monaco", "Courier", monospace;
   background-color: #ecf0f1;
   padding: 0.875em;
   overflow: auto;
@@ -177,7 +176,7 @@ table {
 }
 
 thead tr {
-  background: #1abc9c;
+  background: #34495e;
   color: white;
 }
 
@@ -217,19 +216,17 @@ th {
   font-weight: bold;
 }
 
-#header {
+.header {
+  background-color: #34495e;
+  color: #ecf0f1;
   -webkit-font-smoothing: antialiased;
 }
-#header a {
+.header a {
   display: block;
   text-decoration: none;
 }
-#header dl {
-  background-color: #34495e;
-  color: #ecf0f1;
-  margin: 0;
-}
-#header .title {
+
+.header-title, .menu-title, .menu-entry {
   -webkit-transition-property: background, color;
   -moz-transition-property: background, color;
   -o-transition-property: background, color;
@@ -242,85 +239,67 @@ th {
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+}
+.header-title:hover, .menu-title:hover, .menu-entry:hover {
+  color: #1abc9c;
+}
+
+.header-title, .menu-title {
   position: relative;
-  background-color: #1abc9c;
-  color: #2c3e50;
-  margin: 0;
+  color: white;
+  font-weight: bold;
 }
-#header .title:hover, #header .title.active {
-  background-color: #1dd2af;
-}
-#header .title a:first-child {
+.header-title a:first-child, .menu-title a:first-child {
   color: inherit;
   padding: 0.875em 8px;
 }
-#header .title strong {
-  font-size: 1.25em;
-  line-height: 1.4;
-  display: block;
-  color: inherit;
-  background-color: inherit;
-  padding: 0;
+
+.menu {
   margin: 0;
 }
-#header .title small {
-  display: block;
-  font-size: inherit;
-  font-weight: normal;
-}
-#header dd {
-  -webkit-transition-property: background, color;
-  -moz-transition-property: background, color;
-  -o-transition-property: background, color;
-  transition-property: background color;
-  -webkit-transition-duration: 0.25s;
-  -moz-transition-duration: 0.25s;
-  -o-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  -webkit-transition-timing-function: ease-out;
-  -moz-transition-timing-function: ease-out;
-  -o-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-#header dd:hover {
-  background-color: #2c3e50;
-  color: #1abc9c;
-}
-#header dd.active {
-  background-color: #16a085;
-  color: #ecf0f1;
-}
-#header dd.active + dd.active {
-  background-color: #138a72;
-}
-#header dd.active + dd.active + dd.active {
-  background-color: #107360;
-}
-#header dd a {
+
+.menu-entry a {
   color: inherit;
   padding: 0.21875em 0.5em;
 }
+.menu-entry.is-active {
+  background-color: #2c3e50;
+  font-weight: bold;
+}
+.menu-entry:hover {
+  background-color: #2c3e50;
+  color: #1abc9c;
+}
 
-#main header {
+.logo {
   position: relative;
   padding: 7em 1em;
   margin-bottom: 7em;
   background-color: #ecf0f1;
 }
-#main header h1 {
+.logo h1 {
   font-size: 4em;
   line-height: 0.875;
   margin: 0;
   text-align: center;
-  font-weight: 100;
 }
-#main header p {
+.logo p {
   font-size: 1.5em;
   line-height: 1.1666666666666667;
   color: #bdc3c7;
   text-align: center;
 }
-#main .social-buttons {
+
+.content > section {
+  margin-left: 1em;
+  margin-right: 1em;
+  max-width: 940px;
+}
+.content section {
+  margin-bottom: 7em;
+}
+
+.social-buttons {
   overflow: hidden;
   *zoom: 1;
   margin: -6.125em 0 6.125em;
@@ -328,65 +307,60 @@ th {
   text-align: center;
   list-style: none;
 }
-#main .social-buttons li {
+.social-buttons li {
   display: inline-block;
 }
-#main .social-buttons .hatena-bookmark-button-frame {
+
+.hatena-bookmark-button-frame {
   width: 130px !important;
 }
-#main .social-buttons .github-watch-button-frame {
+
+.github-watch-button-frame {
   width: 95px !important;
 }
-#main .social-buttons .twitter-share-button {
+
+.twitter-share-button {
   width: 110px !important;
 }
-#main > section {
-  margin-left: 1em;
-  margin-right: 1em;
-  max-width: 940px;
-}
-#main section {
-  margin-bottom: 7em;
-}
 
-#footer {
+.footer {
   background-color: #ecf0f1;
   padding-top: 3.5em;
   padding-bottom: 3.5em;
 }
-#footer p {
+.footer p {
   margin: 0;
   text-align: center;
 }
 
 @media screen and (max-width: 768px) {
-  #main header h1 {
-    font-size: 3.375em;
-    line-height: 1.037037037037037;
-  }
-
-  #header {
+  .header {
     position: absolute;
     z-index: 1;
   }
-  #header:target dl {
+
+  .header:target .menu {
     -webkit-transition-timing-function: ease-in;
     -moz-transition-timing-function: ease-in;
     -o-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
     max-height: 1500px;
   }
-  #header:target .button-menu {
+  .header:target .button-menu {
     pointer-events: none;
-    background-color: #2c3e50;
-    color: #1abc9c;
   }
-  #header .button-menu {
+  .header:target .button-menu, .header:target .header-title {
+    color: #1abc9c;
+    background-color: #2c3e50;
+  }
+
+  .button-menu {
     position: absolute;
     top: 50%;
     right: 8px;
   }
-  #header dl {
+
+  .menu {
     overflow: hidden;
     *zoom: 1;
     -webkit-transition-property: max-height;
@@ -404,20 +378,26 @@ th {
     overflow: hidden;
     max-height: 0;
   }
-  #header dt {
+
+  .menu-title {
     clear: left;
     position: relative;
   }
-  #header dd {
+
+  .menu-entry {
     float: left;
   }
 
-  #main header {
+  .logo {
     padding-top: 12.25em;
+  }
+  .logo h1 {
+    font-size: 3em;
+    line-height: 1.1666666666666667;
   }
 }
 @media screen and (min-width: 769px) {
-  #header {
+  .header {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -426,23 +406,20 @@ th {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
-  #header dd {
+  .header .button-menu {
+    display: none;
+  }
+
+  .menu-entry {
     text-indent: 0.5em;
   }
-  #header .button-menu {
-    display: none;
-  }
 
-  #main {
+  .content {
     margin-left: 240px;
   }
-  #main > section {
+  .content > section {
     margin-left: 2em;
     margin-right: 2em;
-  }
-
-  .top {
-    display: none;
   }
 }
 .aliases, .extends {
@@ -556,28 +533,27 @@ th {
 }
 
 .button-menu {
-  -webkit-transition-property: background, color;
-  -moz-transition-property: background, color;
-  -o-transition-property: background, color;
-  transition-property: background color;
-  -webkit-transition-duration: 0.25s;
-  -moz-transition-duration: 0.25s;
-  -o-transition-duration: 0.25s;
-  transition-duration: 0.25s;
+  -webkit-transition-property: color;
+  -moz-transition-property: color;
+  -o-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
   -webkit-transition-timing-function: ease-out;
   -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  font-size: 1.25em;
+  color: white;
   width: 48px;
   height: 32px;
   text-align: center;
   line-height: 32px;
   padding: 0;
   margin-top: -16px;
-  background-color: #34495e;
-  color: #ecf0f1;
 }
 .button-menu:hover {
-  background-color: #2c3e50;
   color: #1abc9c;
 }

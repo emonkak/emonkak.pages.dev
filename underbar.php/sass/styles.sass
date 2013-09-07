@@ -8,15 +8,12 @@
 @import "_baseline"
 @import "_flatui-colors"
 
-@import url(//fonts.googleapis.com/css?family=Lato:100,400,700|Source+Code+Pro:400,700)
-
-
 // Variables  {{{1
 
 $sidebar-width: 240px
 $content-width: 940px
 
-$font-size: 15px
+$font-size: 14px
 
 $white-color: #fff
 $black-color: $flatui-colors-midnight-blue
@@ -47,7 +44,7 @@ $dark-accent-color: $flatui-colors-green-sea
 
 body
   // @extend .baseline-grid
-  font-family: "Lato", "Helvetica", sans-serif
+  font-family: "Myriad Pro", "Calibri", "Helvetica Neue", "Helvetica", "Arial", sans-serif
   font-size: $font-size
   color: $black-color
   background-color: $white-color
@@ -68,7 +65,7 @@ p
   text-align: justify
 
 pre
-  font-family: "Consolas", "Source Code Pro", monospace
+  font-family: "Consolas", "Monaco", "Courier", monospace
   background-color: $light-color
   padding: 0.5em * baseline-line-height()
   overflow: auto
@@ -110,7 +107,7 @@ table
     bottom: calc(#{1em * baseline-line-height()} - 1px)
 
 thead tr
-  background: $accent-color
+  background: $dark-color
   color: $white-color
 
 tbody tr:nth-child(even)
@@ -160,112 +157,70 @@ th
 
 // Header  {{{1
 
-#header
+.header
+  background-color: $dark-color
+  color: $light-color
   -webkit-font-smoothing: antialiased
 
   a
     display: block
     text-decoration: none
 
-  dl
-    background-color: $dark-color
-    color: $light-color
-    margin: 0
+.header-title, .menu-title, .menu-entry
+  @include transition-property(background color)
+  @include transition-duration(0.25s)
+  @include transition-timing-function(ease-out)
 
-  .title
-    @include transition-property(background color)
-    @include transition-duration(0.25s)
-    @include transition-timing-function(ease-out)
-    position: relative
-    background-color: $accent-color
-    color: $black-color
-    margin: 0
+  &:hover
+    color: $accent-color
 
-    &:hover, &.active
-      background-color: lighten($accent-color, 5%)
+.header-title, .menu-title
+  position: relative
+  color: $white-color
+  font-weight: bold
 
-    a:first-child
-      color: inherit
-      padding: 0.5em * baseline-line-height() 8px
+  a:first-child
+    color: inherit
+    padding: 0.5em * baseline-line-height() 8px
 
-    strong
-      @include baseline-font(20)
-      display: block
-      color: inherit
-      background-color: inherit
-      padding: 0
-      margin: 0
+.menu
+  margin: 0
 
-    small
-      display: block
-      font-size: inherit
-      font-weight: normal
+.menu-entry
+  a
+    color: inherit
+    padding: 0.125em * baseline-line-height() 0.5em
 
-  dd
-    @include transition-property(background color)
-    @include transition-duration(0.25s)
-    @include transition-timing-function(ease-out)
+  &.is-active
+    background-color: $black-color
+    font-weight: bold
 
-    &:hover
-      background-color: $black-color
-      color: $accent-color
-
-    &.active
-      background-color: $dark-accent-color
-      color: $light-color
-
-    &.active + dd.active
-      background-color: darken($dark-accent-color, 5%)
-
-    &.active + dd.active + dd.active
-      background-color: darken($dark-accent-color, 10%)
-
-    a
-      color: inherit
-      padding: 0.125em * baseline-line-height() 0.5em
+  &:hover
+    background-color: $black-color
+    color: $accent-color
 
 
 
 
 // Main  {{{1
 
-#main
-  header
-    position: relative
-    padding: 4em * baseline-line-height() 1em
-    margin-bottom: 4em * baseline-line-height()
-    background-color: $light-color
+.logo
+  position: relative
+  padding: 4em * baseline-line-height() 1em
+  margin-bottom: 4em * baseline-line-height()
+  background-color: $light-color
 
-    h1
-      @include baseline-font(64)
-      margin: 0
-      text-align: center
-      font-weight: 100
-
-    p
-      @include baseline-font(24)
-      color: $lightgray-color
-      text-align: center
-
-  .social-buttons
-    @include clearfix
-    margin: -(3.5em * baseline-line-height()) 0 (3.5em * baseline-line-height())
-    height: 1em * baseline-line-height()
+  h1
+    @include baseline-font(64)
+    margin: 0
     text-align: center
-    list-style: none
 
-    li
-      display: inline-block
+  p
+    @include baseline-font(24)
+    color: $lightgray-color
+    text-align: center
 
-    .hatena-bookmark-button-frame
-      width: 130px !important
-
-    .github-watch-button-frame
-      width: 95px !important
-
-    .twitter-share-button
-      width: 110px !important
-
+.content
   > section
     margin-left: 1em
     margin-right: 1em
@@ -277,9 +232,33 @@ th
 
 
 
+// Social  {{{1
+
+.social-buttons
+  @include clearfix
+  margin: -(3.5em * baseline-line-height()) 0 (3.5em * baseline-line-height())
+  height: 1em * baseline-line-height()
+  text-align: center
+  list-style: none
+
+  li
+    display: inline-block
+
+.hatena-bookmark-button-frame
+  width: 130px !important
+
+.github-watch-button-frame
+  width: 95px !important
+
+.twitter-share-button
+  width: 110px !important
+
+
+
+
 // Footer  {{{1
 
-#footer
+.footer
   background-color: $light-color
   padding:
     top: 2em * baseline-line-height()
@@ -296,46 +275,49 @@ th
 // One Column  {{{2
 
 @include layout-one-column()
-  #main header h1
-    @include baseline-font(54)
-
-  #header
+  .header
     position: absolute
     z-index: 1
 
-    &:target
-      dl
-        @include transition-timing-function(ease-in)
-        max-height: 1500px
-
-      .button-menu
-        pointer-events: none
-        background-color: $black-color
-        color: $accent-color
+  .header:target
+    .menu
+      @include transition-timing-function(ease-in)
+      max-height: 1500px
 
     .button-menu
-      position: absolute
-      top: 50%
-      right: 8px
+      pointer-events: none
 
-    dl
-      @include clearfix
-      @include transition-property(max-height)
-      @include transition-duration(0.25s)
-      @include transition-timing-function(ease-out)
-      overflow: hidden
-      max-height: 0
+    .button-menu, .header-title
+      color: $accent-color
+      background-color: $black-color
 
-    dt
-      clear: left
-      position: relative
+  .button-menu
+    position: absolute
+    top: 50%
+    right: 8px
 
-    dd
-      float: left
+  .menu
+    @include clearfix
+    @include transition-property(max-height)
+    @include transition-duration(0.25s)
+    @include transition-timing-function(ease-out)
+    overflow: hidden
+    max-height: 0
 
-  #main
-    header
-      padding-top: 7em * baseline-line-height()
+  .menu-title
+    clear: left
+    position: relative
+
+  .menu-entry
+    float: left
+
+  .logo
+    padding-top: 7em * baseline-line-height()
+
+    h1
+      @include baseline-font(48)
+
+
 
 
 
@@ -343,7 +325,7 @@ th
 // Two Column  {{{2
 
 @include layout-two-column()
-  #header
+  .header
     position: fixed
     top: 0
     bottom: 0
@@ -352,21 +334,18 @@ th
     overflow: auto
     -webkit-overflow-scrolling: touch
 
-    dd
-      text-indent: 0.5em
-
     .button-menu
       display: none
 
-  #main
+  .menu-entry
+    text-indent: 0.5em
+
+  .content
     margin-left: $sidebar-width
 
     > section
       margin-left: 2em
       margin-right: 2em
-
-  .top
-    display: none
 
 
 
@@ -484,21 +463,20 @@ th
 
 
 .button-menu  // {{{2
-  @include transition-property(background color)
-  @include transition-duration(0.25s)
+  @include transition-property(color)
+  @include transition-duration(0.5s)
   @include transition-timing-function(ease-out)
   $height: 32px
+  font-size: 1em * baseline-font-size(20)
+  color: $white-color
   width: 48px
   height: $height
   text-align: center
   line-height: $height
   padding: 0
   margin-top: -($height / 2)
-  background-color: $dark-color
-  color: $light-color
 
   &:hover
-    background-color: $black-color
     color: $accent-color
 
 

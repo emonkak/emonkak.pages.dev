@@ -87,7 +87,7 @@
 
   scrollSpy.onEnter = function(el) {
     var $active, height, offsetTop, scrollTop;
-    $active = $(el).parent().addClass('active');
+    $active = $(el).parent().addClass('is-active');
     if (!isFocusToHeader || isSmoothScrolling) {
       scrollTop = $header.scrollTop();
       offsetTop = $active.position().top;
@@ -99,10 +99,10 @@
   };
 
   scrollSpy.onLeave = function(el) {
-    return $(el).parent().removeClass('active');
+    return $(el).parent().removeClass('is-active');
   };
 
-  $('#header dd a[href^="#"]').each(function() {
+  $('.menu a[href^="#"]').each(function() {
     return scrollSpy.observe(this);
   });
 

@@ -10,115 +10,114 @@
     <script src="//b.st-hatena.com/js/bookmark_button.js" async></script>
   </head>
   <body>
-    <header id="header">
-      <nav role="navigation">
-        <div class="title"><a href="#logo"><strong>Underbar.php</strong><small>Version 0.2.3</small></a><a href="#header" class="button-menu">&#x2630;</a></div>
-        <dl>
-          <dd><a href="#introduction">Introduction</a></dd>
-          <dd><a href="#getting-started">Getting Started</a></dd>
-          <dt class="title"><a href="#classes"><strong>Classes</strong></a></dt>
-          <dd><a href="#AbstractImpl">AbstractImpl</a></dd>
-          <dd><a href="#ArrayImpl">ArrayImpl</a></dd>
-          <dd><a href="#IteratorImpl">IteratorImpl</a></dd>
-          <dd><a href="#GeneratorImpl">GeneratorImpl</a></dd>
-          <dd><a href="#Enumerable">Enumerable</a></dd>
-          <dt class="title"><a href="#collections"><strong>Collection Functions</strong></a></dt>
-          <dd><a href="#each">each</a></dd>
-          <dd><a href="#map">map</a></dd>
-          <dd><a href="#map">collect</a></dd>
-          <dd><a href="#reduce">reduce</a></dd>
-          <dd><a href="#reduce">inject</a></dd>
-          <dd><a href="#reduce">reduce</a></dd>
-          <dd><a href="#reduceRight">reduceRight</a></dd>
-          <dd><a href="#reduceRight">foldr</a></dd>
-          <dd><a href="#find">find</a></dd>
-          <dd><a href="#find">detect</a></dd>
-          <dd><a href="#filter">filter</a></dd>
-          <dd><a href="#filter">select</a></dd>
-          <dd><a href="#where">where</a></dd>
-          <dd><a href="#findWhere">findWhere</a></dd>
-          <dd><a href="#reject">reject</a></dd>
-          <dd><a href="#every">every</a></dd>
-          <dd><a href="#every">all</a></dd>
-          <dd><a href="#some">some</a></dd>
-          <dd><a href="#some">any</a></dd>
-          <dd><a href="#contains">contains</a></dd>
-          <dd><a href="#invoke">invoke</a></dd>
-          <dd><a href="#pluck">pluck</a></dd>
-          <dd><a href="#max">max</a></dd>
-          <dd><a href="#min">min</a></dd>
-          <dd><a href="#sum">sum</a></dd>
-          <dd><a href="#product">product</a></dd>
-          <dd><a href="#average">average</a></dd>
-          <dd><a href="#sortBy">sortBy</a></dd>
-          <dd><a href="#groupBy">groupBy</a></dd>
-          <dd><a href="#countBy">countBy</a></dd>
-          <dd><a href="#shuffle">shuffle</a></dd>
-          <dd><a href="#memoize">memoize</a></dd>
-          <dd><a href="#toArray">toArray</a></dd>
-          <dd><a href="#toList">toList</a></dd>
-          <dd><a href="#size">size</a></dd>
-          <dt class="title"><a href="#arrays"><strong>Array Functions</strong></a></dt>
-          <dd><a href="#first">first</a></dd>
-          <dd><a href="#first">head</a></dd>
-          <dd><a href="#first">take</a></dd>
-          <dd><a href="#firstOrElse">firstOrElse</a></dd>
-          <dd><a href="#initial">initial</a></dd>
-          <dd><a href="#last">last</a></dd>
-          <dd><a href="#lastOrElse">lastOrElse</a></dd>
-          <dd><a href="#rest">rest</a></dd>
-          <dd><a href="#rest">tail</a></dd>
-          <dd><a href="#rest">drop</a></dd>
-          <dd><a href="#takeWhile">takeWhile</a></dd>
-          <dd><a href="#dropWhile">dropWhile</a></dd>
-          <dd><a href="#compact">compact</a></dd>
-          <dd><a href="#flatten">flatten</a></dd>
-          <dd><a href="#without">without</a></dd>
-          <dd><a href="#union">union</a></dd>
-          <dd><a href="#intersection">intersection</a></dd>
-          <dd><a href="#difference">difference</a></dd>
-          <dd><a href="#uniq">uniq</a></dd>
-          <dd><a href="#unique">unique</a></dd>
-          <dd><a href="#zip">zip</a></dd>
-          <dd><a href="#zipWith">zipWith</a></dd>
-          <dd><a href="#unzip">unzip</a></dd>
-          <dd><a href="#object">object</a></dd>
-          <dd><a href="#indexOf">indexOf</a></dd>
-          <dd><a href="#lastIndexOf">lastIndexOf</a></dd>
-          <dd><a href="#sortedIndex">sortedIndex</a></dd>
-          <dd><a href="#cycle">cycle</a></dd>
-          <dd><a href="#repeat">repeat</a></dd>
-          <dd><a href="#iterate">iterate</a></dd>
-          <dd><a href="#reverse">reverse</a></dd>
-          <dd><a href="#sort">sort</a></dd>
-          <dd><a href="#concat">concat</a></dd>
-          <dd><a href="#join">join</a></dd>
-          <dt class="title"><a href="#objects"><strong>Object Functions</strong></a></dt>
-          <dd><a href="#keys">keys</a></dd>
-          <dd><a href="#values">values</a></dd>
-          <dd><a href="#pairs">pairs</a></dd>
-          <dd><a href="#invert">invert</a></dd>
-          <dd><a href="#extend">extend</a></dd>
-          <dd><a href="#get">get</a></dd>
-          <dd><a href="#getOrElse">getOrElse</a></dd>
-          <dd><a href="#pick">pick</a></dd>
-          <dd><a href="#omit">omit</a></dd>
-          <dd><a href="#defaults">defaults</a></dd>
-          <dd><a href="#tap">tap</a></dd>
-          <dt class="title"><a href="#utility"><strong>Utility Functions</strong>
-              <dd><a href="#identity">identity</a></dd>
-              <dd><a href="#range">range</a></dd>
-              <dd><a href="#lazy">lazy</a></dd></a></dt>
-          <dt class="title"><a href="#parallel"><strong>Parallel Functions</strong></a></dt>
-          <dd><a href="#parMap">parMap</a></dd>
-          <dt class="title"><a href="#chaining"><strong>Chaining</strong></a></dt>
-          <dd><a href="#chain">chain</a></dd>
-          <dt class="title"><a href="#change-log"><strong>Change Log</strong></a></dt>
+    <header id="header" class="header">
+      <div class="header-title"><a href="#logo">Underbar.php (0.2.3)</a><a href="#header" class="button-menu">&#x2630;</a></div>
+      <nav>
+        <dl class="menu">
+          <dd class="menu-entry"><a href="#introduction">Introduction</a></dd>
+          <dd class="menu-entry"><a href="#getting-started">Getting Started</a></dd>
+          <dt class="menu-title"><a href="#classes">Classes</a></dt>
+          <dd class="menu-entry"><a href="#AbstractImpl">AbstractImpl</a></dd>
+          <dd class="menu-entry"><a href="#ArrayImpl">ArrayImpl</a></dd>
+          <dd class="menu-entry"><a href="#IteratorImpl">IteratorImpl</a></dd>
+          <dd class="menu-entry"><a href="#GeneratorImpl">GeneratorImpl</a></dd>
+          <dd class="menu-entry"><a href="#Enumerable">Enumerable</a></dd>
+          <dt class="menu-title"><a href="#collections">Collections</a></dt>
+          <dd class="menu-entry"><a href="#map">map</a></dd>
+          <dd class="menu-entry"><a href="#map">collect</a></dd>
+          <dd class="menu-entry"><a href="#reduce">reduce</a></dd>
+          <dd class="menu-entry"><a href="#reduce">inject</a></dd>
+          <dd class="menu-entry"><a href="#reduce">reduce</a></dd>
+          <dd class="menu-entry"><a href="#reduceRight">reduceRight</a></dd>
+          <dd class="menu-entry"><a href="#reduceRight">foldr</a></dd>
+          <dd class="menu-entry"><a href="#find">find</a></dd>
+          <dd class="menu-entry"><a href="#find">detect</a></dd>
+          <dd class="menu-entry"><a href="#filter">filter</a></dd>
+          <dd class="menu-entry"><a href="#filter">select</a></dd>
+          <dd class="menu-entry"><a href="#where">where</a></dd>
+          <dd class="menu-entry"><a href="#findWhere">findWhere</a></dd>
+          <dd class="menu-entry"><a href="#reject">reject</a></dd>
+          <dd class="menu-entry"><a href="#every">every</a></dd>
+          <dd class="menu-entry"><a href="#every">all</a></dd>
+          <dd class="menu-entry"><a href="#some">some</a></dd>
+          <dd class="menu-entry"><a href="#some">any</a></dd>
+          <dd class="menu-entry"><a href="#contains">contains</a></dd>
+          <dd class="menu-entry"><a href="#invoke">invoke</a></dd>
+          <dd class="menu-entry"><a href="#pluck">pluck</a></dd>
+          <dd class="menu-entry"><a href="#max">max</a></dd>
+          <dd class="menu-entry"><a href="#min">min</a></dd>
+          <dd class="menu-entry"><a href="#sum">sum</a></dd>
+          <dd class="menu-entry"><a href="#product">product</a></dd>
+          <dd class="menu-entry"><a href="#average">average</a></dd>
+          <dd class="menu-entry"><a href="#sortBy">sortBy</a></dd>
+          <dd class="menu-entry"><a href="#groupBy">groupBy</a></dd>
+          <dd class="menu-entry"><a href="#countBy">countBy</a></dd>
+          <dd class="menu-entry"><a href="#shuffle">shuffle</a></dd>
+          <dd class="menu-entry"><a href="#memoize">memoize</a></dd>
+          <dd class="menu-entry"><a href="#toArray">toArray</a></dd>
+          <dd class="menu-entry"><a href="#toList">toList</a></dd>
+          <dd class="menu-entry"><a href="#size">size</a></dd>
+          <dt class="menu-title"><a href="#arrays">Arrays</a></dt>
+          <dd class="menu-entry"><a href="#first">first</a></dd>
+          <dd class="menu-entry"><a href="#first">head</a></dd>
+          <dd class="menu-entry"><a href="#first">take</a></dd>
+          <dd class="menu-entry"><a href="#firstOrElse">firstOrElse</a></dd>
+          <dd class="menu-entry"><a href="#initial">initial</a></dd>
+          <dd class="menu-entry"><a href="#last">last</a></dd>
+          <dd class="menu-entry"><a href="#lastOrElse">lastOrElse</a></dd>
+          <dd class="menu-entry"><a href="#rest">rest</a></dd>
+          <dd class="menu-entry"><a href="#rest">tail</a></dd>
+          <dd class="menu-entry"><a href="#rest">drop</a></dd>
+          <dd class="menu-entry"><a href="#takeWhile">takeWhile</a></dd>
+          <dd class="menu-entry"><a href="#dropWhile">dropWhile</a></dd>
+          <dd class="menu-entry"><a href="#compact">compact</a></dd>
+          <dd class="menu-entry"><a href="#flatten">flatten</a></dd>
+          <dd class="menu-entry"><a href="#without">without</a></dd>
+          <dd class="menu-entry"><a href="#union">union</a></dd>
+          <dd class="menu-entry"><a href="#intersection">intersection</a></dd>
+          <dd class="menu-entry"><a href="#difference">difference</a></dd>
+          <dd class="menu-entry"><a href="#uniq">uniq</a></dd>
+          <dd class="menu-entry"><a href="#uniq">unique</a></dd>
+          <dd class="menu-entry"><a href="#zip">zip</a></dd>
+          <dd class="menu-entry"><a href="#zipWith">zipWith</a></dd>
+          <dd class="menu-entry"><a href="#unzip">unzip</a></dd>
+          <dd class="menu-entry"><a href="#object">object</a></dd>
+          <dd class="menu-entry"><a href="#indexOf">indexOf</a></dd>
+          <dd class="menu-entry"><a href="#lastIndexOf">lastIndexOf</a></dd>
+          <dd class="menu-entry"><a href="#sortedIndex">sortedIndex</a></dd>
+          <dd class="menu-entry"><a href="#cycle">cycle</a></dd>
+          <dd class="menu-entry"><a href="#repeat">repeat</a></dd>
+          <dd class="menu-entry"><a href="#iterate">iterate</a></dd>
+          <dd class="menu-entry"><a href="#reverse">reverse</a></dd>
+          <dd class="menu-entry"><a href="#sort">sort</a></dd>
+          <dd class="menu-entry"><a href="#concat">concat</a></dd>
+          <dd class="menu-entry"><a href="#join">join</a></dd>
+          <dt class="menu-title"><a href="#objects">Objects</a></dt>
+          <dd class="menu-entry"><a href="#keys">keys</a></dd>
+          <dd class="menu-entry"><a href="#values">values</a></dd>
+          <dd class="menu-entry"><a href="#pairs">pairs</a></dd>
+          <dd class="menu-entry"><a href="#invert">invert</a></dd>
+          <dd class="menu-entry"><a href="#extend">extend</a></dd>
+          <dd class="menu-entry"><a href="#get">get</a></dd>
+          <dd class="menu-entry"><a href="#getOrElse">getOrElse</a></dd>
+          <dd class="menu-entry"><a href="#pick">pick</a></dd>
+          <dd class="menu-entry"><a href="#omit">omit</a></dd>
+          <dd class="menu-entry"><a href="#defaults">defaults</a></dd>
+          <dd class="menu-entry"><a href="#tap">tap</a></dd>
+          <dt class="menu-title"><a href="#utility">Utility</a></dt>
+          <dd class="menu-entry"><a href="#identity">identity</a></dd>
+          <dd class="menu-entry"><a href="#range">range</a></dd>
+          <dd class="menu-entry"><a href="#lazy">lazy</a></dd>
+          <dt class="menu-title"><a href="#parallel">Parallel</a></dt>
+          <dd class="menu-entry"><a href="#parMap">parMap</a></dd>
+          <dt class="menu-title"><a href="#chaining">Chaining</a></dt>
+          <dd class="menu-entry"><a href="#chain">chain</a></dd>
+          <dt class="menu-title"><a href="#change-log">Change Log</a></dt>
         </dl>
       </nav>
     </header>
-    <article id="main" role="main">
-      <header id="logo">
+    <article id="main" class="content">
+      <header id="logo" class="logo">
         <h1>Underbar.php</h1>
         <p>A collection processing library for PHP, like Underscore.js.</p>
         <p><a href="https://github.com/emonkak/underbar.php" class="button">GitHub Repository</a></p>
@@ -131,16 +130,16 @@
         <li><a href="http://b.hatena.ne.jp/entry/http://emonkak.github.io/underbar.php/" data-hatena-bookmark-layout="standard-balloon" class="hatena-bookmark-button"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"></a></li>
       </ul>
       <section id="introduction"><h2>Introduction</h2>
-<p>Underbar.phpは<a href="http://underscorejs.org/">Underscore.js</a>のようなリスト処理のためのPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、Underbar.phpはUnderscore.jsとの互換を最優先にはしてはいません。</p>
-<p>しかし、同名の関数は基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
+<p><em>Underbar.php</em>は<a href="http://underscorejs.org/">Underscore.js</a>のようなリスト処理のためのPHPのライブラリです。
+Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、<em>Underbar.php</em>はまた別のライブラリです。
+同名の関数は基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
 <h3>Features</h3>
 <ul>
 <li><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リストのサポート</li>
 <li><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>による遅延リストのサポート</li>
-<li><a href="http://lodash.com/">Lo-Dash</a>のような<a href="#chain"><code>chain()</code></a>による直感的なメソッドチェイン</li>
+<li><a href="http://lodash.com/">Lo-Dash</a>のような<a href="#chain"><code>chain()</code></a>によるメソッドチェイン</li>
 <li>Rubyの<a href="http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html">Enumerable</a>のような<a href="#Enumerable"><code>Enumerable</code></a>トレイト</li>
-<li>Underscore.jsにはない関数を新たに追加<ul>
+<li>Underscore.jsにはない関数<ul>
 <li><em>Collections:</em> <a href="#memoize"><code>memoize()</code></a> <a href="#toList"><code>toList</code></a></li>
 <li><em>Arrays:</em> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a></li>
 <li><em>Parallel:</em> <a href="#parMap"><code>parMap()</code></a></li>
@@ -149,13 +148,13 @@ Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.git
 </ul>
 <h3>Example</h3>
 <p>以下は配列の要素を2倍にして新しい配列を返す例です。</p>
-<pre><code class="language-php">use Underbar\ArrayImpl as _;  // Array implement class
+<pre><code class="language-php">use Underbar\ArrayImpl as _;  // 配列を返す実装
 
 $xs = _::map([1, 2, 3, 4], function($n) { return $n * 2; });
 var_dump(is_array($xs));  // true
 var_dump($xs);  // [2, 4, 6, 8]</code></pre>
 <p>これを<code>Iterator</code>を返す実装に切り替えます。
-<code>Iterator</code>は実際に要素を走査するまで計算が遅延されるので、空間効率で有利です。</p>
+<code>Iterator</code>は実際に要素を走査するまで計算が遅延されるので、空間効率で有利な場合があります。</p>
 <pre><code class="language-php">use Underbar\IteratorImpl as _;  // Iterator implement class
 
 $xs = _::map([1, 2, 3, 4], function($n) { return $n * 2; });
@@ -330,9 +329,8 @@ $twiceCycle = $collection
         </section>
       </section>
       <section id="functions"><h2>Functions</h2>
-<p><a href="#AbstractImpl"><code>AbstractImpl</code></a>の具象クラスである<a href="#ArrayImpl"><code>ArrayImpl</code></a>、<a href="#IteratorImpl"><code>IteratorImpl</code></a>、<a href="#GeneratorImpl"><code>GeneratorImpl</code></a>、で利用可能な関数の一覧です。
-左のマーカーが<strong>色付き</strong>の関数は<a href="#ArrayImpl"><code>ArrayImpl</code></a>では利用できません。</p>
-<p>引数に<code>array</code>を要求するすべての関数は<a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトも同時に扱うことができます。</p>
+<p><a href="#AbstractImpl"><code>AbstractImpl</code></a>の実装クラスの<a href="#ArrayImpl"><code>ArrayImpl</code></a>か<a href="#IteratorImpl"><code>IteratorImpl</code></a>か<a href="#GeneratorImpl"><code>GeneratorImpl</code></a>、で利用可能な関数の一覧です。</p>
+<p>引数に<code>array</code>を要求するすべての関数は<a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトも取ることもできます。</p>
 
         <section id="collections">
           <h3>Collection Functions</h3>
@@ -609,12 +607,9 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- sortBy()  {{{-->
           <article id="sortBy">
-            <h4 class="api"><em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
-            <h4 class="api stream"><em>Iterator</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>を比較関数<code>$f</code>を使ってソートします。
+            <h4 class="api"><em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>を比較関数<code>$f</code>を使ってソートします。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。
 比較関数は事前にすべての要素に対して計算するので、要素の数だけしか呼び出されません。</p>
-<p><code>Iterator</code>を返す場合はソート後の値を取り出す操作(<code>pluck()</code>)だけが遅延されます。
-ソートの操作自体は遅延されません。</p>
 <pre><code class="language-php">_::sortBy([1, 2, 3, 4, 5, 6], function($n) { return sin($n); });
 =&gt; [5, 4, 6, 3, 1, 2]</code></pre>
 
@@ -943,8 +938,8 @@ _::object([[&#39;moe&#39;, 30], [&#39;larry&#39;, 40], [&#39;curly&#39;, 50]]);
           <!-- }}}-->
           <!-- indexOf()  {{{-->
           <article id="indexOf">
-            <h4 class="api"><em>array</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4>
-            <h4 class="api"><em>array</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><code>$xs</code>の中から<code>$value</code>のあるインデックスを探します。
+            <h4 class="api"><em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4>
+            <h4 class="api"><em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><code>$xs</code>の中から<code>$value</code>のあるインデックスを探します。
 存在しなかった場合は<code>-1</code>を返します。
 <code>$fromIndex</code>を指定した場合はそのインデックスから探索を開始します。</p>
 <p>ソート済みの配列であれば<code>$isSorted</code>に<code>true</code>を指定することで、二分探索による効率的な探索を実行できます。</p>
@@ -956,7 +951,7 @@ _::object([[&#39;moe&#39;, 30], [&#39;larry&#39;, 40], [&#39;curly&#39;, 50]]);
           <!-- }}}-->
           <!-- lastIndexOf()  {{{-->
           <article id="lastIndexOf">
-            <h4 class="api"><em>array</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><a href="#indexOf"><code>indexOf()</code></a>の末尾から探索するバージョンです。</p>
+            <h4 class="api"><em>int</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><a href="#indexOf"><code>indexOf()</code></a>の末尾から探索するバージョンです。</p>
 <pre><code class="language-php">_::lastIndexOf([1, 2, 3, 1, 2, 3], 2);
 =&gt; 4</code></pre>
 
@@ -999,7 +994,7 @@ _::chain([1, 2, 3])-&gt;cycle()-&gt;take(5)-&gt;toList()-&gt;value();
             <h4 class="api"><em>array</em> repeat(<em>mixed</em> <var>$value</var>)</h4>
             <h4 class="api lazy"><em>Iterator</em> repeat(<em>mixed</em> <var>$value</var>, <em>int</em>, <var>$n</var>)</h4><p><code>$value</code>が<code>$n</code>個分繰り返される配列を返します。
 <code>$n</code>が与えられなかった場合は<code>$value</code>を無限に繰り返し続けます。
-<code>ArrayImpl</code>から呼び出された時に<code>$n</code>が与えられなかった場合は<a href="http://php.net/manual/ja/class.overflowexception.php"><code>Overflowexception</code></a>が発生します。</p>
+<a href="#ArrayImpl"><code>ArrayImpl</code></a>から呼び出された時に<code>$n</code>が与えられなかった場合は<a href="http://php.net/manual/ja/class.overflowexception.php"><code>Overflowexception</code></a>が発生します。</p>
 <pre><code class="language-php">_::repeat(1, 2);
 =&gt; [1, 1]
 
@@ -1240,16 +1235,10 @@ _::range(0);
           <!-- }}}-->
           <!-- lazy()  {{{-->
           <article id="lazy">
-            <h4 class="api"><em>IteratorAggregate</em> lazy(<em>callable</em> <var>$f</var>)</h4><p><a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトを返す関数<code>$f</code>の実行結果をソースとする<a href="http://php.net/manual/ja/class.iteratoraggregate.php"><code>IteratorAggregate</code></a>を返します。
-これを利用して<a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>の複数回の走査を可能にすることもできます。</p>
+            <h4 class="api"><em>IteratorAggregate</em> lazy(<em>callable</em> <var>$f</var>)</h4><p><a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトを返す関数から<a href="http://php.net/manual/ja/class.iteratoraggregate.php"><code>IteratorAggregate</code></a>を生成します。</p>
 <pre><code class="language-php">$xs = _::lazy(function() {
-    yield 1;
-    yield 2;
-    yield 3;
+    return new ArrayIterator([1, 2, 3]);
 });
-foreach ($xs as $x) {
-    echo $x;  // 1, 2, 3
-}
 foreach ($xs as $x) {
     echo $x;  // 1, 2, 3
 }</code></pre>
@@ -1391,7 +1380,7 @@ $youngest = _::chain($stooges)
 
         <p class="top"><a href="#">TOP</a></p>
       </section>
-      <footer id="footer">
+      <footer class="footer">
         <p>Developed by <a href="http://twitter.com/emonkak">@emonkak</a></p>
         <p>Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a></p>
       </footer>

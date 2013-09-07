@@ -10,133 +10,122 @@ html(lang="ja")
     link(href="css/styles.css", rel="stylesheet")
     script(src="//b.st-hatena.com/js/bookmark_button.js", async)
   body
-    header#header: nav(role="navigation")
-      div.title
-        a(href="#logo")
-          strong Underbar.php
-          small Version 0.2.3
+    header#header.header
+      div.header-title
+        a(href="#logo") Underbar.php (0.2.3)
         a.button-menu(href="#header") &#x2630;
 
-      dl
-        dd: a(href="#introduction") Introduction
-        dd: a(href="#getting-started") Getting Started
+      nav: dl.menu
+        dd.menu-entry: a(href="#introduction") Introduction
+        dd.menu-entry: a(href="#getting-started") Getting Started
 
-        dt.title: a(href="#classes")
-          strong Classes
-        dd: a(href="#AbstractImpl") AbstractImpl
-        dd: a(href="#ArrayImpl") ArrayImpl
-        dd: a(href="#IteratorImpl") IteratorImpl
-        dd: a(href="#GeneratorImpl") GeneratorImpl
-        dd: a(href="#Enumerable") Enumerable
+        dt.menu-title: a(href="#classes") Classes
+        dd.menu-entry: a(href="#AbstractImpl") AbstractImpl
+        dd.menu-entry: a(href="#ArrayImpl") ArrayImpl
+        dd.menu-entry: a(href="#IteratorImpl") IteratorImpl
+        dd.menu-entry: a(href="#GeneratorImpl") GeneratorImpl
+        dd.menu-entry: a(href="#Enumerable") Enumerable
 
-        dt.title: a(href="#collections")
-          strong Collection Functions
-        dd: a(href="#each") each
-        dd: a(href="#map") map
-        dd: a(href="#map") collect
-        dd: a(href="#reduce") reduce
-        dd: a(href="#reduce") inject
-        dd: a(href="#reduce") reduce
-        dd: a(href="#reduceRight") reduceRight
-        dd: a(href="#reduceRight") foldr
-        dd: a(href="#find") find
-        dd: a(href="#find") detect
-        dd: a(href="#filter") filter
-        dd: a(href="#filter") select
-        dd: a(href="#where") where
-        dd: a(href="#findWhere") findWhere
-        dd: a(href="#reject") reject
-        dd: a(href="#every") every
-        dd: a(href="#every") all
-        dd: a(href="#some") some
-        dd: a(href="#some") any
-        dd: a(href="#contains") contains
-        dd: a(href="#invoke") invoke
-        dd: a(href="#pluck") pluck
-        dd: a(href="#max") max
-        dd: a(href="#min") min
-        dd: a(href="#sum") sum
-        dd: a(href="#product") product
-        dd: a(href="#average") average
-        dd: a(href="#sortBy") sortBy
-        dd: a(href="#groupBy") groupBy
-        dd: a(href="#countBy") countBy
-        dd: a(href="#shuffle") shuffle
-        dd: a(href="#memoize") memoize
-        dd: a(href="#toArray") toArray
-        dd: a(href="#toList") toList
-        dd: a(href="#size") size
+        dt.menu-title: a(href="#collections") Collections
+        dd.menu-entry: a(href="#map") map
+        dd.menu-entry: a(href="#map") collect
+        dd.menu-entry: a(href="#reduce") reduce
+        dd.menu-entry: a(href="#reduce") inject
+        dd.menu-entry: a(href="#reduce") reduce
+        dd.menu-entry: a(href="#reduceRight") reduceRight
+        dd.menu-entry: a(href="#reduceRight") foldr
+        dd.menu-entry: a(href="#find") find
+        dd.menu-entry: a(href="#find") detect
+        dd.menu-entry: a(href="#filter") filter
+        dd.menu-entry: a(href="#filter") select
+        dd.menu-entry: a(href="#where") where
+        dd.menu-entry: a(href="#findWhere") findWhere
+        dd.menu-entry: a(href="#reject") reject
+        dd.menu-entry: a(href="#every") every
+        dd.menu-entry: a(href="#every") all
+        dd.menu-entry: a(href="#some") some
+        dd.menu-entry: a(href="#some") any
+        dd.menu-entry: a(href="#contains") contains
+        dd.menu-entry: a(href="#invoke") invoke
+        dd.menu-entry: a(href="#pluck") pluck
+        dd.menu-entry: a(href="#max") max
+        dd.menu-entry: a(href="#min") min
+        dd.menu-entry: a(href="#sum") sum
+        dd.menu-entry: a(href="#product") product
+        dd.menu-entry: a(href="#average") average
+        dd.menu-entry: a(href="#sortBy") sortBy
+        dd.menu-entry: a(href="#groupBy") groupBy
+        dd.menu-entry: a(href="#countBy") countBy
+        dd.menu-entry: a(href="#shuffle") shuffle
+        dd.menu-entry: a(href="#memoize") memoize
+        dd.menu-entry: a(href="#toArray") toArray
+        dd.menu-entry: a(href="#toList") toList
+        dd.menu-entry: a(href="#size") size
 
-        dt.title: a(href="#arrays")
-          strong Array Functions
-        dd: a(href="#first") first
-        dd: a(href="#first") head
-        dd: a(href="#first") take
-        dd: a(href="#firstOrElse") firstOrElse
-        dd: a(href="#initial") initial
-        dd: a(href="#last") last
-        dd: a(href="#lastOrElse") lastOrElse
-        dd: a(href="#rest") rest
-        dd: a(href="#rest") tail
-        dd: a(href="#rest") drop
-        dd: a(href="#takeWhile") takeWhile
-        dd: a(href="#dropWhile") dropWhile
-        dd: a(href="#compact") compact
-        dd: a(href="#flatten") flatten
-        dd: a(href="#without") without
-        dd: a(href="#union") union
-        dd: a(href="#intersection") intersection
-        dd: a(href="#difference") difference
-        dd: a(href="#uniq") uniq
-        dd: a(href="#unique") unique
-        dd: a(href="#zip") zip
-        dd: a(href="#zipWith") zipWith
-        dd: a(href="#unzip") unzip
-        dd: a(href="#object") object
-        dd: a(href="#indexOf") indexOf
-        dd: a(href="#lastIndexOf") lastIndexOf
-        dd: a(href="#sortedIndex") sortedIndex
-        dd: a(href="#cycle") cycle
-        dd: a(href="#repeat") repeat
-        dd: a(href="#iterate") iterate
-        dd: a(href="#reverse") reverse
-        dd: a(href="#sort") sort
-        dd: a(href="#concat") concat
-        dd: a(href="#join") join
+        dt.menu-title: a(href="#arrays") Arrays
+        dd.menu-entry: a(href="#first") first
+        dd.menu-entry: a(href="#first") head
+        dd.menu-entry: a(href="#first") take
+        dd.menu-entry: a(href="#firstOrElse") firstOrElse
+        dd.menu-entry: a(href="#initial") initial
+        dd.menu-entry: a(href="#last") last
+        dd.menu-entry: a(href="#lastOrElse") lastOrElse
+        dd.menu-entry: a(href="#rest") rest
+        dd.menu-entry: a(href="#rest") tail
+        dd.menu-entry: a(href="#rest") drop
+        dd.menu-entry: a(href="#takeWhile") takeWhile
+        dd.menu-entry: a(href="#dropWhile") dropWhile
+        dd.menu-entry: a(href="#compact") compact
+        dd.menu-entry: a(href="#flatten") flatten
+        dd.menu-entry: a(href="#without") without
+        dd.menu-entry: a(href="#union") union
+        dd.menu-entry: a(href="#intersection") intersection
+        dd.menu-entry: a(href="#difference") difference
+        dd.menu-entry: a(href="#uniq") uniq
+        dd.menu-entry: a(href="#uniq") unique
+        dd.menu-entry: a(href="#zip") zip
+        dd.menu-entry: a(href="#zipWith") zipWith
+        dd.menu-entry: a(href="#unzip") unzip
+        dd.menu-entry: a(href="#object") object
+        dd.menu-entry: a(href="#indexOf") indexOf
+        dd.menu-entry: a(href="#lastIndexOf") lastIndexOf
+        dd.menu-entry: a(href="#sortedIndex") sortedIndex
+        dd.menu-entry: a(href="#cycle") cycle
+        dd.menu-entry: a(href="#repeat") repeat
+        dd.menu-entry: a(href="#iterate") iterate
+        dd.menu-entry: a(href="#reverse") reverse
+        dd.menu-entry: a(href="#sort") sort
+        dd.menu-entry: a(href="#concat") concat
+        dd.menu-entry: a(href="#join") join
 
-        dt.title: a(href="#objects")
-          strong Object Functions
-        dd: a(href="#keys") keys
-        dd: a(href="#values") values
-        dd: a(href="#pairs") pairs
-        dd: a(href="#invert") invert
-        dd: a(href="#extend") extend
-        dd: a(href="#get") get
-        dd: a(href="#getOrElse") getOrElse
-        dd: a(href="#pick") pick
-        dd: a(href="#omit") omit
-        dd: a(href="#defaults") defaults
-        dd: a(href="#tap") tap
+        dt.menu-title: a(href="#objects") Objects
+        dd.menu-entry: a(href="#keys") keys
+        dd.menu-entry: a(href="#values") values
+        dd.menu-entry: a(href="#pairs") pairs
+        dd.menu-entry: a(href="#invert") invert
+        dd.menu-entry: a(href="#extend") extend
+        dd.menu-entry: a(href="#get") get
+        dd.menu-entry: a(href="#getOrElse") getOrElse
+        dd.menu-entry: a(href="#pick") pick
+        dd.menu-entry: a(href="#omit") omit
+        dd.menu-entry: a(href="#defaults") defaults
+        dd.menu-entry: a(href="#tap") tap
 
-        dt.title: a(href="#utility")
-          strong Utility Functions
-          dd: a(href="#identity") identity
-          dd: a(href="#range") range
-          dd: a(href="#lazy") lazy
+        dt.menu-title: a(href="#utility") Utility
+        dd.menu-entry: a(href="#identity") identity
+        dd.menu-entry: a(href="#range") range
+        dd.menu-entry: a(href="#lazy") lazy
 
-        dt.title: a(href="#parallel")
-          strong Parallel Functions
-        dd: a(href="#parMap") parMap
+        dt.menu-title: a(href="#parallel") Parallel
+        dd.menu-entry: a(href="#parMap") parMap
 
-        dt.title: a(href="#chaining")
-          strong Chaining
-        dd: a(href="#chain") chain
+        dt.menu-title: a(href="#chaining") Chaining
+        dd.menu-entry: a(href="#chain") chain
 
-        dt.title: a(href="#change-log")
-          strong Change Log
+        dt.menu-title: a(href="#change-log") Change Log
 
-    article#main(role="main")
-      header#logo
+    article#main.content
+      header#logo.logo
         h1 Underbar.php
         p A collection processing library for PHP, like Underscore.js.
         p: a.button(href="https://github.com/emonkak/underbar.php") GitHub Repository
@@ -374,7 +363,6 @@ html(lang="ja")
           // sortBy()  {{{
           article#sortBy
             h4.api <em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.stream <em>Iterator</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/sortBy.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -597,15 +585,15 @@ html(lang="ja")
 
           // indexOf()  {{{
           article#indexOf
-            h4.api <em>array</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])
-            h4.api <em>array</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
+            h4.api <em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])
+            h4.api <em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
             include ja_JP/functions/indexOf.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // lastIndexOf()  {{{
           article#lastIndexOf
-            h4.api <em>array</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
+            h4.api <em>int</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
             include ja_JP/functions/lastIndexOf.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -806,7 +794,7 @@ html(lang="ja")
         include ja_JP/change-log.markdown
         p.top: a(href="#") TOP
 
-      footer#footer
+      footer.footer
         p Developed by <a href="http://twitter.com/emonkak">@emonkak</a>
         p Licensed under the <a href="https://github.com/emonkak/underbar.php/blob/master/LICENSE">MIT License</a>
 
