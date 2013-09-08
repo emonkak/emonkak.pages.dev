@@ -316,7 +316,8 @@ $collection
     -&gt;toList();
 =&gt; [4, 8]
 
-$twiceCycle = $collection
+$collection = new Collection(1, 2, 3);
+$collection
     -&gt;cycle()
     -&gt;map(function($n) { return $n * 2; })
     -&gt;take(6)

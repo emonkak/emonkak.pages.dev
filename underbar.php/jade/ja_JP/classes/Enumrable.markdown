@@ -45,7 +45,8 @@ $collection
     ->toList();
 => [4, 8]
 
-$twiceCycle = $collection
+$collection = new Collection(1, 2, 3);
+$collection
     ->cycle()
     ->map(function($n) { return $n * 2; })
     ->take(6)
