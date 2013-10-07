@@ -51,6 +51,7 @@
           <dd class="menu-entry"><a href="#average">average</a></dd>
           <dd class="menu-entry"><a href="#sortBy">sortBy</a></dd>
           <dd class="menu-entry"><a href="#groupBy">groupBy</a></dd>
+          <dd class="menu-entry"><a href="#indexBy">indexBy</a></dd>
           <dd class="menu-entry"><a href="#countBy">countBy</a></dd>
           <dd class="menu-entry"><a href="#shuffle">shuffle</a></dd>
           <dd class="menu-entry"><a href="#memoize">memoize</a></dd>
@@ -104,10 +105,10 @@
           <dd class="menu-entry"><a href="#omit">omit</a></dd>
           <dd class="menu-entry"><a href="#defaults">defaults</a></dd>
           <dd class="menu-entry"><a href="#tap">tap</a></dd>
+          <dd class="menu-entry"><a href="#isEmpty">isEmpty</a></dd>
           <dt class="menu-title"><a href="#utility">Utility</a></dt>
           <dd class="menu-entry"><a href="#identity">identity</a></dd>
           <dd class="menu-entry"><a href="#range">range</a></dd>
-          <dd class="menu-entry"><a href="#lazy">lazy</a></dd>
           <dt class="menu-title"><a href="#parallel">Parallel</a></dt>
           <dd class="menu-entry"><a href="#parMap">parMap</a></dd>
           <dt class="menu-title"><a href="#chaining">Chaining</a></dt>
@@ -130,16 +131,16 @@
         <li><a href="http://b.hatena.ne.jp/entry/http://emonkak.github.io/underbar.php/" data-hatena-bookmark-layout="standard-balloon" class="hatena-bookmark-button"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"></a></li>
       </ul>
       <section id="introduction"><h2>Introduction</h2>
-<p><em>Underbar.php</em>は<a href="http://underscorejs.org/">Underscore.js</a>のようなリスト処理のためのPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、<em>Underbar.php</em>はまた別のライブラリです。
-同名の関数は基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
+<p><em>Underbar.php</em>は<a href="http://underscorejs.org/">Underscore.js</a>ライクなコレクション処理のためのPHPのライブラリです。
+Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.github.io/Underscore.php/">Undersocore.php</a>がありますが、<code>Iterator</code>を利用した遅延リストが生成できるなど、趣向の異なったライブラリです。
+同名のメソッドについては基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。</p>
 <h3>Features</h3>
 <ul>
-<li><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リストのサポート</li>
-<li><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>による遅延リストのサポート</li>
-<li><a href="http://lodash.com/">Lo-Dash</a>のような<a href="#chain"><code>chain()</code></a>によるメソッドチェイン</li>
+<li><a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>による遅延リストの生成</li>
+<li><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>による遅延リストの生成</li>
+<li><a href="http://lodash.com/">Lo-Dash</a>のような<a href="#chain"><code>chain()</code></a>メソッド</li>
 <li>Rubyの<a href="http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html">Enumerable</a>のような<a href="#Enumerable"><code>Enumerable</code></a>トレイト</li>
-<li>Underscore.jsにはない関数<ul>
+<li>Underscore.jsにはないメソッド<ul>
 <li><em>Collections:</em> <a href="#memoize"><code>memoize()</code></a> <a href="#toList"><code>toList</code></a></li>
 <li><em>Arrays:</em> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a></li>
 <li><em>Parallel:</em> <a href="#parMap"><code>parMap()</code></a></li>
@@ -153,7 +154,7 @@ Underscore.jsのPHPへの移植としては既に<a href="http://brianhaveri.git
 $xs = _::map([1, 2, 3, 4], function($n) { return $n * 2; });
 var_dump(is_array($xs));  // true
 var_dump($xs);  // [2, 4, 6, 8]</code></pre>
-<p>これを<code>Iterator</code>を返す実装に切り替えます。
+<p>これを<code>Iterator</code>を返す実装に切り替えてみます。
 <code>Iterator</code>は実際に要素を走査するまで計算が遅延されるので、空間効率で有利な場合があります。</p>
 <pre><code class="language-php">use Underbar\IteratorImpl as _;  // Iterator implement class
 
@@ -194,26 +195,8 @@ echo _::chain([1, 1])
           <!-- AbstractImpl {{{-->
           <article id="AbstractImpl">
             <h4 class="api">AbstractImpl <small>Class</small><a href="https://github.com/emonkak/underbar.php/blob/master/src/Underbar/AbstractImpl.php" class="source">Source</a></h4><p>Underbar.phpの各実装での共通の手続きが定義された抽象クラスです。
-すべての手続きはstaticメソッドとして定義されています。</p>
-<p>以下が抽象メソッドの一覧です。</p>
-<table>
-<thead>
-<tr>
-<th align="left">Category</th>
-<th align="left">Methods</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><em>Collections</em></td>
-<td align="left"><a href="#map"><code>map()</code></a> <a href="#filter"><code>filter()</code></a> <a href="#sortBy"><code>sortBy()</code></a> <a href="#groupBy"><code>groupBy()</code></a> <a href="#countBy"><code>countBy()</code></a> <a href="#memoize"><code>memoize()</code></a> <a href="#shuffle"><code>shuffle()</code></a></td>
-</tr>
-<tr>
-<td align="left"><em>Arrays</em></td>
-<td align="left"><code>firstN()</code> <code>lastN()</code> <a href="#initial"><code>initial()</code></a> <a href="#rest"><code>rest()</code></a> <a href="#takeWhile"><code>takeWhile()</code></a> <a href="#dropWhile"><code>dropWhile()</code></a> <a href="#unzip"><code>unzip()</code></a> <a href="#flatten"><code>flatten()</code></a> <a href="#intersection"><code>intersection()</code></a> <a href="#range"><code>range()</code></a> <a href="#cycle"><code>cycle()</code></a> <a href="#repeat"><code>repeat()</code></a> <a href="#iterate"><code>iterate()</code></a> <a href="#reverse"><code>reverse()</code></a> <a href="#sort"><code>sort()</code></a> <a href="#concat"><code>concat()</code></a></td>
-</tr>
-</tbody>
-</table>
+すべての手続きはstaticメソッドとして定義されています。
+このクラスを直接扱うことはありません。</p>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -247,7 +230,7 @@ echo _::chain([1, 1])
               <li><code><a href="#AbstractImpl">AbstractImpl</a></code></li>
               <li><code><em>GeneratorImpl</em></code></li>
             </ol><p><a href="http://php.net/manual/ja/class.generator.php"><code>Generator</code></a>を返す実装を提供するクラスです。
-<code>Generator</code>は走査を繰り返すと例外が発生することに注意して下さい。</p>
+<code>Generator</code>は<code>Iterator</code>よりも高速に動作しますが、走査を繰り返すと例外が発生することに注意して下さい。</p>
 <pre><code class="language-php">use Underbar\GeneratorImpl as _;
 
 $xs = _::range(10);
@@ -281,7 +264,7 @@ foreach ($xs as $x);</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Version 0.2から<code>chain()</code>がこのトレイトに依存するようになりました。</p>
+<p>Version 0.2.0から<code>chain()</code>がこのトレイトに依存するようになりました。</p>
 <pre><code class="language-php">class Collection implements IteratorAggregate
 {
     use Underbar\Enumerable;
@@ -330,15 +313,14 @@ $collection
         </section>
       </section>
       <section id="functions"><h2>Functions</h2>
-<p><a href="#AbstractImpl"><code>AbstractImpl</code></a>の実装クラスの<a href="#ArrayImpl"><code>ArrayImpl</code></a>か<a href="#IteratorImpl"><code>IteratorImpl</code></a>か<a href="#GeneratorImpl"><code>GeneratorImpl</code></a>、で利用可能な関数の一覧です。</p>
-<p>引数に<code>array</code>を要求するすべての関数は<a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトも取ることもできます。</p>
+<p><a href="#ArrayImpl"><code>ArrayImpl</code></a>、<a href="#IteratorImpl"><code>IteratorImpl</code></a>、<a href="#GeneratorImpl"><code>GeneratorImpl</code></a>で利用可能な関数の一覧です。</p>
 
         <section id="collections">
           <h3>Collection Functions</h3>
           <!-- each()  {{{-->
           <article id="each">
-            <h4 class="api"><em>array</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api"><em>Iterator</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を呼び出して<code>$xs</code>をそのまま返します。
+            <h4 class="api"><em>array</em> each(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api"><em>Iterator</em> each(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を呼び出して<code>$xs</code>をそのまま返します。
 <code>$f</code>は<code>(element, key, array)</code>の3つの引数を取ります。</p>
 <pre><code class="language-php">_::each([1, 2, 3], function($x, $k, $xs) {
     // 1, 2, 3を順番に出力
@@ -355,8 +337,8 @@ _::each($xs, function($x, $k, $xs) {
           <!-- }}}-->
           <!-- map()  {{{-->
           <article id="map">
-            <h4 class="api"><em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を適用します。
+            <h4 class="api"><em>array</em> map(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> map(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の各要素に対して関数<code>$f</code>を適用します。
 <code>$f</code>は<code>(element, key, array)</code>の3つの引数を取ります。</p>
 <p><code>$g</code>が与えられた場合はキーに対しても関数を適用します。
 <code>$g</code>は<code>(key, element, array)</code>の3つの引数を取ります。</p>
@@ -374,7 +356,7 @@ _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], 
           <!-- }}}-->
           <!-- reduce()  {{{-->
           <article id="reduce">
-            <h4 class="api"><em>mixed</em> reduce(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
+            <h4 class="api"><em>mixed</em> reduce(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
             <ul class="aliases">
               <li><code>inject()</code></li>
               <li><code>foldl()</code></li>
@@ -390,7 +372,7 @@ _::map([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3], 
           <!-- }}}-->
           <!-- reduceRight()  {{{-->
           <article id="reduceRight">
-            <h4 class="api"><em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
+            <h4 class="api"><em>mixed</em> reduceRight(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)</h4>
             <ul class="aliases">
               <li><code>foldr()</code></li>
             </ul><p><code>$xs</code>の要素を右結合で畳み込んだ結果を返します。
@@ -406,7 +388,7 @@ $flat = _::reduceRight($xss, function($acc, $xs) {
           <!-- }}}-->
           <!-- find()  {{{-->
           <article id="find">
-            <h4 class="api"><em>mixed</em> find(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api"><em>mixed</em> find(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
             <ul class="aliases">
               <li><code>detect()</code></li>
             </ul><p><code>$xs</code>の要素の中から<code>$f</code>が最初に<code>true</code>を返す要素を返します。
@@ -421,13 +403,13 @@ $flat = _::reduceRight($xss, function($acc, $xs) {
           <!-- }}}-->
           <!-- filter()  {{{-->
           <article id="filter">
-            <h4 class="api"><em>array</em> filter(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> filter(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api"><em>array</em> filter(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> filter(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
             <ul class="aliases">
               <li><code>select()</code></li>
             </ul><p><code>$xs</code>の要素について<code>$f</code>が<code>true</code>を返すものを選択します。
 逆の操作を行なう関数として<a href="#reject"><code>reject()</code></a>があります。</p>
-<p>フィルタリングした後の配列のキーは常に維持されることに注意して下さい。</p>
+<p>配列のキーを維持したままフィルタリングをするので、返り値の配列のインデックスは連番にならないことがあります。</p>
 <pre><code class="language-php">$evens = _::filter([1, 2, 3, 4, 5, 6], function($n) {
     return $n % 2 === 0;
 });
@@ -438,8 +420,8 @@ $flat = _::reduceRight($xss, function($acc, $xs) {
           <!-- }}}-->
           <!-- where()  {{{-->
           <article id="where">
-            <h4 class="api"><em>array</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4><p><code>$xs</code>の要素から<code>$properties</code>のキーと値のペアに一致するものを選択します。</p>
+            <h4 class="api"><em>array</em> where(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> where(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4><p><code>$xs</code>の要素から<code>$properties</code>のキーと値のペアに一致するものを選択します。</p>
 <pre><code class="language-php">$members = [
     [&#39;name&#39; =&gt; &#39;Yui Ogura&#39;, &#39;age&#39; =&gt; 17],
     [&#39;name&#39; =&gt; &#39;Rina Hidaka&#39;, &#39;age&#39; =&gt; 19],
@@ -456,7 +438,7 @@ _::where($members, [&#39;age&#39; =&gt; 24]);
           <!-- }}}-->
           <!-- findWhere()  {{{-->
           <article id="findWhere">
-            <h4 class="api"><em>mixed</em> findWhere(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4><p><code>$xs</code>の要素から<code>$properties</code>のキーと値のペアに最初に一致するものを返します。
+            <h4 class="api"><em>mixed</em> findWhere(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)</h4><p><code>$xs</code>の要素から<code>$properties</code>のキーと値のペアに最初に一致するものを返します。
 見付からなかった場合は<code>null</code>を返します。</p>
 <pre><code class="language-php">$members = [
     [&#39;name&#39; =&gt; &#39;Yukari Tamura&#39;, &#39;age&#39; =&gt; 17],
@@ -470,10 +452,10 @@ _::findWhere($members, [&#39;age&#39; =&gt; 17]);
           <!-- }}}-->
           <!-- reject()  {{{-->
           <article id="reject">
-            <h4 class="api"><em>array</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の要素について<code>$f</code>が<code>true</code>を返すものを除外します。
+            <h4 class="api"><em>array</em> reject(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> reject(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$xs</code>の要素について<code>$f</code>が<code>true</code>を返すものを除外します。
 逆の操作を行う関数として<a href="#filter"><code>filter()</code></a>があります。</p>
-<p>フィルタリングした後の配列のキーは常に維持されることに注意して下さい。</p>
+<p>配列のキーを維持したままフィルタリングをするので、返り値の配列のインデックスは連番にならないことがあります。</p>
 <pre><code class="language-php">$odds = _::reject([1, 2, 3, 4, 5, 6], function($n) {
     return $n % 2 === 0;
 });
@@ -484,7 +466,7 @@ _::findWhere($members, [&#39;age&#39; =&gt; 17]);
           <!-- }}}-->
           <!-- every()  {{{-->
           <article id="every">
-            <h4 class="api"><em>boolean</em> every(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api"><em>boolean</em> every(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
             <ul class="aliases">
               <li><code>all()</code></li>
             </ul><p><code>$xs</code>の要素がすべて<code>true</code>として評価される値であれば<code>true</code>を返します。</p>
@@ -496,7 +478,7 @@ _::findWhere($members, [&#39;age&#39; =&gt; 17]);
           <!-- }}}-->
           <!-- some()  {{{-->
           <article id="some">
-            <h4 class="api"><em>boolean</em> some(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api"><em>boolean</em> some(<em>array</em>|<em>Traversable</em> <var>$xs</var>, [<em>callable|string</em> <var>$f</var>])</h4>
             <ul class="aliases">
               <li><code>any()</code></li>
             </ul><p><code>$xs</code>の要素の中に<code>true</code>として評価される値が1つでもあれば<code>true</code>を返します。</p>
@@ -508,7 +490,7 @@ _::findWhere($members, [&#39;age&#39; =&gt; 17]);
           <!-- }}}-->
           <!-- contains()  {{{-->
           <article id="contains">
-            <h4 class="api"><em>boolean</em> contains(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)</h4><p><code>$xs</code>の要素に<code>$target</code>が含まれていれば<code>true</code>を返します。
+            <h4 class="api"><em>boolean</em> contains(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)</h4><p><code>$xs</code>の要素に<code>$target</code>が含まれていれば<code>true</code>を返します。
 比較は<code>===</code>演算子を使って厳密に行われます。</p>
 <pre><code class="language-php">_::contains([1, 2, 3], 3);
 =&gt; true</code></pre>
@@ -518,8 +500,8 @@ _::findWhere($members, [&#39;age&#39; =&gt; 17]);
           <!-- }}}-->
           <!-- invoke()  {{{-->
           <article id="invoke">
-            <h4 class="api"><em>array</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4><p><code>$xs</code>の要素をオブジェクトと見なして指定した<code>$method</code>を呼び出します。</p>
+            <h4 class="api"><em>array</em> invoke(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> invoke(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])</h4><p><code>$xs</code>の要素をオブジェクトと見なして指定した<code>$method</code>を呼び出します。</p>
 <pre><code class="language-php">$xs = [new DateTime(&#39;2000-01-01&#39;), new DateTime(&#39;2013-01-01&#39;)];
 _::invoke($xs, &#39;format&#39;, &#39;Y-m-d H:i:s&#39;);
 =&gt; [&quot;2000-01-01 00:00:00&quot;,
@@ -530,8 +512,8 @@ _::invoke($xs, &#39;format&#39;, &#39;Y-m-d H:i:s&#39;);
           <!-- }}}-->
           <!-- pluck()  {{{-->
           <article id="pluck">
-            <h4 class="api"><em>array</em> pluck(<em>array</em> <var>$xs</var>, <em>string</em> <var>$property</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> pluck(<em>array</em> <var>$xs</var>, <em>string</em> <var>$property</var>)</h4><p><code>$xs</code>の要素の中から指定した<code>$property</code>の値を抽出します。</p>
+            <h4 class="api"><em>array</em> pluck(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$property</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> pluck(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$property</var>)</h4><p><code>$xs</code>の要素の中から指定した<code>$property</code>の値を抽出します。</p>
 <pre><code class="language-php">$stooges = [
     [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 40],
     [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&gt; 50],
@@ -545,8 +527,8 @@ _::pluck($stooges, &#39;name&#39;);
           <!-- }}}-->
           <!-- max()  {{{-->
           <article id="max">
-            <h4 class="api"><em>int</em> max(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api"><em>mixed</em> max(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素の中の<em>最大</em>の値を返します。
+            <h4 class="api"><em>int</em> max(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api"><em>mixed</em> max(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素の中の<em>最大</em>の値を返します。
 <code>$f</code>に関数を指定した場合は、その関数を適用した結果を基準にします。
 <code>$f</code>に文字列を指定した場合は、該当のプロパティを基準にします。
 <code>$xs</code>が空の時は<code>-INF</code>を返します。</p>
@@ -563,8 +545,8 @@ _::max($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- min()  {{{-->
           <article id="min">
-            <h4 class="api"><em>int</em> min(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api"><em>mixed</em> min(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素の中の<em>最小</em>の値を返します。
+            <h4 class="api"><em>int</em> min(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api"><em>mixed</em> min(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素の中の<em>最小</em>の値を返します。
 <code>$f</code>に関数を指定した場合は、その関数を適用した結果を基準にします。
 <code>$f</code>に文字列を指定した場合は、該当のプロパティを基準にします。
 <code>$xs</code>が空の時は<code>INF</code>を返します。</p>
@@ -581,7 +563,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- sum()  {{{-->
           <article id="sum">
-            <h4 class="api"><em>int</em> sum(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の合計を返します。</p>
+            <h4 class="api"><em>int</em> sum(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の合計を返します。</p>
 <pre><code class="language-php">_::sum([0, 1, 2, 3, 4, 5]);
 =&gt; 15</code></pre>
 
@@ -590,7 +572,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- product()  {{{-->
           <article id="product">
-            <h4 class="api"><em>int</em> product(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の積を返します。</p>
+            <h4 class="api"><em>int</em> product(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の積を返します。</p>
 <pre><code class="language-php">_::product([0, 1, 2, 3, 4, 5]);
 =&gt; 120</code></pre>
 
@@ -599,7 +581,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- average()  {{{-->
           <article id="average">
-            <h4 class="api"><em>float</em> average(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素を数値と見なして平均を求めます。</p>
+            <h4 class="api"><em>float</em> average(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素を数値と見なして平均を求めます。</p>
 <pre><code class="language-php">_::average([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 =&gt; 4.5</code></pre>
 
@@ -608,7 +590,7 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- sortBy()  {{{-->
           <article id="sortBy">
-            <h4 class="api"><em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>を比較関数<code>$f</code>を使ってソートします。
+            <h4 class="api"><em>array</em> sortBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4><p><code>$xs</code>を比較関数<code>$f</code>を使ってソートします。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。
 比較関数は事前にすべての要素に対して計算するので、要素の数だけしか呼び出されません。</p>
 <pre><code class="language-php">_::sortBy([1, 2, 3, 4, 5, 6], function($n) { return sin($n); });
@@ -619,8 +601,8 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- groupBy()  {{{-->
           <article id="groupBy">
-            <h4 class="api"><em>array</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
-            <h4 class="api stream"><em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にグループ化します。
+            <h4 class="api"><em>array</em> groupBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api stream"><em>Iterator</em> groupBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にグループ化します。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。</p>
 <pre><code class="language-php">_::groupBy([1.3, 2.1, 2.4], function($n) { return floor($n); });
 =&gt; [1 =&gt; [1.3], 2 =&gt; [2.1, 2.4]]</code></pre>
@@ -628,10 +610,30 @@ _::min($stooges, &#39;age&#39;);
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
+          <!-- indexBy()  {{{-->
+          <article id="indexBy">
+            <h4 class="api"><em>array</em> indexBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> indexBy(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果をキーとした新しい配列にします。
+<code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。</p>
+<pre><code class="language-php">$stooges = [
+    [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 40],
+    [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&gt; 50],
+    [&#39;name&#39; =&gt; &#39;curly&#39;, &#39;age&#39; =&gt; 60]
+];
+_::indexBy(stooges, &#39;age&#39;);
+=&gt; [
+  40 =&gt; [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 40],
+  50 =&gt; [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&gt; 50],
+  60 =&gt; [&#39;name&#39; =&gt; &#39;curly&#39;, &#39;age&#39; =&gt; 60]
+]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
           <!-- countBy()  {{{-->
           <article id="countBy">
-            <h4 class="api"><em>array</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
-            <h4 class="api stream"><em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にカウントします。
+            <h4 class="api"><em>array</em> countBy(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4>
+            <h4 class="api stream"><em>Iterator</em> countBy(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)</h4><p><code>$xs</code>の要素を<code>$f</code>を呼び出した結果を基準にカウントします。
 <code>$f</code>に文字列を指定した場合は該当するプロパティを基準にします。</p>
 <pre><code class="language-php">_::countBy([1, 2, 3, 4, 5], function($n) {
   return $n % 2 === 0 ? &#39;even&#39; : &#39;odd&#39;;
@@ -643,8 +645,19 @@ _::min($stooges, &#39;age&#39;);
           <!-- }}}-->
           <!-- shuffle()  {{{-->
           <article id="shuffle">
-            <h4 class="api"><em>array</em> shuffle(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api stream"><em>Iterator</em> shuffle(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素をシャッフルします。
+            <h4 class="api"><em>array</em> shuffle(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api stream"><em>Iterator</em> shuffle(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素をシャッフルします。
+内部で組込みの<a href="http://php.net/manual/ja/function.shuffle.php"><code>shuffle()</code></a>を利用しています。</p>
+<pre><code class="language-php">_::shuffle([1, 2, 3, 4, 5, 6]);
+=&gt; [4, 1, 6, 3, 5, 2]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- sample()  {{{-->
+          <article id="sample">
+            <h4 class="api"><em>mixed</em> sample(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> sample(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$n</var>)</h4><p><code>$xs</code>の要素をシャッフルします。
 内部で組込みの<a href="http://php.net/manual/ja/function.shuffle.php"><code>shuffle()</code></a>を利用しています。</p>
 <pre><code class="language-php">_::shuffle([1, 2, 3, 4, 5, 6]);
 =&gt; [4, 1, 6, 3, 5, 2]</code></pre>
@@ -703,9 +716,9 @@ $fibs[10];
           <h3>Array Functions</h3>
           <!-- first()  {{{-->
           <article id="first">
-            <h4 class="api"><em>mixed</em> first(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api"><em>array</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
+            <h4 class="api"><em>mixed</em> first(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api"><em>array</em> first(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> first(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
             <ul class="aliases">
               <li><code>head()</code></li>
               <li><code>take()</code></li>
@@ -723,7 +736,7 @@ _::first([1, 2, 3], 2);
           <!-- }}}-->
           <!-- firstOrElse()  {{{-->
           <article id="firstOrElse">
-            <h4 class="api"><em>mixed</em> firstOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>の最初の要素を返します。見付からなかった場合は<code>$default</code>を返します。</p>
+            <h4 class="api"><em>mixed</em> firstOrElse(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>の最初の要素を返します。見付からなかった場合は<code>$default</code>を返します。</p>
 <pre><code class="language-php">_::firstOrElse([1, 2, 3], 10);
 =&gt; 1
 
@@ -735,8 +748,8 @@ _::firstOrElse([], 10);
           <!-- }}}-->
           <!-- initial()  {{{-->
           <article id="initial">
-            <h4 class="api"><em>array</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4><p><code>$xs</code>の末尾から<code>$n</code>個の要素を除いた新しい配列を返します。</p>
+            <h4 class="api"><em>array</em> initial(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> initial(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4><p><code>$xs</code>の末尾から<code>$n</code>個の要素を除いた新しい配列を返します。</p>
 <pre><code class="language-php">_::initial([5, 4, 3, 2, 1]);
 =&gt; [5, 4, 3, 2]</code></pre>
 
@@ -745,9 +758,8 @@ _::firstOrElse([], 10);
           <!-- }}}-->
           <!-- last()  {{{-->
           <article id="last">
-            <h4 class="api"><em>mixed</em> last(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api"><em>SplQueue</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4>
-            <h4 class="api stream"><em>Iterator</em> Iterator(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4><p><code>$xs</code>の最後の要素を返します。
+            <h4 class="api"><em>mixed</em> last(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api stream"><em>Iterator</em> Iterator(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em> <var>$n</var>)</h4><p><code>$xs</code>の最後の要素を返します。
 <code>$n</code>に2以上の値が指定された時は末尾の<code>$n</code>個の要素を返します。</p>
 <pre><code class="language-php">_::last([5, 4, 3, 2, 1]);
 =&gt; 1
@@ -759,7 +771,7 @@ _::last([5, 4, 3, 2, 1], 2);
           <!-- }}}-->
           <!-- lastOrElse()  {{{-->
           <article id="lastOrElse">
-            <h4 class="api"><em>mixed</em> lastOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>の最後の要素を返します。見付からなかった場合は<code>$default</code>を返します。</p>
+            <h4 class="api"><em>mixed</em> lastOrElse(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>の最後の要素を返します。見付からなかった場合は<code>$default</code>を返します。</p>
 <pre><code class="language-php">_::lastOrElse([1, 2, 3], 10);
 =&gt; 3
 
@@ -771,8 +783,8 @@ _::lastOrElse([], 10);
           <!-- }}}-->
           <!-- rest()  {{{-->
           <article id="rest">
-            <h4 class="api"><em>array</em> rest(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> rest(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
+            <h4 class="api"><em>array</em> rest(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> rest(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])</h4>
             <ul class="aliases">
               <li><code>tail()</code></li>
               <li><code>drop()</code></li>
@@ -785,8 +797,8 @@ _::lastOrElse([], 10);
           <!-- }}}-->
           <!-- takeWhile()  {{{-->
           <article id="takeWhile">
-            <h4 class="api"><em>array</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素の配列を返します。</p>
+            <h4 class="api"><em>array</em> takeWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> takeWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素の配列を返します。</p>
 <pre><code class="language-php">_::takeWhile([1, 2, 3, 4, 5, 1, 2, 3], function($x) {
     return $x &lt; 3;
 });
@@ -797,8 +809,8 @@ _::lastOrElse([], 10);
           <!-- }}}-->
           <!-- dropWhile()  {{{-->
           <article id="dropWhile">
-            <h4 class="api"><em>array</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素を除いた配列を返します。</p>
+            <h4 class="api"><em>array</em> dropWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> dropWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)</h4><p><code>$f</code>が最初に<code>true</code>を返すまでの要素を除いた配列を返します。</p>
 <pre><code class="language-php">_::dropWhile([1, 2, 3, 4, 5, 1, 2, 3], function($x) {
     return $x &lt; 3;
 });
@@ -809,8 +821,8 @@ _::lastOrElse([], 10);
           <!-- }}}-->
           <!-- compact()  {{{-->
           <article id="compact">
-            <h4 class="api"><em>array</em> compact(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> compact(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の中から<code>false</code>として評価される値を除いた新しい配列を返します。</p>
+            <h4 class="api"><em>array</em> compact(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> compact(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の中から<code>false</code>として評価される値を除いた新しい配列を返します。</p>
 <pre><code class="language-php">_::compact([0, 1, false, 2, &#39;&#39;, 3]);
 =&gt; [1, 2, 3]</code></pre>
 
@@ -819,8 +831,8 @@ _::lastOrElse([], 10);
           <!-- }}}-->
           <!-- flatten()  {{{-->
           <article id="flatten">
-            <h4 class="api"><em>array</em> flatten(<em>array</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> flatten(<em>array</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])</h4><p>ネストした配列を平坦化します。
+            <h4 class="api"><em>array</em> flatten(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> flatten(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])</h4><p>ネストした配列を平坦化します。
 <code>$shallow</code>が<code>true</code>の時は1つ分の深さしか平坦化しません。</p>
 <pre><code class="language-php">_::flatten([1, [2], [3, [[4]]]]);
 =&gt; [1, 2, 3, 4]
@@ -833,8 +845,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- without()  {{{-->
           <article id="without">
-            <h4 class="api"><em>array</em> without(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> without(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])</h4><p><code>$xs</code>から<code>$values</code>の値を除いた配列を返します。</p>
+            <h4 class="api"><em>array</em> without(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> without(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])</h4><p><code>$xs</code>から<code>$values</code>の値を除いた配列を返します。</p>
 <pre><code class="language-php">_::without([1, 2, 1, 0, 3, 1, 4], 0, 1);
 =&gt; [2, 3, 4]</code></pre>
 
@@ -843,8 +855,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- union()  {{{-->
           <article id="union">
-            <h4 class="api"><em>array</em> union(<em>array</em> <var>$xss...</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> union(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列<code>$xss</code>を結合した上で、値が一意になる配列を返します。
+            <h4 class="api"><em>array</em> union(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> union(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)</h4><p>引数で指定した配列<code>$xss</code>を結合した上で、値が一意になる配列を返します。
 <code>concat()</code>した後に<code>uniq()</code>を呼び出すのと等価です。</p>
 <pre><code class="language-php">_::union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
 =&gt; [1, 2, 3, 101, 10]</code></pre>
@@ -854,8 +866,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- intersection()  {{{-->
           <article id="intersection">
-            <h4 class="api"><em>array</em> intersection(<em>array</em> <var>$xss...</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> intersection(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定した配列すべてに存在する値でのみ構成される配列を新しく返します。</p>
+            <h4 class="api"><em>array</em> intersection(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> intersection(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)</h4><p>引数で指定した配列すべてに存在する値でのみ構成される配列を新しく返します。</p>
 <pre><code class="language-php">_::intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
 =&gt; [1, 2]</code></pre>
 
@@ -864,8 +876,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- difference()  {{{-->
           <article id="difference">
-            <h4 class="api"><em>array</em> difference(<em>array</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> difference(<em>array</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)</h4><p><code>$xs</code>から<code>$others</code>の配列の要素を取り除いた新しい配列を返します。</p>
+            <h4 class="api"><em>array</em> difference(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> difference(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)</h4><p><code>$xs</code>から<code>$others</code>の配列の要素を取り除いた新しい配列を返します。</p>
 <pre><code class="language-php">_::difference([1, 2, 3, 4, 5], [5, 2, 10]);
 =&gt; [1, 3, 4]</code></pre>
 
@@ -874,8 +886,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- uniq()  {{{-->
           <article id="uniq">
-            <h4 class="api"><em>array</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api"><em>array</em> uniq(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> uniq(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])</h4>
             <ul class="aliases">
               <li><code>unique()</code></li>
             </ul><p><code>$xs</code>から要素の重複を排除します。
@@ -890,8 +902,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- zip()  {{{-->
           <article id="zip">
-            <h4 class="api"><em>array</em> zip(<em>array</em> <var>$xss...</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> zip(<em>array</em> <var>$xss...</var>)</h4><p><code>$xss</code>の各要素のインデックスが対応するもの同士を配列にして返します。</p>
+            <h4 class="api"><em>array</em> zip(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> zip(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)</h4><p><code>$xss</code>の各要素のインデックスが対応するもの同士を配列にして返します。</p>
 <p>指定した配列の長さが違う場合は小さいものに合わせます。
 この挙動はUnderscore.jsとは違いますが、引数に無限リストが含まれている時に計算が終了しなくなるためです。</p>
 <pre><code class="language-php">_::zip([&#39;moe&#39;, &#39;larry&#39;, &#39;curly&#39;], [30, 40, 50], [true, false, false]);
@@ -902,8 +914,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- zipWith()  {{{-->
           <article id="zipWith">
-            <h4 class="api"><em>array</em> zipWith(<em>array</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> zipWith(<em>array</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)</h4><p><a href="#zip"><code>zip()</code></a>した結果に<code>$f</code>を適用させます。</p>
+            <h4 class="api"><em>array</em> zipWith(<em>array</em>|<em>Traversable</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> zipWith(<em>array</em>|<em>Traversable</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)</h4><p><a href="#zip"><code>zip()</code></a>した結果に<code>$f</code>を適用させます。</p>
 <pre><code class="language-php">_::zipWith([1, 2, 3], [4, 5, 6], function($x, $y) {
     return $x + $y;
 });
@@ -914,8 +926,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- unzip()  {{{-->
           <article id="unzip">
-            <h4 class="api"><em>array</em> unzip(<em>array</em> <var>$xss</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> unzip(<em>array</em> <var>$xss</var>)</h4><p>動作自体は<a href="#zip"><code>zip()</code></a>と同じですが、引数に配列の配列を受けとります。</p>
+            <h4 class="api"><em>array</em> unzip(<em>array</em>|<em>Traversable</em> <var>$xss</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> unzip(<em>array</em>|<em>Traversable</em> <var>$xss</var>)</h4><p>動作自体は<a href="#zip"><code>zip()</code></a>と同じですが、引数に配列の配列を受けとります。</p>
 <pre><code class="language-php">_::unzip([[&#39;moe&#39;, &#39;larry&#39;, &#39;curly&#39;], [30, 40, 50], [true, false, false]]);
 =&gt; [[&quot;moe&quot;, 30, true], [&quot;larry&quot;, 40, false], [&quot;curly&quot;, 50, false]]</code></pre>
 
@@ -924,8 +936,8 @@ _::flatten([1, [2], [3, [[4]]]], true);
           <!-- }}}-->
           <!-- object()  {{{-->
           <article id="object">
-            <h4 class="api"><em>array</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])</h4><p><code>$xs</code>の要素をキーとして<code>$values</code>の要素を値として連想配列を作成します。
+            <h4 class="api"><em>array</em> object(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> object(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])</h4><p><code>$xs</code>の要素をキーとして<code>$values</code>の要素を値として連想配列を作成します。
 <code>$values</code>が与えらなかった場合は<code>$xs</code>にキーと値のペアが格納されていることを期待します。</p>
 <pre><code class="language-php">_::object([&#39;moe&#39;, &#39;larry&#39;, &#39;curly&#39;], [30, 40, 50]);
 =&gt; [&quot;moe&quot; =&gt; 30, &quot;larry&quot; =&gt; 40, &quot;curly&quot; =&gt; 50]
@@ -938,8 +950,8 @@ _::object([[&#39;moe&#39;, 30], [&#39;larry&#39;, 40], [&#39;curly&#39;, 50]]);
           <!-- }}}-->
           <!-- indexOf()  {{{-->
           <article id="indexOf">
-            <h4 class="api"><em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4>
-            <h4 class="api"><em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><code>$xs</code>の中から<code>$value</code>のあるインデックスを探します。
+            <h4 class="api"><em>int</em> indexOf(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])</h4>
+            <h4 class="api"><em>int</em> indexOf(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><code>$xs</code>の中から<code>$value</code>のあるインデックスを探します。
 存在しなかった場合は<code>-1</code>を返します。
 <code>$fromIndex</code>を指定した場合はそのインデックスから探索を開始します。</p>
 <p>ソート済みの配列であれば<code>$isSorted</code>に<code>true</code>を指定することで、二分探索による効率的な探索を実行できます。</p>
@@ -951,7 +963,7 @@ _::object([[&#39;moe&#39;, 30], [&#39;larry&#39;, 40], [&#39;curly&#39;, 50]]);
           <!-- }}}-->
           <!-- lastIndexOf()  {{{-->
           <article id="lastIndexOf">
-            <h4 class="api"><em>int</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><a href="#indexOf"><code>indexOf()</code></a>の末尾から探索するバージョンです。</p>
+            <h4 class="api"><em>int</em> lastIndexOf(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])</h4><p><a href="#indexOf"><code>indexOf()</code></a>の末尾から探索するバージョンです。</p>
 <pre><code class="language-php">_::lastIndexOf([1, 2, 3, 1, 2, 3], 2);
 =&gt; 4</code></pre>
 
@@ -960,7 +972,7 @@ _::object([[&#39;moe&#39;, 30], [&#39;larry&#39;, 40], [&#39;curly&#39;, 50]]);
           <!-- }}}-->
           <!-- sortedIndex()  {{{-->
           <article id="sortedIndex">
-            <h4 class="api"><em>array</em> sortedIndex(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>callable|string</em> <var>$f</var>])</h4><p>二分探索を実行して<code>$value</code>の挿入位置を調べます。</p>
+            <h4 class="api"><em>array</em> sortedIndex(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>callable|string</em> <var>$f</var>])</h4><p>二分探索を実行して<code>$value</code>の挿入位置を調べます。</p>
 <pre><code class="language-php">_::sortedIndex([10, 20, 30, 40, 50], 35);
 =&gt; 3
 
@@ -976,14 +988,14 @@ _::sortedIndex($stooges, [&#39;name&#39; =&gt; &#39;larry&#39;, &#39;age&#39; =&
           <!-- }}}-->
           <!-- cycle()  {{{-->
           <article id="cycle">
-            <h4 class="api"><em>array</em> cycle(<em>array</em> <var>$xs</var>, <em>int</em>, <var>$n</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> cycle(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n</var>])</h4><p><code>$xs</code>の要素が<code>$n</code>で指定された回数だけ繰り返された配列を返します。
+            <h4 class="api"><em>array</em> cycle(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em>, <var>$n</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> cycle(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n</var>])</h4><p><code>$xs</code>の要素が<code>$n</code>で指定された回数だけ繰り返された配列を返します。
 <code>$n</code>が与えられなかった場合は繰り返しを無限に続けます。
 <a href="#ArrayImpl"><code>ArrayImpl</code></a>から<code>$n</code>を与えずに呼び出された場合は<a href="http://php.net/manual/ja/class.overflowexception.php"><code>OverflowException</code></a>が発生します。</p>
 <pre><code class="language-php">_::cycle([1, 2], 2);
 =&gt; [1, 2, 1, 2]
 
-_::chain([1, 2, 3])-&gt;cycle()-&gt;take(5)-&gt;toList()-&gt;value();
+_::chain([1, 2, 3])-&gt;cycle()-&gt;take(5)-&gt;toList();
 =&gt; [1, 2, 3, 1, 2]</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
@@ -1022,8 +1034,8 @@ _::chain(1)-&gt;repeat()-&gt;take(5)-&gt;toList()-&gt;value();
           <!-- }}}-->
           <!-- reverse()  {{{-->
           <article id="reverse">
-            <h4 class="api"><em>array</em> reverse(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api stream"><em>Iterator</em> reverse(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の順序を逆順にした配列を返します。</p>
+            <h4 class="api"><em>array</em> reverse(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api stream"><em>Iterator</em> reverse(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の要素の順序を逆順にした配列を返します。</p>
 <pre><code class="language-php">_::reverse([1, 2, 3]);
 =&gt; [3, 2, 1]</code></pre>
 
@@ -1032,8 +1044,8 @@ _::chain(1)-&gt;repeat()-&gt;take(5)-&gt;toList()-&gt;value();
           <!-- }}}-->
           <!-- sort()  {{{-->
           <article id="sort">
-            <h4 class="api"><em>array</em> sort(<em>array</em> <var>$xs</var> [, <em>callable</em> <var>$compare</var>])</h4>
-            <h4 class="api stream"><em>Iterator</em> sort(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>をPHP組み込みの<a href="http://www.php.net/manual/ja/function.sort.php"><code>sort</code></a>を使って要素を昇順にソートします。
+            <h4 class="api"><em>array</em> sort(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable</em> <var>$compare</var>])</h4>
+            <h4 class="api stream"><em>Iterator</em> sort(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>をPHP組み込みの<a href="http://www.php.net/manual/ja/function.sort.php"><code>sort</code></a>を使って要素を昇順にソートします。
 比較関数<code>$compare</code>が与えられた場合は<a href="http://www.php.net/manual/ja/function.usort.php"><code>usort</code></a>でソートされます。</p>
 <pre><code class="language-php">_::sort([2, 3, 1]);
 =&gt; [1, 2, 3]
@@ -1049,8 +1061,8 @@ _::sort([2, 3, 1], function($x, $y) {
           <!-- }}}-->
           <!-- concat()  {{{-->
           <article id="concat">
-            <h4 class="api"><em>array</em> concat(<em>array</em> <var>$xss...</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> concat(<em>array</em> <var>$xss...</var>)</h4><p>引数で指定された配列<code>$xss</code>を1つの配列に結合します。</p>
+            <h4 class="api"><em>array</em> concat(<em>array</em>|<em>Traversable</em> <var>$xs...</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> concat(<em>array</em>|<em>Traversable</em> <var>$xs...</var>)</h4><p>引数で指定された配列<code>$xs</code>を1つの配列に結合します。</p>
 <pre><code class="language-php">_::concat([1, 2, 3], [4, 5, 6])
 =&gt; [1, 2, 3, 4, 5, 6]</code></pre>
 
@@ -1059,7 +1071,7 @@ _::sort([2, 3, 1], function($x, $y) {
           <!-- }}}-->
           <!-- join()  {{{-->
           <article id="join">
-            <h4 class="api"><em>array</em> join(<em>array</em> <var>$xs</var> [ , <em>string</em> <var>$separator = ","</var>])</h4><p><code>$xs</code>の要素を<code>$separator</code>を区切文字として文字列に結合します。
+            <h4 class="api"><em>array</em> join(<em>array</em>|<em>Traversable</em> <var>$xs</var> [ , <em>string</em> <var>$separator = ","</var>])</h4><p><code>$xs</code>の要素を<code>$separator</code>を区切文字として文字列に結合します。
 PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>implode</code></a>と等価な処理です。</p>
 <pre><code class="language-php">_::join([&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;], &#39;,&#39;)
 =&gt; &quot;foo,bar,baz&quot;</code></pre>
@@ -1072,8 +1084,8 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <h3>Object Functions</h3>
           <!-- keys()  {{{-->
           <article id="keys">
-            <h4 class="api"><em>array</em> keys(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> keys(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>からキーをすべて取得します。</p>
+            <h4 class="api"><em>array</em> keys(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> keys(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>からキーをすべて取得します。</p>
 <pre><code class="language-php">_::keys([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]);
 =&gt; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]</code></pre>
 
@@ -1082,8 +1094,8 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <!-- }}}-->
           <!-- values()  {{{-->
           <article id="values">
-            <h4 class="api"><em>array</em> values(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> values(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>から値をすべて取得します。</p>
+            <h4 class="api"><em>array</em> values(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> values(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>から値をすべて取得します。</p>
 <pre><code class="language-php">_::values([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]);
 =&gt; [1, 2, 3]</code></pre>
 
@@ -1092,8 +1104,8 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <!-- }}}-->
           <!-- pairs()  {{{-->
           <article id="pairs">
-            <h4 class="api"><em>array</em> pairs(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> pairs(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>の各要素をキーと値のペアの配列にして返します。</p>
+            <h4 class="api"><em>array</em> pairs(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4>
+            <h4 class="api lazy"><em>Iterator</em> pairs(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>の各要素をキーと値のペアの配列にして返します。</p>
 <pre><code class="language-php">_::pairs([&#39;one&#39; =&gt; 1, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3]);
 =&gt; [[&quot;one&quot;, 1], [&quot;two&quot;, 2], [&quot;three&quot;, 3]]</code></pre>
 
@@ -1102,8 +1114,7 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <!-- }}}-->
           <!-- invert()  {{{-->
           <article id="invert">
-            <h4 class="api"><em>array</em> invert(<em>array</em> <var>$xs</var>)</h4>
-            <h4 class="api lazy"><em>Iterator</em> invert(<em>array</em> <var>$xs</var>)</h4><p><code>$xs</code>のキーと値を入れ替えます。
+            <h4 class="api"><em>array</em> invert(<em>array</em>|<em>Traversable</em> <var>$xs</var>)</h4><p><code>$xs</code>のキーと値を入れ替えます。
 キーが重複した場合は前のものを上書きします。
 組み込みの<a href="http://www.php.net/manual/ja/function.array-flip.php"><code>array_flip()</code></a>と等価な操作です。</p>
 <pre><code class="language-php">_::invert([&quot;Moe&quot; =&gt; &quot;Moses&quot;, &quot;Larry&quot; =&gt; &quot;Louis&quot;, &quot;Curly&quot; =&gt; &quot;Jerome&quot;]);
@@ -1114,7 +1125,7 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <!-- }}}-->
           <!-- extend()  {{{-->
           <article id="extend">
-            <h4 class="api"><em>array</em> extend(<em>array</em> <var>$destination</var> [, <em>array</em> <var>$sources...</var>])</h4><p><code>$destination</code>を与えられた<code>$sources</code>で拡張します。
+            <h4 class="api"><em>array</em> extend(<em>array</em>|<em>Traversable</em> <var>$destination</var> [, <em>array</em> <var>$sources...</var>])</h4><p><code>$destination</code>を与えられた<code>$sources</code>で拡張します。
 同名のキーが存在した場合は前のものを上書きします。
 組み込みの<a href="http://php.net/manual/ja/function.array-merge.php"><code>array_merge()</code></a>と等価な操作です。</p>
 <pre><code class="language-php">_::extend([&#39;name&#39; =&gt; &#39;moe&#39;], [&#39;age&#39; =&gt; 50]);
@@ -1125,7 +1136,7 @@ PHP組み込みの<a href="http://php.net/manual/ja/function.implode."><code>imp
           <!-- }}}-->
           <!-- get()  {{{-->
           <article id="get">
-            <h4 class="api"><em>mixed</em> get(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>)</h4><p><code>$xs</code>からキーが<code>$key</code>の値を取り出します。
+            <h4 class="api"><em>mixed</em> get(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$key</var>)</h4><p><code>$xs</code>からキーが<code>$key</code>の値を取り出します。
 見つからなかった時は<code>null</code>を返します。
 <code>getOrElse($xs, $key, null)</code>と等価な操作です。</p>
 <pre><code class="language-php">_::get([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;], &#39;foo&#39;);
@@ -1139,7 +1150,7 @@ _::get([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;],
           <!-- }}}-->
           <!-- getOrElse()  {{{-->
           <article id="getOrElse">
-            <h4 class="api"><em>mixed</em> getOrElse(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>からキーが<code>$key</code>の値を取り出します。
+            <h4 class="api"><em>mixed</em> getOrElse(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$key</var>, <em>mixed</em> <var>$default</var>)</h4><p><code>$xs</code>からキーが<code>$key</code>の値を取り出します。
 見つからなかった時は<code>$default</code>を返します。</p>
 <pre><code class="language-php">_::getOrElse([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&#39;], &#39;foo&#39;, &#39;payo&#39;);
 =&gt; &quot;bar&quot;
@@ -1152,8 +1163,8 @@ _::getOrElse([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&
           <!-- }}}-->
           <!-- pick()  {{{-->
           <article id="pick">
-            <h4 class="api"><em>array</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4><p><code>$xs</code>の要素の中から<code>$keys</code>で指定されたキーの値を取り出します。</p>
+            <h4 class="api"><em>array</em> pick(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> pick(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4><p><code>$xs</code>の要素の中から<code>$keys</code>で指定されたキーの値を取り出します。</p>
 <pre><code class="language-php">_::pick([&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50, &#39;userid&#39; =&gt; &#39;moe1&#39;], &#39;name&#39;, &#39;age&#39;);
 =&gt; [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50]</code></pre>
 
@@ -1162,8 +1173,8 @@ _::getOrElse([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&
           <!-- }}}-->
           <!-- omit()  {{{-->
           <article id="omit">
-            <h4 class="api"><em>array</em> omit(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> omit(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4><p><code>$xs</code>の要素の中から<code>$keys</code>で指定されたキーの<em>以外</em>の値を取り出します。</p>
+            <h4 class="api"><em>array</em> omit(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> omit(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])</h4><p><code>$xs</code>の要素の中から<code>$keys</code>で指定されたキーの<em>以外</em>の値を取り出します。</p>
 <pre><code class="language-php">_::pick([&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50, &#39;userid&#39; =&gt; &#39;moe1&#39;], &#39;userid&#39;);
 =&gt; [&#39;name&#39; =&gt; &#39;moe&#39;, &#39;age&#39; =&gt; 50]</code></pre>
 
@@ -1172,8 +1183,8 @@ _::getOrElse([&#39;foo&#39; =&gt; &#39;bar&#39;, &#39;hoge&#39; =&gt; &#39;fuga&
           <!-- }}}-->
           <!-- defaults()  {{{-->
           <article id="defaults">
-            <h4 class="api"><em>array</em> defaults(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])</h4>
-            <h4 class="api lazy"><em>Iterator</em> defaults(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])</h4><p><code>$xs</code>に存在しないキーの値を<code>$defaults</code>から補完します。
+            <h4 class="api"><em>array</em> defaults(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])</h4>
+            <h4 class="api lazy"><em>Iterator</em> defaults(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])</h4><p><code>$xs</code>に存在しないキーの値を<code>$defaults</code>から補完します。
 <code>isset()</code>でキーの存在を確認しているので<code>null</code>は存在しないものとして扱われます。</p>
 <pre><code class="language-php">$iceCream = [&#39;flavor&#39; =&gt; &#39;chocolate&#39;];
 _::defaults($iceCream, [&#39;flavor&#39; =&gt; &#39;vanilla&#39;, &#39;sprinkles&#39; =&gt; &#39;lots&#39;]);
@@ -1192,6 +1203,17 @@ _::defaults($iceCream, [&#39;flavor&#39; =&gt; &#39;vanilla&#39;, &#39;sprinkles
   -&gt;value();
 =&gt; // [1 =&gt; 2, 3 =&gt; 200] (var_dump)
 =&gt; [1 =&gt; 4, 3 =&gt; 40000]</code></pre>
+
+            <p class="top"><a href="#">TOP</a></p>
+          </article>
+          <!-- }}}-->
+          <!-- isEmpty()  {{{-->
+          <article id="isEmpty">
+            <h4 class="api"><em>boolean</em> isEmpty(<em>mixed</em> <var>$xs</var>)</h4><p>与えられた配列か<code>Iterator</code>や<code>IteratorAggregate</code>などの<code>Traversable</code>なオブジェクトが空かどうかを返します。</p>
+<pre><code class="language-php">_::isEmpty([1, 2, 3]);
+=&gt; false
+_::isEmpty(new EmptyIterator());
+=&gt; true</code></pre>
 
             <p class="top"><a href="#">TOP</a></p>
           </article>
@@ -1233,25 +1255,12 @@ _::range(0);
             <p class="top"><a href="#">TOP</a></p>
           </article>
           <!-- }}}-->
-          <!-- lazy()  {{{-->
-          <article id="lazy">
-            <h4 class="api"><em>IteratorAggregate</em> lazy(<em>callable</em> <var>$f</var>)</h4><p><a href="http://php.net/manual/ja/class.traversable.php"><code>Traversable</code></a>なオブジェクトを返す関数から<a href="http://php.net/manual/ja/class.iteratoraggregate.php"><code>IteratorAggregate</code></a>を生成します。</p>
-<pre><code class="language-php">$xs = _::lazy(function() {
-    return new ArrayIterator([1, 2, 3]);
-});
-foreach ($xs as $x) {
-    echo $x;  // 1, 2, 3
-}</code></pre>
-
-            <p class="top"><a href="#">TOP</a></p>
-          </article>
-          <!-- }}}-->
         </section>
         <section id="parallel">
           <h3>Parallel Functions</h3>
           <!-- parMap()  {{{-->
           <article id="parMap">
-            <h4 class="api"><em>Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)</h4><p><a href="#map"><code>map()</code></a>の並列実行版です。
+            <h4 class="api"><em>Parallel</em> parMap(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)</h4><p><a href="#map"><code>map()</code></a>の並列実行版です。
 <code>$xs</code>の各要素に対して関数<code>$f</code>を並列に適用した結果を返す<code>Parallel</code>オブジェクトを返します。
 <code>Parallel</code>クラスは<a href="http://php.net/manual/ja/class.iterator.php"><code>Iterator</code></a>インターフェイスと<a href="http://php.net/manual/ja/class.countable.php"><code>Countable</code></a>インターフェイスを実装しています。</p>
 <p><code>$f</code>は引数<code>(element)</code>を1つだけ取る関数です。
@@ -1335,12 +1344,29 @@ $youngest = _::chain($stooges)
         </section>
       </section>
       <section id="change-log"><h2>Change Log</h2>
+<h3>0.3.0 - Sep 7, 2013</h3>
+<h4>Removal</h4>
+<ul>
+<li><code>lazy()</code>を廃止</li>
+<li><a href="#map"><code>map()</code></a>の第3引数のキーの選択関数を廃止。代用として<a href="#indexBy"><code>indexBy()</code></a>が使用できる</li>
+<li><a href="#invert"><code>invert()</code></a>が常に配列を返すように変更(<code>Iterator</code>を返すことはなくなった)</li>
+</ul>
+<h4>Feature</h4>
+<ul>
+<li>指定した関数の返り値をキーとした配列を生成する<a href="#indexBy"><code>indexBy()</code></a>を追加</li>
+<li>配列からランダムに値を選択する<a href="#sample"><code>sample()</code></a>を追加</li>
+<li>配列か<code>Traversable</code>なオブジェクトが空かどうかを返す<a href="#isEmpty"><code>isEmpty()</code></a>を追加</li>
+</ul>
+<h4>Fix</h4>
+<ul>
+<li>[<code>memoize()</code>]が返す<code>MemoizeIterator</code>が正しいキーを返さなかったのを修正</li>
+</ul>
 <h3>0.2.3 - Aug 7, 2013</h3>
 <ul>
-<li><a href="#lazy"><code>lazy()</code></a>の追加</li>
+<li><code>lazy()</code>の追加</li>
 <li><a href="#map"><code>map()</code></a>の第3引数にキーの選択関数を指定できるようにした</li>
 <li><a href="#invert"><code>invert()</code></a>が<code>Iterator</code>を返せるようにした</li>
-<li><a href="#parMap"><code>parMap()</code></a>で利用される<code>Parallel</code>クラスのデストラクタでワーカープロセスの終了を待つようにした</li>
+<li><a href="#parMap"><code>parMap()</code></a>で利用される<code>Parallel</code>クラスのデストラクタでワーカープロセスの終了を待つように修正</li>
 </ul>
 <h3>0.2.2 - Aug 4, 2013</h3>
 <ul>

@@ -55,6 +55,7 @@ html(lang="ja")
         dd.menu-entry: a(href="#average") average
         dd.menu-entry: a(href="#sortBy") sortBy
         dd.menu-entry: a(href="#groupBy") groupBy
+        dd.menu-entry: a(href="#indexBy") indexBy
         dd.menu-entry: a(href="#countBy") countBy
         dd.menu-entry: a(href="#shuffle") shuffle
         dd.menu-entry: a(href="#memoize") memoize
@@ -110,11 +111,11 @@ html(lang="ja")
         dd.menu-entry: a(href="#omit") omit
         dd.menu-entry: a(href="#defaults") defaults
         dd.menu-entry: a(href="#tap") tap
+        dd.menu-entry: a(href="#isEmpty") isEmpty
 
         dt.menu-title: a(href="#utility") Utility
         dd.menu-entry: a(href="#identity") identity
         dd.menu-entry: a(href="#range") range
-        dd.menu-entry: a(href="#lazy") lazy
 
         dt.menu-title: a(href="#parallel") Parallel
         dd.menu-entry: a(href="#parMap") parMap
@@ -207,23 +208,23 @@ html(lang="ja")
 
           // each()  {{{
           article#each
-            h4.api <em>array</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            h4.api <em>Iterator</em> each(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> each(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>Iterator</em> each(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/each.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // map()  {{{
           article#map
-            h4.api <em>array</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])
-            h4.api.lazy <em>Iterator</em> map(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var> [, <em>callable</em> <var>$g</var>])
+            h4.api <em>array</em> map(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> map(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/map.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // reduce()  {{{
           article#reduce
-            h4.api <em>mixed</em> reduce(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            h4.api <em>mixed</em> reduce(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
             ul.aliases
               li: code inject()
               li: code foldl()
@@ -233,7 +234,7 @@ html(lang="ja")
 
           // reduceRight()  {{{
           article#reduceRight
-            h4.api <em>mixed</em> reduceRight(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
+            h4.api <em>mixed</em> reduceRight(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>mixed</em> <var>$acc</var>)
             ul.aliases
               li: code foldr()
             include ja_JP/functions/reduceRight.markdown
@@ -242,7 +243,7 @@ html(lang="ja")
 
           // find()  {{{
           article#find
-            h4.api <em>mixed</em> find(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>mixed</em> find(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             ul.aliases
               li: code detect()
             include ja_JP/functions/find.markdown
@@ -251,8 +252,8 @@ html(lang="ja")
 
           // filter()  {{{
           article#filter
-            h4.api <em>array</em> filter(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> filter(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> filter(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> filter(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             ul.aliases
               li: code select()
             include ja_JP/functions/filter.markdown
@@ -261,30 +262,30 @@ html(lang="ja")
 
           // where()  {{{
           article#where
-            h4.api <em>array</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
-            h4.api.lazy <em>Iterator</em> where(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
+            h4.api <em>array</em> where(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
+            h4.api.lazy <em>Iterator</em> where(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
             include ja_JP/functions/where.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // findWhere()  {{{
           article#findWhere
-            h4.api <em>mixed</em> findWhere(<em>array</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
+            h4.api <em>mixed</em> findWhere(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$properties</var>)
             include ja_JP/functions/findWhere.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // reject()  {{{
           article#reject
-            h4.api <em>array</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> reject(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> reject(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> reject(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/reject.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // every()  {{{
           article#every
-            h4.api <em>boolean</em> every(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
+            h4.api <em>boolean</em> every(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
             ul.aliases
               li: code all()
             include ja_JP/functions/every.markdown
@@ -293,7 +294,7 @@ html(lang="ja")
 
           // some()  {{{
           article#some
-            h4.api <em>boolean</em> some(<em>array</em> <var>$xs</var>, [<em>callable|string</em> <var>$f</var>])
+            h4.api <em>boolean</em> some(<em>array</em>|<em>Traversable</em> <var>$xs</var>, [<em>callable|string</em> <var>$f</var>])
             ul.aliases
               li: code any()
             include ja_JP/functions/some.markdown
@@ -302,91 +303,107 @@ html(lang="ja")
 
           // contains()  {{{
           article#contains
-            h4.api <em>boolean</em> contains(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)
+            h4.api <em>boolean</em> contains(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$target</var>)
             include ja_JP/functions/contains.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // invoke()  {{{
           article#invoke
-            h4.api <em>array</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])
-            h4.api.lazy <em>Iterator</em> invoke(<em>array</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])
+            h4.api <em>array</em> invoke(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])
+            h4.api.lazy <em>Iterator</em> invoke(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$method</var> [, <em>mixed</em> <var>$argments...</var>])
             include ja_JP/functions/invoke.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // pluck()  {{{
           article#pluck
-            h4.api <em>array</em> pluck(<em>array</em> <var>$xs</var>, <em>string</em> <var>$property</var>)
-            h4.api.lazy <em>Iterator</em> pluck(<em>array</em> <var>$xs</var>, <em>string</em> <var>$property</var>)
+            h4.api <em>array</em> pluck(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$property</var>)
+            h4.api.lazy <em>Iterator</em> pluck(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$property</var>)
             include ja_JP/functions/pluck.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // max()  {{{
           article#max
-            h4.api <em>int</em> max(<em>array</em> <var>$xs</var>)
-            h4.api <em>mixed</em> max(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api <em>int</em> max(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api <em>mixed</em> max(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/max.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // min()  {{{
           article#min
-            h4.api <em>int</em> min(<em>array</em> <var>$xs</var>)
-            h4.api <em>mixed</em> min(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api <em>int</em> min(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api <em>mixed</em> min(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/min.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // sum()  {{{
           article#sum
-            h4.api <em>int</em> sum(<em>array</em> <var>$xs</var>)
+            h4.api <em>int</em> sum(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/sum.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // product()  {{{
           article#product
-            h4.api <em>int</em> product(<em>array</em> <var>$xs</var>)
+            h4.api <em>int</em> product(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/product.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // average()  {{{
           article#average
-            h4.api <em>float</em> average(<em>array</em> <var>$xs</var>)
+            h4.api <em>float</em> average(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/average.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // sortBy()  {{{
           article#sortBy
-            h4.api <em>array</em> sortBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api <em>array</em> sortBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
             include ja_JP/functions/sortBy.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // groupBy()  {{{
           article#groupBy
-            h4.api <em>array</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.stream <em>Iterator</em> groupBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api <em>array</em> groupBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
+            h4.api.stream <em>Iterator</em> groupBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
             include ja_JP/functions/groupBy.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // indexBy()  {{{
+          article#indexBy
+            h4.api <em>array</em> indexBy(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
+            h4.api.lazy <em>Iterator</em> indexBy(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            include ja_JP/functions/indexBy.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // countBy()  {{{
           article#countBy
-            h4.api <em>array</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
-            h4.api.stream <em>Iterator</em> countBy(<em>array</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api <em>array</em> countBy(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
+            h4.api.stream <em>Iterator</em> countBy(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable|string</em> <var>$f</var>)
             include ja_JP/functions/countBy.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // shuffle()  {{{
           article#shuffle
-            h4.api <em>array</em> shuffle(<em>array</em> <var>$xs</var>)
-            h4.api.stream <em>Iterator</em> shuffle(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> shuffle(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.stream <em>Iterator</em> shuffle(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            include ja_JP/functions/shuffle.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // sample()  {{{
+          article#sample
+            h4.api <em>mixed</em> sample(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> sample(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$n</var>)
             include ja_JP/functions/shuffle.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -425,9 +442,9 @@ html(lang="ja")
 
           // first()  {{{
           article#first
-            h4.api <em>mixed</em> first(<em>array</em> <var>$xs</var>)
-            h4.api <em>array</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
-            h4.api.lazy <em>Iterator</em> first(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
+            h4.api <em>mixed</em> first(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api <em>array</em> first(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
+            h4.api.lazy <em>Iterator</em> first(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             ul.aliases
               li: code head()
               li: code take()
@@ -437,39 +454,38 @@ html(lang="ja")
 
           // firstOrElse()  {{{
           article#firstOrElse
-            h4.api <em>mixed</em> firstOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)
+            h4.api <em>mixed</em> firstOrElse(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)
             include ja_JP/functions/firstOrElse.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // initial()  {{{
           article#initial
-            h4.api <em>array</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
-            h4.api.lazy <em>Iterator</em> initial(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
+            h4.api <em>array</em> initial(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
+            h4.api.lazy <em>Iterator</em> initial(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
             include ja_JP/functions/initial.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // last()  {{{
           article#last
-            h4.api <em>mixed</em> last(<em>array</em> <var>$xs</var>)
-            h4.api <em>SplQueue</em> last(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
-            h4.api.stream <em>Iterator</em> Iterator(<em>array</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
+            h4.api <em>mixed</em> last(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.stream <em>Iterator</em> Iterator(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em> <var>$n</var>)
             include ja_JP/functions/last.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // lastOrElse()  {{{
           article#lastOrElse
-            h4.api <em>mixed</em> lastOrElse(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)
+            h4.api <em>mixed</em> lastOrElse(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$default</var>)
             include ja_JP/functions/lastOrElse.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // rest()  {{{
           article#rest
-            h4.api <em>array</em> rest(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
-            h4.api.lazy <em>Iterator</em> rest(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
+            h4.api <em>array</em> rest(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
+            h4.api.lazy <em>Iterator</em> rest(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n = 1</var>])
             ul.aliases
               li: code tail()
               li: code drop()
@@ -479,72 +495,72 @@ html(lang="ja")
 
           // takeWhile()  {{{
           article#takeWhile
-            h4.api <em>array</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> takeWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> takeWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> takeWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/takeWhile.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // dropWhile()  {{{
           article#dropWhile
-            h4.api <em>array</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> dropWhile(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> dropWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> dropWhile(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/dropWhile.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // compact()  {{{
           article#compact
-            h4.api <em>array</em> compact(<em>array</em> <var>$xs</var>)
-            h4.api.lazy <em>Iterator</em> compact(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> compact(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> compact(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/compact.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // flatten()  {{{
           article#flatten
-            h4.api <em>array</em> flatten(<em>array</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])
-            h4.api.lazy <em>Iterator</em> flatten(<em>array</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])
+            h4.api <em>array</em> flatten(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])
+            h4.api.lazy <em>Iterator</em> flatten(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>boolean</em> <var>$shallow = false</var>])
             include ja_JP/functions/flatten.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // without()  {{{
           article#without
-            h4.api <em>array</em> without(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
-            h4.api.lazy <em>Iterator</em> without(<em>array</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
+            h4.api <em>array</em> without(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
+            h4.api.lazy <em>Iterator</em> without(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>mixed</em> <var>$values...</var>])
             include ja_JP/functions/without.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // union()  {{{
           article#union
-            h4.api <em>array</em> union(<em>array</em> <var>$xss...</var>)
-            h4.api.lazy <em>Iterator</em> union(<em>array</em> <var>$xss...</var>)
+            h4.api <em>array</em> union(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)
+            h4.api.lazy <em>Iterator</em> union(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)
             include ja_JP/functions/union.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // intersection()  {{{
           article#intersection
-            h4.api <em>array</em> intersection(<em>array</em> <var>$xss...</var>)
-            h4.api.lazy <em>Iterator</em> intersection(<em>array</em> <var>$xss...</var>)
+            h4.api <em>array</em> intersection(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)
+            h4.api.lazy <em>Iterator</em> intersection(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)
             include ja_JP/functions/intersection.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // difference()  {{{
           article#difference
-            h4.api <em>array</em> difference(<em>array</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)
-            h4.api.lazy <em>Iterator</em> difference(<em>array</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)
+            h4.api <em>array</em> difference(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)
+            h4.api.lazy <em>Iterator</em> difference(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>array</em> <var>$others...</var>)
             include ja_JP/functions/difference.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // uniq()  {{{
           article#uniq
-            h4.api <em>array</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
-            h4.api.lazy <em>Iterator</em> uniq(<em>array</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
+            h4.api <em>array</em> uniq(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
+            h4.api.lazy <em>Iterator</em> uniq(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable|string</em> <var>$f</var>])
             ul.aliases
               li: code unique()
             include ja_JP/functions/uniq.markdown
@@ -553,62 +569,62 @@ html(lang="ja")
 
           // zip()  {{{
           article#zip
-            h4.api <em>array</em> zip(<em>array</em> <var>$xss...</var>)
-            h4.api.lazy <em>Iterator</em> zip(<em>array</em> <var>$xss...</var>)
+            h4.api <em>array</em> zip(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)
+            h4.api.lazy <em>Iterator</em> zip(<em>array</em>|<em>Traversable</em> <var>$xss...</var>)
             include ja_JP/functions/zip.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // zipWith()  {{{
           article#zipWith
-            h4.api <em>array</em> zipWith(<em>array</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)
-            h4.api.lazy <em>Iterator</em> zipWith(<em>array</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)
+            h4.api <em>array</em> zipWith(<em>array</em>|<em>Traversable</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)
+            h4.api.lazy <em>Iterator</em> zipWith(<em>array</em>|<em>Traversable</em> <var>$xss...</var>, <em>callable</em> <var>$f</var>)
             include ja_JP/functions/zipWith.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // unzip()  {{{
           article#unzip
-            h4.api <em>array</em> unzip(<em>array</em> <var>$xss</var>)
-            h4.api.lazy <em>Iterator</em> unzip(<em>array</em> <var>$xss</var>)
+            h4.api <em>array</em> unzip(<em>array</em>|<em>Traversable</em> <var>$xss</var>)
+            h4.api.lazy <em>Iterator</em> unzip(<em>array</em>|<em>Traversable</em> <var>$xss</var>)
             include ja_JP/functions/unzip.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // object()  {{{
           article#object
-            h4.api <em>array</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])
-            h4.api.lazy <em>Iterator</em> object(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])
+            h4.api <em>array</em> object(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])
+            h4.api.lazy <em>Iterator</em> object(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$values</var>])
             include ja_JP/functions/object.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // indexOf()  {{{
           article#indexOf
-            h4.api <em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])
-            h4.api <em>int</em> indexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
+            h4.api <em>int</em> indexOf(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>boolean</em> <var>$isSorted = false</var>])
+            h4.api <em>int</em> indexOf(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
             include ja_JP/functions/indexOf.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // lastIndexOf()  {{{
           article#lastIndexOf
-            h4.api <em>int</em> lastIndexOf(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
+            h4.api <em>int</em> lastIndexOf(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>int</em> <var>$fromIndex = 0</var>])
             include ja_JP/functions/lastIndexOf.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // sortedIndex()  {{{
           article#sortedIndex
-            h4.api <em>array</em> sortedIndex(<em>array</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>callable|string</em> <var>$f</var>])
+            h4.api <em>array</em> sortedIndex(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>mixed</em> <var>$value</var> [, <em>callable|string</em> <var>$f</var>])
             include ja_JP/functions/sortedIndex.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // cycle()  {{{
           article#cycle
-            h4.api <em>array</em> cycle(<em>array</em> <var>$xs</var>, <em>int</em>, <var>$n</var>)
-            h4.api.lazy <em>Iterator</em> cycle(<em>array</em> <var>$xs</var> [, <em>int</em> <var>$n</var>])
+            h4.api <em>array</em> cycle(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>int</em>, <var>$n</var>)
+            h4.api.lazy <em>Iterator</em> cycle(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>int</em> <var>$n</var>])
             include ja_JP/functions/cycle.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -630,31 +646,31 @@ html(lang="ja")
 
           // reverse()  {{{
           article#reverse
-            h4.api <em>array</em> reverse(<em>array</em> <var>$xs</var>)
-            h4.api.stream <em>Iterator</em> reverse(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> reverse(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.stream <em>Iterator</em> reverse(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/reverse.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // sort()  {{{
           article#sort
-            h4.api <em>array</em> sort(<em>array</em> <var>$xs</var> [, <em>callable</em> <var>$compare</var>])
-            h4.api.stream <em>Iterator</em> sort(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> sort(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>callable</em> <var>$compare</var>])
+            h4.api.stream <em>Iterator</em> sort(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/sort.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // concat()  {{{
           article#concat
-            h4.api <em>array</em> concat(<em>array</em> <var>$xss...</var>)
-            h4.api.lazy <em>Iterator</em> concat(<em>array</em> <var>$xss...</var>)
+            h4.api <em>array</em> concat(<em>array</em>|<em>Traversable</em> <var>$xs...</var>)
+            h4.api.lazy <em>Iterator</em> concat(<em>array</em>|<em>Traversable</em> <var>$xs...</var>)
             include ja_JP/functions/concat.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // join()  {{{
           article#join
-            h4.api <em>array</em> join(<em>array</em> <var>$xs</var> [ , <em>string</em> <var>$separator = ","</var>])
+            h4.api <em>array</em> join(<em>array</em>|<em>Traversable</em> <var>$xs</var> [ , <em>string</em> <var>$separator = ","</var>])
             include ja_JP/functions/join.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -664,77 +680,76 @@ html(lang="ja")
 
           // keys()  {{{
           article#keys
-            h4.api <em>array</em> keys(<em>array</em> <var>$xs</var>)
-            h4.api.lazy <em>Iterator</em> keys(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> keys(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> keys(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/keys.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // values()  {{{
           article#values
-            h4.api <em>array</em> values(<em>array</em> <var>$xs</var>)
-            h4.api.lazy <em>Iterator</em> values(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> values(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> values(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/values.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // pairs()  {{{
           article#pairs
-            h4.api <em>array</em> pairs(<em>array</em> <var>$xs</var>)
-            h4.api.lazy <em>Iterator</em> pairs(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> pairs(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
+            h4.api.lazy <em>Iterator</em> pairs(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/pairs.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // invert()  {{{
           article#invert
-            h4.api <em>array</em> invert(<em>array</em> <var>$xs</var>)
-            h4.api.lazy <em>Iterator</em> invert(<em>array</em> <var>$xs</var>)
+            h4.api <em>array</em> invert(<em>array</em>|<em>Traversable</em> <var>$xs</var>)
             include ja_JP/functions/invert.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // extend()  {{{
           article#extend
-            h4.api <em>array</em> extend(<em>array</em> <var>$destination</var> [, <em>array</em> <var>$sources...</var>])
+            h4.api <em>array</em> extend(<em>array</em>|<em>Traversable</em> <var>$destination</var> [, <em>array</em> <var>$sources...</var>])
             include ja_JP/functions/extend.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // get()  {{{
           article#get
-            h4.api <em>mixed</em> get(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>)
+            h4.api <em>mixed</em> get(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$key</var>)
             include ja_JP/functions/get.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // getOrElse()  {{{
           article#getOrElse
-            h4.api <em>mixed</em> getOrElse(<em>array</em> <var>$xs</var>, <em>string</em> <var>$key</var>, <em>mixed</em> <var>$default</var>)
+            h4.api <em>mixed</em> getOrElse(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>string</em> <var>$key</var>, <em>mixed</em> <var>$default</var>)
             include ja_JP/functions/getOrElse.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // pick()  {{{
           article#pick
-            h4.api <em>array</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
-            h4.api.lazy <em>Iterator</em> pick(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
+            h4.api <em>array</em> pick(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
+            h4.api.lazy <em>Iterator</em> pick(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
             include ja_JP/functions/pick.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // omit()  {{{
           article#omit
-            h4.api <em>array</em> omit(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
-            h4.api.lazy <em>Iterator</em> omit(<em>array</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
+            h4.api <em>array</em> omit(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
+            h4.api.lazy <em>Iterator</em> omit(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array|string</em> <var>$keys...</var>])
             include ja_JP/functions/omit.markdown
             p.top: a(href="#") TOP
           // }}}
 
           // defaults()  {{{
           article#defaults
-            h4.api <em>array</em> defaults(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])
-            h4.api.lazy <em>Iterator</em> defaults(<em>array</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])
+            h4.api <em>array</em> defaults(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])
+            h4.api.lazy <em>Iterator</em> defaults(<em>array</em>|<em>Traversable</em> <var>$xs</var> [, <em>array</em> <var>$defaults...</var>])
             include ja_JP/functions/defaults.markdown
             p.top: a(href="#") TOP
           // }}}
@@ -743,6 +758,13 @@ html(lang="ja")
           article#tap
             h4.api <em>array</em> tap(<em>mixed</em> <var>$value</var>, <em>callable</em> <var>$interceptor</var>)
             include ja_JP/functions/tap.markdown
+            p.top: a(href="#") TOP
+          // }}}
+
+          // isEmpty()  {{{
+          article#isEmpty
+            h4.api <em>boolean</em> isEmpty(<em>mixed</em> <var>$xs</var>)
+            include ja_JP/functions/isEmpty.markdown
             p.top: a(href="#") TOP
           // }}}
 
@@ -763,19 +785,12 @@ html(lang="ja")
             p.top: a(href="#") TOP
           // }}}
 
-          // lazy()  {{{
-          article#lazy
-            h4.api <em>IteratorAggregate</em> lazy(<em>callable</em> <var>$f</var>)
-            include ja_JP/functions/lazy.markdown
-            p.top: a(href="#") TOP
-          // }}}
-
         section#parallel
           h3 Parallel Functions
 
           // parMap()  {{{
           article#parMap
-            h4.api <em>Parallel</em> parMap(<em>array</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
+            h4.api <em>Parallel</em> parMap(<em>array</em>|<em>Traversable</em> <var>$xs</var>, <em>callable</em> <var>$f</var>, <em>int</em> <var>$n = 4</var>)
             include ja_JP/functions/parMap.markdown
             p.top: a(href="#") TOP
           // }}}

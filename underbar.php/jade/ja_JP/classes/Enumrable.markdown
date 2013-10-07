@@ -8,7 +8,7 @@ Underbar.phpの手続きをmixinするためのトレイトです。
 | string *getUndebarImpl*() | Underbar.phpの実装クラスを取得する
 | value *value*()           | Underbar.phpの手続きに与える値を返す
 
-Version 0.2から`chain()`がこのトレイトに依存するようになりました。
+Version 0.2.0から`chain()`がこのトレイトに依存するようになりました。
 
 ```php
 class Collection implements IteratorAggregate

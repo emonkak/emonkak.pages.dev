@@ -1,5 +1,5 @@
 [`Generator`](http://php.net/manual/ja/class.generator.php)を返す実装を提供するクラスです。
-`Generator`は走査を繰り返すと例外が発生することに注意して下さい。
+`Generator`は`Iterator`よりも高速に動作しますが、走査を繰り返すと例外が発生することに注意して下さい。
 
 ```php
 use Underbar\GeneratorImpl as _;

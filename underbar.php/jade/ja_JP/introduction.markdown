@@ -1,17 +1,17 @@
 Introduction
 ------------
 
-*Underbar.php*は[Underscore.js](http://underscorejs.org/)のようなリスト処理のためのPHPのライブラリです。
-Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、*Underbar.php*はまた別のライブラリです。
-同名の関数は基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。
+*Underbar.php*は[Underscore.js](http://underscorejs.org/)ライクなコレクション処理のためのPHPのライブラリです。
+Underscore.jsのPHPへの移植としては既に[Undersocore.php](http://brianhaveri.github.io/Underscore.php/)がありますが、`Iterator`を利用した遅延リストが生成できるなど、趣向の異なったライブラリです。
+同名のメソッドについては基本的にUnderscore.jsと同じ動作をするので、Underscore.jsとほとんど同じ感覚で使うことができます。
 
 ### Features
 
-- [`Iterator`](http://php.net/manual/ja/class.iterator.php)による遅延リストのサポート
-- [`Generator`](http://php.net/manual/ja/class.generator.php)による遅延リストのサポート
-- [Lo-Dash](http://lodash.com/)のような[`chain()`](#chain)によるメソッドチェイン
+- [`Iterator`](http://php.net/manual/ja/class.iterator.php)による遅延リストの生成
+- [`Generator`](http://php.net/manual/ja/class.generator.php)による遅延リストの生成
+- [Lo-Dash](http://lodash.com/)のような[`chain()`](#chain)メソッド
 - Rubyの[Enumerable](http://doc.ruby-lang.org/ja/1.9.3/class/Enumerable.html)のような[`Enumerable`](#Enumerable)トレイト
-- Underscore.jsにはない関数
+- Underscore.jsにはないメソッド
   - *Collections:* [`memoize()`](#memoize) [`toList`](#toList)
   - *Arrays:* [`takeWhile()`](#takeWhile) [`dropWhile()`](#dropWhile) [`cycle()`](#cycle) [`repeat()`](#repeat) [`iterate()`](#iterate)
   - *Parallel:* [`parMap()`](#parMap)
@@ -28,7 +28,7 @@ var_dump(is_array($xs));  // true
 var_dump($xs);  // [2, 4, 6, 8]
 ```
 
-これを`Iterator`を返す実装に切り替えます。
+これを`Iterator`を返す実装に切り替えてみます。
 `Iterator`は実際に要素を走査するまで計算が遅延されるので、空間効率で有利な場合があります。
 
 ```php

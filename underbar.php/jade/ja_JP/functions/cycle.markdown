@@ -6,6 +6,6 @@
 _::cycle([1, 2], 2);
 => [1, 2, 1, 2]
 
-_::chain([1, 2, 3])->cycle()->take(5)->toList()->value();
+_::chain([1, 2, 3])->cycle()->take(5)->toList();
 => [1, 2, 3, 1, 2]
 ```

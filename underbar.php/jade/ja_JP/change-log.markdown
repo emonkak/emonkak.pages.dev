@@ -1,12 +1,30 @@
 Change Log
 ----------
 
+### 0.3.0 - Sep 7, 2013
+
+#### Removal
+
+- `lazy()`を廃止
+- [`map()`](#map)の第3引数のキーの選択関数を廃止。代用として[`indexBy()`](#indexBy)が使用できる
+- [`invert()`](#invert)が常に配列を返すように変更(`Iterator`を返すことはなくなった)
+
+#### Feature
+
+- 指定した関数の返り値をキーとした配列を生成する[`indexBy()`](#indexBy)を追加
+- 配列からランダムに値を選択する[`sample()`](#sample)を追加
+- 配列か`Traversable`なオブジェクトが空かどうかを返す[`isEmpty()`](#isEmpty)を追加
+
+#### Fix
+
+- [`memoize()`]が返す`MemoizeIterator`が正しいキーを返さなかったのを修正
+
 ### 0.2.3 - Aug 7, 2013
 
-- [`lazy()`](#lazy)の追加
+- `lazy()`の追加
 - [`map()`](#map)の第3引数にキーの選択関数を指定できるようにした
 - [`invert()`](#invert)が`Iterator`を返せるようにした
-- [`parMap()`](#parMap)で利用される`Parallel`クラスのデストラクタでワーカープロセスの終了を待つようにした
+- [`parMap()`](#parMap)で利用される`Parallel`クラスのデストラクタでワーカープロセスの終了を待つように修正
 
 ### 0.2.2 - Aug 4, 2013
 

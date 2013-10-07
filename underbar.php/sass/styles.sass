@@ -8,6 +8,8 @@
 @import "_baseline"
 @import "_flatui-colors"
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600)
+
 // Variables  {{{1
 
 $sidebar-width: 240px
@@ -44,7 +46,7 @@ $dark-accent-color: $flatui-colors-green-sea
 
 body
   // @extend .baseline-grid
-  font-family: "Myriad Pro", "Calibri", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif
   font-size: $font-size
   color: $black-color
   background-color: $white-color
@@ -61,11 +63,8 @@ a
   &:hover
     text-decoration: underline
 
-p
-  text-align: justify
-
 pre
-  font-family: "Consolas", "Monaco", "Courier", monospace
+  font-family: "Fira Mono OT", "Menlo", "Monaco", "Consolas", "Courier", monospace
   background-color: $light-color
   padding: 0.5em * baseline-line-height()
   overflow: auto
@@ -212,7 +211,8 @@ th
 
   h1
     @include baseline-font(64)
-    margin: 0
+    font-weight: 300
+    margin-bottom: 1rem * baseline-line-height()
     text-align: center
 
   p
