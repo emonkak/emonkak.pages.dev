@@ -7,8 +7,6 @@
   --dark-color: #7e8998;
   --x-dark-color: #203442;
 
-  --shadow-color: rgba(32, 52, 66, 0.1);
-
   --primary-color: #2eabff;
   --primary-background-color: #e0f3ff;
 }
@@ -89,7 +87,6 @@ a:hover {
   margin: 0 auto;
   padding: var(--baseline-height) calc(var(--baseline-height) / 2);
   max-width: 768px;
-  box-shadow: 0 0 16px var(--shadow-color);
 }
 
 .header {
