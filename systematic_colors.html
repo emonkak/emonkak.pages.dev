@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    html {
+      font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 12px;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-gap: 8px;
+      min-width: 288px;
+      padding: 8px;
+      -webkit-font-smoothing: antialiased;
+      backface-visibility: hidden;
+    }
+
+    .color {
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    .container.hide-text .color .color--label,
+    .container.hide-text .color .color--information {
+      visibility: hidden;
+    }
+
+    .color--label {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+
+    .color--information {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://www.chartjs.org/dist/2.8.0/Chart.js"></script>
+  <script src="./systematic_colors.js"></script>
+</body>
+</html>
