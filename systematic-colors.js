@@ -165,8 +165,15 @@ function toKebabCase(str) {
         str.slice(1).replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
 }
 
-const SATURATION_EASING = (t) => (t * (2 - t)) - (t <= 0.5 ? 0 : (t - 0.5));
-const SATURATION_EASING_FOR_BLACK = (t) => 1 + Math.sin(Math.PI / 2 * t - Math.PI / 2);
+const SATURATION_EASING = (t) => {
+    if (t < 0.5) {
+        return (t * 2 * (2 - t * 2));
+    } else {
+        return 1 - ((t - 0.5) ** 2);
+    }
+}
+const SATURATION_EASING_FOR_BLACK = (t) => t ** 2;
+
 const VALUE_EASING = (t) => (--t) * t * t + 1;
 
 const RED = 3 / 360;
@@ -174,15 +181,15 @@ const GREEN = 96 / 360;
 const BLUE = 204 / 360;
 
 const COLOR_DEFINITIONS = [
-        ['CoolGray',  BLUE,                            0.10, 0.00, 1.00, 0.05],
-        ['WarmGray',  RED + (GREEN - RED) / 3 * 1,     0.10, 0.00, 1.00, 0.05],
-        ['Red',       RED,                             1.25, 0.50, 1.00, 0.00],
-        ['Orange',    RED + (GREEN - RED) / 3 * 1,     1.00, 0.50, 1.00, 0.00],
-        ['Green',     GREEN,                           1.25, 0.00, 1.00, 0.00],
-        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 2,  1.25, 0.00, 1.00, 0.00],
-        ['Blue',      BLUE,                            1.25, 0.50, 1.00, 0.00],
-        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1, 1.00, 0.25, 1.00, 0.00],
-        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2, 1.00, 0.25, 1.00, 0.00],
+        ['CoolGray',  BLUE,                            SATURATION_EASING_FOR_BLACK, 0.10, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['WarmGray',  RED + (GREEN - RED) / 3 * 1,     SATURATION_EASING_FOR_BLACK, 0.10, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Red',       RED,                             SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Orange',    RED + (GREEN - RED) / 3 * 1,     SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Green',     GREEN,                           SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 2,  SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Blue',      BLUE,                            SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
     ];
 
 const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.80, 0.88, 0.94, 0.98].reverse();
@@ -193,12 +200,6 @@ const DEBUG = false;
 const datasets = [];
 const variables = [];
 
-// console.log('blue', rgbToHsv([0x00, 0x97, 0xff]));
-// console.log('green', rgbToHsv([0x5a, 0xbe, 0x19]));
-// console.log('red', rgbToHsv([0xf0, 0x32, 0x28]));
-// console.log('orange', rgbToHsv([0xff, 0x99, 0x00]));
-// console.log('gray', rgbToHsv([0xad, 0xb5, 0xbd]));
-
 let container;
 
 if (typeof document === 'object') {
@@ -206,17 +207,12 @@ if (typeof document === 'object') {
     container.className = 'container';
 }
 
-for (const [label, hue, saturationScale, saturationOffset, valueScale, valueOffset] of COLOR_DEFINITIONS) {
+for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset, valueEasingFunc, valueScale, valueOffset] of COLOR_DEFINITIONS) {
     const data = [];
 
-    const grayrate = grayscaleOf(hsvToRgb([hue, Math.min(1, saturationScale), 1])) / 255;
-    const saturationEasingFunc = saturationScale < 1 ? SATURATION_EASING_FOR_BLACK : SATURATION_EASING;
-    const saturationEasing = saturationScale > 0 ?
-        (t) => saturationEasingFunc(1 - t) * saturationScale * grayrate + saturationOffset :
-        (t) => 0;
-    const valueEasing = valueScale > 0 ?
-        (t) => VALUE_EASING(t) * valueScale + valueOffset :
-        (t) => t;
+    const grayrate = (t) => grayscaleOf(hsvToRgb([hue, 1.0, t])) / 255;
+    const saturationEasing = (t) => saturationEasingFunc(1 - t) * saturationScale + saturationOffset + ((0.10 - grayrate(t)) * saturationScale);
+    const valueEasing = (t) => valueEasingFunc(t) * valueScale + valueOffset;
     const fitPoints = Array.from({ length: 101 }).map((_, i) => ({
         x: Math.max(0, Math.min(1, saturationEasing(i / 100))),
         y: Math.max(0, Math.min(1, valueEasing(i / 100))),
