@@ -181,19 +181,19 @@ const GREEN = 96 / 360;
 const BLUE = 204 / 360;
 
 const COLOR_DEFINITIONS = [
-        ['CoolGray',  BLUE,                            SATURATION_EASING_FOR_BLACK, 0.10, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['WarmGray',  RED + (GREEN - RED) / 3 * 1,     SATURATION_EASING_FOR_BLACK, 0.10, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Red',       RED,                             SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Orange',    RED + (GREEN - RED) / 3 * 1,     SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Green',     GREEN,                           SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 2,  SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Blue',      BLUE,                            SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
-        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['CoolGray',  BLUE,                            SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
+        ['WarmGray',  RED + (GREEN - RED) / 3 * 1,     SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
+        ['Red',       RED,                             SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Orange',    RED + (GREEN - RED) / 3 * 1,     SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Green',     GREEN,                           SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 2,  SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Blue',      BLUE,                            SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
     ];
 
-const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.80, 0.88, 0.94, 0.98].reverse();
-//                         10    10    10    10    12    12    8     6     4
+const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.78, 0.86, 0.92, 0.96].reverse();
+//                         10    10    10    10    12    10    8     6     4
 
 const DEBUG = false;
 
@@ -211,7 +211,7 @@ for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset,
     const data = [];
 
     const grayrate = (t) => grayscaleOf(hsvToRgb([hue, 1.0, t])) / 255;
-    const saturationEasing = (t) => saturationEasingFunc(1 - t) * saturationScale + saturationOffset + ((0.10 - grayrate(t)) * saturationScale);
+    const saturationEasing = (t) => saturationEasingFunc(1 - t) * saturationScale + saturationOffset - grayrate(t);
     const valueEasing = (t) => valueEasingFunc(t) * valueScale + valueOffset;
     const fitPoints = Array.from({ length: 101 }).map((_, i) => ({
         x: Math.max(0, Math.min(1, saturationEasing(i / 100))),
@@ -263,8 +263,8 @@ for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset,
             div.style.color = rgbToHex(textColor);
 
             div.innerHTML = `
-                <div class="color--label">${label} ${i + 1}</div>
-                <div class="color--information">
+                <div class="color__label">${label} ${i + 1}</div>
+                <div class="color__information">
                     <div>${rgbToHex(rgb)}</div>
                     <div>rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})</div>
                     <div>hsv(${Math.round(hsv[0] * 360)}, ${Math.round(hsv[1] * 100)}, ${Math.round(hsv[2] * 100)})</div>
