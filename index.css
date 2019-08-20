@@ -95,10 +95,6 @@ a:hover {
 
 .note {
   padding: var(--baseline-height) calc(var(--baseline-height) / 2);
-  background-image: linear-gradient(90deg, white 2px, transparent 1px),
-                    linear-gradient(0deg, var(--medium-color) 1px, transparent 1px);
-  background-size: 4px auto,
-                   2px var(--baseline-height);
 }
 
 .badge {
@@ -188,7 +184,7 @@ a:hover {
 
 .dashed {
   display: inline-block;
-  border-top: 1px dashed var(--dark-color);
+  border-top: 1px dashed var(--medium-color);
   width: 100%;
   height: 1px;
   vertical-align: middle;
@@ -230,6 +226,7 @@ a:hover {
 
 .marked {
   background: linear-gradient(transparent 40%, var(--primary-background-color) 40%);
+  text-transform: uppercase;
 }
 
 .moderate {
