@@ -182,17 +182,17 @@ const BLUE = 204 / 360;
 const ORANGE = 28.2 / 360;
 
 const COLOR_DEFINITIONS = [
-        ['CoolGray',  BLUE,                              SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
-        ['WarmGray',  RED + (GREEN - RED) / 3 * 1,       SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
-        ['Red',       RED,                               SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Orange' ,   ORANGE,                            SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Lime'  ,    RED + (GREEN - RED) / 3 * 2,       SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Green',     GREEN,                             SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 1.5,  SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Cyan',      GREEN + (BLUE - GREEN) / 3 * 2.25, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Blue',      BLUE,                              SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2.5, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['CoolGray',  BLUE,                                SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
+        ['WarmGray',  ORANGE / 3 * 1,                      SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
+        ['Red',       RED,                                 SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Orange' ,   ORANGE,                              SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Yellow',    ORANGE + (GREEN - ORANGE) / 2 * 0.5, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Green',     GREEN,                               SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 1.5,    SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Cyan',      GREEN + (BLUE - GREEN) / 3 * 2.25,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Blue',      BLUE,                                SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1,     SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2.5,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
     ];
 
 const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.78, 0.86, 0.92, 0.96].reverse();
@@ -201,7 +201,10 @@ const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.78, 0.86, 0.92, 0.9
 const DEBUG = false;
 
 const datasets = [];
-const variables = GRAYSCALES.slice().reverse().map((alpha, i) => `$white-${i + 1}: rgba(255, 255, 255, ${alpha});`);
+const variables = GRAYSCALES
+    .slice()
+    .reverse()
+    .map((alpha, i) => `$alpha-${i + 1}: ${alpha};`);
 
 let container;
 
