@@ -189,9 +189,10 @@ const COLOR_DEFINITIONS = [
         ['Yellow',    ORANGE + (GREEN - ORANGE) / 2 * 0.5, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
         ['Green',     GREEN,                               SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
         ['Teal',      GREEN + (BLUE - GREEN) / 3 * 1.5,    SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Cyan',      GREEN + (BLUE - GREEN) / 3 * 2.25,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Cyan',      GREEN + (BLUE - GREEN) / 3 * 2.5,    SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
         ['Blue',      BLUE,                                SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Vioret',    BLUE + (1 + RED - BLUE) / 3 * 1,     SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Violet',    BLUE + (1 + RED - BLUE) / 3 * 1,     SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Purple',    BLUE + (1 + RED - BLUE) / 3 * 1.5,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
         ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2.5,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
     ];
 
@@ -201,10 +202,11 @@ const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.78, 0.86, 0.92, 0.9
 const DEBUG = false;
 
 const datasets = [];
-const variables = GRAYSCALES
+const colorVariables = {};
+const alphaVariables = GRAYSCALES
     .slice()
     .reverse()
-    .map((alpha, i) => `$alpha-${i + 1}: ${alpha};`);
+    .reduce((result, alpha, i) => Object.assign(result, { [`$alpha-${i + 1}`]: alpha }), {});
 
 let container;
 
@@ -234,7 +236,7 @@ for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset,
         const hsv = maxBy(mathchedColor, ([h, s, v]) => s)[0];
         const rgb = hsvToRgb(hsv);
 
-        variables.push(`\$${toKebabCase(label)}-${(i + 1)}: ${rgbToHex(rgb)};`);
+        colorVariables[`$${toKebabCase(label)}-${(i + 1)}`] = rgbToHex(rgb);
 
         data.push({
             x: Math.round(hsv[1] * 100),
@@ -293,7 +295,8 @@ for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset,
     });
 }
 
-console.log(variables.join("\n"));
+console.log(Object.entries(alphaVariables).map((variable) => variable.join(': ')).join("\n"));
+console.log(Object.entries(colorVariables).map((variable) => variable.join(': ')).join("\n"));
 
 if (container) {
     container.addEventListener('click', function() {
