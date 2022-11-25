@@ -52,11 +52,13 @@ module.exports = {
         'require-atomic-updates': ['off'],
         'require-unicode-regexp': ['off'],
         'semi': ['error', 'always'],
-        'sort-imports': ['error', {
-            memberSyntaxSortOrder: ['single', 'all', 'multiple', 'none'],
-            allowSeparatedGroups: true,
-        }],
+        'sort-imports': ['off'],
         'sort-keys': ['off'],
         'space-before-function-paren': ['error', { anonymous: 'never', named: 'never', asyncArrow: 'always' }],
+        'import/order': ['error'],
+        'import/first': ['error'],
+        'import/newline-after-import': ['error'],
+        'import/no-duplicates': ['error'],
     },
+    plugins: ['import'],
 };
