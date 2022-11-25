@@ -6,6 +6,11 @@ const BASE_URL = 'https://emonkak.github.io/';
 const MAX_FEED_ENTRIES = 20;
 
 export default function render({ context }) {
+    const articles = context
+        .articles()
+        .slice()
+        .sort((x, y) => y.stats.mtimeMs - x.stats.mtimeMs)
+        .slice(0, MAX_FEED_ENTRIES);
     return u('root', [
         u('instruction', { name: 'xml' }, 'version="1.0" encoding="utf-8"'),
         x('feed', { xmlns: 'http://www.w3.org/2005/Atom' }, [
@@ -14,7 +19,7 @@ export default function render({ context }) {
             x('link', { type: 'text/html', rel: 'alternate', href: BASE_URL }),
             x('link', { type: 'application/atom+xml', rel: 'self', href: BASE_URL + 'atom.xml' }),
             x('updated', [context.lastUpdated().toISOString()]),
-            context.sortedArticles().slice(0, MAX_FEED_ENTRIES).map(renderEntry),
+            articles.map(renderEntry),
         ]),
     ]);
 }
