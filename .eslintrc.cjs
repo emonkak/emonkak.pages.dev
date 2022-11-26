@@ -12,7 +12,7 @@ module.exports = {
         'array-element-newline': ['error', 'consistent'],
         'comma-dangle': ['error', 'always-multiline'],
         'dot-location': ['error', 'property'],
-        'func-names': ['error', 'as-needed'],
+        'func-names': ['error', 'never'],
         'function-call-argument-newline': ['error', 'consistent'],
         'generator-star-spacing': ['error', 'after'],
         'import/first': ['error'],
