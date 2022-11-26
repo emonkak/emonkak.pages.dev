@@ -1,19 +1,18 @@
 import path from 'node:path';
 import http from 'node:http';
 
-import Context from './lib/context.js';
-import { loadResources, serveResources } from './lib/resource.js';
+import Site from './lib/site.js';
 
 const rootDir = path.dirname(new URL(import.meta.url).pathname);
 const srcDir = path.join(rootDir, 'src');
 
 async function serve(port, hostname) {
-    const resources = await loadResources(srcDir);
-    const context = new Context(resources);
-    const server = http.createServer(serveResources(resources, context));
+    const site = await Site.load(srcDir);
+    const server = http.createServer(site.createHttpHandler());
 
     server.listen(port, hostname, () => {
-        console.log(`Server running at http://${hostname}:${port}/`);
+        const { address, port } = server.address();
+        console.log(`Server running at http://${address}:${port}/`);
     });
 }
 

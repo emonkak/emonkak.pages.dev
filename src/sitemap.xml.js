@@ -3,11 +3,11 @@ import { x } from 'xastscript';
 
 const BASE_URL = 'https://emonkak.github.io/';
 
-export default function render({ context }) {
-    const urls = context.allResources().map(renderUrl);
+export default function render({ site }) {
+    const urls = site.allResources().map(renderUrl);
     return u('root', [
         u('instruction', { name: 'xml' }, 'version="1.0" encoding="utf-8"'),
-        x('urlset', { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' }, urls)
+        x('urlset', { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' }, urls),
     ]);
 }
 

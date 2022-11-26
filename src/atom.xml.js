@@ -5,8 +5,8 @@ import { x } from 'xastscript';
 const BASE_URL = 'https://emonkak.github.io/';
 const MAX_FEED_ENTRIES = 20;
 
-export default function render({ context }) {
-    const articles = context
+export default function render({ site }) {
+    const articles = site
         .articles()
         .slice()
         .sort((x, y) => y.stats.mtimeMs - x.stats.mtimeMs)
@@ -18,24 +18,24 @@ export default function render({ context }) {
             x('id', [BASE_URL]),
             x('link', { type: 'text/html', rel: 'alternate', href: BASE_URL }),
             x('link', { type: 'application/atom+xml', rel: 'self', href: BASE_URL + 'atom.xml' }),
-            x('updated', [context.lastUpdated().toISOString()]),
+            x('updated', [site.lastUpdated().toISOString()]),
             articles.map(renderEntry),
         ]),
     ]);
 }
 
-function renderEntry(resource) {
-    const url = BASE_URL + resource.mountPath;
+function renderEntry(article) {
+    const url = BASE_URL + article.mountPath;
     return x('entry', [
-        x('title', [resource.matter?.title ?? resource.mountPath]),
+        x('title', [article.matter?.title ?? article.mountPath]),
         x('id', [url]),
         x('link', { type: 'text/html', ref: 'alternate', href: url }),
-        x('updated', [resource.stats.mtime.toISOString()]),
-        resource.matter.date && x('published', [resource.matter.date]),
-        resource.matter.tags && resource.matter.tags.map(renderCategory),
-        resource.matter.summary && x('summary', { type: 'text' }, [resource.matter.summary]),
+        x('updated', [article.stats.mtime.toISOString()]),
+        article.matter.date && x('published', [article.matter.date]),
+        article.matter.tags && article.matter.tags.map(renderCategory),
+        article.matter.summary && x('summary', { type: 'text' }, [article.matter.summary]),
         x('content', { type: 'html' }, [
-            u('cdata', toHtml(resource.content, { allowDangerousHtml: true })),
+            u('cdata', toHtml(article.element, { allowDangerousHtml: true })),
         ])
     ])
 }
