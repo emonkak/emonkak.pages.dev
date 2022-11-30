@@ -61,10 +61,13 @@ function hexToRgb(hex) {  // {{{
 function grayscaleOf(rgb) {  // {{{
     const [r, g, b] = rgb;
     const gamma = 2.2;
-    // return (((r ** gamma) * 0.21267285140562253) +  // D65
+    // return (r * 0.21267285140562253) +  // D65
+    //        (g * 0.715152155287818) +
+    //        (b * 0.07217499330655958);
+    // return (((r ** gamma) * 0.21267285140562253) +  // D65 (gamma correction)
     //         ((g ** gamma) * 0.715152155287818) +
     //         ((b ** gamma) * 0.07217499330655958)) ** (1 / gamma);
-    return (((r ** gamma) * 0.2225044693295454) +  // D50
+    return (((r ** gamma) * 0.2225044693295454) +  // D50 (gamma correction)
             ((g ** gamma) * 0.7168785945926345) +
             ((b ** gamma) * 0.06061693607782029)) ** (1 / gamma);
 }  // }}}
@@ -172,28 +175,25 @@ const SATURATION_EASING = (t) => {
         return 1 - ((t - 0.5) ** 2);
     }
 }
-const SATURATION_EASING_FOR_BLACK = (t) => t ** 2;
+const SATURATION_EASING_ALT = (t) => t * t * t;
 
 const VALUE_EASING = (t) => (--t) * t * t + 1;
 
-const RED = 3 / 360;
-const GREEN = 96 / 360;
-const BLUE = 204 / 360;
-const ORANGE = 28.2 / 360;
+const COLOR1 = 8 / 360;
+const COLOR2 = 32 / 360;
+const COLOR3 = 182 / 360;
+const COLOR4 = 222 / 360;
+const COLOR5 = 262 / 360;
+
+const STEP = 60 / 360;
 
 const COLOR_DEFINITIONS = [
-        ['CoolGray',  BLUE,                                SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
-        ['WarmGray',  ORANGE / 3 * 1,                      SATURATION_EASING_FOR_BLACK, 0.10, 0.20, VALUE_EASING, 1.00, 0.00],
-        ['Red',       RED,                                 SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Orange' ,   ORANGE,                              SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Yellow',    ORANGE + (GREEN - ORANGE) / 2 * 0.5, SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Green',     GREEN,                               SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Teal',      GREEN + (BLUE - GREEN) / 3 * 1.5,    SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Cyan',      GREEN + (BLUE - GREEN) / 3 * 2.5,    SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Blue',      BLUE,                                SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Violet',    BLUE + (1 + RED - BLUE) / 3 * 1,     SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Purple',    BLUE + (1 + RED - BLUE) / 3 * 1.5,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
-        ['Pink',      BLUE + (1 + RED - BLUE) / 3 * 2.5,   SATURATION_EASING, 1.10, 0.10, VALUE_EASING, 1.00, 0.00],
+        ['Gray', COLOR4, SATURATION_EASING_ALT, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Red', COLOR1, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Yellow', COLOR2, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Cyan', COLOR3, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Blue', COLOR4, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
+        ['Violet', COLOR5, SATURATION_EASING, 1.00, 0.00, VALUE_EASING, 1.00, 0.00],
     ];
 
 const GRAYSCALES =    [0.14, 0.24, 0.34, 0.44, 0.56, 0.68, 0.78, 0.86, 0.92, 0.96].reverse();
@@ -206,7 +206,7 @@ const colorVariables = {};
 const alphaVariables = GRAYSCALES
     .slice()
     .reverse()
-    .reduce((result, alpha, i) => Object.assign(result, { [`$alpha-${i + 1}`]: alpha }), {});
+    .reduce((result, alpha, i) => Object.assign(result, { [`--alpha-${i + 1}`]: alpha }), {});
 
 let container;
 
@@ -218,8 +218,8 @@ if (typeof document === 'object') {
 for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset, valueEasingFunc, valueScale, valueOffset] of COLOR_DEFINITIONS) {
     const data = [];
 
-    const grayrate = (t) => grayscaleOf(hsvToRgb([hue, 1.0, t])) / 255;
-    const saturationEasing = (t) => saturationEasingFunc(1 - t) * saturationScale + saturationOffset - grayrate(t);
+    const grayscale = (t) => grayscaleOf(hsvToRgb([hue, 1.0, t])) / 255;
+    const saturationEasing = (t) => saturationEasingFunc(1 - t) * saturationScale + saturationOffset - grayscale(t);
     const valueEasing = (t) => valueEasingFunc(t) * valueScale + valueOffset;
     const fitPoints = Array.from({ length: 101 }).map((_, i) => ({
         x: Math.max(0, Math.min(1, saturationEasing(i / 100))),
@@ -236,7 +236,7 @@ for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset,
         const hsv = maxBy(mathchedColor, ([h, s, v]) => s)[0];
         const rgb = hsvToRgb(hsv);
 
-        colorVariables[`$${toKebabCase(label)}-${(i + 1)}`] = rgbToHex(rgb);
+        colorVariables[`--${toKebabCase(label)}-${(i + 1)}`] = rgbToHex(rgb);
 
         data.push({
             x: Math.round(hsv[1] * 100),
@@ -295,8 +295,8 @@ for (const [label, hue, saturationEasingFunc, saturationScale, saturationOffset,
     });
 }
 
-console.log(Object.entries(alphaVariables).map((variable) => variable.join(': ')).join("\n"));
-console.log(Object.entries(colorVariables).map((variable) => variable.join(': ')).join("\n"));
+// console.log(Object.entries(alphaVariables).map((variable) => variable.join(': ') + ';').join("\n"));
+console.log(Object.entries(colorVariables).map((variable) => variable.join(': ') + ';').join("\n"));
 
 if (container) {
     container.addEventListener('click', function() {

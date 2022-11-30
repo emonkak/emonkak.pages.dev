@@ -1,9 +1,10 @@
 import { u } from 'unist-builder';
 import { x } from 'xastscript';
 
-const BASE_URL = 'https://emonkak.github.io/';
+import { BASE_URL } from '../lib/constants.js';
 
-export default function render({ site }) {
+export default function render(props) {
+    const { site } = props;
     const urls = site.allResources().map(renderUrl);
     return u('root', [
         u('instruction', { name: 'xml' }, 'version="1.0" encoding="utf-8"'),

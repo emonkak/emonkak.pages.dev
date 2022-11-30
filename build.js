@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
+import { ResourceLoader, writeToDirectory } from './lib/resource.js';
 import Site from './lib/site.js';
 
 const rootDir = path.dirname(new URL(import.meta.url).pathname);
@@ -22,8 +23,10 @@ async function build() {
 
     try {
         await fs.mkdir(outputDir, { recursive: true });
-        const site = await Site.load(srcDir);
-        await site.write(outputDir, callback);
+        const loader = new ResourceLoader();
+        const resources = await loader.loadFromDirectory(srcDir);
+        const site = new Site(resources);
+        await writeToDirectory(site, outputDir, callback);
     } catch (error) {
         console.error('Build FAILED.');
         return Promise.reject(error);

@@ -2,10 +2,12 @@ import { toHtml } from 'hast-util-to-html';
 import { u } from 'unist-builder';
 import { x } from 'xastscript';
 
-const BASE_URL = 'https://emonkak.github.io/';
+import { BASE_URL } from '../../lib/constants.js';
+
 const MAX_FEED_ENTRIES = 20;
 
-export default function render({ site }) {
+export default function render(props) {
+    const { site } = props;
     const articles = site
         .articles()
         .slice()
@@ -31,7 +33,7 @@ function renderEntry(article) {
         x('id', [url]),
         x('link', { type: 'text/html', ref: 'alternate', href: url }),
         x('updated', [article.stats.mtime.toISOString()]),
-        article.matter.date && x('published', [article.matter.date]),
+        article.matter.date && x('published', [new Date(article.matter.date).toISOString()]),
         article.matter.tags && article.matter.tags.map(renderCategory),
         article.matter.summary && x('summary', { type: 'text' }, [article.matter.summary]),
         x('content', { type: 'html' }, [
