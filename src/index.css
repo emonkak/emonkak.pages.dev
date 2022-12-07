@@ -158,6 +158,10 @@ h6 {
   --scale: var(--scale-expand-1);
 }
 
+iframe {
+  border: 0;
+}
+
 blockquote, details, dl, figure, ol, p, pre, table, ul {
   margin-block: 0 var(--vertical-rhythm);
   margin-inline: 0;
@@ -306,7 +310,7 @@ a {
   background-position: left center;
 }
 
-.figure-body > img {
+.figure-body > :is(img, svg) {
   display: block;
   margin-inline: auto;
   max-inline-size: 100%;

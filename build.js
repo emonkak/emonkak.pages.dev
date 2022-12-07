@@ -23,7 +23,7 @@ async function build() {
 
     try {
         await fs.mkdir(outputDir, { recursive: true });
-        const loader = new ResourceLoader();
+        const loader = await ResourceLoader.init();
         const resources = await loader.loadFromDirectory(srcDir);
         const site = new Site(resources);
         await writeToDirectory(site, outputDir, callback);

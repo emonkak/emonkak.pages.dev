@@ -8,7 +8,7 @@ const rootDir = path.dirname(new URL(import.meta.url).pathname);
 const srcDir = path.join(rootDir, 'src');
 
 async function serve(port, hostname) {
-    const loader = new ResourceLoader();
+    const loader = await ResourceLoader.init();
     const resources = await loader.loadFromDirectory(srcDir);
     const site = new Site(resources);
     const server = http.createServer(site.createHttpHandler(loader));
