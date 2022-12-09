@@ -1,5 +1,11 @@
 /* Prelude  {{{1 */
 
+@property --floor {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
 :root {
   --scale-base: 1.125;
   --scale-expand-1: var(--scale-base);
@@ -28,12 +34,13 @@
   --text-small-5: calc(1rem * var(--scale-reduce-5));
   --text-small-6: calc(1rem * var(--scale-reduce-6));
 
+  --text-width: 76ch;
   --text-width: 38ic;
   --vertical-rhythm: calc(1rem * var(--scale-expand-4));
 
-  --font-text: Charter, Cambria, Times, 'YuMincho +36p Kana', YuMincho, 'Yu Mincho', 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
+  --font-text: Charter, Cambria, Times, 'BIZ UDMincho', 'YuMincho +36p Kana', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', Helvetica, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
-  --font-code: 'PT Mono', Consolas, Courier, Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
+  --font-code: 'PT Mono', 'Lucida Console', Courier, Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
 
   --gray-1: #f5f6f7;
   --gray-2: #e8e9eb;
@@ -97,18 +104,12 @@
   --violet-10: #2b0769;
 }
 
-@property --floor {
-  syntax: '<integer>';
-  initial-value: 0;
-  inherits: false;
-}
-
 /* Base  {{{1 */
 
 html {
   --color-bg: var(--red-1);
   font-family: var(--font-text);
-  font-size: clamp(14px, calc(0.875rem + ((1vw - 3.2px) * 1.0989)), 18px);
+  font-size: clamp(14px, calc(0.875rem + ((1vi - 3.2px) * 1.0989)), 18px);
   line-height: var(--vertical-rhythm);
   background-color: var(--color-bg);
   color: var(--gray-10);
@@ -237,6 +238,10 @@ code, kbd, pre, samp {
   font-size: var(--text-small-1);
 }
 
+:where(:not(a):not(pre)) > :is(code, kbd, samp) {
+  color: var(--red-8);
+}
+
 button {
   font: inherit;
   background: none;
@@ -295,6 +300,10 @@ a:hover {
   padding-block: calc(var(--vertical-rhythm) - 1px) var(--vertical-rhythm);
   border-block-start: 1px dashed currentColor;
   background-color: var(--red-2);
+}
+
+.l-page {
+  padding-block: var(--vertical-rhythm) var(--vertical-rhythm);
 }
 
 /* Components  {{{1 */
@@ -630,24 +639,34 @@ a.circle-button:hover {
 
 .tag-list {
   display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   column-gap: 0.5ch;
   row-gap: calc(var(--vertical-rhythm) / 4);
-  justify-content: left;
   flex-wrap: wrap;
 }
 
 .tag-item {
-  padding-inline: 0.5ch;
-  color: var(--color-bg);
-  background-color: var(--gray-10);
-  border-radius: 4px;
+  display: flex;
+  height: var(--vertical-rhythm);
+  padding-block: 1px;
+  box-sizing: border-box;
 }
 
-a.tag-item {
+.tag-item-label {
+  padding-inline: 0.5ch;
+  border-radius: 4px;
+  color: var(--color-bg);
+  background-color: var(--gray-10);
+  line-height: calc(var(--vertical-rhythm) - 2px);
+}
+
+a.tag-item-label {
   text-decoration: none;
 }
 
-a.tag-item:hover {
+a.tag-item-label:hover {
   background-color: var(--red-6);
 }
 
@@ -690,26 +709,6 @@ a.tag-item:hover {
 }
 
 /* Modules  {{{1 */
-/* .article  {{{2 */
-
-.article {
-  margin-block-end: var(--vertical-rhythm);
-}
-
-.article :is(h1, h2) {
-  position: relative;
-}
-
-.article :is(h1, h2)::after {
-  content: '';
-  position: absolute;
-  inset-block-end: -4px;
-  inset-inline-start: 0;
-  block-size: 4px;
-  inline-size: calc(var(--vertical-rhythm) * 1.5);
-  background-color: var(--red-6);
-}
-
 /* .article-card  {{{2 */
 
 .article-card-list {
@@ -812,6 +811,26 @@ a.archive-item-title:hover {
   color: var(--red-6);
 }
 
+/* .document  {{{2 */
+
+.document {
+  margin-block-end: var(--vertical-rhythm);
+}
+
+.document :is(h1, h2) {
+  position: relative;
+}
+
+.document :is(h1, h2)::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -4px;
+  inset-inline-start: 0;
+  block-size: 4px;
+  inline-size: calc(var(--vertical-rhythm) * 1.5);
+  background-color: var(--red-6);
+}
+
 /* .footer  {{{2 */
 
 .footer {
@@ -857,7 +876,7 @@ a.footer-title-link:hover {
   font-size: var(--text-small-1);
 }
 
-@media (min-width: 38ic) {
+@media (min-width: 76ch), (min-width: 38ic) {
   .footer {
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: var(--vertical-rhythm);
@@ -872,6 +891,7 @@ a.footer-title-link:hover {
 /* .header  {{{2 */
 
 .header-title {
+  container-type: inline-size;
   display: block;
   padding-block: calc(var(--vertical-rhythm) / 2) 0;
   border-block-width: 2px 2px;
@@ -891,12 +911,27 @@ a.header-title {
 }
 
 .header-title-logo {
+  --scrollbar-width: 17px;
+  --container-width: min(calc(100vi - var(--vertical-rhythm) - var(--scrollbar-width)), var(--text-width));
   font-weight: 800;
-  font-size: calc(min(100vw - var(--vertical-rhythm), var(--text-width)) / var(--letters));
+  font-size: calc(var(--container-width) / var(--letters));
   line-height: 1.0;
   text-align: justify;
   text-align-last: justify;
   white-space: nowrap;
+  overflow: hidden;
+}
+
+@supports (container-type: inline-size) {
+  .header-title-logo {
+    --container-width: 100cqi;
+  }
+}
+
+@media (pointer: coarse) {
+  .header-title-logo {
+    --scrollbar-width: 0px;
+  }
 }
 
 .header-title-author {

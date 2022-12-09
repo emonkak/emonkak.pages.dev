@@ -2,7 +2,7 @@ import { h } from 'hastscript';
 import { toText } from 'hast-util-to-text';
 
 import renderLayout from '../../lib/templates/layout.js';
-import { renderArchiveList } from '../../lib/templates/archive.js';
+import renderArchiveList from '../../lib/templates/archiveList.js';
 
 export default function render(props) {
     return renderLayout({
@@ -30,7 +30,7 @@ function renderContent(props) {
                     const articles = articlesByYear[year];
                     return [
                         h('div', { class: 'section' }, [
-                            h('h2', { class: 'section-heading' }, year),
+                            h('h1', { class: 'section-heading' }, year),
                             renderArchiveList(articles),
                         ]),
                     ];

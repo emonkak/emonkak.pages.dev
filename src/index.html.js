@@ -2,7 +2,7 @@ import { h } from 'hastscript';
 import { toText } from 'hast-util-to-text';
 
 import renderLayout from '../lib/templates/layout.js';
-import { renderArticleCardList } from '../lib/templates/articleCard.js';
+import renderArticleCardList from '../lib/templates/articleCardList.js';
 
 const NUM_ARTICLES = 10;
 
