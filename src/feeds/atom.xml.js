@@ -9,7 +9,7 @@ const MAX_FEED_ENTRIES = 20;
 export default function render(props) {
     const { site } = props;
     const articles = site
-        .articles()
+        .allArticles()
         .slice()
         .sort((x, y) => y.timestamp - x.timestamp)
         .slice(0, MAX_FEED_ENTRIES);

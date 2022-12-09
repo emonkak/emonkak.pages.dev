@@ -14,7 +14,7 @@ export default function render(props) {
 
 function renderContent(props) {
     const articles = props.site
-        .articles()
+        .allArticles()
         .slice(0, NUM_ARTICLES)
 
     return h('section', { class: 'l-section' }, [

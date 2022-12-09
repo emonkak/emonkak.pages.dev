@@ -12,7 +12,7 @@ export default function render(props) {
 
 function renderContent(props) {
     const articlesByYear = props.site
-        .articles()
+        .allArticles()
         .reduce((acc, article) => {
             const date = new Date(article.data.date);
             const year = date.getFullYear();
