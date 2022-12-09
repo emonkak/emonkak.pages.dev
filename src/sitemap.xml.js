@@ -16,6 +16,6 @@ function renderUrl(resource) {
     const url = BASE_URL + resource.mountPath;
     return x('url', [
         x('loc', [url]),
-        x('lastmod', [resource.stats.mtime.toISOString()]),
+        x('lastmod', [new Date(resource.timestamp).toISOString()]),
     ])
 }

@@ -2,7 +2,7 @@ import { h } from 'hastscript';
 import { toText } from 'hast-util-to-text';
 
 import renderLayout from '../../lib/templates/layout.js';
-import { renderArchiveList } from '../../lib/fragments/archive.js';
+import { renderArchiveList } from '../../lib/templates/archive.js';
 
 export default function render(props) {
     return renderLayout({

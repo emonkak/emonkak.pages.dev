@@ -11,7 +11,7 @@ async function serve(port, hostname) {
     const loader = await ResourceLoader.initWithoutCache();
     const resources = await loader.loadFromDirectory(srcDir);
     const site = new Site(resources);
-    const server = http.createServer(site.createHttpHandler(loader));
+    const server = http.createServer(loader.createHttpHandler(site));
 
     server.listen(port, hostname, () => {
         const { address, port } = server.address();

@@ -8,10 +8,10 @@ const MAX_FEED_ENTRIES = 20;
 
 export default function render(props) {
     const { site } = props;
-    const documents = site
-        .documents()
+    const articles = site
+        .articles()
         .slice()
-        .sort((x, y) => y.stats.mtimeMs - x.stats.mtimeMs)
+        .sort((x, y) => y.timestamp - x.timestamp)
         .slice(0, MAX_FEED_ENTRIES);
     return u('root', [
         u('instruction', { name: 'xml' }, 'version="1.0" encoding="utf-8"'),
@@ -20,9 +20,9 @@ export default function render(props) {
             x('subtitle', TAGLINE),
             x('id', BASE_URL),
             x('link', { type: 'text/html', rel: 'alternate', href: BASE_URL }),
-            x('link', { type: 'application/atom+xml', rel: 'self', href: BASE_URL + 'atom.xml' }),
-            x('updated', [site.lastUpdated().toISOString()]),
-            documents.map(renderEntry),
+            x('link', { type: 'application/atom+xml', rel: 'self', href: BASE_URL + 'feeds/atom.xml' }),
+            x('updated', [new Date(site.lastUpdated()).toISOString()]),
+            articles.map(renderEntry),
         ]),
     ]);
 }
@@ -33,7 +33,7 @@ function renderEntry(resource) {
         x('title', [resource.data.title ?? resource.mountPath]),
         x('id', [url]),
         x('link', { type: 'text/html', ref: 'alternate', href: url }),
-        x('updated', [resource.stats.mtime.toISOString()]),
+        x('updated', [new Date(resource.timestamp).toISOString()]),
         resource.data.date && x('published', [getPublicationDate(resource).toISOString()]),
         resource.data.tags && resource.data.tags.map(renderCategory),
         resource.data.summary && x('summary', { type: 'text' }, [resource.matter.summary]),
@@ -47,6 +47,6 @@ function renderCategory(tag) {
     return x('category', { term: tag });
 }
 
-function getPublicationDate(document) {
-    return document.data.date ? new Date(document.data.date) : document.stats.mtime;
+function getPublicationDate(resource) {
+    return new Date(resource.data.date ?? resource.timestamp);
 }
