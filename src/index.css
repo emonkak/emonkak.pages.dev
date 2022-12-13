@@ -249,6 +249,10 @@ button {
   cursor: pointer;
 }
 
+summary {
+  cursor: pointer;
+}
+
 :disabled {
   cursor: not-allowed;
   opacity: 0.5;
@@ -293,7 +297,7 @@ a:hover {
   background-color: var(--color-bg);
 }
 
-.l-article-body {
+.l-article-main {
   padding-block-start: var(--vertical-rhythm);
 }
 
@@ -738,12 +742,12 @@ a.tag-item-label:hover {
   margin-block: 0;
 }
 
-a.article-card-item-title-link {
+a.article-card-item-title-anchor {
   color: inherit;
   text-decoration: none;
 }
 
-a.article-card-item-title-link:hover {
+a.article-card-item-title-anchor:hover {
   color: var(--red-6);
 }
 
@@ -855,12 +859,12 @@ a.archive-item-title:hover {
   margin-block: 0;
 }
 
-a.footer-title-link {
+a.footer-title-anchor {
   color: inherit;
   text-decoration: none;
 }
 
-a.footer-title-link:hover {
+a.footer-title-anchor:hover {
   color: var(--red-6);
 }
 
@@ -985,12 +989,12 @@ a.header-title {
   margin-inline: 0.5ch;
 }
 
-a.nav-menu-item-link {
+a.nav-menu-item-anchor {
   display: block;
   text-decoration: none;
 }
 
-a.nav-menu-item-link:hover {
+a.nav-menu-item-anchor:hover {
   color: var(--color-bg);
   background-color: var(--red-6);
 }
@@ -1045,6 +1049,85 @@ a.nav-menu-item-link:hover {
 
 .share-body {
   text-align: center;
+}
+
+/* .toc  {{{2 */
+
+.toc {
+  --color-bg: var(--red-3);
+  margin-block-end: var(--vertical-rhythm);
+  background-color: var(--red-3);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-weight: bold;
+}
+
+.toc-heading {
+  padding-block: calc(var(--vertical-rhythm) / 4) calc(var(--vertical-rhythm) / 4 - 1px);
+  padding-inline: calc(var(--vertical-rhythm) / 2);
+  border-block-end: 1px dashed transparent;
+  margin-block-end: 0;
+}
+
+.toc-heading::marker {
+  color: var(--red-6);
+}
+
+.toc[open] .toc-heading {
+  border-block-end-color: var(--red-5);
+}
+
+.toc-content {
+  padding-block: calc(var(--vertical-rhythm) / 4);
+  font-size: var(--text-small-2);
+}
+
+.toc-list {
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block-end: 0;
+}
+
+.toc-item.is-capter {
+  counter-increment: capter;
+}
+
+.toc-item.is-section {
+  counter-increment: section;
+  text-indent: 2ch;
+}
+
+.toc-item-anchor {
+  display: block;
+  padding-inline: calc(var(--vertical-rhythm) / 2);
+}
+
+.toc-item-anchor::before {
+  color: var(--red-6);
+  font-weight: bold;
+}
+
+.toc-item.is-capter > .toc-item-anchor::before {
+  content: counter(capter) '. ';
+}
+
+.toc-item.is-section > .toc-item-anchor::before {
+  content: counter(capter) '.' counter(section) '. ';
+}
+
+a.toc-item-anchor {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.toc-item-anchor:hover {
+  color: var(--color-bg);
+  background-color: var(--gray-10);
+}
+
+a.toc-item-anchor:hover::before,
+a.toc-item-anchor:hover::after {
+  color: inherit;
 }
 
 /* __END__  {{{1
