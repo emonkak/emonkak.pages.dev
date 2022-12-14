@@ -115,6 +115,7 @@ html {
   background-repeat: repeat;
   color: var(--gray-10);
   touch-action: manipulation;
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -132,10 +133,6 @@ h1, h2, h3, h4, h5, h6, [role="heading"] {
   font-weight: bold;
   font-size: calc(1.0rem * var(--scale, 1.0));
   font-feature-settings: 'palt';
-}
-
-:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h1, h2) {
-  margin-block-start: calc(var(--vertical-rhythm) * 2);
 }
 
 h1 {
@@ -162,6 +159,14 @@ h6 {
   --scale: var(--scale-expand-1);
 }
 
+:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h1, h2, h3) {
+  margin-block-start: calc(var(--vertical-rhythm) * 2);
+}
+
+:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h4, h5, h6) {
+  margin-block-start: var(--vertical-rhythm);
+}
+
 iframe {
   border: 0;
 }
@@ -182,10 +187,10 @@ hr {
   border: 0;
   font-size: var(--text-large-2);
   line-height: calc(var(--vertical-rhythm) * 2);
-  background-image: linear-gradient(to left, var(--gray-4), transparent),
-                    linear-gradient(to right, var(--gray-4), transparent);
+  background-image: linear-gradient(to left, currentColor, var(--color-bg)),
+                    linear-gradient(to right, currentColor, var(--color-bg));
   background-position: left center, right center;
-  background-size: calc(50% - 1.5ch) 2px;
+  background-size: calc(50% - 1.5ch) 1px;
   background-repeat: no-repeat;
 }
 
@@ -210,6 +215,7 @@ figcaption {
   text-align: center;
   font-family: var(--font-display);
   font-weight: bold;
+  font-style: italic;
   font-size: var(--text-small-2);
 }
 
@@ -397,7 +403,7 @@ a.circle-button:hover {
   padding: calc(var(--vertical-rhythm) / 2 - 2px);
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--gray-6);
+  border: 1px solid var(--gray-5);
   border-radius: 4px;
   font-family: var(--font-display);
   font-weight: bold;
@@ -452,7 +458,7 @@ a.circle-button:hover {
   padding: calc(var(--vertical-rhythm) / 2);
   margin-block-end: 0;
   border-radius: 4px;
-  color: var(--red-1);
+  color: var(--gray-1);
   background-color: var(--gray-10);
   overflow-x: auto;
 }
@@ -636,7 +642,7 @@ a.circle-button:hover {
   inline-size: 1px;
   block-size: calc(var(--vertical-rhythm) - 2px);
   margin-inline: 0.5ch;
-  background-color: var(--gray-6);
+  background-color: var(--gray-5);
   background-clip: content-box;
 }
 
@@ -677,7 +683,15 @@ a.tag-item-label:hover {
 
 /* .token  {{{2 */
 
-.token.is-entity-name-type,
+.token.is-string {
+  color: var(--red-5);
+}
+
+.token.is-meta-embedded {
+  color: var(--gray-1);
+}
+
+.token.is-entity-name,
 .token.is-support {
   color: var(--violet-5);
 }
@@ -691,10 +705,6 @@ a.tag-item-label:hover {
   color: var(--yellow-5);
 }
 
-.token.is-string-quoted {
-  color: var(--red-5);
-}
-
 .token.is-constant-numeric,
 .token.is-constant-other,
 .token.is-entity-name-function-macro,
@@ -706,6 +716,7 @@ a.tag-item-label:hover {
 .token.is-keyword-control,
 .token.is-keyword-operator,
 .token.is-keyword-other,
+.token.is-punctuation-definition-tag,
 .token.is-punctuation-definition-lifetime,
 .token.is-punctuation-definition-template-expression,
 .token.is-storage,
@@ -751,7 +762,7 @@ a.article-card-item-title-anchor:hover {
   color: var(--red-6);
 }
 
-.article-card-item-information {
+.article-card-item-metadata {
   color: var(--gray-7);
   font-size: var(--text-small-1);
 }
@@ -787,7 +798,7 @@ a.article-card-item-title-anchor:hover {
   border-block-start: 1px solid currentColor;
 }
 
-.archive-item-information {
+.archive-item-metadata {
   order: 0;
   grid-column: span 3;
   font-size: var(--text-small-1);
@@ -797,7 +808,7 @@ a.article-card-item-title-anchor:hover {
   grid-column: 1;
 }
 
-.archive-item-aside {
+.archive-item-date {
   grid-column: 3;
 }
 
@@ -855,8 +866,8 @@ a.archive-item-title:hover {
 
 .footer-title {
   --scale: var(--scale-expand-3);
-  font-weight: 800;
   margin-block: 0;
+  font-weight: 800;
 }
 
 a.footer-title-anchor {
@@ -1054,7 +1065,6 @@ a.nav-menu-item-anchor:hover {
 /* .toc  {{{2 */
 
 .toc {
-  --color-bg: var(--red-3);
   margin-block-end: var(--vertical-rhythm);
   background-color: var(--red-3);
   border-radius: 4px;
@@ -1065,8 +1075,8 @@ a.nav-menu-item-anchor:hover {
 .toc-heading {
   padding-block: calc(var(--vertical-rhythm) / 4) calc(var(--vertical-rhythm) / 4 - 1px);
   padding-inline: calc(var(--vertical-rhythm) / 2);
+  margin-block: 0;
   border-block-end: 1px dashed transparent;
-  margin-block-end: 0;
 }
 
 .toc-heading::marker {
@@ -1121,7 +1131,7 @@ a.toc-item-anchor {
 }
 
 a.toc-item-anchor:hover {
-  color: var(--color-bg);
+  color: var(--red-3);
   background-color: var(--gray-10);
 }
 

@@ -28,9 +28,9 @@ export default function render(props) {
 }
 
 function renderEntry(resource) {
-    const url = BASE_URL + resource.mountPath;
+    const url = BASE_URL + resource.url;
     return x('entry', [
-        x('title', [resource.data.title ?? resource.mountPath]),
+        x('title', [resource.data.title]),
         x('id', [url]),
         x('link', { type: 'text/html', ref: 'alternate', href: url }),
         x('updated', [new Date(resource.timestamp).toISOString()]),
