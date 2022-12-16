@@ -40,6 +40,7 @@
     "unist-util-filter": "^4.0.0",
     "unist-util-visit": "^4.1.1",
     "vega": "^5.22.1",
+    "vega-lite": "^5.6.0",
     "vscode-oniguruma": "^1.6.2",
     "vscode-textmate": "^7.0.3",
     "xast-util-to-xml": "^3.0.0",
