@@ -13,7 +13,7 @@ export default function render(props) {
 }
 
 function renderUrl(resource) {
-    const url = BASE_URL + resource.url;
+    const url = BASE_URL + resource.documentPath;
     return x('url', [
         x('loc', [url]),
         x('lastmod', [new Date(resource.timestamp).toISOString()]),

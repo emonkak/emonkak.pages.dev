@@ -25,7 +25,7 @@ async function build() {
         await fs.mkdir(outputDir, { recursive: true });
         const loader = await ResourceLoader.init();
         const resources = await loader.loadFromDirectory(srcDir);
-        const site = new Site(resources);
+        const site = new Site(resources, 'build');
         await writeToDirectory(site, outputDir, callback);
     } catch (error) {
         console.error('Build FAILED.');

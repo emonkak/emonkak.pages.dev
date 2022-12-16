@@ -20,7 +20,6 @@ module.exports = {
         'import/no-duplicates': ['error'],
         'import/order': ['error'],
         'max-len': ['error', { code: 100, ignoreStrings: true, ignoreTemplateLiterals: true }],
-        'multiline-ternary': ['error', 'always-multiline'],
         'no-extra-parens': ['error', 'functions'],
         'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
         'object-curly-spacing': ['error', 'always'],

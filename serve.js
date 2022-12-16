@@ -9,10 +9,10 @@ const srcDir = path.join(rootDir, 'src');
 
 async function serve(port, hostname) {
     const loader = await ResourceLoader.init({
-        withoutCache: true,
+        purgeCache: true,
     });
     const resources = await loader.loadFromDirectory(srcDir);
-    const site = new Site(resources);
+    const site = new Site(resources, 'serve');
     const server = http.createServer(loader.createHttpHandler(site));
 
     server.listen(port, hostname, () => {

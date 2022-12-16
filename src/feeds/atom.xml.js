@@ -28,7 +28,7 @@ export default function render(props) {
 }
 
 function renderEntry(resource) {
-    const url = BASE_URL + resource.url;
+    const url = BASE_URL + resource.documentPath;
     return x('entry', [
         x('title', [resource.data.title]),
         x('id', [url]),
