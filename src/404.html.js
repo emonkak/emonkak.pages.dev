@@ -10,25 +10,27 @@ const NUM_ARTICLES = 10;
 export default function render(props) {
     const { site } = props;
     return renderLayout({
+        title: '404 Not Found',
         content: renderContent(props),
-        documentPath: '/',
+        documentPath: '/404.html',
         site,
     });
 }
 
 function renderContent(props) {
-    const articles = props.site
-        .allArticles()
-        .slice(0, NUM_ARTICLES)
-
     return h('main', { class: 'l-main' }, [
         h('div', { class: 'l-container' }, [
-            renderArticleCardList(articles),
-            h('p', [
-                h('a', { class: ['button', 'is-outlined'], href: '/articles/' }, [
-                    'View All Articles →',
+            h('div', { class: 'error' }, [
+                h('h1', { class: 'error-code' }, '404'),
+                h('div', { class: 'error-description' }, [
+                    h('p', { class: 'error-message' }, 'Sorry, the page you are looking for could not be found.'),
+                    h('p', [
+                        h('a', { class: ['button', 'is-outlined'], href: '/' }, [
+                            'Back to Top →',
+                        ]),
+                    ]),
                 ]),
-            ])
+            ]),
         ]),
     ]);
 }

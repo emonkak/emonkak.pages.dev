@@ -174,11 +174,6 @@ blockquote, details, dl, figure, ol, p, pre, table, ul {
   margin-inline: 0;
 }
 
-p {
-  text-align: justify;
-  hyphens: auto;
-}
-
 hr {
   margin-block: 0 var(--vertical-rhythm);
   margin-inline: 0;
@@ -280,7 +275,7 @@ a:hover {
   color: var(--red-1);
 }
 
-.l-section {
+.l-main {
   padding-block: var(--vertical-rhythm);
 }
 
@@ -859,6 +854,38 @@ a.archive-item-title:hover {
   background-color: var(--red-6);
 }
 
+.document p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* .error  {{{2 */
+
+.error-code {
+  --scale: 4.0;
+  display: grid;
+  grid-template-columns: minmax(var(--vertical-rhythm), 1fr)
+                         auto
+                         minmax(var(--vertical-rhythm), 1fr);
+  align-items: center;
+  column-gap: 0.5ch;
+}
+
+.error-code::before,
+.error-code::after {
+  content: '';
+  display: block;
+  border-block-start: 2px solid currentColor;
+}
+
+.error-description {
+  text-align: center;
+}
+
+.error-message {
+  font-size: var(--text-large-2);
+}
+
 /* .footer  {{{2 */
 
 .footer {
@@ -1187,10 +1214,6 @@ a.work-visual:hover::before {
 
 .work-content {
   flex: 1;
-}
-
-.work-description p {
-  text-align: left;
 }
 
 .work-title {

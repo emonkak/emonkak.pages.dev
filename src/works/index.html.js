@@ -15,7 +15,7 @@ export default function render(props) {
 }
 
 function renderContent(props) {
-    return h('section', { class: 'l-section' }, [
+    return h('main', { class: 'l-main' }, [
         h('div', { class: 'l-container' }, [
             h('div', { class: 'document' }, [
                 h('h1', 'Works'),

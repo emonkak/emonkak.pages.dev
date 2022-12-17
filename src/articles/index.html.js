@@ -25,7 +25,7 @@ function renderContent(props) {
             (acc[year] ??= []).push(article);
             return acc;
         }, {});
-    return h('section', { class: 'l-section' }, [
+    return h('main', { class: 'l-main' }, [
         h('div', { class: 'l-container' }, [
             h('div', { class: 'document' }, [
                 h('h1', 'Articles'),
