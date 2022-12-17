@@ -18,9 +18,9 @@ export default function render(props) {
         x('feed', { xmlns: 'http://www.w3.org/2005/Atom' }, [
             x('title', SITE_NAME),
             x('subtitle', TAGLINE),
-            x('id', BASE_URL),
-            x('link', { type: 'text/html', rel: 'alternate', href: BASE_URL }),
-            x('link', { type: 'application/atom+xml', rel: 'self', href: BASE_URL + 'feeds/atom.xml' }),
+            x('id', BASE_URL + '/'),
+            x('link', { type: 'text/html', rel: 'alternate', href: BASE_URL + '/' }),
+            x('link', { type: 'application/atom+xml', rel: 'self', href: BASE_URL + '/feeds/atom.xml' }),
             x('updated', [new Date(site.lastUpdated()).toISOString()]),
             articles.map(renderEntry),
         ]),

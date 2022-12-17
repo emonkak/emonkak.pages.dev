@@ -1,7 +1,6 @@
 import { h } from 'hastscript';
 import { toText } from 'hast-util-to-text';
 
-import { BASE_URL } from '../lib/constants.js';
 import renderLayout from '../lib/templates/layout.js';
 import renderArticleCardList from '../lib/templates/articleCardList.js';
 
