@@ -56,22 +56,22 @@ function renderContent(props) {
                 h('ul', [
                     renderWorkItem({
                         title: 'vim-accelerate',
-                        description: ['Accelerate key-repeating'],
+                        description: 'Accelerate key-repeating',
                         url: 'https://github.com/emonkak/vim-accelerate',
                     }),
                     renderWorkItem({
                         title: 'vim-operator-comment',
-                        description: ['Provide operators to comment/uncomment codes'],
+                        description: 'Provide operators to comment/uncomment codes',
                         url: 'https://github.com/emonkak/vim-operator-comment',
                     }),
                     renderWorkItem({
                         title: 'vim-operator-sort',
-                        description: ['Provide operators to sort segments in range'],
+                        description: 'Provide operators to sort segments in range',
                         url: 'https://github.com/emonkak/vim-operator-sort',
                     }),
                     renderWorkItem({
                         title: 'vim-surround',
-                        description: ['Provide simple and light-weight surround operators'],
+                        description: 'Provide simple and light-weight surround operators',
                         url: 'https://github.com/emonkak/vim-surround',
                     }),
                 ]),
@@ -79,12 +79,12 @@ function renderContent(props) {
                 h('ul', [
                     renderWorkItem({
                         title: '@emonkak/di',
-                        description: ['A lightweight dependency injector'],
+                        description: 'A lightweight dependency injector',
                         url: 'https://github.com/emonkak/js-di',
                     }),
                     renderWorkItem({
                         title: '@emonkak/enumerable',
-                        description: ['A implementation of LINQ to Object for JavaScript that provides the individual methods as a module'],
+                        description: 'A implementation of LINQ to Object for JavaScript that provides the individual methods as a module',
                         url: 'https://github.com/emonkak/js-di',
                     }),
                 ]),
@@ -92,42 +92,42 @@ function renderContent(props) {
                 h('ul', [
                     renderWorkItem({
                         title: 'emonkak/database',
-                        description: ['A database abstraction interface as a subset of PDO'],
+                        description: 'A database abstraction interface as a subset of PDO',
                         url: 'https://github.com/emonkak/php-database',
                     }),
                     renderWorkItem({
                         title: 'emonkak/date-time',
-                        description: ['A date and time library that enhances build-in DateTime'],
+                        description: 'A date and time library that enhances build-in DateTime',
                         url: 'https://github.com/emonkak/php-date-time',
                     }),
                     renderWorkItem({
                         title: 'emonkak/di',
-                        description: ['A fast dependency injection library'],
+                        description: 'A fast dependency injection library',
                         url: 'https://github.com/emonkak/php-di',
                     }),
                     renderWorkItem({
                         title: 'emonkak/enumerable',
-                        description: ['An implementation of LINQ to Objects for PHP'],
+                        description: 'An implementation of LINQ to Objects for PHP',
                         url: 'https://github.com/emonkak/php-enumerable',
                     }),
                     renderWorkItem({
                         title: 'emonkak/http-application',
-                        description: ['A HTTP application core for PSR-15'],
+                        description: 'A HTTP application core for PSR-15',
                         url: 'https://github.com/emonkak/php-http-application',
                     }),
                     renderWorkItem({
                         title: 'emonkak/orm',
-                        description: ['A strict typed Object-Relational Mapper'],
+                        description: 'A strict typed Object-Relational Mapper',
                         url: 'https://github.com/emonkak/php-random',
                     }),
                     renderWorkItem({
                         title: 'emonkak/random',
-                        description: ['A random number generator library for experts'],
+                        description: 'A random number generator library for experts',
                         url: 'https://github.com/emonkak/php-random',
                     }),
                     renderWorkItem({
                         title: 'emonkak/router',
-                        description: ['A general-purpose path routing library'],
+                        description: 'A general-purpose path routing library',
                         url: 'https://github.com/emonkak/php-router',
                     }),
                     renderWorkItem({
@@ -168,6 +168,6 @@ function renderWorkItem(work) {
     return h('li', [
         h('a', { href: work.url, target: '_blank' }, h('strong', work.title)),
         ' — ',
-        ...work.description,
+        work.description,
     ]);
 }
