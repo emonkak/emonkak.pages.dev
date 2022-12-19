@@ -5,11 +5,11 @@ import renderArchiveList from '../../lib/templates/archiveList.js';
 import renderLayout from '../../lib/templates/layout.js';
 
 export default function render(props) {
-    const { site } = props;
+    const { site, resource } = props;
     return renderLayout({
         title: 'Articles',
         content: renderContent(props),
-        documentPath: '/articles/',
+        resource,
         site,
     });
 }

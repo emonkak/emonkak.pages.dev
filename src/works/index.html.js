@@ -4,11 +4,11 @@ import { toText } from 'hast-util-to-text';
 import renderLayout from '../../lib/templates/layout.js';
 
 export default function render(props) {
-    const { site } = props;
+    const { site, resource } = props;
     return renderLayout({
         title: 'Works',
         content: renderContent(props),
-        documentPath: '/works/',
+        resource,
         site,
     });
 }

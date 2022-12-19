@@ -7,11 +7,11 @@ import renderArticleCardList from '../lib/templates/articleCardList.js';
 const NUM_ARTICLES = 10;
 
 export default function render(props) {
-    const { site } = props;
+    const { site, resource } = props;
     return renderLayout({
         title: '404 Not Found',
         content: renderContent(props),
-        documentPath: '/404.html',
+        resource,
         site,
     });
 }

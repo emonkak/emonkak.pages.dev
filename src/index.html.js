@@ -7,11 +7,11 @@ import renderArticleCardList from '../lib/templates/articleCardList.js';
 const NUM_ARTICLES = 10;
 
 export default function render(props) {
-    const { site } = props;
+    const { resource, site } = props;
     return renderLayout({
         content: renderContent(props),
-        documentPath: '/',
         site,
+        resource,
     });
 }
 
