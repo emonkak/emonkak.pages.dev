@@ -31,9 +31,7 @@
   --text-small-3: calc(1rem * var(--scale-minus-3));
   --text-small-4: calc(1rem * var(--scale-minus-4));
 
-  --text-width: 76ch;
-  --text-width: 38ic;
-
+  --text-width: 38rem;
   --vertical-rhythm: calc(1rem * var(--scale-plus-4));
 
   --font-text: Charter, Cambria, Times, 'BIZ UDMincho', 'YuMincho +36p Kana', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
@@ -415,7 +413,7 @@ a.circle-button:hover {
   block-size: auto;
 }
 
-@media (min-width: 76ch), (min-width: 38ic) {
+@media (min-width: 38rem) {
   .figure.is-image > .figure-body {
     margin-inline: 0;
   }
@@ -941,7 +939,7 @@ a.footer-title-anchor:hover {
   font-size: var(--text-small-1);
 }
 
-@media (min-width: 76ch), (min-width: 38ic) {
+@media (min-width: 38rem) {
   .footer {
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: var(--vertical-rhythm);
