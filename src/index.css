@@ -223,21 +223,31 @@ th {
   font-family: var(--font-display);
 }
 
-small {
-  font-size: var(--text-small-1);
-}
-
 em, strong {
   font-family: var(--font-display);
 }
 
 code, kbd, pre, samp {
   font-family: var(--font-code);
+}
+
+small, code, pre, samp {
   font-size: var(--text-small-1);
 }
 
-:where(:not(a):not(pre)) > :is(code, kbd, samp) {
+:where(:not(a)) > :is(code, samp) {
   color: var(--red-8);
+}
+
+kbd {
+  padding-block: 2px;
+  padding-inline: 0.5ch;
+  margin-inline: 2px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 1px var(--gray-3),
+              0 2px 0 2px currentColor;
+  font-size: var(--text-small-2);
 }
 
 button {
@@ -457,6 +467,10 @@ a.circle-button:hover {
   background-color: var(--gray-8);
   border: 4px solid transparent;
   border-radius: 6px;
+}
+
+.figure-body > pre > code {
+  all: unset;
 }
 
 .figure-body > blockquote {
