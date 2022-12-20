@@ -103,11 +103,11 @@
 /* Base  {{{1 */
 
 html {
-  --bg-color: var(--red-1);
+  --current-background-color: var(--red-1);
   font-family: var(--font-text);
   font-size: clamp(14px, calc(0.875rem + ((1vi - 3.2px) * 1.0989)), 18px);
   line-height: var(--vertical-rhythm);
-  background-color: var(--bg-color);
+  background-color: var(--current-background-color);
   background-repeat: repeat;
   color: var(--gray-10);
   touch-action: manipulation;
@@ -178,8 +178,8 @@ hr {
   border: 0;
   font-size: var(--vertical-rhythm);
   line-height: calc(var(--vertical-rhythm) * 2);
-  background-image: linear-gradient(to left, currentColor, var(--bg-color)),
-                    linear-gradient(to right, currentColor, var(--bg-color));
+  background-image: linear-gradient(to left, currentColor, var(--current-background-color)),
+                    linear-gradient(to right, currentColor, var(--current-background-color));
   background-position: left center, right center;
   background-size: calc(50% - 1.5ch) 1px;
   background-repeat: no-repeat;
@@ -267,9 +267,9 @@ a:hover {
 /* Layouts  {{{1 */
 
 .l-header {
-  --bg-color: var(--gray-10);
+  --current-background-color: var(--gray-10);
   padding-block: var(--vertical-rhythm);
-  background-color: var(--bg-color);
+  background-color: var(--current-background-color);
   color: var(--red-1);
 }
 
@@ -289,9 +289,9 @@ a:hover {
 }
 
 .l-article-header {
-  --bg-color: var(--red-3);
+  --current-background-color: var(--red-3);
   padding-block: var(--vertical-rhythm);
-  background-color: var(--bg-color);
+  background-color: var(--current-background-color);
 }
 
 .l-article-main {
@@ -305,7 +305,7 @@ a:hover {
 }
 
 .l-page {
-  padding-block: var(--vertical-rhythm) var(--vertical-rhythm);
+  padding-block: var(--vertical-rhythm);
 }
 
 /* Components  {{{1 */
@@ -333,12 +333,12 @@ a.button {
 }
 
 .button.is-outlined:hover {
-  color: var(--bg-color);
+  color: var(--current-background-color);
   background-color: var(--gray-10);
 }
 
 .button.is-filled {
-  color: var(--bg-color);
+  color: var(--current-background-color);
   background-color: var(--gray-10);
 }
 
@@ -401,7 +401,6 @@ a.circle-button:hover {
   background-position: left center;
 }
 
-
 .figure.is-image > .figure-body {
   margin-inline: calc(var(--vertical-rhythm) / 2 * -1);
 }
@@ -429,8 +428,8 @@ a.circle-button:hover {
   inset-block-start: 0;
   inset-inline-end: calc(var(--vertical-rhythm) / 2);
   line-height: 1.0;
-  padding-inline: 0.5ch;
   padding-block: 2px;
+  padding-inline: 0.5ch;
   background-color: var(--red-6);
   color: var(--red-1);
   font-family: var(--font-display);
@@ -554,20 +553,20 @@ a.circle-button:hover {
 }
 
 .note.is-note {
-  --bg-color: var(--blue-2);
-  background-color: var(--bg-color);
+  --current-background-color: var(--blue-2);
+  background-color: var(--current-background-color);
   border-color: var(--blue-6);
 }
 
 .note.is-warning {
-  --bg-color: var(--yellow-2);
-  background-color: var(--bg-color);
+  --current-background-color: var(--yellow-2);
+  background-color: var(--current-background-color);
   border-color: var(--yellow-6);
 }
 
 .note.is-callout {
-  --bg-color: var(--red-2);
-  background-color: var(--bg-color);
+  --current-background-color: var(--red-2);
+  background-color: var(--current-background-color);
   border-color: var(--red-6);
 }
 
@@ -667,7 +666,7 @@ a.circle-button:hover {
 .tag-item-label {
   padding-inline: 0.5ch;
   border-radius: 4px;
-  color: var(--bg-color);
+  color: var(--current-background-color);
   background-color: var(--gray-10);
   line-height: calc(var(--vertical-rhythm) - 2px);
 }
@@ -732,14 +731,14 @@ a.tag-item-label:hover {
 }
 
 .article-card-item {
-  --bg-color: var(--red-1);
+  --current-background-color: var(--red-1);
   padding-block: var(--vertical-rhythm);
   padding-inline: calc(var(--vertical-rhythm) - 2px);
   margin-block-end: var(--vertical-rhythm);
   border: 2px solid currentColor;
   border-radius: 4px;
   box-shadow: 2px 2px var(--gray-4);
-  background-color: var(--bg-color);
+  background-color: var(--current-background-color);
 }
 
 .article-card-item-header {
@@ -1053,7 +1052,7 @@ a.nav-menu-item-anchor {
 }
 
 a.nav-menu-item-anchor:hover {
-  color: var(--bg-color);
+  color: var(--current-background-color);
   background-color: var(--red-6);
 }
 
