@@ -205,7 +205,6 @@ ol, ul {
 figcaption {
   text-align: center;
   font-family: var(--font-display);
-  font-weight: bold;
   font-style: italic;
   font-size: var(--text-small-2);
 }
