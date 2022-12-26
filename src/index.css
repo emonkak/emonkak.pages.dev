@@ -225,24 +225,20 @@ em, strong {
 
 code, kbd, pre, samp {
   font-family: var(--font-code);
-}
-
-small, code, pre, samp {
   font-size: var(--text-small);
 }
 
-:where(:not(a)) > :is(code, samp) {
-  color: var(--red-8);
+code, kbd, samp {
+  line-height: 1.0;
 }
 
 kbd {
-  padding-block: 2px;
+  padding-block: 1px;
   padding-inline: 0.5ch;
   margin-inline: 2px;
   border: 1px solid currentColor;
   border-radius: 4px;
-  box-shadow: 0 2px 0 1px var(--gray-3),
-              0 2px 0 2px currentColor;
+  box-shadow: 0 2px 0 1px currentColor;
   font-size: var(--text-x-small);
 }
 
