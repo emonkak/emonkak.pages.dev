@@ -598,21 +598,8 @@ a.circle-button:hover {
 
 .icon {
   fill: currentColor;
-}
-
-.icon.is-small {
-  width: 16px;
-  height: 16px;
-}
-
-.icon.is-medium {
-  width: 24px;
-  height: 24px;
-}
-
-.icon.is-large {
-  width: 32px;
-  height: 32px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* .inline-list  {{{2 */
