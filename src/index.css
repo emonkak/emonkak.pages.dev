@@ -993,7 +993,6 @@ a.header-title {
   text-align: justify;
   text-align-last: justify;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 @supports (container-type: inline-size) {
