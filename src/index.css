@@ -175,8 +175,8 @@ hr {
   border: 0;
   font-size: var(--line-feed);
   line-height: calc(var(--line-feed) * 2);
-  background-image: linear-gradient(to left, currentColor, var(--current-background-color)),
-                    linear-gradient(to right, currentColor, var(--current-background-color));
+  background-image: linear-gradient(to left, currentColor, rgba(255, 255, 255, 0)),
+                    linear-gradient(to right, currentColor, rgba(255, 255, 255, 0));
   background-position: left center, right center;
   background-size: calc(50% - 1.5ch) 1px;
   background-repeat: no-repeat;
@@ -403,21 +403,11 @@ a.circle-button:hover {
   background-position: left center;
 }
 
-.figure.is-image > .figure-body {
-  margin-inline: calc(var(--line-feed) / 2 * -1);
-}
-
 .figure-body > :is(img, svg) {
   display: block;
   margin-inline: auto;
   max-inline-size: 100%;
   block-size: auto;
-}
-
-@media (min-width: 38rem) {
-  .figure.is-image > .figure-body {
-    margin-inline: 0;
-  }
 }
 
 .figure.is-code {
@@ -432,18 +422,17 @@ a.circle-button:hover {
   line-height: 1.0;
   padding-block: 2px;
   padding-inline: 0.5ch;
+  border-end-start-radius: 4px;
+  border-end-end-radius: 4px;
   background-color: var(--red-6);
   color: var(--red-1);
   font-family: var(--font-display);
   font-size: var(--text-x-small);
-  border-end-start-radius:  4px;
-  border-end-end-radius: 4px;
 }
 
 .figure-body > pre {
   padding: calc(var(--line-feed) / 2);
   margin-block-end: 0;
-  border-radius: 4px;
   color: var(--gray-1);
   background-color: var(--gray-10);
   overflow-x: auto;
@@ -458,7 +447,6 @@ a.circle-button:hover {
   background-clip: padding-box;
   background-color: var(--gray-8);
   border: 4px solid transparent;
-  border-radius: 6px;
 }
 
 .figure-body > pre > code {
@@ -468,10 +456,18 @@ a.circle-button:hover {
 .figure-body > blockquote {
   position: relative;
   margin-block-end: 0;
-  padding-block: calc(var(--line-feed) / 2);
-  padding-inline: calc(var(--line-feed) * 1.5);
-  border-radius: 4px;
-  background-color: var(--red-3);
+  padding: var(--line-feed);
+  background-color: var(--red-2);
+  background-image: linear-gradient(currentColor, currentColor),
+                    linear-gradient(currentColor, currentColor),
+                    linear-gradient(currentColor, currentColor),
+                    linear-gradient(currentColor, currentColor);
+  background-position: top left, top right, bottom left, bottom right;
+  background-size: var(--line-feed) 1px,
+                   calc(100% - var(--line-feed) * 2.5) 1px,
+                   calc(100% - var(--line-feed) * 2.5) 1px,
+                   var(--line-feed) 1px;
+  background-repeat: no-repeat;
 }
 
 .figure-body > blockquote::before,
@@ -479,22 +475,23 @@ a.circle-button:hover {
   position: absolute;
   inline-size: calc(var(--line-feed) * 1.5);
   color: var(--red-6);
-  font-size: var(--text-h1);
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
 }
 
 .figure-body > blockquote::before {
   content: '\201c';
-  inset-block-start: calc(var(--line-feed) / 2);
-  inset-inline-start: 0;
-  line-height: 1.0;
+  inset-block-start: 0;
+  inset-inline-start: var(--line-feed);
+  transform: translateY(-25%);
 }
 
 .figure-body > blockquote::after {
   content: '\201d';
-  inset-block-end: calc(var(--line-feed) / 2);
-  inset-inline-end: 0;
-  line-height: 0;
+  inset-block-end: 0;
+  inset-inline-end: var(--line-feed);
+  transform: translateY(75%);
 }
 
 .figure-body > blockquote > :last-child {
@@ -550,6 +547,16 @@ a.circle-button:hover {
   color: var(--gray-7);
 }
 
+@media not (min-width: 38rem) {
+  :is(.figure.is-blockquote, .figure.is-code, .figure.is-image, .figure.is-table) > .figure-body {
+    margin-inline: calc(var(--line-feed) / 2 * -1);
+  }
+
+  .figure.is-code[data-language]::before {
+    inset-inline-end: 0;
+  }
+}
+
 /* .note  {{{2 */
 
 .note {
@@ -557,7 +564,7 @@ a.circle-button:hover {
   padding-inline: calc(var(--line-feed) / 2 - 4px)
                   calc(var(--line-feed) / 2);
   margin-block: 0 var(--line-feed);
-  border-inline-start: solid 4px transparent;
+  border-inline-start: 4px solid transparent;
 }
 
 .note.is-note {
@@ -859,11 +866,10 @@ a.archive-item-title:hover {
   position: relative;
 }
 
-.document h2::after {
+.document h2::before {
   content: '';
   position: absolute;
   inset-block-end: -4px;
-  inset-inline-start: 0;
   block-size: 4px;
   inline-size: calc(var(--line-feed) * 1.5);
   background-color: var(--red-6);
