@@ -520,8 +520,10 @@ a.circle-button:hover {
 }
 
 .figure-body > table {
-  inline-size: 100%;
+  max-inline-size: 100%;
   margin-block-end: 0;
+  margin-inline: auto;
+  font-size: var(--text-small);
 }
 
 .figure-body > table > tr > :is(td, th),
