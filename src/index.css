@@ -458,10 +458,10 @@ a.circle-button:hover {
   margin-block-end: 0;
   padding: var(--line-feed);
   background-color: var(--red-2);
-  background-image: linear-gradient(currentColor, currentColor),
-                    linear-gradient(currentColor, currentColor),
-                    linear-gradient(currentColor, currentColor),
-                    linear-gradient(currentColor, currentColor);
+  background-image: linear-gradient(var(--red-5), var(--red-5)),
+                    linear-gradient(var(--red-5), var(--red-5)),
+                    linear-gradient(var(--red-5), var(--red-5)),
+                    linear-gradient(var(--red-5), var(--red-5));
   background-position: top left, top right, bottom left, bottom right;
   background-size: var(--line-feed) 1px,
                    calc(100% - var(--line-feed) * 2.5) 1px,
