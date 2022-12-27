@@ -570,19 +570,19 @@ a.circle-button:hover {
 .note.is-note {
   --current-background-color: var(--blue-2);
   background-color: var(--current-background-color);
-  border-color: var(--blue-6);
+  border-color: var(--blue-5);
 }
 
 .note.is-warning {
   --current-background-color: var(--yellow-2);
   background-color: var(--current-background-color);
-  border-color: var(--yellow-6);
+  border-color: var(--yellow-5);
 }
 
 .note.is-callout {
   --current-background-color: var(--red-2);
   background-color: var(--current-background-color);
-  border-color: var(--red-6);
+  border-color: var(--red-5);
 }
 
 .note-caption {
