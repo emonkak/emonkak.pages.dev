@@ -134,7 +134,7 @@ function renderContent(props) {
                         title: 'emonkak/sharp',
                         description: [
                             '(Experimental) A memory efficient template engine compatible to Blade (',
-                            h('a', { href: '/articles/2022/building-a-memory-efficient-template-engine-in-php/' }, 'Details'),
+                            h('a', { href: '/articles/building-a-memory-efficient-template-engine-in-php/' }, 'Details'),
                             ')',
                         ],
                         url: 'https://github.com/emonkak/php-sharp',
