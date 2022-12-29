@@ -119,13 +119,24 @@ body {
 h1, h2, h3, h4, h5, h6, [role="heading"] {
   --floor: calc((var(--scale, 1.0) - 0.25) / 0.25 - 0.5);
   --line-scale: max(var(--floor) * 0.25, 1.0);
-  margin-block: 0 var(--line-feed);
   line-height: calc(var(--line-feed) * var(--line-scale));
   letter-spacing: -0.5px;
   font-family: var(--font-display);
   font-weight: bold;
   font-size: calc(1.0rem * var(--scale, 1.0));
   font-feature-settings: 'palt';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-block-end: var(--line-feed);
+}
+
+:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h1, h2, h3) {
+  margin-block-start: calc(var(--line-feed) * 2);
+}
+
+:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h4, h5, h6) {
+  margin-block-start: var(--line-feed);
 }
 
 h1 {
@@ -150,14 +161,6 @@ h5 {
 
 h6 {
   --scale: var(--scale-h6);
-}
-
-:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h1, h2, h3) {
-  margin-block-start: calc(var(--line-feed) * 2);
-}
-
-:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h4, h5, h6) {
-  margin-block-start: var(--line-feed);
 }
 
 iframe {
@@ -750,7 +753,6 @@ a.tag-item-label:hover {
 
 .article-card-item-title {
   --scale: var(--scale-h4);
-  margin-block: 0;
 }
 
 a.article-card-item-title-anchor {
@@ -814,7 +816,6 @@ a.article-card-item-title-anchor:hover {
 
 .archive-item-title {
   --scale: var(--scale-h6);
-  margin-block: 0;
   font-weight: normal;
 }
 
@@ -1071,6 +1072,7 @@ a.nav-menu-item-anchor:hover {
                          minmax(var(--line-feed), 1fr);
   align-items: center;
   column-gap: 0.5ch;
+  margin-block-end: var(--line-feed);
 }
 
 .share-heading::before,
@@ -1099,7 +1101,6 @@ a.nav-menu-item-anchor:hover {
 .toc-heading {
   padding-block: calc(var(--line-feed) / 4 - 1px);
   padding-inline: calc(var(--line-feed) / 2 - 1px);
-  margin-block: 0;
   border-block-end: 1px dashed transparent;
 }
 
@@ -1225,7 +1226,6 @@ a.work-visual:hover::before {
 
 .work-title {
   --scale: var(--scale-h6);
-  margin-block-end: 0;
 }
 
 a.work-title-anchor {
