@@ -3,6 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { ResourceLoader, writeToDirectory } from './lib/resource.js';
+import { MarkdownParser } from './lib/markdown.js';
 import Site from './lib/site.js';
 
 const rootDir = path.dirname(new URL(import.meta.url).pathname);
@@ -23,7 +24,8 @@ async function build() {
 
     try {
         await fs.mkdir(outputDir, { recursive: true });
-        const loader = await ResourceLoader.init();
+        const markdownParser = await MarkdownParser.init();
+        const loader = new ResourceLoader(markdownParser);
         const resources = await loader.loadFromDirectory(srcDir);
         const site = new Site(resources, 'build');
         await writeToDirectory(site, outputDir, callback);
