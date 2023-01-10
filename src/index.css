@@ -421,7 +421,7 @@ a.circle-button:hover {
   margin-block-end: 0;
   color: var(--gray-1);
   background-color: var(--gray-10);
-  overflow-x: auto;
+  overflow-x: overlay;
 }
 
 .figure-body > pre::-webkit-scrollbar {
@@ -489,20 +489,6 @@ a.circle-button:hover {
 
 /* Table  {{{3 */
 
-.figure.is-table > .figure-body {
-  overflow-x: auto;
-}
-
-.figure.is-table > .figure-body::-webkit-scrollbar {
-  inline-size: calc(var(--line-feed) / 2);
-  block-size: calc(var(--line-feed) / 2);
-  background-color: var(--gray-4);
-}
-
-.figure.is-table > .figure-body::-webkit-scrollbar-thumb {
-  background-color: currentColor;
-}
-
 .figure-body > table {
   max-inline-size: 100%;
   margin-block-end: 0;
@@ -512,10 +498,9 @@ a.circle-button:hover {
 
 .figure-body > table > tr > :is(td, th),
 .figure-body > table > :is(tbody, thead, tfoot) > tr > :is(td, th) {
-  padding: calc(var(--line-feed) / 4);
-  border-style: solid;
-  border-color: currentColor;
-  border-width: 0;
+  padding-block: calc(var(--line-feed) / 4);
+  padding-inline: 1ch;
+  border: 0 solid var(--gray-10);
 }
 
 .figure-body > table > thead > tr > :is(td, th) {
@@ -534,7 +519,7 @@ a.circle-button:hover {
   border-block-start-width: 2px;
 }
 
-/* Others  {{{3 */
+/* Image  {{{3 */
 
 .figure-body > :is(img, svg) {
   display: block;
@@ -543,8 +528,24 @@ a.circle-button:hover {
   block-size: auto;
 }
 
+/* Common  {{{3 */
+
 .figure-caption {
   color: var(--gray-7);
+}
+
+.figure:where(.is-table, .is-html) > .figure-body {
+  overflow-x: auto;
+}
+
+.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar {
+  inline-size: calc(var(--line-feed) / 2);
+  block-size: calc(var(--line-feed) / 2);
+  background-color: var(--gray-4);
+}
+
+.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar-thumb {
+  background-color: currentColor;
 }
 
 @media not (min-width: 38rem) {
