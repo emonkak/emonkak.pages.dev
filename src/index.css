@@ -205,6 +205,7 @@ ol, ul {
 figcaption {
   text-align: center;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: var(--text-x-small);
 }
 
@@ -363,6 +364,36 @@ a.circle-button:hover {
 }
 
 /* .figure  {{{2 */
+/* Common  {{{3 */
+
+.figure-caption {
+  color: var(--gray-7);
+}
+
+.figure:where(.is-table, .is-html) > .figure-body {
+  overflow-x: auto;
+}
+
+.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar {
+  inline-size: calc(var(--line-feed) / 2);
+  block-size: calc(var(--line-feed) / 2);
+  background-color: var(--gray-4);
+}
+
+.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar-thumb {
+  background-color: currentColor;
+}
+
+@media not (min-width: 38rem) {
+  :is(.figure.is-blockquote, .figure.is-code, .figure.is-image, .figure.is-table) > .figure-body {
+    margin-inline: calc(var(--line-feed) / 2 * -1);
+  }
+
+  .figure.is-code[data-language]::before {
+    inset-inline-end: 0;
+  }
+}
+
 /* Link  {{{3 */
 .figure-body > a {
   display: block;
@@ -526,36 +557,6 @@ a.circle-button:hover {
   margin-inline: auto;
   max-inline-size: 100%;
   block-size: auto;
-}
-
-/* Common  {{{3 */
-
-.figure-caption {
-  color: var(--gray-7);
-}
-
-.figure:where(.is-table, .is-html) > .figure-body {
-  overflow-x: auto;
-}
-
-.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar {
-  inline-size: calc(var(--line-feed) / 2);
-  block-size: calc(var(--line-feed) / 2);
-  background-color: var(--gray-4);
-}
-
-.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar-thumb {
-  background-color: currentColor;
-}
-
-@media not (min-width: 38rem) {
-  :is(.figure.is-blockquote, .figure.is-code, .figure.is-image, .figure.is-table) > .figure-body {
-    margin-inline: calc(var(--line-feed) / 2 * -1);
-  }
-
-  .figure.is-code[data-language]::before {
-    inset-inline-end: 0;
-  }
 }
 
 /* .note  {{{2 */
