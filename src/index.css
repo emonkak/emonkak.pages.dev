@@ -239,6 +239,7 @@ kbd {
   padding-block: 1px;
   padding-inline: 0.5ch;
   margin-inline: 2px;
+  vertical-align: 2px;
   border: 1px solid currentColor;
   border-radius: 4px;
   box-shadow: 0 2px 0 1px currentColor;
