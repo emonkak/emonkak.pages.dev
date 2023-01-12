@@ -42,6 +42,13 @@ function renderContent(props) {
                             style: { 'object-fit': 'cover' },
                         },
                     }),
+                    renderWork({
+                        title: 'Harmonious Color Palette Generator',
+                        description: [
+                            'A color palette generator harmonized to human vision'
+                        ],
+                        url: '/works/harmonious-color-palette-generator/',
+                    }),
                 ]),
                 h('h2', 'for Developers'),
                 h('h3', 'Rust'),
