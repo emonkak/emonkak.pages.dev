@@ -42,7 +42,7 @@ function* enumerateAdaptedColors(hue, luminance, colorSpace) {
         const lch = new Lch(luminance, chroma / 100, hue);
         const rgb = RGB.fromXYZ(lch.toXYZ(colorSpace.whitePoint), colorSpace);
 
-        if (!rgb.isInGamut()) {
+        if (!rgb.inGamut()) {
             break;
         }
 

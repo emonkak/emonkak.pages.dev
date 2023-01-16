@@ -288,7 +288,7 @@ export class RGB {
         this.blue = blue;
     }
 
-    isInGamut() {
+    inGamut() {
         return this.red >= 0 && this.red <= 1.0 &&
                this.green >= 0 && this.green <= 1.0 &&
                this.blue >= 0 && this.blue <= 1.0;
