@@ -623,11 +623,11 @@ export class Oklab {
     static INVERSE_M2 = Oklab.M2.inverse();
 
     static fromXYZ(components) {
-        let { x: l, y: m, z: s } = Oklab.M1.mulVec(components);
-        l = l ** (1 / 3);
-        m = m ** (1 / 3);
-        s = s ** (1 / 3);
-        const coordinates = Oklab.M2.mulVec(new Vec3(l, m, s));
+        let { x, y, z } = Oklab.M1.mulVec(components);
+        x = Math.cbrt(x);
+        y = Math.cbrt(y);
+        z = Math.cbrt(z);
+        const coordinates = Oklab.M2.mulVec(new Vec3(x, y, z));
         return new Oklab(coordinates.x, coordinates.y, coordinates.z);
     }
 
@@ -666,7 +666,7 @@ export class Oklab {
 
 export class Oklch {
     static fromXYZ(components) {
-        return Oklab.fromXYZ(components).toLch();
+        return Oklab.fromXYZ(components).toOklch();
     }
 
     constructor(luminance, chroma, hue) {
