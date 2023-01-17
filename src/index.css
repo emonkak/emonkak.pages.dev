@@ -226,12 +226,12 @@ em, strong {
   font-family: var(--font-display);
 }
 
-code, kbd, pre, samp {
+code, kbd, pre, samp, var {
   font-family: var(--font-code);
   font-size: var(--text-small);
 }
 
-code, kbd, samp {
+code, kbd, samp, var {
   line-height: 1.0;
 }
 
