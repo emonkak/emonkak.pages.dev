@@ -278,7 +278,7 @@ function render(array $data): array
 
 ### ストリームによる実装
 
-次に、[I/Oストリーム](https://www.php.net/manual/ja/wrappers.php.php)にチャンクを書き込む実装を考えた。今回は`php://memory`を使ってメモリ上へチャンクを書き込む実装を作成した。性能面では実行効率・メモリ効率いずれも文字列による実装より若干劣り、優位性はなった。
+次に、[I/Oストリーム](https://www.php.net/manual/ja/wrappers.php.php)にチャンクを書き込む実装を考えた。今回は`php://memory`を使ってメモリ上へチャンクを書き込む実装を作成した。性能面では実行効率・メモリ効率いずれも文字列による実装より若干劣り、優位性はなかった。
 
 ```php 3) ストリームによる描画関数
 function render(array $data)
