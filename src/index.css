@@ -684,49 +684,6 @@ a.tag-item-label:hover {
   background-color: var(--red-6);
 }
 
-/* .token  {{{2 */
-
-.token.is-string {
-  color: var(--red-5);
-}
-
-.token.is-meta-embedded {
-  color: var(--gray-1);
-}
-
-.token.is-entity-name,
-.token.is-support {
-  color: var(--violet-5);
-}
-
-.token.is-comment {
-  color: var(--gray-5);
-  font-style: italic;
-}
-
-.token.is-entity-name-function {
-  color: var(--yellow-5);
-}
-
-.token.is-constant-numeric,
-.token.is-constant-other,
-.token.is-entity-name-function-macro,
-.token.is-meta-attribute,
-.token.is-punctuation-section-embedded {
-  color: var(--cyan-5);
-}
-
-.token.is-keyword-control,
-.token.is-keyword-operator,
-.token.is-keyword-other,
-.token.is-punctuation-definition-tag,
-.token.is-punctuation-definition-lifetime,
-.token.is-punctuation-definition-template-expression,
-.token.is-storage,
-.token.is-variable-language {
-  color: var(--blue-5);
-}
-
 /* Modules  {{{1 */
 /* .article-card  {{{2 */
 

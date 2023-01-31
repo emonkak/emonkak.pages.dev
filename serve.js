@@ -9,7 +9,7 @@ const rootDir = path.dirname(new URL(import.meta.url).pathname);
 const srcDir = path.join(rootDir, 'src');
 
 async function serve(port, hostname) {
-    const markdownParser = await MarkdownParser.init();
+    const markdownParser = await MarkdownParser.create(process.env.NODE_ENV);
     const loader = new ResourceLoader(markdownParser, true);
     const resources = await loader.loadFromDirectory(srcDir);
     const site = new Site(resources, 'serve');

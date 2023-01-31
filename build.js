@@ -24,7 +24,7 @@ async function build() {
 
     try {
         await fs.mkdir(outputDir, { recursive: true });
-        const markdownParser = await MarkdownParser.init();
+        const markdownParser = await MarkdownParser.create(process.env.NODE_ENV);
         const loader = new ResourceLoader(markdownParser);
         const resources = await loader.loadFromDirectory(srcDir);
         const site = new Site(resources, 'build');
