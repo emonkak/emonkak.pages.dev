@@ -631,7 +631,7 @@ a.circle-button:hover {
 }
 
 .inline-list.is-spaced-large {
-  column-gap: 2ch;
+  column-gap: 1.5ch;
 }
 
 :where(.inline-list.is-separated) > .inline-list-item + .inline-list-item::before {
