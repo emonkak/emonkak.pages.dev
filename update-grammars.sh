@@ -9,31 +9,42 @@ fi
 
 SCRIPT_PATH=$(realpath "$0")
 SCRIPT_DIR=$(dirname "${SCRIPT_PATH}")
-VSCODE_DIR="${SCRIPT_DIR}/tmp/vscode"
-GRAMMAR_DIR="${SCRIPT_DIR}/lib/grammars"
+TMP_DIR="${SCRIPT_DIR}/tmp"
+GRAMMARS_DIR="${SCRIPT_DIR}/lib/grammars"
 
-if [ ! -d "${VSCODE_DIR}" ]
-then
-  echo "Clone vscode repository..."
-  git clone https://github.com/microsoft/vscode.git "${VSCODE_DIR}" --depth=1
-  cd "${VSCODE_DIR}"
-else
-  echo "Checkout vscode..."
-  cd "${VSCODE_DIR}"
-  git checkout -f .
-  git pull
-fi
+declare -a available_scopes=()
 
-mkdir -p "${GRAMMAR_DIR}"
+pull_source() {
+  local url="$1"
+  local dest_dir="$2"
+  if [ ! -d "${dest_dir}" ]
+  then
+    echo "Clone ${url} ..."
+    git clone "${url}" "${dest_dir}" --depth=1
+  else
+    echo "Checkout ${url} ..."
+    git --git-dir "${dest_dir}/.git" --work-tree "${dest_dir}" checkout -f .
+    git --git-dir "${dest_dir}/.git" --work-tree "${dest_dir}" pull
+  fi
+}
 
-declare -a available_scopes
-
-while read -r path
-do
-  scope_name=$(jq -r .scopeName "${path}")
-  available_scopes+=("${scope_name}")
-  cp -v "${path}" "${GRAMMAR_DIR}/${scope_name}.json"
-done < <(git ls-files '**/*.tmLanguage.json')
+copy_syntaxes() {
+  local dir="$1"
+  while read -r path
+  do
+    if [[ "${path##*.}" == 'YAML-tmLanguage' ]]
+    then
+      tmp="${TMP_DIR}/${path##*/}.json"
+      yaml2json < "${dir}/${path}" > "${tmp}"
+      scope_name=$(jq -r .scopeName "${tmp}")
+      mv -v "${tmp}" "${GRAMMARS_DIR}/${scope_name}.json"
+    else
+      scope_name=$(jq -r .scopeName "${dir}/${path}")
+      cp -v "${dir}/${path}" "${GRAMMARS_DIR}/${scope_name}.json"
+    fi
+    available_scopes+=("${scope_name}")
+  done < <(git --git-dir "${dir}/.git" --work-tree "${dir}" ls-files '**/*.tmLanguage.json' '**/*.YAML-tmLanguage')
+}
 
 generate_grammar_index() {
   local -a scope_names=("$@")
@@ -49,6 +60,18 @@ generate_grammar_index() {
   echo "};"
 }
 
-generate_grammar_index "${available_scopes[@]}" > "${GRAMMAR_DIR}/index.js"
+yaml2json() {
+  python3 -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read()), indent=4))'
+}
+
+mkdir -p "${GRAMMARS_DIR}"
+
+pull_source "https://github.com/microsoft/vscode.git" "${TMP_DIR}/vscode"
+copy_syntaxes "${TMP_DIR}/vscode"
+
+pull_source "https://github.com/JustusAdam/language-haskell.git" "${TMP_DIR}/language-haskell"
+copy_syntaxes "${TMP_DIR}/language-haskell"
+
+generate_grammar_index "${available_scopes[@]}" > "${GRAMMARS_DIR}/index.js"
 
 echo ${#available_scopes[@]} grammars are copied.
