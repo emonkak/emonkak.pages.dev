@@ -396,6 +396,7 @@ a.circle-button:hover {
 }
 
 /* Link  {{{3 */
+
 .figure-body > a {
   display: block;
   padding: calc(var(--line-feed) / 2 - 2px);
