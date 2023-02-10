@@ -31,7 +31,7 @@
   --text-columns: 38rem;
   --line-feed: calc(1rem * var(--scale-h3));
 
-  --font-text: Charter, Cambria, Times, 'BIZ UDMincho', 'YuMincho +36p Kana', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
+  --font-text: Charter, Cambria, Times, 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', Helvetica, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
   --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe Ui Symbol', sans-serif;
   --font-code: 'PT Mono', 'Lucida Console', Courier, Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
