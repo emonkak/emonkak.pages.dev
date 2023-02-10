@@ -554,6 +554,10 @@ a.circle-button:hover {
 
 /* Image  {{{3 */
 
+.figure.is-image {
+  font-family: var(--font-display);
+}
+
 .figure-body > :is(img, svg) {
   display: block;
   margin-inline: auto;
