@@ -557,18 +557,6 @@ a.circle-button:hover {
   block-size: auto;
 }
 
-/* Responsive  {{{3 */
-
-@media not (min-width: 38rem) {
-  :is(.figure.is-blockquote, .figure.is-code, .figure.is-image, .figure.is-table) > .figure-body {
-    margin-inline: calc(var(--line-feed) / 2 * -1);
-  }
-
-  .figure.is-code[data-language]::before {
-    inset-inline-end: 0;
-  }
-}
-
 /* .note  {{{2 */
 
 .note {
@@ -849,6 +837,16 @@ a.archive-item-title:hover {
 .document p {
   text-align: justify;
   hyphens: auto;
+}
+
+@media not (min-width: 38rem) {
+  .document > :is(.figure.is-blockquote, .figure.is-code, .figure.is-image, .figure.is-table) > .figure-body {
+    margin-inline: calc(var(--line-feed) / 2 * -1);
+  }
+
+  .document > .figure.is-code[data-language]::before {
+    inset-inline-end: 0;
+  }
 }
 
 /* .error  {{{2 */
