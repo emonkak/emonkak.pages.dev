@@ -389,19 +389,22 @@ a.circle-button:hover {
 /* Link  {{{3 */
 
 .figure-body > a {
+  --border-color: var(--gray-5);
+  --shadow-color: var(--gray-3);
   display: block;
   padding: calc(var(--line-feed) / 2 - 2px);
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--gray-5);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  box-shadow: 2px 2px var(--gray-3);
+  box-shadow: 2px 2px var(--shadow-color);
   font-family: var(--font-display);
   font-weight: bold;
 }
 
 .figure-body > a:hover {
-  background-color: var(--gray-2);
+  --border-color: var(--red-6);
+  --shadow-color: var(--red-3);
 }
 
 .figure-body > a[data-domain]::after {
