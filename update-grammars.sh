@@ -61,8 +61,13 @@ generate_grammar_index() {
 }
 
 yaml2json() {
-  python3 -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read()), indent=4))'
+  ./node_modules/.bin/js-yaml
 }
+
+if [ ! -x ./node_modules/.bin/js-yaml ]
+then
+  npm install js-yaml
+fi
 
 mkdir -p "${GRAMMARS_DIR}"
 
