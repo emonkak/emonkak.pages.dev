@@ -1,7 +1,7 @@
 import { Chart, registerables } from 'https://cdn.skypack.dev/chart.js@4';
-import { computed, signal } from 'https://cdn.skypack.dev/@preact/signals@1';
-import { createContext, h, render } from 'https://cdn.skypack.dev/preact@10';
-import { useCallback, useContext, useLayoutEffect, useEffect, useMemo, useRef, useState } from 'https://cdn.skypack.dev/preact@10/hooks';
+import { computed, signal } from 'https://cdn.skypack.dev/@preact/signals@1.1';
+import { createContext, h, render } from 'https://cdn.skypack.dev/preact@10.11';
+import { useCallback, useContext, useLayoutEffect, useEffect, useMemo, useRef, useState } from 'https://cdn.skypack.dev/preact@10.11/hooks';
 
 import { ColorSpace, HSV, Lab, Lch, Primaries, RGB, SimpleGammaCorrection, SrgbGammaCorrection, Vec2, WhitePoint } from './color.js';
 
