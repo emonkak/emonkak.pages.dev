@@ -200,7 +200,7 @@ menu {
 }
 
 ol, ul {
-  padding-inline-start: var(--line-feed);
+  padding-inline-start: calc(var(--line-feed) * 1.5);
 }
 
 figcaption {
@@ -564,9 +564,17 @@ a.circle-button:hover {
 
 .footnote-definition {
   display: flex;
-  color: var(--gray-7);
   margin-block: 0 var(--line-feed);
-  column-gap: 1ch;
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+}
+
+.footnote-definition-label {
+  box-sizing: border-box;
+  inline-size: calc(var(--line-feed) * 1.5);
+  padding-inline-end: 1ch;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
 }
 
 .footnote-definition-body {
