@@ -28,7 +28,7 @@
   --text-x-small: calc(1rem * var(--scale-x-small));
   --text-xx-small: calc(1rem * var(--scale-xx-small));
 
-  --text-columns: 38rem;
+  --text-columns: 40rem;
   --line-feed: calc(1rem * var(--scale-h3));
 
   --font-text: Charter, Cambria, Times, 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
