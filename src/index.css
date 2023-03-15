@@ -560,28 +560,40 @@ a.circle-button:hover {
   block-size: auto;
 }
 
-/* .footnote-definition  {{{2 */
+/* .footnote  {{{2 */
 
-.footnote-definition {
+.footnote {
   display: flex;
   margin-block: 0 var(--line-feed);
   font-family: var(--font-display);
   font-size: var(--text-small);
 }
 
-.footnote-definition-label {
+.footnote:has(+ .footnote) {
+  margin-block-end: 0;
+}
+
+.footnote-label {
   box-sizing: border-box;
   inline-size: calc(var(--line-feed) * 1.5);
-  padding-inline-end: 1ch;
   text-align: end;
   font-variant-numeric: tabular-nums;
 }
 
-.footnote-definition-body {
+.footnote-label::after {
+  content: ' ';
+  white-space: pre;
+}
+
+a.footnote-back-reference {
+  text-decoration: none;
+}
+
+.footnote-body {
   flex: 1 1;
 }
 
-.footnote-definition-body > :last-child {
+.footnote-body > :last-child {
   margin-block-end: 0;
 }
 
