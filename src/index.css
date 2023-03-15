@@ -684,7 +684,7 @@ a.footnote-back-reference {
 
 .note-caption::before {
   font-family: var(--font-emoji);
-  margin-inline-end: 0.5ch;
+  margin-inline-end: 0.25ch;
 }
 
 .note.is-note .note-caption::before {
