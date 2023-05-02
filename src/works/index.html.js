@@ -32,11 +32,11 @@ function renderContent(props) {
                         },
                     }),
                     renderWork({
-                        title: 'GeekyTray',
+                        title: 'GeekTray',
                         description: [
                             'A keyboard based freedesktop.org system tray implementation for X11'
                         ],
-                        url: 'https://github.com/emonkak/geekytray',
+                        url: 'https://github.com/emonkak/geektray',
                         image: {
                             src: 'https://raw.githubusercontent.com/emonkak/geekytray/master/extras/screenshot.png',
                             style: { 'object-fit': 'cover' },
