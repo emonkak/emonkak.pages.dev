@@ -101,11 +101,11 @@
 /* Base  {{{1 */
 
 html {
-  --current-background-color: var(--red-1);
+  --current-bg: var(--red-1);
   font-family: var(--font-text);
   font-size: clamp(14px, calc(0.875rem + ((1vi - 3.2px) * 1.0989)), 18px);
   line-height: var(--line-feed);
-  background-color: var(--current-background-color);
+  background-color: var(--current-bg);
   background-repeat: repeat;
   color: var(--gray-10);
   touch-action: manipulation;
@@ -263,9 +263,9 @@ a:hover {
 /* Layouts  {{{1 */
 
 .l-header {
-  --current-background-color: var(--gray-10);
+  --current-bg: var(--gray-10);
   padding-block: var(--line-feed);
-  background-color: var(--current-background-color);
+  background-color: var(--current-bg);
   color: var(--red-1);
 }
 
@@ -285,9 +285,9 @@ a:hover {
 }
 
 .l-article-header {
-  --current-background-color: var(--red-3);
+  --current-bg: var(--red-3);
   padding-block: var(--line-feed);
-  background-color: var(--current-background-color);
+  background-color: var(--current-bg);
 }
 
 .l-article-main {
@@ -329,12 +329,12 @@ a.button {
 }
 
 .button.is-outlined:hover {
-  color: var(--current-background-color);
+  color: var(--current-bg);
   background-color: var(--gray-10);
 }
 
 .button.is-filled {
-  color: var(--current-background-color);
+  color: var(--current-bg);
   background-color: var(--gray-10);
 }
 
@@ -660,20 +660,20 @@ a.footnote-back-reference {
 }
 
 .note.is-note {
-  --current-background-color: var(--blue-2);
-  background-color: var(--current-background-color);
+  --current-bg: var(--blue-2);
+  background-color: var(--current-bg);
   border-color: var(--blue-5);
 }
 
 .note.is-warning {
-  --current-background-color: var(--yellow-2);
-  background-color: var(--current-background-color);
+  --current-bg: var(--yellow-2);
+  background-color: var(--current-bg);
   border-color: var(--yellow-5);
 }
 
 .note.is-callout {
-  --current-background-color: var(--red-2);
-  background-color: var(--current-background-color);
+  --current-bg: var(--red-2);
+  background-color: var(--current-bg);
   border-color: var(--red-5);
 }
 
@@ -725,7 +725,7 @@ a.footnote-back-reference {
 .tag-item-label {
   padding-inline: 0.5ch;
   border-radius: 4px;
-  color: var(--current-background-color);
+  color: var(--current-bg);
   background-color: var(--gray-10);
   line-height: calc(var(--line-feed) - 2px);
 }
@@ -799,14 +799,14 @@ a.archive-item-title:hover {
 }
 
 .article-card-item {
-  --current-background-color: var(--red-1);
+  --current-bg: var(--red-1);
   padding-block: var(--line-feed);
   padding-inline: calc(var(--line-feed) - 2px);
   margin-block-end: var(--line-feed);
   border: 2px solid currentColor;
   border-radius: 4px;
   box-shadow: 2px 2px var(--gray-4);
-  background-color: var(--current-background-color);
+  background-color: var(--current-bg);
 }
 
 .article-card-item-header {
@@ -1074,7 +1074,7 @@ a.nav-menu-item-anchor {
 }
 
 a.nav-menu-item-anchor:hover {
-  color: var(--current-background-color);
+  color: var(--current-bg);
   background-color: var(--red-6);
 }
 
