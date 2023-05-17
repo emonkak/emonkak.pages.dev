@@ -652,39 +652,37 @@ a.footnote-back-reference {
 /* .note  {{{2 */
 
 .note {
-  padding-block: calc(var(--line-feed) / 2);
-  padding-inline: calc(var(--line-feed) / 2 - 4px)
-                  calc(var(--line-feed) / 2);
+  padding: var(--line-feed);
   margin-block: 0 var(--line-feed);
-  border-inline-start: 4px solid transparent;
 }
 
 .note.is-note {
   --current-bg: var(--blue-2);
+  color: var(--blue-10);
   background-color: var(--current-bg);
-  border-color: var(--blue-5);
 }
 
 .note.is-warning {
   --current-bg: var(--yellow-2);
+  color: var(--yellow-10);
   background-color: var(--current-bg);
-  border-color: var(--yellow-5);
 }
 
 .note.is-callout {
   --current-bg: var(--red-2);
+  color: var(--red-10);
   background-color: var(--current-bg);
-  border-color: var(--red-5);
 }
 
 .note-caption {
   font-weight: bold;
   font-family: var(--font-display);
+  margin-block-end: var(--line-feed);
 }
 
 .note-caption::before {
   font-family: var(--font-emoji);
-  margin-inline-end: 0.25ch;
+  margin-inline-end: 0.5ch;
 }
 
 .note.is-note .note-caption::before {
@@ -701,6 +699,12 @@ a.footnote-back-reference {
 
 .note-body > :last-child {
   margin-block-end: 0;
+}
+
+@media not (min-width: 38rem) {
+  .note {
+    margin-inline: calc(var(--line-feed) / 2 * -1);
+  }
 }
 
 /* .tag  {{{2 */
