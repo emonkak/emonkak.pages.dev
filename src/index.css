@@ -585,11 +585,17 @@ a.circle-button:hover {
   font-family: var(--font-display);
 }
 
-.figure-body > :is(img, svg) {
+.figure.is-image > .figure-body > a {
+  all: initial;
+  cursor: pointer;
+}
+
+.figure-body > :is(img, svg),
+.figure-body > a > :is(img, svg) {
   display: block;
   margin-inline: auto;
-  max-inline-size: 100%;
   block-size: auto;
+  max-inline-size: 100%;
 }
 
 /* .footnote  {{{2 */
