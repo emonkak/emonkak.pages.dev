@@ -505,8 +505,7 @@ a.circle-button:hover {
 .figure-body > blockquote {
   position: relative;
   margin-block-end: 0;
-  padding-block: var(--line-feed);
-  padding-inline: calc(var(--line-feed) / 2);
+  padding: var(--line-feed);
   background-color: var(--red-2);
   background-image: linear-gradient(var(--red-5), var(--red-5)),
                     linear-gradient(var(--red-5), var(--red-5)),
