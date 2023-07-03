@@ -563,6 +563,16 @@ a.circle-button:hover {
   border: 0 solid var(--gray-10);
 }
 
+.figure-body > table > tr > th,
+.figure-body > table > :is(tbody, thead, tfoot) > tr > th {
+  vertical-align: bottom;
+}
+
+.figure-body > table > tr > td,
+.figure-body > table > :is(tbody, thead, tfoot) > tr > td {
+  vertical-align: top;
+}
+
 .figure-body > table > thead > tr > :is(td, th) {
   padding-block-end: calc(var(--line-feed) / 4 - 2px);
   border-block-end-width: 2px;
