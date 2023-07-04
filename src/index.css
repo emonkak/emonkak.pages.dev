@@ -254,6 +254,10 @@ th {
   font-family: var(--font-display);
 }
 
+sup {
+  line-height: 1.0;
+}
+
 em, strong {
   font-family: var(--font-display);
 }
