@@ -115,28 +115,30 @@ I recommend you follow those steps to unify the character width table of the loc
 
 The default config make the following changes to a character width table (of course you can change them). In this config, regardless of the East Asian Width property, full-width characters are specified for some [block](https://unicode.org/Public/UNIDATA/Blocks.txt):
 
-| Code Start | Code End   | Width            | Note                                                                                                         |
-| ---------- | ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------ |
-| U+25A0     | U+25FF     | 2                | [Geometric Shapes](https://en.wikipedia.org/wiki/Geometric_Shapes_(Unicode_block))                           |
-| U+2600     | U+26FF     | 2                | [Miscellaneous Symbols](https://en.wikipedia.org/wiki/Miscellaneous_Symbols)                                 |
-| U+2700     | U+27BF     | 2                | [Dingbats](https://en.wikipedia.org/wiki/Dingbats_(Unicode_block))                                           |
-| U+FFFC     | U+FFFD     | 2                | OBJECT REPLACEMENT CHARACTER (U+FFFC)<br>REPLACEMENT CHARACTER (U+FFFD)                                      |
-| U+1F000    | U+1F02F    | 2                | [Mahjong Tiles](https://en.wikipedia.org/wiki/Mahjong_Tiles_(Unicode_block))                                 |
-| U+1F030    | U+1F09F    | 2                | [Domino Tiles](https://en.wikipedia.org/wiki/Domino_Tiles)                                                   |
-| U+1F0A0    | U+1F0FF    | 2                | [Playing Cards](https://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block))                                 |
-| U+1F100    | U+1F1FF    | 2                | [Enclosed Alphanumeric Supplement](https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement)           |
-| U+1F200    | U+1F2FF    | 2                | [Enclosed Ideographic Supplement](https://en.wikipedia.org/wiki/Enclosed_Ideographic_Supplement)             |
-| U+1F300    | U+1F5FF    | 2                | [Miscellaneous Symbols and Pictographs](https://en.wikipedia.org/wiki/Miscellaneous_Symbols_and_Pictographs) |
-| U+1F600    | U+1F64F    | 2                | [Emoticons](https://en.wikipedia.org/wiki/Emoticons_(Unicode_block))                                         |
-| U+1F650    | U+1F67F    | 2                | [Ornamental Dingbats](https://en.wikipedia.org/wiki/Ornamental_Dingbats)                                     |
-| U+1F680    | U+1F6FF    | 2                | [Transport and Map Symbols](https://en.wikipedia.org/wiki/Transport_and_Map_Symbols)                         |
-| U+1F700    | U+1F77F    | 2                | [Alchemical Symbols](https://en.wikipedia.org/wiki/Alchemical_Symbols_(Unicode_block))                       |
-| U+1F780    | U+1F7FF    | 2                | [Geometric Shapes Extended](https://en.wikipedia.org/wiki/Geometric_Shapes_Extended)                         |
-| U+1F800    | U+1F8FF    | 2                | [Supplemental Arrows-C](https://en.wikipedia.org/wiki/Supplemental_Arrows-C)                                 |
-| U+1F900    | U+1F9FF    | 2                | [Supplemental Symbols and Pictographs](https://en.wikipedia.org/wiki/Supplemental_Symbols_and_Pictographs)   |
-| U+1FA00    | U+1FA6F    | 2                | [Chess Symbols](https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode)                                      |
-| U+1FA70    | U+1FAFF    | 2                | [Symbols and Pictographs Extended-A](https://en.wikipedia.org/wiki/Symbols_and_Pictographs_Extended-A)       |
-| U+1FB00    | U+1FBFF    | 2                | [Symbols for Legacy Computing](https://en.wikipedia.org/wiki/Symbols_for_Legacy_Computing)                   |
+| Code Start | Code End   | Width            | Note                                                                                                                     |
+| ---------- | ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| U+2010     | U+2027     | 2                | [General Punctuation](https://en.wikipedia.org/wiki/General_Punctuation) (HYPHEN ... HYPHENATION POINT)                  |
+| U+2030     | U+205E     | 2                | [General Punctuation](https://en.wikipedia.org/wiki/General_Punctuation) (PER MILLE SIGN ... VERTICAL FOUR DOTS)         |
+| U+25A0     | U+25FF     | 2                | [Geometric Shapes](https://en.wikipedia.org/wiki/Geometric_Shapes_(Unicode_block))                                       |
+| U+2600     | U+26FF     | 2                | [Miscellaneous Symbols](https://en.wikipedia.org/wiki/Miscellaneous_Symbols)                                             |
+| U+2700     | U+27BF     | 2                | [Dingbats](https://en.wikipedia.org/wiki/Dingbats_(Unicode_block))                                                       |
+| U+FFFC     | U+FFFD     | 2                | [Specials](https://en.wikipedia.org/wiki/Specials_(Unicode_block)) (OBJECT REPLACEMENT CHARACTER, REPLACEMENT CHARACTER) |
+| U+1F000    | U+1F02F    | 2                | [Mahjong Tiles](https://en.wikipedia.org/wiki/Mahjong_Tiles_(Unicode_block))                                             |
+| U+1F030    | U+1F09F    | 2                | [Domino Tiles](https://en.wikipedia.org/wiki/Domino_Tiles)                                                               |
+| U+1F0A0    | U+1F0FF    | 2                | [Playing Cards](https://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block))                                             |
+| U+1F100    | U+1F1FF    | 2                | [Enclosed Alphanumeric Supplement](https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement)                       |
+| U+1F200    | U+1F2FF    | 2                | [Enclosed Ideographic Supplement](https://en.wikipedia.org/wiki/Enclosed_Ideographic_Supplement)                         |
+| U+1F300    | U+1F5FF    | 2                | [Miscellaneous Symbols and Pictographs](https://en.wikipedia.org/wiki/Miscellaneous_Symbols_and_Pictographs)             |
+| U+1F600    | U+1F64F    | 2                | [Emoticons](https://en.wikipedia.org/wiki/Emoticons_(Unicode_block))                                                     |
+| U+1F650    | U+1F67F    | 2                | [Ornamental Dingbats](https://en.wikipedia.org/wiki/Ornamental_Dingbats)                                                 |
+| U+1F680    | U+1F6FF    | 2                | [Transport and Map Symbols](https://en.wikipedia.org/wiki/Transport_and_Map_Symbols)                                     |
+| U+1F700    | U+1F77F    | 2                | [Alchemical Symbols](https://en.wikipedia.org/wiki/Alchemical_Symbols_(Unicode_block))                                   |
+| U+1F780    | U+1F7FF    | 2                | [Geometric Shapes Extended](https://en.wikipedia.org/wiki/Geometric_Shapes_Extended)                                     |
+| U+1F800    | U+1F8FF    | 2                | [Supplemental Arrows-C](https://en.wikipedia.org/wiki/Supplemental_Arrows-C)                                             |
+| U+1F900    | U+1F9FF    | 2                | [Supplemental Symbols and Pictographs](https://en.wikipedia.org/wiki/Supplemental_Symbols_and_Pictographs)               |
+| U+1FA00    | U+1FA6F    | 2                | [Chess Symbols](https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode)                                                  |
+| U+1FA70    | U+1FAFF    | 2                | [Symbols and Pictographs Extended-A](https://en.wikipedia.org/wiki/Symbols_and_Pictographs_Extended-A)                   |
+| U+1FB00    | U+1FBFF    | 2                | [Symbols for Legacy Computing](https://en.wikipedia.org/wiki/Symbols_for_Legacy_Computing)                               |
 
 This config solves some problems with the traditional approach of treating all East Asian ambiguous characters as full-width:
 
