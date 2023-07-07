@@ -80,7 +80,7 @@ sudo localedef -i en_US -c -f UTF-8-PATCHED en_US.UTF-8
 Or overwrite the existing locale:
 
 ```shell
-gzip -c UTF-8-PATCHED > sudo dd of=/usr/share/i18n/charmaps/UTF-8.gz
+gzip -c UTF-8-PATCHED | sudo dd of=/usr/share/i18n/charmaps/UTF-8.gz
 sudo locale-gen
 ```
 
