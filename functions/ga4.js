@@ -1,8 +1,8 @@
 export async function onRequest({ request, env }) {
     const { searchParams } = new URL(request.url)
-    const api_secret = env.GA4_API_SECRET;
-    const measurement_id = searchParams.get('tid');
-    const url = `https://www.google-analytics.com/mp/collect?api_secret=${api_secret}&measurement_id=${measurement_id}`;
+    const apiSecret = env.GA4_API_SECRET;
+    const measurementId = searchParams.get('tid');
+    const url = `https://www.google-analytics.com/mp/collect?api_secret=${apiSecret}&measurement_id=${measurementId}`;
     const ipAddress = request.headers.get('cf-connecting-ip');
     const userAgent = request.headers.get('user-agent');
     const clientId = await getClientId(ipAddress, userAgent);
