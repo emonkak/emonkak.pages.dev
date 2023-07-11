@@ -5,7 +5,7 @@ export async function onRequest({ request, env }) {
     const url = `https://www.google-analytics.com/mp/collect?api_secret=${apiSecret}&measurement_id=${measurementId}`;
     const ipAddress = request.headers.get('cf-connecting-ip');
     const userAgent = request.headers.get('user-agent');
-    const clientId = await getClientId(ipAddress, userAgent);
+    const clientId = await hashText(ipAddress + userAgent);
     const body = {
         client_id: clientId,
         events: [{
@@ -38,9 +38,8 @@ export async function onRequest({ request, env }) {
     });
 };
 
-async function getClientId(ipAddress, userAgent) {
-    const source = ipAddress + userAgent;
-    const data = new TextEncoder().encode(source);
+async function hashText(input) {
+    const data = new TextEncoder().encode(input);
     const hash = await crypto.subtle.digest('SHA-1', data);
     return Array.from(new Uint8Array(hash))
         .map((b) => b.toString(16).padStart(2, '0'))
