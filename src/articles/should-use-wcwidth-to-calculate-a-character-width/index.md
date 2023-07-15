@@ -81,7 +81,7 @@ Or overwrite the existing locale:
 
 ```shell
 gzip -c UTF-8-PATCHED | sudo dd of=/usr/share/i18n/charmaps/UTF-8.gz
-sudo locale-gen
+sudo sh -c 'cd / && locale-gen'
 ```
 
 If you are using MacOS, follow these steps:
