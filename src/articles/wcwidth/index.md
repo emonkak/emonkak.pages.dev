@@ -1,5 +1,5 @@
 ---
-title: Should use wcwidth() to calculate a character width
+title: Why you should use wcwidth() to calculate a character width
 date: 2023-07-05
 template: article.js
 language: en
