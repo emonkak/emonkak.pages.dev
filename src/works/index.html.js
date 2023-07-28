@@ -23,8 +23,8 @@ function renderContent(props) {
                     renderWork({
                         title: 'Feedpon',
                         description: [
-                            'A feed reader inspired by ',
-                            h('a', { href: 'https://ja.wikipedia.org/wiki/Live_Dwango_Reader', target: '_blank' }, 'Live Dwango Reader'),
+                            'A feed reader like ',
+                            h('a', { href: 'https://ja.wikipedia.org/wiki/Live_Dwango_Reader', target: '_blank' }, 'LDR'),
                         ],
                         url: 'https://github.com/emonkak/feedpon',
                         image: {
@@ -34,12 +34,11 @@ function renderContent(props) {
                     renderWork({
                         title: 'GeekTray',
                         description: [
-                            'A keyboard based freedesktop.org system tray implementation for X11'
+                            'A keyboard-oriented freedesktop.org system tray implementation for X11'
                         ],
                         url: 'https://github.com/emonkak/geektray',
                         image: {
-                            src: 'https://raw.githubusercontent.com/emonkak/geekytray/master/extras/screenshot.png',
-                            style: { 'object-fit': 'cover' },
+                            src: '/articles/geektray/geektray.png',
                         },
                     }),
                     renderWork({
@@ -55,7 +54,7 @@ function renderContent(props) {
                 h('ul', [
                     renderWorkItem({
                         title: 'YuiUI',
-                        description: ['A declarative UI framework by Rust'],
+                        description: ['A declarative UI framework in Rust'],
                         url: 'https://github.com/emonkak/yuiui',
                     }),
                 ]),
