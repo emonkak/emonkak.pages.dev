@@ -4,6 +4,7 @@ date: 2023-02-13
 template: article.js
 language: ja
 tags:
+  - linux
   - haskell
 ---
 
