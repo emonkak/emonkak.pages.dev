@@ -1,5 +1,5 @@
 ---
-title: PC版のニコニコ生放送に映像を左右反転するボタンを追加する
+title: PC版ニコニコ生放送に映像の左右反転ボタンを
 date: 2022-12-21
 template: article.js
 language: ja
