@@ -38,6 +38,30 @@
   size-adjust: 108%;
 }
 
+@font-face {
+  font-family: 'PT Mono Adjusted';
+  src: local('PT Mono');
+  size-adjust: 94%;
+}
+
+@font-face {
+  font-family: 'Lucida Console Adjusted';
+  src: local('Lucida Console');
+  size-adjust: 94%;
+}
+
+@font-face {
+  font-family: 'Liberation Mono Adjusted';
+  src: local('Liberation Mono');
+  size-adjust: 96%;
+}
+
+@font-face {
+  font-family: 'Courier New Adjusted';
+  src: local('Courier New');
+  size-adjust: 96%;
+}
+
 :root {
   --scale-base: 1.125;
   --scale-h1: calc(var(--scale-h2) * var(--scale-base));
@@ -66,7 +90,7 @@
   --font-text: 'Charter Adjusted', 'Cambria Adjusted', 'Liberation Serif Adjusted', 'Times New Roman Adjusted', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', Arial, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
   --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe Ui Symbol', sans-serif;
-  --font-code: 'PT Mono', 'Lucida Console', Courier, Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
+  --font-code: 'PT Mono Adjusted', 'Lucida Console Adjusted', 'Liberation Mono Adjusted', 'Courier New Adjusted', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
 
   --gray-1: #f5f6f7;
   --gray-2: #e8e9eb;
@@ -264,7 +288,11 @@ em, strong {
 
 code, kbd, pre, samp, var {
   font-family: var(--font-code);
-  font-size: var(--text-small);
+}
+
+pre {
+  font-size: var(--text-x-small);
+  line-height: calc(var(--line-feed) * 0.75);
 }
 
 code, kbd, samp, var {
