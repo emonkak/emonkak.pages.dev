@@ -33,7 +33,7 @@ export async function onRequest({ request, env }) {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
-            'content-type': 'application/json; charset=UTF-8',
+            'content-type': 'application/json',
         },
     });
 };
