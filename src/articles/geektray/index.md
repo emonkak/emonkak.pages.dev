@@ -1,5 +1,5 @@
 ---
-title: A keyboard-oriented system tray in Rust for X11 tiling window managers
+title: A keyboard-oriented system tray for X11 tiling window managers
 date: 2023-07-31
 template: article.js
 language: en
