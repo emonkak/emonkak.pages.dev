@@ -17,7 +17,7 @@ XMonadで3列以上のレイアウトを提供するモジュールとして、[
 
 本稿では、筆者が作成したマルチカラムレイアウト`StableColumns`を紹介するとともに、どのような要求の下でこれを作ったのかを述べる。
 
-> [config/StableColumns.hs at master · emonkak/config](https://github.com/emonkak/config/blob/master/xmonad/lib/XMonad/Layout/StableColumns.hs)
+> [config/StableColumns.hs at master · emonkak/config](https://github.com/emonkak/config/blob/master/config/xmonad/lib/XMonad/Layout/StableColumns.hs)
 
 ## 要求1：列へのウィンドウの配置順をカスタマイズ
 
@@ -226,7 +226,7 @@ digraph {
 
 XMonadの設定ファイルはデフォルトではGHCによって直接コンパイルされる。この時、GHCにはコマンドラインオプションとして`-ilib`が与えられるので、設定ディレクトリ内の`lib`にHaskellソースを置くことで外部モジュールを読み込むことができる。
 
-したがって、`StableColumns`のようなパッケージ管理されていない外部モジュールを使用するには、`lib`ディレクトリに[ソース](https://github.com/emonkak/config/blob/master/xmonad/lib/XMonad/Layout/StableColumns.hs)を直接コピーすればいい。
+したがって、`StableColumns`のようなパッケージ管理されていない外部モジュールを使用するには、`lib`ディレクトリに[ソース](https://github.com/emonkak/config/blob/master/config/xmonad/lib/XMonad/Layout/StableColumns.hs)を直接コピーすればいい。
 
 ```
 $ mkdir -p ~/.xmonad/lib/XMonad/Layout
@@ -251,7 +251,7 @@ $ curl https://raw.githubusercontent.com/emonkak/config/master/xmonad/lib/XMonad
 > 
 > その他の設定については以下を参照されたい。
 > 
-> > [config/xmonad at master · emonkak/config](https://github.com/emonkak/config/tree/master/xmonad)
+> > [config/xmonad at master · emonkak/config](https://github.com/emonkak/config/tree/master/config/xmonad)
 
 `XMonad.Layout.StableColumns`がimportできるようになったなら、レイアウトは以下ように定義できる。
 
