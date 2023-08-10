@@ -263,6 +263,7 @@ figcaption {
   text-align: center;
   font-family: var(--font-display);
   font-size: var(--text-x-small);
+  word-break: break-all;
 }
 
 table {
