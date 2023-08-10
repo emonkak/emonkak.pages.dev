@@ -77,6 +77,9 @@ copy_syntaxes "${TMP_DIR}/vscode"
 pull_source "https://github.com/JustusAdam/language-haskell.git" "${TMP_DIR}/language-haskell"
 copy_syntaxes "${TMP_DIR}/language-haskell"
 
+pull_source "https://github.com/XadillaX/vscode-language-viml.git" "${TMP_DIR}/vscode-language-viml"
+copy_syntaxes "${TMP_DIR}/vscode-language-viml"
+
 generate_grammar_index "${available_scopes[@]}" > "${GRAMMARS_DIR}/index.js"
 
 echo ${#available_scopes[@]} grammars are copied.
