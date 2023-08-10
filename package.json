@@ -42,6 +42,7 @@
     "unist-builder": "^3.0.1",
     "unist-util-filter": "^4.0.1",
     "unist-util-visit": "^4.1.2",
+    "unist-util-visit-parents": "^6.0.1",
     "vega": "^5.24.0",
     "vega-lite": "^5.6.1",
     "vscode-oniguruma": "^1.7.0",

@@ -505,7 +505,7 @@ a.circle-button:hover {
   background-color: var(--red-6);
   color: var(--red-1);
   font-family: var(--font-display);
-  font-size: var(--text-x-small);
+  font-size: var(--text-xx-small);
 }
 
 .figure-body > pre {
