@@ -5,7 +5,7 @@ template: page.js
 
 # About the Site
 
-令和パソコン通信は**野崎翔太**([@emonkak](https://twitter.com/emonkak))個人が運営するウェブマガジンです。プログラミングに関する技術情報を中心に、その他、個人的な趣味に関することや、ライフハック情報を配信しています。
+令和パソコン通信は野崎翔太([@emonkak](https://twitter.com/emonkak))個人が運営するウェブマガジンです。プログラミングに関する技術情報を中心に、その他、個人的な趣味に関することや、ライフハック情報を配信しています。
 
 お問い合わせはTwitterのDMかemonkak@gmail.comまでお願いします。
 
