@@ -434,7 +434,7 @@ $$
 
 表の各項右の数値は左から順に黒(#000)と白(#FFF)に対するWCAGのコントラスト比、輝度、後述する視覚上の鮮やかさを表すColorfulnessを示す。
 
-```raw-html 輝度の条件を満たす曲線から任意の位置Tを選択したカラーパレット(V1)
+```raw 輝度の条件を満たす曲線から任意の位置Tを選択したカラーパレット(V1)
 <table style="min-width: 100%; white-space: nowrap">
   <tr>
     <td style="background-color: hsl(0 100% 97%); color: rgb(0 0 0)"><div style="display: flex; justify-content: space-between; column-gap: 1ch"><span>Red 1</span><span>1:18.94/L95/C6</span></div></td>
@@ -581,7 +581,7 @@ $$
 
 Colorfulnessの例として、HSV色空間でSaturationを1で固定、Valueを1〜0.1まで変化させた場合、その値は以下の表のようになる。表の各項の左側がHSVの各成分で、右側がColorfulnessになっている。ここから、確かにColorfulnessが視覚上の鮮やかさと一致しているのがわかる。
 
-```raw-html HSV色空間において彩度が同一で明度のみが異なる場合のColorfulness
+```raw HSV色空間において彩度が同一で明度のみが異なる場合のColorfulness
 <table style="min-width: 100%; white-space: nowrap">
   <tr>
     <td style="background-color: hsl(0 100% 50%); color: white"><div style="display: flex; justify-content: space-between; column-gap: 1ch"><span>H0 S100 V100</span><span>100</span></div></td>
@@ -644,7 +644,7 @@ $$
 
 これらColorfulnessの候補から生成したカラーパレットが以下の表だ。
 
-```raw-html 輝度適応曲線からColorfulnessが任意の値に近い位置を選択したカラーパレット(V2)
+```raw 輝度適応曲線からColorfulnessが任意の値に近い位置を選択したカラーパレット(V2)
 <table style="min-width: 100%; white-space: nowrap">
   <tr>
     <td style="background-color: hsl(0 100% 97%); color: rgb(0 0 0)"><div style="display: flex; justify-content: space-between; column-gap: 1ch"><span>Red 1</span><span>1:18.94/L95/C6</span></div></td>
@@ -785,7 +785,7 @@ Lch色空間を使うことで輝度はLuminance成分(前節で使っていた�
 
 この方法で作成したカラーパレットは以下のようになる。なお、Hue成分はHSV色空間の場合と近似するように調整してある。前節の結果と大きな変化はないが、HSV色空間で見た時に、同じパターンの色同士のHue成分がわずかに異なるという違いがある。
 
-```raw-html Lch色空間を利用したカラーパレット(V3)
+```raw Lch色空間を利用したカラーパレット(V3)
 <table style="min-width: 100%; white-space: nowrap">
   <tr>
     <td style="background-color: hsl(4 88% 96%); color: rgb(0 0 0)"><div style="display: flex; justify-content: space-between; column-gap: 1ch"><span>Red 1</span><span>1:18.52/L95/C8</span></div></td>
