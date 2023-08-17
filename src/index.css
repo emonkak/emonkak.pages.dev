@@ -165,7 +165,6 @@ html {
   background-repeat: repeat;
   color: var(--gray-10);
   touch-action: manipulation;
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
