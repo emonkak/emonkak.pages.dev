@@ -157,11 +157,11 @@
 /* Base  {{{1 */
 
 html {
-  --current-bg: var(--red-1);
+  --current-background: var(--red-1);
   font-family: var(--font-text);
   font-size: clamp(14px, calc(0.875rem + ((1vi - 3.2px) * 1.0989)), 18px);
   line-height: var(--line-feed);
-  background-color: var(--current-bg);
+  background-color: var(--current-background);
   background-repeat: repeat;
   color: var(--gray-10);
   touch-action: manipulation;
@@ -327,9 +327,9 @@ a:hover {
 /* Layouts  {{{1 */
 
 .l-header {
-  --current-bg: var(--gray-10);
+  --current-background: var(--gray-10);
   padding-block: var(--line-feed);
-  background-color: var(--current-bg);
+  background-color: var(--current-background);
   color: var(--red-1);
 }
 
@@ -349,9 +349,9 @@ a:hover {
 }
 
 .l-article-header {
-  --current-bg: var(--red-3);
+  --current-background: var(--red-3);
   padding-block: var(--line-feed);
-  background-color: var(--current-bg);
+  background-color: var(--current-background);
 }
 
 .l-article-main {
@@ -393,12 +393,12 @@ a.button {
 }
 
 .button.is-outlined:hover {
-  color: var(--current-bg);
+  color: var(--current-background);
   background-color: var(--gray-10);
 }
 
 .button.is-filled {
-  color: var(--current-bg);
+  color: var(--current-background);
   background-color: var(--gray-10);
 }
 
@@ -535,14 +535,17 @@ a.circle-button:hover {
 /* Blockquote  {{{3 */
 
 .figure-body > blockquote {
+  --quote-color: var(--red-6);
+  --border-color: var(--red-5);
+  --background-color: var(--red-2);
   position: relative;
   margin-block-end: 0;
   padding: var(--line-feed);
-  background-color: var(--red-2);
-  background-image: linear-gradient(var(--red-5), var(--red-5)),
-                    linear-gradient(var(--red-5), var(--red-5)),
-                    linear-gradient(var(--red-5), var(--red-5)),
-                    linear-gradient(var(--red-5), var(--red-5));
+  background-color: var(--background-color);
+  background-image: linear-gradient(var(--border-color), var(--border-color)),
+                    linear-gradient(var(--border-color), var(--border-color)),
+                    linear-gradient(var(--border-color), var(--border-color)),
+                    linear-gradient(var(--border-color), var(--border-color));
   background-position: top left, top right, bottom left, bottom right;
   background-size: var(--line-feed) 1px,
                    calc(100% - var(--line-feed) * 2.5) 1px,
@@ -555,7 +558,7 @@ a.circle-button:hover {
 .figure-body > blockquote::after {
   position: absolute;
   inline-size: calc(var(--line-feed) * 1.5);
-  color: var(--red-6);
+  color: var(--quote-color);
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
@@ -737,21 +740,18 @@ a.footnote-back-reference {
 }
 
 .note.is-note {
-  --current-bg: var(--blue-2);
-  color: var(--blue-10);
-  background-color: var(--current-bg);
+  --current-background: var(--blue-2);
+  background-color: var(--current-background);
 }
 
 .note.is-warning {
-  --current-bg: var(--yellow-2);
-  color: var(--yellow-10);
-  background-color: var(--current-bg);
+  --current-background: var(--yellow-2);
+  background-color: var(--current-background);
 }
 
 .note.is-callout {
-  --current-bg: var(--red-2);
-  color: var(--red-10);
-  background-color: var(--current-bg);
+  --current-background: var(--red-2);
+  background-color: var(--current-background);
 }
 
 .note-caption {
@@ -765,21 +765,26 @@ a.footnote-back-reference {
   margin-inline-end: 0.5ch;
 }
 
-.note.is-note .note-caption::before {
+.note.is-note > .note-caption::before {
   content: '💡';
 }
 
-.note.is-warning .note-caption::before {
+.note.is-warning > .note-caption::before {
   content: '⚠';
 }
 
-.note.is-callout .note-caption::before {
+.note.is-callout > .note-caption::before {
   content: '🚨';
 }
 
 .note-body > :last-child {
   margin-block-end: 0;
 }
+
+.note-body > .figure.is-blockquote > .figure-body {
+  margin-inline: calc(var(--line-feed) * -1);
+}
+
 
 @media not (min-width: 38rem) {
   .note {
@@ -809,7 +814,7 @@ a.footnote-back-reference {
 .tag-item-label {
   padding-inline: 0.5ch;
   border-radius: 4px;
-  color: var(--current-bg);
+  color: var(--current-background);
   background-color: var(--gray-10);
   line-height: calc(var(--line-feed) - 2px);
 }
@@ -883,14 +888,14 @@ a.archive-item-title:hover {
 }
 
 .article-card-item {
-  --current-bg: var(--red-1);
+  --current-background: var(--red-1);
   padding-block: var(--line-feed);
   padding-inline: calc(var(--line-feed) - 2px);
   margin-block-end: var(--line-feed);
   border: 2px solid currentColor;
   border-radius: 4px;
   box-shadow: 2px 2px var(--gray-4);
-  background-color: var(--current-bg);
+  background-color: var(--current-background);
 }
 
 .article-card-item-header {
@@ -1158,7 +1163,7 @@ a.nav-menu-item-anchor {
 }
 
 a.nav-menu-item-anchor:hover {
-  color: var(--current-bg);
+  color: var(--current-background);
   background-color: var(--red-6);
 }
 
