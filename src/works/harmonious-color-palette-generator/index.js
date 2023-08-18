@@ -731,6 +731,7 @@ function Pattern(props) {
                 h('div', {}, rgb.toString()),
                 h('div', {}, hsv.toString()),
                 h('div', {}, lch.toString()),
+                h('div', {}, rgb.toHexString()),
                 h('div', {}, `${contrast.toFixed(2)} ${contrastLevel} (${Math.round((1 - (hwb.whiteness + hwb.blackness)) * 100)})`),
             ),
         );
