@@ -246,7 +246,7 @@ f`<p>Hello <strong>${name}</strong>!</p>`;
 
 最初に、文字列としてチャンクを結合するという基本的な実装を考えた。文字列のような基本型は高度に最適化されているので、実行効率・メモリ効率いずれも`Generator`の実装に次いで優秀だった。以降の実装はこの実装を指標として論じる。
 
-```php 1) 文字列による描画関数
+```php 文字列による描画関数
 function render(array $data): string
 {
     $contents = '';
@@ -263,7 +263,7 @@ function render(array $data): string
 
 次に、配列にチャンクを追記していくという実装を考えた。この実装は、メモリ使用量が非常に大きく、基本的には文字列による実装に対する優位性はない。しかし、唯一`articles`の描画の実行効率だけは優れていた。逆説的に要素数の多い`list`の実行速度が遅いことから、この実装は要素数が増えると不利になると考えられる。
 
-```php 2) 配列による描画関数
+```php 配列による描画関数
 function render(array $data): array
 {
     $contents = [];
@@ -280,7 +280,7 @@ function render(array $data): array
 
 次に、[I/Oストリーム](https://www.php.net/manual/ja/wrappers.php.php)にチャンクを書き込む実装を考えた。今回は`php://memory`を使ってメモリ上へチャンクを書き込む実装を作成した。性能面では実行効率・メモリ効率いずれも文字列による実装より若干劣り、優位性はなかった。
 
-```php 3) ストリームによる描画関数
+```php ストリームによる描画関数
 function render(array $data)
 {
     $stream = fopen('php://memory', 'r+');
@@ -299,7 +299,7 @@ PHP自身はテンプレートエンジンでもあるので、それを使っ�
 
 もし、文字列化する必要がないのであれば、最も性能の良い実装になる可能性はある。しかし、[PSR-15](https://www.php-fig.org/psr/psr-15/)アプリケーションとの統合を考えた場合、`StreamInterface`に変換するためには全体の文字列化は不可避だ。仮に、`StreamInterface::emit()`のようなAPIがあって、直接標準出力に出力することができたならそれが性能的には理想である。
 
-```html.php 4) 標準出力に出力する描画関数
+```html.php 標準出力に出力する描画関数
 <?php
 function render(array $data): void
 { ?>
@@ -310,7 +310,7 @@ function render(array $data): void
 
 最後に、メモリ効率の良いストリーム化された描画を提供する実装を考える。描画をストリーム化するためには描画を複数回に分けて行わなければならない。このような時は処理の一時停止と再開を提供する[ジェネレータ](https://www.php.net/manual/ja/language.generators.overview.php)を使うことができる。ジェネレータを使った描画関数は以下のように定義できる。
 
-```php 5.1) ジェネレータによる描画関数
+```php ジェネレータによる描画関数
 function render(array $data): \Generator
 {
     yield '<p>Hello <strong>';
@@ -321,7 +321,7 @@ function render(array $data): \Generator
 
 しかし、ジェネレータの停止・再開のコストが高いため、チャンクの数が多大になると実行効率もそれに伴なって悪化していた。対策として、指定されたチャンクの最大サイズを超えるまで文字列にバッファーするように実装を改良した。この実装はメモリ使用量はもちろんのこと、実行速度も文字列の実装と同等かより速く、総合的に最も優秀だった。
 
-```php 5.2) ジェネレータによる描画関数(バッファー付き)
+```php ジェネレータによる描画関数(バッファー付き)
 function render(array $data): \Generator
 {
     $buffer = '';

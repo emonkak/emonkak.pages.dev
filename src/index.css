@@ -490,6 +490,11 @@ a.circle-button:hover {
 
 .figure.is-code {
   position: relative;
+  counter-increment: code-count;
+}
+
+.figure.is-code > .figure-caption::before {
+  content: 'Source ' counter(code-count) ': ';
 }
 
 .figure.is-code[data-language]::before {
@@ -584,6 +589,14 @@ a.circle-button:hover {
 
 /* Table  {{{3 */
 
+.figure.is-table {
+  counter-increment: table-count;
+}
+
+.figure.is-table > .figure-caption::before {
+  content: 'Table ' counter(table-count) ': ';
+}
+
 .figure-body > table {
   max-inline-size: 100%;
   margin-block-end: 0;
@@ -624,10 +637,20 @@ a.circle-button:hover {
   border-block-start-width: 2px;
 }
 
-/* Image  {{{3 */
+/* Image/HTML  {{{3 */
 
 .figure.is-image {
   font-family: var(--font-display);
+  counter-increment: figure-count;
+}
+
+.figure:where(.is-image, .is-html) {
+  font-family: var(--font-display);
+  counter-increment: figure-count;
+}
+
+.figure:where(.is-image, .is-html) > .figure-caption::before {
+  content: 'Figure ' counter(figure-count) ': ';
 }
 
 .figure.is-image > .figure-body > a {
@@ -932,6 +955,7 @@ a.article-card-item-title-anchor:hover {
 
 .document {
   margin-block-end: var(--line-feed);
+  counter-reset: code-count figure-count table-count;
 }
 
 .document h1 {
