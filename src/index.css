@@ -262,7 +262,6 @@ figcaption {
   text-align: center;
   font-family: var(--font-display);
   font-size: var(--text-x-small);
-  word-break: break-all;
 }
 
 table {
@@ -434,6 +433,11 @@ a.circle-button:hover {
 
 .figure-caption {
   color: var(--gray-7);
+}
+
+.figure-caption a {
+  word-break: break-all;
+}
 }
 
 .figure:where(.is-table, .is-html) > .figure-body {
@@ -680,8 +684,9 @@ a.circle-button:hover {
 }
 
 .footnote-label {
+  flex-shrink: 0;
+  flex-basis: calc(var(--line-feed) * 1.5);
   box-sizing: border-box;
-  inline-size: calc(var(--line-feed) * 1.5);
   text-align: end;
   font-variant-numeric: tabular-nums;
 }
@@ -697,6 +702,11 @@ a.footnote-back-reference {
 
 .footnote-body {
   flex: 1 1;
+  word-break: break-all;
+}
+
+.footnote-body a {
+  word-break: break-all;
 }
 
 .footnote-body > :last-child {
