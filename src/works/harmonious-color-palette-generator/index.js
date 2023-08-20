@@ -1,9 +1,9 @@
 import { Chart, registerables } from 'https://cdn.skypack.dev/chart.js@4';
-import { computed, signal } from 'https://cdn.skypack.dev/@preact/signals@1.1';
-import { createContext, h, render } from 'https://cdn.skypack.dev/preact@10.11';
-import { useCallback, useContext, useLayoutEffect, useEffect, useMemo, useRef, useState } from 'https://cdn.skypack.dev/preact@10.11/hooks';
+import { computed, signal } from 'https://cdn.skypack.dev/@preact/signals@1';
+import { createContext, h, render } from 'https://cdn.skypack.dev/preact@10';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'https://cdn.skypack.dev/preact@10/hooks';
 
-import { ColorSpace, HSV, Lab, Lch, Primaries, RGB, SimpleGammaCorrection, SrgbGammaCorrection, Vec2, WhitePoint } from './color.js';
+import { ColorSpace, HSV, Lch, Primaries, RGB, SimpleGammaCorrection, SrgbGammaCorrection, WhitePoint } from './color.js';
 
 Chart.register(...registerables);
 
@@ -92,70 +92,15 @@ function decimateArray(elements, n) {
     const middle = elements.length >> 1;
     const step = Math.ceil(elements.length / n);
 
-    for (let i = 0; i < middle; i += step)  {
+    for (let i = 0; i < middle; i += step) {
         head.push(elements[i]);
     }
 
-    for (let i = elements.length - 1; i > middle; i -= step)  {
+    for (let i = elements.length - 1; i > middle; i -= step) {
         tail.push(elements[i]);
     }
 
     return head.concat(tail.reverse());
-}
-
-function shallowEqual(first, second) {
-    if (first === second) {
-        return true;
-    }
-
-    const firstKeys = Object.keys(first);
-    const secondKeys = Object.keys(second);
-
-    if (firstKeys.length !== secondKeys.length) {
-        return false;
-    }
-
-    for (const key of firstKeys) {
-        if (first[key] !== second[key]) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function deepEqual(first, second) {
-    if (first === second) {
-        return true;
-    }
-
-    const firstKeys = Object.keys(first);
-    const secondKeys = Object.keys(second);
-
-    if (firstKeys.length !== secondKeys.length) {
-        return false;
-    }
-
-    for (const key of firstKeys) {
-        const firstValue = first[key];
-        const secondValue = second[key];
-
-        if (isObject(firstValue) && isObject(secondValue)) {
-            if (!deepEqual(firstValue, secondValue)) {
-                return false;
-            }
-        } else {
-            if (firstValue !== secondValue) {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
-function isObject(value) {
-  return value != null && typeof value === 'object';
 }
 
 const State = createContext();
@@ -167,14 +112,14 @@ const Page = {
     Import: ImportPage,
 };
 
-function App(props) {
+function App(_props) {
     return [
         h('aside', { class: 'l-sidebar' }, h(Sidebar)),
         h('main', { class: 'l-main' }, h(Main)),
     ];
 }
 
-function Main(props) {
+function Main(_props) {
     const { colorSpace, themes, tones } = useContext(State);
     const [activePage, setActivePage] = useState(() => Page.Palette);
     const patterns = useMemo(() => {
@@ -399,7 +344,7 @@ function GeneratedPatternsHsvChart(props) {
 function AdaptiveCurveChart(props) {
     const { pattern } = props;
     const datasets = useMemo(() => {
-        const { theme, swatches } = pattern;
+        const { swatches } = pattern;
         return swatches.map(({ adaptiveColors, luminance }) => {
             const midSwatch = swatches[swatches.length >> 1];
             return {
@@ -467,7 +412,7 @@ function LuminancesChart(props) {
             {
                 type: 'line',
                 label: 'Luminance',
-                data: tones.map((tone, index) => tone.luminance),
+                data: tones.map((tone) => tone.luminance),
                 yAxisID: 'value',
             },
             {
@@ -519,7 +464,7 @@ function ColorfulnessesChart(props) {
             {
                 type: 'line',
                 label: 'Colorfulness',
-                data: tones.map((tone, index) => tone.colorfulness),
+                data: tones.map((tone) => tone.colorfulness),
                 yAxisID: 'value',
             },
             {
@@ -624,7 +569,7 @@ function VariablesPage(props) {
     );
 }
 
-function ImportPage(props) {
+function ImportPage(_props) {
     const state = useContext(State);
     const {
         gammaCorrection,
@@ -701,7 +646,6 @@ function Pattern(props) {
     const { colorSpace, pattern } = props;
 
     return pattern.swatches.map(({ rgb, lch, luminance }, index) => {
-        const selectSaturation = ({ saturation }) => saturation;
         const hsv = rgb.toHSV();
         const hwb = hsv.toHWB();
 
@@ -738,7 +682,7 @@ function Pattern(props) {
     });
 }
 
-function Sidebar(props) {
+function Sidebar(_props) {
     return h('div', { class: 'sidebar' },
         h('div', { class: 'sidebar-header' },
             h('div', { class: 'sidebar-logo' }, '🎨'),
@@ -751,7 +695,7 @@ function Sidebar(props) {
     );
 }
 
-function ThemesPanel(props) {
+function ThemesPanel(_props) {
     const { themes } = useContext(State);
 
     return h('div', { class: 'sidebar-panel' },
@@ -878,7 +822,7 @@ function Theme(props) {
     );
 }
 
-function TonesPanel(props) {
+function TonesPanel(_props) {
     const { tones } = useContext(State);
 
     return h('div', { class: 'sidebar-panel' },
@@ -960,7 +904,7 @@ function TonesPanel(props) {
     );
 }
 
-function ColorSpacePanel(props) {
+function ColorSpacePanel(_props) {
     const { whitePoint, primaries, gammaCorrection } = useContext(State);
 
     return h('div', { class: 'sidebar-panel' },
@@ -970,12 +914,12 @@ function ColorSpacePanel(props) {
                 h('label', { class: 'form-floating' },
                     h('span', { class: 'form-floating-label', }, 'Primaries'),
                     h('select', {
-                            class: 'form-floating-control',
-                            onchange: useCallback((event) => {
-                                const key = event.target.value;
-                                primaries.value = Primaries[key];
-                            }, [primaries]),
-                        },
+                        class: 'form-floating-control',
+                        onchange: useCallback((event) => {
+                            const key = event.target.value;
+                            primaries.value = Primaries[key];
+                        }, [primaries]),
+                    },
                         Array.from(Object.entries(Primaries)).map(([key, value]) => {
                             const selected = primaries.value === value;
                             return h('option', { value: key, key, selected }, key);
@@ -985,12 +929,12 @@ function ColorSpacePanel(props) {
                 h('label', { class: 'form-floating' },
                     h('span', { class: 'form-floating-label', }, 'WhitePoint'),
                     h('select', {
-                            class: 'form-floating-control',
-                            onchange: useCallback((event) => {
-                                const key = event.target.value;
-                                whitePoint.value = WhitePoint[key];
-                            }, [whitePoint]),
-                        },
+                        class: 'form-floating-control',
+                        onchange: useCallback((event) => {
+                            const key = event.target.value;
+                            whitePoint.value = WhitePoint[key];
+                        }, [whitePoint]),
+                    },
                         Array.from(Object.entries(WhitePoint)).map(([key, value]) => {
                             const selected = whitePoint.value === value;
                             return h('option', { value: key, key, selected }, key);
@@ -1029,7 +973,7 @@ function ColorSpacePanel(props) {
     );
 }
 
-function OthersPanel(props) {
+function OthersPanel(_props) {
     const state = useContext(State);
     const { hideColorLabels, previewInGrayscale } = state;
 

@@ -241,7 +241,7 @@ export const SrgbGammaCorrection = {
         const GAMMA = 2.4;
         const LIMIT = 0.055 / (GAMMA - 1);
         const SLOPE = ((1.055 ** GAMMA) * (GAMMA - 1) ** (GAMMA - 1)) /
-                      ((0.055 ** (GAMMA - 1)) * (GAMMA ** GAMMA));
+            ((0.055 ** (GAMMA - 1)) * (GAMMA ** GAMMA));
         if (color <= LIMIT) {
             return color / SLOPE;
         } else {
@@ -252,8 +252,8 @@ export const SrgbGammaCorrection = {
         const GAMMA = 2.4;
         const LIMIT = ((0.055 / (GAMMA - 1) + 0.055) / 1.055) ** GAMMA;
         const SLOPE = ((1.055 ** GAMMA) * ((GAMMA - 1) ** (GAMMA - 1))) /
-                      ((0.055 ** (GAMMA - 1)) * (GAMMA ** GAMMA));
-        if (color <= LIMIT)  {
+            ((0.055 ** (GAMMA - 1)) * (GAMMA ** GAMMA));
+        if (color <= LIMIT) {
             return color * SLOPE;
         } else {
             return (color ** (1 / GAMMA)) * 1.055 - 0.055;
@@ -290,8 +290,8 @@ export class RGB {
 
     inGamut() {
         return this.red >= 0 && this.red <= 1.0 &&
-               this.green >= 0 && this.green <= 1.0 &&
-               this.blue >= 0 && this.blue <= 1.0;
+            this.green >= 0 && this.green <= 1.0 &&
+            this.blue >= 0 && this.blue <= 1.0;
     }
 
     clamp() {
@@ -314,7 +314,6 @@ export class RGB {
     }
 
     toGrayscale(colorSpace) {
-        const { x, y, z } = colorSpace.xyzMatrix.yAxis;
         return colorSpace.gammaCorrection.toNonLinear(this.toRelativeLuminance(colorSpace));
     }
 
@@ -341,7 +340,7 @@ export class RGB {
                 h = 0;
                 break;
             case r:
-                h = ((g - b) + d * (g < b ? 6: 0)) / (6 * d);
+                h = ((g - b) + d * (g < b ? 6 : 0)) / (6 * d);
                 break;
             case g:
                 h = ((b - r) + d * 2) / (6 * d);
@@ -404,8 +403,6 @@ export class HSV {
         const p = v * (1 - s);
         const q = v * (1 - f * s);
         const t = v * (1 - (1 - f) * s);
-
-        let r, g, b;
 
         switch (i % 6) {
             case 0:
@@ -710,16 +707,6 @@ function calculateXyzMatrix(red, blue, green, whitePoint) {
         m.yAxis.mulVec(y),
         m.zAxis.mulVec(y),
     );
-}
-
-function chromaticity(components) {
-    const { x, y, z } = components;
-    const denominator = x + y + z;
-    return {
-        x: x / denominator,
-        y: y / denominator,
-        Y: y,
-    };
 }
 
 function tristimulus(components) {
