@@ -1,7 +1,7 @@
-import { Chart, registerables } from 'https://cdn.skypack.dev/chart.js@4';
-import { computed, signal } from 'https://cdn.skypack.dev/@preact/signals@1';
-import { createContext, h, render } from 'https://cdn.skypack.dev/preact@10';
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'https://cdn.skypack.dev/preact@10/hooks';
+import { Chart, registerables } from 'https://esm.sh/chart.js@4';
+import { computed, signal } from 'https://esm.sh/@preact/signals@1?deps=preact@10';
+import { createContext, h, render } from 'https://esm.sh/preact@10';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'https://esm.sh/preact@10/hooks';
 
 import { ColorSpace, HSV, Lch, Primaries, RGB, SimpleGammaCorrection, SrgbGammaCorrection, WhitePoint } from './color.js';
 
@@ -120,16 +120,7 @@ function App(_props) {
 }
 
 function Main(_props) {
-    const { colorSpace, themes, tones } = useContext(State);
     const [activePage, setActivePage] = useState(() => Page.Palette);
-    const patterns = useMemo(() => {
-        const patterns = generatePatterns(
-            themes.value.map((theme) => theme.value),
-            tones.value,
-            colorSpace.value,
-        );
-        return Array.from(patterns);
-    }, [themes.value, tones.value, colorSpace.value]);
 
     return [
         h('div', { class: 'l-container' },
@@ -150,13 +141,12 @@ function Main(_props) {
                 ),
             ),
         ),
-        h(activePage, { patterns }),
+        h(activePage),
     ];
 }
 
-function PalettePage(props) {
-    const { patterns } = props;
-    const { colorSpace, hideColorLabels, previewInGrayscale, tones } = useContext(State);
+function PalettePage(_props) {
+    const { colorSpace, hideColorLabels, patterns, previewInGrayscale, tones } = useContext(State);
 
     return [
         h('div', { class: 'l-container' },
@@ -170,7 +160,7 @@ function PalettePage(props) {
                 ...hideColorLabels.value ? { '--override-fg': 'transparent' } : {},
             },
         },
-            patterns.map((pattern, index) => {
+            patterns.value.map((pattern, index) => {
                 return h(Pattern, {
                     pattern,
                     colorSpace: colorSpace.value,
@@ -181,9 +171,8 @@ function PalettePage(props) {
     ];
 }
 
-function VisualizationPage(props) {
-    const { patterns } = props;
-    const { colorSpace, tones } = useContext(State);
+function VisualizationPage(_props) {
+    const { colorSpace, patterns, tones } = useContext(State);
 
     return h('div', { class: 'l-container' },
         h('h1', {}, 'Generated Patterns'),
@@ -203,7 +192,7 @@ function VisualizationPage(props) {
         ),
         h('h1', {}, 'Adaptive Curves'),
         h('div', { class: 'l-grid is-gapped', style: { '--columns': '3' } },
-            patterns.map((pattern) => {
+            patterns.value.map((pattern) => {
                 return h('p', {},
                     h('h2', {}, pattern.theme.name),
                     h(AdaptiveCurveChart, { pattern }),
@@ -245,7 +234,7 @@ function GeneratedPatternsLchChart(props) {
                 },
             };
         });
-    }, [patterns, colorSpace]);
+    }, [colorSpace]);
     return h(ChartJs, {
         type: 'line',
         data: { datasets },
@@ -534,19 +523,19 @@ function ChartJs(props) {
     return h('canvas', { ref: canvasRef });
 }
 
-function VariablesPage(props) {
-    const { patterns } = props;
-    const hexCodes = patterns.flatMap(({ theme, swatches }) => {
+function VariablesPage(_props) {
+    const { patterns } = useContext(State);
+    const hexCodes = patterns.value.flatMap(({ theme, swatches }) => {
         return swatches.map(({ rgb }, index) => {
             return `--${theme.name}-${index + 1}: ${rgb.toHexString()};`;
         });
     }).join('\n');
-    const rgbCodes = patterns.flatMap(({ theme, swatches }) => {
+    const rgbCodes = patterns.value.flatMap(({ theme, swatches }) => {
         return swatches.map(({ rgb }, index) => {
             return `--${theme.name}-${index + 1}: ${rgb};`;
         });
     }).join('\n');
-    const hslCodes = patterns.flatMap(({ theme, swatches }) => {
+    const hslCodes = patterns.value.flatMap(({ theme, swatches }) => {
         return swatches.map(({ rgb }, index) => {
             return `--${theme.name}-${index + 1}: ${rgb.toHSL()};`;
         });
@@ -1065,6 +1054,15 @@ function createState() {
             state.whitePoint.value,
             gammaCorrection,
         );
+    });
+
+    state.patterns = computed(() => {
+        const patterns = generatePatterns(
+            state.themes.value.map((theme) => theme.value),
+            state.tones.value,
+            state.colorSpace.value,
+        );
+        return Array.from(patterns);
     });
 
     return state;
