@@ -299,4 +299,4 @@ XMonadではxmonad-contribを利用することで様々なレイアウトを利
 
 今回の`StableColumns`についてもあくまで作者の使い方に合うよう作られた実装なので、読者の好みには合わない部分があるかもしれない。それでも、今回の実装が改造のベースとして役立てれば嬉しい。
 
-![](./screenshot.png "筆者のデスクトップ(XMonad on Gentoo Linux)")
+![筆者のデスクトップ(XMonad on Gentoo Linux)](./screenshot.png)

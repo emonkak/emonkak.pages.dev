@@ -14,11 +14,11 @@ Typically, tiling window managers like [XMonad](https://xmonad.org/) do not have
 
 However, neither of these implementations can't operate the system tray by the keyboard. I think the need for a keyboard-oriented system tray implementation that haves a high affinity with tiling window managers. This idea was inspired by [cereja](https://web.archive.org/web/20140823002645/https://whileimautomaton.net/2006/12/cereja/) an old Windows shell replacement.
 
-![cereja](./cereja.png "Cereja's system tray")
+![Cereja's system tray](./cereja.png)
 
 So, I created the yet another system tray implementation named "GeekTray" by Rust. This article will how GeekTray was implemented.
 
-![Geektray](./geektray.png "GeekTray's system tray")
+![GeekTray's system tray](./geektray.png)
 
 > [emonkak/geektray: A keyboard-oriented freedesktop.org system tray implementation for X11](https://github.com/emonkak/geektray/tree/master)
 
@@ -307,4 +307,4 @@ Through the implementation of GeekTray, I learned how to create a simple GUI app
 
 In the past, I worked on a declarative UI framework called [YuiUI](https://github.com/emonkak/yuiui) for that purpose. The experience gained from developing on YuiUI has been applied to the GeekTray. In the future, I might write an article explaining YuiUI and its development process.
 
-![The calculator implemented by YuiUI](./yuiui-calculator.png "The calculator implemented by YuiUI")
+![The calculator implemented by YuiUI](./yuiui-calculator.png)
