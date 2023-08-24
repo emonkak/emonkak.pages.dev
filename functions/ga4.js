@@ -36,7 +36,7 @@ export async function onRequest({ request, env }) {
             'content-type': 'application/json',
         },
     });
-};
+}
 
 async function hashText(input) {
     const data = new TextEncoder().encode(input);
