@@ -40,7 +40,15 @@
 
 @font-face {
   font-family: 'PT Mono Adjusted';
-  src: local('PT Mono');
+  font-weight: normal;
+  src: local('PT Mono Regular');
+  size-adjust: 94%;
+}
+
+@font-face {
+  font-family: 'PT Mono Adjusted';
+  font-weight: bold;
+  src: local('PT Mono Bold');
   size-adjust: 94%;
 }
 
