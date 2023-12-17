@@ -189,6 +189,7 @@ h1, h2, h3, h4, h5, h6, [role="heading"] {
   font-weight: bold;
   font-size: calc(1.0rem * var(--scale, 1.0));
   font-feature-settings: 'palt';
+  word-break: auto-phrase;
 }
 
 h1, h2, h3, h4, h5, h6 {
