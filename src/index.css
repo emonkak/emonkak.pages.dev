@@ -274,7 +274,7 @@ table {
 }
 
 th {
-  text-align: left;
+  text-align: start;
   font-family: var(--font-display);
 }
 
@@ -1093,7 +1093,7 @@ a.footer-title-anchor:hover {
 
   .footer-main {
     grid-column: 1;
-    text-align: left;
+    text-align: start;
   }
 }
 
@@ -1143,7 +1143,7 @@ a.header-title {
 }
 
 .header-title-author {
-  text-align: right;
+  text-align: end;
   font-size: var(--text-small);
 }
 
