@@ -209,7 +209,9 @@ lnum   level   foldexpr   line
 
 > [An unexpected fold is started when "<2" is specified in "foldexpr" · Issue #12768 · vim/vim](https://github.com/vim/vim/issues/12768)
 
-この問題がVim本体で修正されるかどうかはわかりません。もし、それを待てないのであれば、Vim(NeoVim)に次のパッチを当ててビルドすることで、この問題は修正されます。
+この問題がVim本体で修正されるかどうかはわかりませんが、それを待てないのであれば、Vim(NeoVim)に次のパッチを当ててビルドすることで、この問題を修正することができます。
+
+<ins>(Update 2024-01-18: この問題は[Vim 9.1.0002](https://github.com/vim/vim/commit/0689b870595c687a23e102913ce5037f65d03748)で修正されました)</ins>
 
 ```diff 折り畳みの終了時に決して新しい折り畳みを作成しないようにする(Vim用)
 --- a/src/fold.c
