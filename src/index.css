@@ -260,6 +260,7 @@ ol, ul {
 
 figcaption {
   text-align: center;
+  text-wrap: balance;
   font-family: var(--font-display);
   font-size: calc(1rem * var(--text-scale-8));
 }
