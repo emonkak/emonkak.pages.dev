@@ -214,7 +214,7 @@ function VisualizationPage(_props) {
 function GeneratedPatternsLchChart(props) {
     const { patterns, colorSpace } = props;
     const datasets = useMemo(() => {
-        return patterns.map(({ theme, swatches }) => {
+        return patterns.value.map(({ theme, swatches }) => {
             const midSwatch = swatches[swatches.length >> 1];
             return {
                 label: theme.name,
@@ -271,7 +271,7 @@ function GeneratedPatternsLchChart(props) {
 function GeneratedPatternsHsvChart(props) {
     const { patterns, colorSpace } = props;
     const datasets = useMemo(() => {
-        return patterns.map(({ theme, swatches }) => {
+        return patterns.value.map(({ theme, swatches }) => {
             const midSwatch = swatches[swatches.length >> 1];
             const hue = midSwatch.rgb.toHSV().hue;
             return {
