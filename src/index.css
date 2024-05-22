@@ -317,15 +317,6 @@ a:hover {
   text-decoration: none;
 }
 
-ins {
-  font-style: italic;
-  text-decoration: none;
-}
-
-del {
-  color: var(--gray-6);
-}
-
 /* Layouts  {{{1 */
 
 .l-header {

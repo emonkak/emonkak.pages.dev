@@ -97,25 +97,29 @@ EOF
 
 このような問題を回避するためには、`function`と`endfunction`が確かにVimScriptにおける関数の開始と終了を表すトークンかどうかを確認する必要があります。幸いなことに私達には既にその手段があります。それは構文ハイライト(Syntax Highlighting)です。構文ハイライトを使うことで先の関数は次のように改良することができます。
 
+**Update(2024-05-22)**: 関数定義のハイライトをチェックする関数を修正しました。
+
 ```viml 構文ハイライトを使った改良版のVimScriptの折り畳み設定
 function! VimFold(lnum) abort
   let current = getline(a:lnum)
+
   if current =~# '^\s*fu\%[nction]!\?\>'
-    if s:check_syntax(a:lnum, match(current, '\S') + 1, 'vimCommand')
+    if s:check_syntax(a:lnum, match(current, '\S') + 1, ['vimFunction', 'vimCommand'])
       return 'a1'
     endif
   elseif current =~# '^\s*endf\%[unction]\s*$'
-    if s:check_syntax(a:lnum, match(current, '\S') + 1, 'vimCommand')
+    if s:check_syntax(a:lnum, match(current, '\S') + 1, ['vimEndfunction', 'vimCommand'])
       return 's1'
     endif
   endif
+
   return '='
 endfunction
 
-function! s:check_syntax(lnum, col, syntax_name) abort
+function! s:check_syntax(lnum, col, expected_syntax_names) abort
   for syntax in synstack(a:lnum, a:col)
     let name = synIDattr(syntax, 'name')
-    if name ==# a:syntax_name
+    if index(a:expected_syntax_names, name) >= 0
       return 1
     endif
   endfor
@@ -211,7 +215,7 @@ lnum   level   foldexpr   line
 
 この問題がVim本体で修正されるかどうかはわかりませんが、それを待てないのであれば、Vim(NeoVim)に次のパッチを当ててビルドすることで、この問題を修正することができます。
 
-<ins>(Update 2024-01-18: この問題は[Vim 9.1.0002](https://github.com/vim/vim/commit/0689b870595c687a23e102913ce5037f65d03748)で修正されました)</ins>
+**Update(2024-01-18)**: この問題は[Vim 9.1.0002](https://github.com/vim/vim/commit/0689b870595c687a23e102913ce5037f65d03748)で修正されました。
 
 ```diff 折り畳みの終了時に決して新しい折り畳みを作成しないようにする(Vim用)
 --- a/src/fold.c
