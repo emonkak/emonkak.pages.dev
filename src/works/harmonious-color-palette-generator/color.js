@@ -236,27 +236,25 @@ export class FixedGammaCorrection {
     }
 }
 
+const SRGB_GAMMA = 2.4;
+const SRGB_SLOPE = ((1.055 ** SRGB_GAMMA) * (SRGB_GAMMA - 1) ** (SRGB_GAMMA - 1)) /
+    ((0.055 ** (SRGB_GAMMA - 1)) * (SRGB_GAMMA ** SRGB_GAMMA));
+const SRGB_NON_LINEAR_LIMIT = 0.055 / (SRGB_GAMMA - 1);
+const SRGB_LINEAR_LIMIT = ((0.055 / (SRGB_GAMMA - 1) + 0.055) / 1.055) ** SRGB_GAMMA;
+
 export const SRGBGammaCorrection = {
-    toLinear(color) {
-        const GAMMA = 2.4;
-        const LIMIT = 0.055 / (GAMMA - 1);
-        const SLOPE = ((1.055 ** GAMMA) * (GAMMA - 1) ** (GAMMA - 1)) /
-            ((0.055 ** (GAMMA - 1)) * (GAMMA ** GAMMA));
-        if (color <= LIMIT) {
-            return color / SLOPE;
+    toLinear(nonLinearColor) {
+        if (nonLinearColor <= SRGB_NON_LINEAR_LIMIT) {
+            return nonLinearColor / SRGB_SLOPE;
         } else {
-            return ((color + 0.055) / 1.055) ** GAMMA;
+            return ((nonLinearColor + 0.055) / 1.055) ** SRGB_GAMMA;
         }
     },
-    toNonLinear(color) {
-        const GAMMA = 2.4;
-        const LIMIT = ((0.055 / (GAMMA - 1) + 0.055) / 1.055) ** GAMMA;
-        const SLOPE = ((1.055 ** GAMMA) * ((GAMMA - 1) ** (GAMMA - 1))) /
-            ((0.055 ** (GAMMA - 1)) * (GAMMA ** GAMMA));
-        if (color <= LIMIT) {
-            return color * SLOPE;
+    toNonLinear(linearColor) {
+        if (linearColor <= SRGB_LINEAR_LIMIT) {
+            return linearColor * SRGB_SLOPE;
         } else {
-            return (color ** (1 / GAMMA)) * 1.055 - 0.055;
+            return (linearColor ** (1 / SRGB_GAMMA)) * 1.055 - 0.055;
         }
     }
 }
