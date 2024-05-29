@@ -3,7 +3,7 @@ import { computed, signal } from 'https://esm.sh/@preact/signals@1?deps=preact@1
 import { createContext, h, render } from 'https://esm.sh/preact@10';
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'https://esm.sh/preact@10/hooks';
 
-import { ColorSpace, HSV, Lch, Primaries, RGB, SimpleGammaCorrection, SrgbGammaCorrection, WhitePoint } from './color.js';
+import { ColorSpace, HSV, Lch, Primaries, RGB, FixedGammaCorrection, SRGBGammaCorrection, WhitePoint } from './color.js';
 
 Chart.register(...registerables);
 
@@ -1047,8 +1047,8 @@ function createState() {
 
     state.colorSpace = computed(() => {
         const gammaCorrection = state.gammaCorrection.value === 'srgb' ?
-            SrgbGammaCorrection :
-            new SimpleGammaCorrection(state.gammaCorrection.value);
+            SRGBGammaCorrection :
+            new FixedGammaCorrection(state.gammaCorrection.value);
         return ColorSpace.fromChromaticities(
             state.primaries.value,
             state.whitePoint.value,

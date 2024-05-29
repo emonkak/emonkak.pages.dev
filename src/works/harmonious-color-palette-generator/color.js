@@ -222,21 +222,21 @@ export class ColorSpace {
     }
 }
 
-export class SimpleGammaCorrection {
+export class FixedGammaCorrection {
     constructor(gamma) {
         this.gamma = gamma;
     }
 
     toLinear(color) {
-        return color ** this.gamma;
+        return (Math.abs(color) ** this.gamma) * Math.sign(color);
     }
 
     toNonLinear(color) {
-        return color ** (1 / this.gamma);
+        return (Math.abs(color) ** (1 / this.gamma)) * Math.sign(color);
     }
 }
 
-export const SrgbGammaCorrection = {
+export const SRGBGammaCorrection = {
     toLinear(color) {
         const GAMMA = 2.4;
         const LIMIT = 0.055 / (GAMMA - 1);
@@ -274,11 +274,11 @@ export class RGB {
     }
 
     static fromXYZ(components, colorSpace) {
-        const { x: r, y: g, z: b } = colorSpace.inverseXyzMatrix.mulVec(components);
+        const { x, y, z } = colorSpace.inverseXyzMatrix.mulVec(components);
         return new RGB(
-            colorSpace.gammaCorrection.toNonLinear(r),
-            colorSpace.gammaCorrection.toNonLinear(g),
-            colorSpace.gammaCorrection.toNonLinear(b),
+            colorSpace.gammaCorrection.toNonLinear(x),
+            colorSpace.gammaCorrection.toNonLinear(y),
+            colorSpace.gammaCorrection.toNonLinear(z),
         );
     }
 
