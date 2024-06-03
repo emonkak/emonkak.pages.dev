@@ -7,77 +7,98 @@
 }
 
 @font-face {
-  font-family: 'Charter Adjusted';
+  font-family: 'Charter';
   font-weight: normal;
   src: local('Charter Roman');
-  size-adjust: 102%;
+  size-adjust: 103%;
+  ascent-override: 96%;
 }
 
 @font-face {
-  font-family: 'Charter Adjusted';
+  font-family: 'Charter';
   font-weight: bold;
   src: local('Charter Bold');
-  size-adjust: 102%;
-}
-
-@font-face {
-  font-family: 'Cambria Adjusted';
-  src: local(Cambria);
   size-adjust: 104%;
+  ascent-override: 97%;
 }
 
 @font-face {
-  font-family: 'Liberation Serif Adjusted';
+  font-family: 'Liberation Serif';
+  font-weight: normal;
   src: local('Liberation Serif');
   size-adjust: 108%;
+  ascent-override: 86%;
 }
 
 @font-face {
-  font-family: 'Times New Roman Adjusted';
+  font-family: 'Liberation Serif';
+  font-weight: bold;
+  src: local('Liberation Serif');
+  size-adjust: 117%;
+  ascent-override: 81%;
+}
+
+@font-face {
+  font-family: 'Cambria';
+  font-weight: normal;
+  src: local('Cambria');
+  size-adjust: 105.5%;
+  ascent-override: 88%;
+}
+
+@font-face {
+  font-family: 'Cambria';
+  font-weight: bold;
+  src: local('Cambria');
+  size-adjust: 114%;
+  ascent-override: 83%;
+}
+
+@font-face {
+  font-family: 'Times New Roman';
+  font-weight: normal;
   src: local('Times New Roman');
   size-adjust: 108%;
+  ascent-override: 86%;
 }
 
 @font-face {
-  font-family: 'PT Mono Adjusted';
-  font-weight: normal;
+  font-family: 'Times New Roman';
+  font-weight: bold;
+  src: local('Times New Roman');
+  size-adjust: 117%;
+  ascent-override: 81%;
+}
+
+@font-face {
+  font-family: 'PT Mono';
   src: local('PT Mono');
-  size-adjust: 94%;
+  size-adjust: 93%;
+  ascent-override: 103%;
 }
 
 @font-face {
-  font-family: 'Lucida Console Adjusted';
-  src: local('Lucida Console');
-  size-adjust: 94%;
-}
-
-@font-face {
-  font-family: 'Liberation Mono Adjusted';
-  src: local('Liberation Mono');
-  size-adjust: 96%;
-}
-
-@font-face {
-  font-family: 'Courier New Adjusted';
-  src: local('Courier New');
-  size-adjust: 96%;
+  font-family: 'Courier';
+  src: local('Courier');
+  size-adjust: 93%;
+  ascent-override: 88%;
 }
 
 :root {
-  --font-text: 'Charter Adjusted', 'Cambria Adjusted', 'Liberation Serif Adjusted', 'Times New Roman Adjusted', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
+  --font-text: 'Charter', 'Cambria', 'Liberation Serif', 'Times New Roman', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', Arial, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
-  --font-code: 'PT Mono Adjusted', 'Lucida Console Adjusted', 'Liberation Mono Adjusted', 'Courier New Adjusted', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
+  --font-code: 'PT Mono', 'Lucida Console', 'Liberation Mono', 'Courier', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
 
   --font-scale-base: 1.125;
-  --font-scale-1: calc(var(--font-scale-2) * var(--font-scale-base));
-  --font-scale-2: calc(var(--font-scale-3) * var(--font-scale-base));
-  --font-scale-3: calc(var(--font-scale-4) * var(--font-scale-base));
-  --font-scale-4: calc(var(--font-scale-5) * var(--font-scale-base));
-  --font-scale-5: calc(var(--font-scale-6) * var(--font-scale-base));
+  --font-scale-1: calc(var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base));
+  --font-scale-2: calc(var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base));
+  --font-scale-3: calc(var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base));
+  --font-scale-4: calc(var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base));
+  --font-scale-5: calc(var(--font-scale-base) * var(--font-scale-base));
   --font-scale-6: var(--font-scale-base);
-  --font-scale-7: calc(1 / var(--font-scale-6));
-  --font-scale-8: calc(1 / var(--font-scale-5));
-  --font-scale-9: calc(1 / var(--font-scale-4));
+  --font-scale-7: calc(1 / var(--font-scale-base));
+  --font-scale-8: calc(1 / (var(--font-scale-base) * var(--font-scale-base)));
+  --font-scale-9: calc(1 / (var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base)));
 
   --font-size-h1: calc(1rem * var(--font-scale-1));
   --font-size-h2: calc(1rem * var(--font-scale-2));
@@ -90,7 +111,7 @@
   --font-size-xx-small: calc(1rem * var(--font-scale-9));
 
   --line-length: 40rem;
-  --line-feed: calc(1rem * var(--font-scale-3));
+  --line-feed: calc(1rem * (28 / 18));
 
   --scrollbar-size: 17px;
 
