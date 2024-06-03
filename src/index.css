@@ -75,13 +75,17 @@
   --text-scale-8: calc(1 / var(--text-scale-5));
   --text-scale-9: calc(1 / var(--text-scale-4));
 
-  --text-columns: 40rem;
+  --columns: 40rem;
   --line-feed: calc(1rem * var(--text-scale-3));
 
   --font-text: 'Charter Adjusted', 'Cambria Adjusted', 'Liberation Serif Adjusted', 'Times New Roman Adjusted', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', Arial, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
   --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe Ui Symbol', sans-serif;
   --font-code: 'PT Mono Adjusted', 'Lucida Console Adjusted', 'Liberation Mono Adjusted', 'Courier New Adjusted', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
+
+  --font-size-small: calc(1rem * var(--text-scale-7));
+  --font-size-x-small: calc(1rem * var(--text-scale-8));
+  --font-size-xx-small: calc(1rem * var(--text-scale-9));
 
   --gray-1: #f5f6f7;
   --gray-2: #e8e9eb;
@@ -225,7 +229,7 @@ hr {
   margin-block: 0 var(--line-feed);
   margin-inline: 0;
   border: 0;
-  font-size: var(--line-feed);
+  font-size: 1rem;
   line-height: calc(var(--line-feed) * 2);
   background-image: linear-gradient(to left, currentColor, rgba(255, 255, 255, 0)),
                     linear-gradient(to right, currentColor, rgba(255, 255, 255, 0));
@@ -255,7 +259,7 @@ figcaption {
   text-align: center;
   text-wrap: balance;
   font-family: var(--font-display);
-  font-size: calc(1rem * var(--text-scale-8));
+  font-size: var(--font-size-x-small);
 }
 
 table {
@@ -284,7 +288,7 @@ code, kbd, pre, samp, var {
 }
 
 pre {
-  font-size: calc(1rem * var(--text-scale-8));
+  font-size: var(--font-size-x-small);
   line-height: calc(var(--line-feed) * 0.75);
 }
 
@@ -300,7 +304,7 @@ kbd {
   border: 1px solid currentColor;
   border-radius: 4px;
   box-shadow: 0 2px 0 1px currentColor;
-  font-size: calc(1rem * var(--text-scale-8));
+  font-size: var(--font-size-x-small);
   line-height: 1.0;
 }
 
@@ -333,7 +337,7 @@ a:hover {
 .l-container {
   margin-inline: auto;
   padding-inline: calc(var(--line-feed) / 2);
-  max-inline-size: var(--text-columns);
+  max-inline-size: var(--columns);
 }
 
 .l-footer {
@@ -474,7 +478,7 @@ a.circle-button:hover {
   content: attr(data-domain);
   display: block;
   padding-inline-start: calc(16px + 0.5ch);
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
   font-weight: normal;
   word-break: break-all;
   color: var(--gray-7);
@@ -508,7 +512,7 @@ a.circle-button:hover {
   background-color: var(--gray-4);
   color: var(--gray-8);
   font-family: var(--font-display);
-  font-size: calc(1rem * var(--text-scale-9));
+  font-size: var(--font-size-xx-small);
 }
 
 .figure-body > pre {
@@ -599,7 +603,7 @@ a.circle-button:hover {
   max-inline-size: 100%;
   margin-block-end: 0;
   margin-inline: auto;
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 .figure-body > table > tr > :is(td, th),
@@ -670,7 +674,7 @@ a.circle-button:hover {
   display: flex;
   margin-block: 0 var(--line-feed);
   font-family: var(--font-display);
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 .footnote:has(+ .footnote) {
@@ -882,7 +886,7 @@ a.tag-item-label:hover {
 .archive-item-metadata {
   order: 0;
   grid-column: span 3;
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 .archive-item-main {
@@ -945,7 +949,7 @@ a.article-card-item-title-anchor:hover {
 
 .article-card-item-metadata {
   color: var(--gray-7);
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 .article-card-item-description {
@@ -1066,7 +1070,7 @@ a.footer-title-anchor:hover {
 }
 
 .footer-author {
-  font-size: calc(1rem * var(--text-scale-8));
+  font-size: var(--font-size-x-small);
 }
 
 .footer-heading {
@@ -1075,7 +1079,7 @@ a.footer-title-anchor:hover {
 }
 
 .footer-item {
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 @media (min-width: 38rem) {
@@ -1109,12 +1113,12 @@ a.header-title {
 }
 
 .header-tagline {
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 .header-title-logo {
   --scrollbar-size: 17px;
-  --container-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--text-columns));
+  --container-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--columns));
   font-weight: 800;
   font-size: calc(var(--container-size) / var(--letters));
   line-height: 1.0;
@@ -1137,7 +1141,7 @@ a.header-title {
 
 .header-title-author {
   text-align: end;
-  font-size: var(--text-small);
+  font-size: var(--font-size-small);
 }
 
 /* .introduction  {{{2 */
@@ -1253,7 +1257,7 @@ a.nav-menu-item-anchor:hover {
 .toc-content {
   padding-block: calc(var(--line-feed) / 4)
                  calc(var(--line-feed) / 4 - 1px);
-  font-size: calc(1rem * var(--text-scale-8));
+  font-size: var(--font-size-x-small);
 }
 
 .toc-list {
