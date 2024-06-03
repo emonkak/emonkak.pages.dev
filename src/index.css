@@ -387,12 +387,11 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   color: var(--button-color);
   background-color: var(--button-background-color, transparent);
   border: var(--button-border-size, 0px) solid var(--button-border-color, transparent);
-  border-radius: 6px;
-  padding-block: calc(var(--line-feed) / 4 - var(--button-border-size, 0px));
-  padding-inline: 2ch;
+  border-radius: var(--button-radiuis, 6px);
   font-family: var(--font-display);
 }
 
@@ -404,6 +403,8 @@ a.button {
   --button-color: var(--gray-10);
   --button-border-size: 2px;
   --button-border-color: var(--gray-10);
+  padding-block: calc(var(--line-feed) / 4 - var(--button-border-size, 0px));
+  padding-inline: 2ch;
   box-shadow: 2px 2px var(--button-shadow-color, var(--gray-4));
 }
 
@@ -415,33 +416,27 @@ a.button {
 .button.is-filled {
   --button-color: var(--red-1);
   --button-background-color: var(--gray-10);
+  padding-block: calc(var(--line-feed) / 4 - var(--button-border-size, 0px));
+  padding-inline: 2ch;
 }
 
 .button.is-filled:hover {
   --button-background-color: var(--gray-9);
 }
 
-/* .circle-button  {{{2 */
-
-.circle-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  block-size: calc(var(--line-feed) * 2 - 1px);
-  inline-size: calc(var(--line-feed) * 2 - 1px);
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  background-color: var(--red-1);
-  box-shadow: 2px 2px var(--gray-4);
+.button.is-circle {
+  --button-color: currentColor;
+  --button-border-size: 1px;
+  --button-border-color: currentColor;
+  --button-radiuis: 50%;
+  --button-background-color: var(--red-1);
+  block-size: calc(var(--line-feed) * 2);
+  inline-size: calc(var(--line-feed) * 2);
+  box-shadow: 2px 2px var(--button-shadow-color, var(--gray-4));
 }
 
-a.circle-button {
-  color: inherit;
-  text-decoration: none;
-}
-
-a.circle-button:hover {
-  background-color: var(--gray-2);
+.button.is-circle:hover {
+  --button-background-color: var(--gray-2);
 }
 
 /* .figure  {{{2 */
@@ -730,7 +725,7 @@ a.footnote-back-reference {
 /* .icon  {{{2 */
 
 .icon {
-  fill: currentColor;
+  fill: var(--icon-color, currentColor);
   width: 1.5rem;
   height: 1.5rem;
 }
