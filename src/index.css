@@ -152,11 +152,10 @@
 /* Base  {{{1 */
 
 html {
-  --current-background: var(--red-1);
   font-family: var(--font-text);
   font-size: clamp(14px, calc(0.875rem + ((1vi - 3.2px) * 1.0989)), 18px);
   line-height: var(--line-feed);
-  background-color: var(--current-background);
+  background-color: var(--red-1);
   background-repeat: repeat;
   color: var(--gray-10);
   touch-action: manipulation;
@@ -324,9 +323,8 @@ a:hover {
 /* Layouts  {{{1 */
 
 .l-header {
-  --current-background: var(--gray-10);
   padding-block: var(--line-feed);
-  background-color: var(--current-background);
+  background-color: var(--gray-10);
   color: var(--red-1);
 }
 
@@ -346,9 +344,8 @@ a:hover {
 }
 
 .l-article-header {
-  --current-background: var(--red-3);
   padding-block: var(--line-feed);
-  background-color: var(--current-background);
+  background-color: var(--red-3);
 }
 
 .l-article-main {
@@ -372,11 +369,19 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid transparent;
+  color: var(--button-color);
+  background-color: var(--button-background-color, transparent);
+  border: var(--button-border-size, 0px) solid var(--button-border-color, transparent);
   border-radius: 4px;
-  padding-block: calc(var(--line-feed) / 4 - 2px);
+  padding-block: calc(var(--line-feed) / 4 - var(--button-border-size, 0px));
   padding-inline: 2ch;
   font-family: var(--font-display);
+}
+
+.button:hover {
+  color: var(--button-hover-color, var(--button-color));
+  background-color: var(--button-hover-background-color, var(--button-background-color));
+  border-color: var(--button-hover-border-color, var(--button-border-color));
 }
 
 a.button {
@@ -384,23 +389,18 @@ a.button {
 }
 
 .button.is-outlined {
-  color: var(--gray-10);
-  border-color: var(--gray-10);
-  box-shadow: 2px 2px var(--gray-4);
-}
-
-.button.is-outlined:hover {
-  color: var(--current-background);
-  background-color: var(--gray-10);
+  --button-color: var(--gray-10);
+  --button-border-size: 2px;
+  --button-border-color: var(--gray-10);
+  --button-hover-color: var(--red-1);
+  --button-hover-background-color: var(--gray-10);
+  box-shadow: 2px 2px var(--button-shadow-color, var(--gray-4));
 }
 
 .button.is-filled {
-  color: var(--current-background);
-  background-color: var(--gray-10);
-}
-
-.button.is-filled:hover {
-  background-color: var(--gray-9);
+  --button-color: var(--red-1);
+  --button-background-color: var(--gray-10);
+  --button-hover-background-color: var(--gray-9);
 }
 
 /* .circle-button  {{{2 */
@@ -766,46 +766,77 @@ a.footnote-back-reference {
 /* .note  {{{2 */
 
 .note {
-  padding: var(--line-feed);
+  --note-symbol-size: var(--line-feed);
+  --note-border-size: 4px;
+  position: relative;
+  padding-block: var(--line-feed);
   margin-block: 0 var(--line-feed);
 }
 
 .note.is-note {
-  --current-background: var(--blue-2);
-  background-color: var(--current-background);
+  --note-symbol: 'i';
+  --note-background-color: var(--blue-2);
+  --note-border-color: var(--blue-6);
 }
 
 .note.is-warning {
-  --current-background: var(--yellow-2);
-  background-color: var(--current-background);
+  --note-symbol: '!';
+  --note-background-color: var(--yellow-2);
+  --note-border-color: var(--yellow-6);
 }
 
 .note.is-callout {
-  --current-background: var(--red-2);
-  background-color: var(--current-background);
+  --note-symbol: '×';
+  --note-background-color: var(--red-2);
+  --note-border-color: var(--red-6);
+}
+
+.note::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--note-background-color);
+  border-inline-start: var(--note-border-size) solid var(--note-border-color);
+  mask: radial-gradient(
+    calc(var(--note-symbol-size) / 2 + var(--note-border-size)) at var(--note-border-size) var(--note-border-size),
+    #0000 99%,
+    #000
+  );
+  -webkit-mask: radial-gradient(
+    calc(var(--note-symbol-size) / 2 + var(--note-border-size)) at var(--note-border-size) var(--note-border-size),
+    #0000 99%,
+    #000
+  );
+  z-index: -1;
+}
+
+.note::after {
+  content: var(--note-symbol);
+  position: absolute;
+  inset-block-start: var(--note-border-size);
+  inset-inline-start: var(--note-border-size);
+  block-size: var(--note-symbol-size);
+  inline-size: var(--note-symbol-size);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--red-1);
+  background-color: var(--note-border-color);
+  font-family: var(--font-display);
+  font-weight: bold;
+  text-align: center;
+  line-height: calc(var(--note-symbol-size) + (1ch - 1ex) / 2);
 }
 
 .note-caption {
   font-weight: bold;
   font-family: var(--font-display);
+  padding-inline: var(--line-feed);
   margin-block-end: var(--line-feed);
 }
 
-.note-caption::before {
-  font-family: var(--font-emoji);
-  margin-inline-end: 0.5ch;
-}
-
-.note.is-note > .note-caption::before {
-  content: '💡';
-}
-
-.note.is-warning > .note-caption::before {
-  content: '⚠';
-}
-
-.note.is-callout > .note-caption::before {
-  content: '🚨';
+.note-body {
+  padding-inline: var(--line-feed);
+  border-inline-start: var(--note-border-size) solid var(--note-border-color);
 }
 
 .note-body > :last-child {
@@ -814,13 +845,6 @@ a.footnote-back-reference {
 
 .note-body > .figure.is-blockquote > .figure-body {
   margin-inline: calc(var(--line-feed) * -1);
-}
-
-
-@media not (min-width: 38rem) {
-  .note {
-    margin-inline: calc(var(--line-feed) / 2 * -1);
-  }
 }
 
 /* .tag  {{{2 */
@@ -845,8 +869,9 @@ a.footnote-back-reference {
 .tag-item-label {
   padding-inline: 0.5ch;
   border-radius: 4px;
-  color: var(--current-background);
-  background-color: var(--gray-10);
+  color: currentColor;
+  background-color: var(--tag-background-color, var(--gray-10));
+  color: var(--tag-color, var(--red-1));;
   line-height: calc(var(--line-feed) - 2px);
 }
 
@@ -919,14 +944,13 @@ a.archive-item-title:hover {
 }
 
 .article-card-item {
-  --current-background: var(--red-1);
   padding-block: var(--line-feed);
   padding-inline: calc(var(--line-feed) - 2px);
   margin-block-end: var(--line-feed);
   border: 2px solid currentColor;
   border-radius: 4px;
   box-shadow: 2px 2px var(--gray-4);
-  background-color: var(--current-background);
+  background-color: var(--red-1);
 }
 
 .article-card-item-header {
@@ -1147,6 +1171,7 @@ a.header-title {
 /* .introduction  {{{2 */
 
 .introduction {
+  --tag-color: var(--red-3);
   font-family: var(--font-display);
 }
 
@@ -1195,7 +1220,7 @@ a.nav-menu-item-anchor {
 }
 
 a.nav-menu-item-anchor:hover {
-  color: var(--current-background);
+  color: var(--gray-10);
   background-color: var(--red-6);
 }
 
