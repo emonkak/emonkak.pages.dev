@@ -75,17 +75,23 @@
   --text-scale-8: calc(1 / var(--text-scale-5));
   --text-scale-9: calc(1 / var(--text-scale-4));
 
-  --columns: 40rem;
-  --line-feed: calc(1rem * var(--text-scale-3));
-
   --font-text: 'Charter Adjusted', 'Cambria Adjusted', 'Liberation Serif Adjusted', 'Times New Roman Adjusted', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', Arial, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
   --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe Ui Symbol', sans-serif;
   --font-code: 'PT Mono Adjusted', 'Lucida Console Adjusted', 'Liberation Mono Adjusted', 'Courier New Adjusted', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
 
+  --font-size-h1: calc(1rem * var(--text-scale-1));
+  --font-size-h2: calc(1rem * var(--text-scale-2));
+  --font-size-h3: calc(1rem * var(--text-scale-3));
+  --font-size-h4: calc(1rem * var(--text-scale-4));
+  --font-size-h5: calc(1rem * var(--text-scale-5));
+  --font-size-h6: calc(1rem * var(--text-scale-6));
   --font-size-small: calc(1rem * var(--text-scale-7));
   --font-size-x-small: calc(1rem * var(--text-scale-8));
   --font-size-xx-small: calc(1rem * var(--text-scale-9));
+
+  --columns: 40rem;
+  --line-feed: calc(1rem * var(--text-scale-3));
 
   --gray-1: #f5f6f7;
   --gray-2: #e8e9eb;
@@ -1058,7 +1064,7 @@ a.article-card-item-title-anchor:hover {
 }
 
 .error-message {
-  font-size: calc(1rem * var(--text-scale-5));
+  font-size: var(--font-size-h5);
 }
 
 /* .footer  {{{2 */
@@ -1202,7 +1208,7 @@ a.header-title {
   justify-content: flex-end;
   flex-wrap: wrap;
   font-family: var(--font-display);
-  font-size: calc(1rem * var(--text-scale-6));
+  font-size: var(--font-size-h6);
 }
 
 .nav-menu-item {
@@ -1362,7 +1368,7 @@ a.toc-item-anchor:hover {
   color: var(--gray-4);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: calc(1rem * var(--text-scale-6));
+  font-size: var(--font-size-h6);
   line-height: 1.0;
 }
 
