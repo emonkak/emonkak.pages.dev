@@ -354,6 +354,7 @@ a {
 a:not([class]) {
   overflow-wrap: anywhere;
   hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 a:hover {
@@ -1054,6 +1055,7 @@ a.article-card-item-title-anchor:hover {
 .document p {
   text-align: justify;
   hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 @media not (min-width: 38rem) {
