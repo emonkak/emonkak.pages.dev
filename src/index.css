@@ -509,8 +509,8 @@ a.circle-button:hover {
   padding-inline: 0.5ch;
   border-end-start-radius: 4px;
   border-end-end-radius: 4px;
-  background-color: var(--gray-4);
-  color: var(--gray-8);
+  background-color: var(--gray-6);
+  color: var(--gray-2);
   font-family: var(--font-display);
   font-size: var(--font-size-xx-small);
 }
