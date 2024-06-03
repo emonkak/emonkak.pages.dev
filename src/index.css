@@ -786,7 +786,7 @@ a.footnote-back-reference {
 }
 
 .note.is-callout {
-  --note-symbol: '×';
+  --note-symbol: '✕';
   --note-background-color: var(--red-2);
   --note-border-color: var(--red-6);
 }
@@ -823,8 +823,8 @@ a.footnote-back-reference {
   background-color: var(--note-border-color);
   font-family: var(--font-display);
   font-weight: bold;
+  line-height: var(--note-symbol-size);
   text-align: center;
-  line-height: calc(var(--note-symbol-size) + (1ch - 1ex) / 2);
 }
 
 .note-caption {
