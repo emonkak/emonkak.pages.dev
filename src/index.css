@@ -180,8 +180,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, [role="heading"] {
-  --floor: calc((var(--font-scale, 1.0) - 0.25) / 0.25 - 0.5);
-  --line-scale: max(var(--floor) * 0.25, 1.0);
+  --adjuster: calc(1 / 4);
+  --floor: calc((var(--font-scale, 1.0) - var(--adjuster)) / var(--adjuster));
+  --line-scale: max(var(--floor) * var(--adjuster), 1.0);
   line-height: calc(var(--line-feed) * var(--line-scale));
   letter-spacing: -0.5px;
   font-family: var(--font-display);
