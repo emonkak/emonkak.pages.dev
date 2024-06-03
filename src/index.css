@@ -64,6 +64,10 @@
 }
 
 :root {
+  --font-text: 'Charter Adjusted', 'Cambria Adjusted', 'Liberation Serif Adjusted', 'Times New Roman Adjusted', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
+  --font-display: 'Helvetica Neue', Arial, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
+  --font-code: 'PT Mono Adjusted', 'Lucida Console Adjusted', 'Liberation Mono Adjusted', 'Courier New Adjusted', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
+
   --font-scale-base: 1.125;
   --font-scale-1: calc(var(--font-scale-2) * var(--font-scale-base));
   --font-scale-2: calc(var(--font-scale-3) * var(--font-scale-base));
@@ -75,11 +79,6 @@
   --font-scale-8: calc(1 / var(--font-scale-5));
   --font-scale-9: calc(1 / var(--font-scale-4));
 
-  --font-text: 'Charter Adjusted', 'Cambria Adjusted', 'Liberation Serif Adjusted', 'Times New Roman Adjusted', 'BIZ UDMincho', YuMincho, 'Hiragino Mincho ProN', 'Noto Serif CJK JP', serif;
-  --font-display: 'Helvetica Neue', Arial, Meiryo, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
-  --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe Ui Symbol', sans-serif;
-  --font-code: 'PT Mono Adjusted', 'Lucida Console Adjusted', 'Liberation Mono Adjusted', 'Courier New Adjusted', Meiryo, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
-
   --font-size-h1: calc(1rem * var(--font-scale-1));
   --font-size-h2: calc(1rem * var(--font-scale-2));
   --font-size-h3: calc(1rem * var(--font-scale-3));
@@ -90,8 +89,10 @@
   --font-size-x-small: calc(1rem * var(--font-scale-8));
   --font-size-xx-small: calc(1rem * var(--font-scale-9));
 
-  --column-width: 40rem;
+  --line-length: 40rem;
   --line-feed: calc(1rem * var(--font-scale-3));
+
+  --scrollbar-size: 17px;
 
   --gray-1: #f5f6f7;
   --gray-2: #e8e9eb;
@@ -153,6 +154,12 @@
   --violet-8: #6f24f0;
   --violet-9: #4a08bd;
   --violet-10: #2b0769;
+}
+
+@media (pointer: coarse) {
+  :root {
+    --scrollbar-size: 0px;
+  }
 }
 
 /* Base  {{{1 */
@@ -341,7 +348,7 @@ a:hover {
 .l-container {
   margin-inline: auto;
   padding-inline: calc(var(--line-feed) / 2);
-  max-inline-size: var(--column-width);
+  max-inline-size: var(--line-length);
 }
 
 .l-footer {
@@ -384,12 +391,6 @@ a:hover {
   font-family: var(--font-display);
 }
 
-.button:hover {
-  color: var(--button-hover-color, var(--button-color));
-  background-color: var(--button-hover-background-color, var(--button-background-color));
-  border-color: var(--button-hover-border-color, var(--button-border-color));
-}
-
 a.button {
   text-decoration: none;
 }
@@ -398,15 +399,21 @@ a.button {
   --button-color: var(--gray-10);
   --button-border-size: 2px;
   --button-border-color: var(--gray-10);
-  --button-hover-color: var(--red-1);
-  --button-hover-background-color: var(--gray-10);
   box-shadow: 2px 2px var(--button-shadow-color, var(--gray-4));
+}
+
+.button.is-outlined:hover {
+  --button-color: var(--red-1);
+  --button-background-color: var(--gray-10);
 }
 
 .button.is-filled {
   --button-color: var(--red-1);
   --button-background-color: var(--gray-10);
-  --button-hover-background-color: var(--gray-9);
+}
+
+.button.is-filled:hover {
+  --button-background-color: var(--gray-9);
 }
 
 /* .circle-button  {{{2 */
@@ -461,22 +468,20 @@ a.circle-button:hover {
 /* Link  {{{3 */
 
 .figure-body > a {
-  --border-color: var(--gray-5);
-  --shadow-color: var(--gray-3);
   display: block;
   padding: calc(var(--line-feed) / 2 - 2px);
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--link-border-color, var(--gray-5));
   border-radius: 4px;
-  box-shadow: 2px 2px var(--shadow-color);
+  box-shadow: 2px 2px var(--link-shadow-color, var(--gray-3));
   font-family: var(--font-display);
   font-weight: bold;
 }
 
 .figure-body > a:hover {
-  --border-color: var(--red-6);
-  --shadow-color: var(--red-3);
+  --link-border-color: var(--red-6);
+  --link-shadow-color: var(--red-3);
 }
 
 .figure-body > a[data-domain]::after {
@@ -514,8 +519,8 @@ a.circle-button:hover {
   padding-inline: 0.5ch;
   border-end-start-radius: 4px;
   border-end-end-radius: 4px;
-  background-color: var(--gray-6);
-  color: var(--gray-2);
+  background-color: var(--code-label-background-color, var(--gray-6));
+  color: var(--code-label-color, var(--gray-1));
   font-family: var(--font-display);
   font-size: var(--font-size-xx-small);
 }
@@ -524,7 +529,7 @@ a.circle-button:hover {
   padding: calc(var(--line-feed) / 2);
   margin-block-end: 0;
   color: var(--gray-10);
-  background-color: var(--gray-2);
+  background-color: var(--code-background-color, var(--gray-2));
   overflow-x: auto;
   overflow-x: overlay;
 }
@@ -547,21 +552,22 @@ a.circle-button:hover {
 /* Blockquote  {{{3 */
 
 .figure-body > blockquote {
-  --quote-color: var(--red-6);
-  --border-color: var(--red-5);
-  --background-color: var(--red-2);
+  --blockquote-symbol-color: var(--red-6);
+  --blockquote-symbol-size: 2.5rem;
+  --blockquote-border-color: var(--red-5);
+  --blockquote-background-color: var(--red-2);
   position: relative;
   margin-block-end: 0;
   padding: var(--line-feed);
-  background-color: var(--background-color);
-  background-image: linear-gradient(var(--border-color), var(--border-color)),
-                    linear-gradient(var(--border-color), var(--border-color)),
-                    linear-gradient(var(--border-color), var(--border-color)),
-                    linear-gradient(var(--border-color), var(--border-color));
+  background-color: var(--blockquote-background-color);
+  background-image: linear-gradient(var(--blockquote-border-color), var(--blockquote-border-color)),
+                    linear-gradient(var(--blockquote-border-color), var(--blockquote-border-color)),
+                    linear-gradient(var(--blockquote-border-color), var(--blockquote-border-color)),
+                    linear-gradient(var(--blockquote-border-color), var(--blockquote-border-color));
   background-position: top left, top right, bottom left, bottom right;
   background-size: var(--line-feed) 1px,
-                   calc(100% - var(--line-feed) * 2.5) 1px,
-                   calc(100% - var(--line-feed) * 2.5) 1px,
+                   calc(100% - var(--line-feed) - var(--blockquote-symbol-size)) 1px,
+                   calc(100% - var(--line-feed) - var(--blockquote-symbol-size)) 1px,
                    var(--line-feed) 1px;
   background-repeat: no-repeat;
 }
@@ -569,9 +575,10 @@ a.circle-button:hover {
 .figure-body > blockquote::before,
 .figure-body > blockquote::after {
   position: absolute;
-  inline-size: calc(var(--line-feed) * 1.5);
-  color: var(--quote-color);
-  font-size: 2.5rem;
+  inline-size: var(--blockquote-symbol-size);
+  box-sizing: border-box;
+  color: var(--blockquote-symbol-color);
+  font-size: var(--blockquote-symbol-size);
   font-weight: bold;
   text-align: center;
 }
@@ -782,18 +789,27 @@ a.footnote-back-reference {
   --note-symbol: 'i';
   --note-background-color: var(--blue-2);
   --note-border-color: var(--blue-6);
+  --code-background-color: var(--blue-3);
+  --code-label-background-color: var(--blue-6);
+  --code-label-color: var(--blue-1);
 }
 
 .note.is-warning {
   --note-symbol: '!';
   --note-background-color: var(--yellow-2);
   --note-border-color: var(--yellow-6);
+  --code-background-color: var(--yellow-3);
+  --code-label-background-color: var(--yellow-6);
+  --code-label-color: var(--yellow-1);
 }
 
 .note.is-callout {
   --note-symbol: '✕';
   --note-background-color: var(--red-2);
   --note-border-color: var(--red-6);
+  --code-background-color: var(--red-3);
+  --code-label-background-color: var(--red-6);
+  --code-label-color: var(--red-1);
 }
 
 .note::before {
@@ -876,7 +892,7 @@ a.footnote-back-reference {
   border-radius: 4px;
   color: currentColor;
   background-color: var(--tag-background-color, var(--gray-10));
-  color: var(--tag-color, var(--red-1));;
+  color: var(--tag-color, var(--red-1));
   line-height: calc(var(--line-feed) - 2px);
 }
 
@@ -954,8 +970,8 @@ a.archive-item-title:hover {
   margin-block-end: var(--line-feed);
   border: 2px solid currentColor;
   border-radius: 4px;
-  box-shadow: 2px 2px var(--gray-4);
-  background-color: var(--red-1);
+  box-shadow: 2px 2px var(--article-card-shadow-color, var(--gray-4));
+  background-color: var(--article-card-background-color, var(--red-1));
 }
 
 .article-card-item-header {
@@ -1145,10 +1161,9 @@ a.header-title {
 }
 
 .header-title-logo {
-  --scrollbar-size: 17px;
-  --container-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--column-width));
+  --header-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--line-length));
   font-weight: 800;
-  font-size: calc(var(--container-size) / var(--letters));
+  font-size: calc(var(--header-size) / var(--letters));
   line-height: 1.0;
   text-align: justify;
   text-align-last: justify;
@@ -1161,13 +1176,7 @@ a.header-title {
   }
 
   .header-title-logo {
-    --container-size: 100cqi;
-  }
-}
-
-@media (pointer: coarse) {
-  .header-title-logo {
-    --scrollbar-size: 0px;
+    --header-size: 100cqi;
   }
 }
 
