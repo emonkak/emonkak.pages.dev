@@ -1126,7 +1126,6 @@ a.footer-title-anchor:hover {
 /* .header  {{{2 */
 
 .header-title {
-  container-type: inline-size;
   display: block;
   padding-block: calc(var(--line-feed) / 2) 0;
   border-block-width: 2px 2px;
@@ -1157,6 +1156,10 @@ a.header-title {
 }
 
 @supports (container-type: inline-size) {
+  .header-title {
+    container-type: inline-size;
+  }
+
   .header-title-logo {
     --container-size: 100cqi;
   }
