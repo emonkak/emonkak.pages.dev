@@ -1153,7 +1153,7 @@ a.header-title {
 .header-title-logo {
   --header-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--line-length));
   font-weight: 800;
-  font-size: calc(var(--header-size) / var(--letters));
+  font-size: calc(var(--header-size) / var(--header-letters));
   line-height: 1.0;
   text-align: justify;
   text-align-last: justify;
