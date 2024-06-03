@@ -329,6 +329,11 @@ a {
   text-underline-offset: 2px;
 }
 
+a:not([class]) {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -446,10 +451,6 @@ a.circle-button:hover {
   color: var(--gray-7);
 }
 
-.figure-caption a {
-  word-break: break-all;
-}
-
 .figure:where(.is-table, .is-html) > .figure-body {
   overflow-x: auto;
 }
@@ -490,7 +491,7 @@ a.circle-button:hover {
   padding-inline-start: calc(16px + 0.5ch);
   font-size: var(--font-size-small);
   font-weight: normal;
-  word-break: break-all;
+  overflow-wrap: anywhere;
   color: var(--gray-7);
   background-image: var(--favicon);
   background-repeat: no-repeat;
@@ -720,11 +721,6 @@ a.footnote-back-reference {
 
 .footnote-body {
   flex: 1 1;
-  word-break: break-all;
-}
-
-.footnote-body a {
-  word-break: break-all;
 }
 
 .footnote-body > :last-child {
