@@ -1278,7 +1278,8 @@ a.nav-menu-item-anchor:hover {
   border-block-end: 1px dashed transparent;
 }
 
-.toc-heading::marker {
+.toc-heading::marker,
+.toc-heading::-webkit-details-marker {
   color: var(--red-6);
 }
 
