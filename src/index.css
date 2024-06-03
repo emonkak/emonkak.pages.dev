@@ -779,52 +779,42 @@ a.footnote-back-reference {
 
 .note {
   --note-symbol-size: var(--line-feed);
-  --note-border-size: 4px;
+  --note-symbol-margin: 4px;
+  --note-border-size: 2px;
   position: relative;
   padding-block: var(--line-feed);
   margin-block: 0 var(--line-feed);
+  border-radius: 4px;
 }
 
 .note.is-note {
-  --note-symbol: 'i';
-  --note-background-color: var(--blue-2);
+  --note-symbol-content: 'i';
   --note-border-color: var(--blue-6);
-  --code-background-color: var(--blue-3);
-  --code-label-background-color: var(--blue-6);
-  --code-label-color: var(--blue-1);
 }
 
 .note.is-warning {
-  --note-symbol: '!';
-  --note-background-color: var(--yellow-2);
+  --note-symbol-content: '!';
   --note-border-color: var(--yellow-6);
-  --code-background-color: var(--yellow-3);
-  --code-label-background-color: var(--yellow-6);
-  --code-label-color: var(--yellow-1);
 }
 
 .note.is-callout {
-  --note-symbol: '✕';
-  --note-background-color: var(--red-2);
+  --note-symbol-content: '✕';
   --note-border-color: var(--red-6);
-  --code-background-color: var(--red-3);
-  --code-label-background-color: var(--red-6);
-  --code-label-color: var(--red-1);
 }
 
 .note::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: var(--note-background-color);
-  border-inline-start: var(--note-border-size) solid var(--note-border-color);
+  border: var(--note-border-size) solid var(--note-border-color);
+  border-radius: 4px;
   mask: radial-gradient(
-    calc(var(--note-symbol-size) / 2 + var(--note-border-size)) at var(--note-border-size) var(--note-border-size),
+    calc(var(--note-symbol-size) / 2 + var(--note-symbol-margin)) at var(--note-symbol-margin) var(--note-symbol-margin),
     #0000 99%,
     #000
   );
   -webkit-mask: radial-gradient(
-    calc(var(--note-symbol-size) / 2 + var(--note-border-size)) at var(--note-border-size) var(--note-border-size),
+    calc(var(--note-symbol-size) / 2 + var(--note-symbol-margin)) at var(--note-symbol-margin) var(--note-symbol-margin),
     #0000 99%,
     #000
   );
@@ -832,10 +822,10 @@ a.footnote-back-reference {
 }
 
 .note::after {
-  content: var(--note-symbol);
+  content: var(--note-symbol-content);
   position: absolute;
-  inset-block-start: var(--note-border-size);
-  inset-inline-start: var(--note-border-size);
+  inset-block-start: var(--note-symbol-margin);
+  inset-inline-start: var(--note-symbol-margin);
   block-size: var(--note-symbol-size);
   inline-size: var(--note-symbol-size);
   border-radius: 50%;
@@ -857,7 +847,7 @@ a.footnote-back-reference {
 
 .note-body {
   padding-inline: var(--line-feed);
-  border-inline-start: var(--note-border-size) solid var(--note-border-color);
+  border-inline: var(--note-border-size) solid var(--note-border-color);
 }
 
 .note-body > :last-child {
