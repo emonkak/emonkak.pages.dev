@@ -314,7 +314,7 @@ kbd {
   margin-inline: 2px;
   vertical-align: 2px;
   border: 1px solid currentColor;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0 2px 0 1px currentColor;
   font-size: var(--font-size-x-small);
   line-height: 1.0;
@@ -385,7 +385,7 @@ a:hover {
   color: var(--button-color);
   background-color: var(--button-background-color, transparent);
   border: var(--button-border-size, 0px) solid var(--button-border-color, transparent);
-  border-radius: 4px;
+  border-radius: 6px;
   padding-block: calc(var(--line-feed) / 4 - var(--button-border-size, 0px));
   padding-inline: 2ch;
   font-family: var(--font-display);
@@ -473,7 +473,7 @@ a.circle-button:hover {
   text-decoration: none;
   color: inherit;
   border: 1px solid var(--link-border-color, var(--gray-5));
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 2px 2px var(--link-shadow-color, var(--gray-3));
   font-family: var(--font-display);
   font-weight: bold;
@@ -501,6 +501,7 @@ a.circle-button:hover {
 /* Code  {{{3 */
 
 .figure.is-code {
+  --r: 6px;
   position: relative;
   counter-increment: code-count;
 }
@@ -514,15 +515,22 @@ a.circle-button:hover {
   position: absolute;
   inset-block-start: 0;
   inset-inline-end: calc(var(--line-feed) / 2);
-  line-height: 1.0;
-  padding-block: 2px;
-  padding-inline: 0.5ch;
-  border-end-start-radius: 4px;
-  border-end-end-radius: 4px;
-  background-color: var(--code-label-background-color, var(--gray-6));
-  color: var(--code-label-color, var(--gray-1));
+  padding-block: 4px;
+  padding-inline: 1ch;
+  border-inline: var(--r) solid #0000;
+  border-radius: 0 0 calc(2 * var(--r)) calc(2 * var(--r)) / var(--r);
+  mask: radial-gradient(var(--r) at var(--r) var(--r), #0000 99%, #000 101%)
+          calc(-1 * var(--r)) 0 / 100% var(--r) repeat-x,
+        conic-gradient(#000 0 0) padding-box;
+  -webkit-mask: radial-gradient(var(--r) at var(--r) var(--r), #0000 99%, #000 101%)
+                  calc(-1 * var(--r)) 0 / 100% var(--r) repeat-x,
+                conic-gradient(#000 0 0) padding-box;
+  color: var(--code-label-color, var(--gray-10));
+  background-color: var(--code-label-background-color, var(--gray-4));
   font-family: var(--font-display);
+  font-weight: bold;
   font-size: var(--font-size-xx-small);
+  line-height: 1.0;
 }
 
 .figure-body > pre {
@@ -784,7 +792,7 @@ a.footnote-back-reference {
   position: relative;
   padding-block: var(--line-feed);
   margin-block: 0 var(--line-feed);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .note.is-note {
@@ -807,16 +815,16 @@ a.footnote-back-reference {
   position: absolute;
   inset: 0;
   border: var(--note-border-size) solid var(--note-border-color);
-  border-radius: 4px;
+  border-radius: 6px;
   mask: radial-gradient(
     calc(var(--note-symbol-size) / 2 + var(--note-symbol-margin)) at var(--note-symbol-margin) var(--note-symbol-margin),
     #0000 99%,
-    #000
+    #000 101%
   );
   -webkit-mask: radial-gradient(
     calc(var(--note-symbol-size) / 2 + var(--note-symbol-margin)) at var(--note-symbol-margin) var(--note-symbol-margin),
     #0000 99%,
-    #000
+    #000 101%
   );
   z-index: -1;
 }
@@ -879,7 +887,7 @@ a.footnote-back-reference {
 
 .tag-item-label {
   padding-inline: 0.5ch;
-  border-radius: 4px;
+  border-radius: 6px;
   color: currentColor;
   background-color: var(--tag-background-color, var(--gray-10));
   color: var(--tag-color, var(--red-1));
@@ -959,7 +967,7 @@ a.archive-item-title:hover {
   padding-inline: calc(var(--line-feed) - 2px);
   margin-block-end: var(--line-feed);
   border: 2px solid currentColor;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 2px 2px var(--article-card-shadow-color, var(--gray-4));
   background-color: var(--article-card-background-color, var(--red-1));
 }
@@ -1265,7 +1273,7 @@ a.nav-menu-item-anchor:hover {
 .toc {
   margin-block-end: var(--line-feed);
   border: 1px solid var(--red-5);
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: var(--red-1);
   box-shadow: 2px 2px var(--red-3);
   font-family: var(--font-display);
@@ -1359,7 +1367,7 @@ a.toc-item-anchor:hover {
   block-size: calc(var(--line-feed) * 4);
   border: 1px solid currentColor;
   box-shadow: 2px 2px var(--gray-4);
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: white;
   overflow: hidden;
 }
