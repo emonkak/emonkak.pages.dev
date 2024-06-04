@@ -111,7 +111,7 @@
   --font-size-xx-small: calc(1rem * var(--font-scale-9));
 
   --line-length: 40rem;
-  --line-feed: calc(1rem * (28 / 18));
+  --line-feed: calc(1rem * 28 / 18);
 
   --scrollbar-size: 17px;
 
@@ -187,7 +187,7 @@
 
 html {
   font-family: var(--font-text);
-  font-size: clamp(14px, calc(0.875rem + ((1vi - 3.2px) * 1.0989)), 18px);
+  font-size: clamp(0.875rem, 0.675rem + 1vi, 1.125rem);
   line-height: var(--line-feed);
   background-color: var(--red-1);
   background-repeat: repeat;
@@ -198,6 +198,11 @@ html {
 
 body {
   margin: 0;
+  /*
+   * Note: In Safari, `1rem` in `html` is always evaluated as `16px`. To avoid
+   * that, we define `line-height` in `body` as well.
+   */
+  line-height: var(--line-feed);
 }
 
 h1, h2, h3, h4, h5, h6, [role="heading"] {
