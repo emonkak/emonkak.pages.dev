@@ -534,7 +534,7 @@ a.button {
   position: absolute;
   inset-block-start: 0;
   inset-inline-end: calc(var(--line-feed) / 2);
-  padding-block: 4px;
+  padding-block: 2px;
   padding-inline: 1ch;
   border-inline: var(--r) solid #0000;
   border-radius: 0 0 calc(2 * var(--r)) calc(2 * var(--r)) / var(--r);
@@ -1058,7 +1058,7 @@ a.article-card-item-title-anchor:hover {
   -webkit-hyphens: auto;
 }
 
-@media not (min-width: 38rem) {
+@media screen and (max-width: 719px) {
   .document > :is(.figure.is-blockquote, .figure.is-code, .figure.is-image, .figure.is-table) > .figure-body {
     margin-inline: calc(var(--line-feed) / 2 * -1);
   }
@@ -1140,7 +1140,7 @@ a.footer-title-anchor:hover {
   font-size: var(--font-size-small);
 }
 
-@media (min-width: 38rem) {
+@media (min-width: 720px) {
   .footer {
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: var(--line-feed);
