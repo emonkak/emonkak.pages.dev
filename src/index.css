@@ -186,8 +186,19 @@
 /* Base  {{{1 */
 
 html {
+  /*
+   * Calculate scalable font-size.
+   * See https://chrisburnell.com/clamp-calculator/ for details.
+   */
+  --size-min: 14;
+  --size-max: 18;
+  --viewport-min: 320;
+  --viewport-max: 720;
+  --step: calc((var(--size-max) - var(--size-min)) / (var(--viewport-max) - var(--viewport-min)));
+  --a: calc(1px * (var(--size-max) - var(--viewport-max) * var(--step)));
+  --b: calc(100vi * var(--step));
   font-family: var(--font-text);
-  font-size: clamp(0.875rem, 0.675rem + 1vi, 1.125rem);
+  font-size: clamp(1px * var(--size-min), var(--a) + var(--b), 1px * var(--size-max));
   line-height: var(--line-feed);
   background-color: var(--red-1);
   background-repeat: repeat;
