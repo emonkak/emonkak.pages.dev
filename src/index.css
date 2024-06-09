@@ -505,8 +505,8 @@ a.button {
 }
 
 .figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar {
-  inline-size: calc(var(--line-feed) / 2);
-  block-size: calc(var(--line-feed) / 2);
+  inline-size: calc(var(--basic-border-radius) * 2);
+  block-size: calc(var(--basic-border-radius) * 2);
 }
 
 .figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar-thumb {
@@ -594,15 +594,15 @@ a.button {
 }
 
 .figure-body > pre::-webkit-scrollbar {
-  inline-size: calc(var(--line-feed) / 2);
-  block-size: calc(var(--line-feed) / 2);
+  inline-size: calc(var(--basic-border-radius) * 2);
+  block-size: calc(var(--basic-border-radius) * 2);
 }
 
 .figure-body > pre::-webkit-scrollbar-thumb {
   background-clip: padding-box;
   background-color: var(--gray-6);
   border: 2px solid transparent;
-  border-radius: calc(var(--line-feed) / 4);
+  border-radius: var(--basic-border-radius);
 }
 
 .figure-body > pre > code {
