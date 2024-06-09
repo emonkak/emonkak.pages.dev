@@ -1183,6 +1183,11 @@ a.footer-title-anchor:hover {
 
 /* .header  {{{2 */
 
+.header {
+  --header-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--line-length));
+  --header-title-letters: 8;
+}
+
 .header-title {
   display: block;
   padding-block: calc(var(--line-feed) / 2) 0;
@@ -1203,9 +1208,8 @@ a.header-title {
 }
 
 .header-title-logo {
-  --header-size: min(calc(100vi - var(--line-feed) - var(--scrollbar-size)), var(--line-length));
   font-weight: 800;
-  font-size: calc(var(--header-size) / var(--header-letters));
+  font-size: calc(var(--header-size) / var(--header-title-letters));
   line-height: 1.0;
   text-align: justify;
   text-align-last: justify;
@@ -1214,11 +1218,8 @@ a.header-title {
 
 @supports (container-type: inline-size) {
   .header-title {
-    container-type: inline-size;
-  }
-
-  .header-title-logo {
     --header-size: 100cqi;
+    container-type: inline-size;
   }
 }
 
