@@ -129,6 +129,8 @@
 
   --scrollbar-size: 17px;
 
+  --basic-border-radius: 6px;
+
   --gray-1: #f5f6f7;
   --gray-2: #e8e9eb;
   --gray-3: #dadce0;
@@ -365,7 +367,7 @@ kbd {
   margin-inline: 2px;
   vertical-align: 2px;
   border: 1px solid currentColor;
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   box-shadow: 0 2px 0 1px currentColor;
   font-size: var(--font-size-x-small);
   line-height: 1.0;
@@ -443,7 +445,7 @@ a:hover {
   color: var(--button-color);
   background-color: var(--button-background-color, transparent);
   border: var(--button-border-size, 0px) solid var(--button-border-color, transparent);
-  border-radius: var(--button-radiuis, 6px);
+  border-radius: var(--button-radiuis, var(--basic-border-radius));
   font-family: var(--font-display);
 }
 
@@ -521,7 +523,7 @@ a.button {
   text-decoration: none;
   color: inherit;
   border: 1px solid var(--link-border-color, var(--gray-5));
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   box-shadow: 2px 2px var(--link-shadow-color, var(--gray-3));
   font-family: var(--font-display);
   font-weight: bold;
@@ -549,7 +551,7 @@ a.button {
 /* Code  {{{3 */
 
 .figure.is-code {
-  --r: 6px;
+  --r: var(--basic-border-radius);
   position: relative;
   counter-increment: code-count;
 }
@@ -586,6 +588,7 @@ a.button {
   margin-block-end: 0;
   color: var(--gray-10);
   background-color: var(--code-background-color, var(--gray-2));
+  border-radius: var(--r);
   overflow-x: auto;
   overflow-x: overlay;
 }
@@ -599,6 +602,7 @@ a.button {
   background-clip: padding-box;
   background-color: var(--gray-6);
   border: 2px solid transparent;
+  border-radius: calc(var(--line-feed) / 4);
 }
 
 .figure-body > pre > code {
@@ -835,7 +839,7 @@ a.footnote-back-reference {
   position: relative;
   padding-block: var(--line-feed);
   margin-block: 0 var(--line-feed);
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
 }
 
 .note.is-note {
@@ -858,7 +862,7 @@ a.footnote-back-reference {
   position: absolute;
   inset: 0;
   border: var(--note-border-size) solid var(--note-border-color);
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   mask: radial-gradient(
     calc(var(--note-symbol-size) / 2 + var(--note-symbol-margin)) at var(--note-symbol-margin) var(--note-symbol-margin),
     #0000 99%,
@@ -930,7 +934,7 @@ a.footnote-back-reference {
 
 .tag-item-label {
   padding-inline: 0.5ch;
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   color: currentColor;
   background-color: var(--tag-background-color, var(--gray-10));
   color: var(--tag-color, var(--red-1));
@@ -1010,7 +1014,7 @@ a.archive-item-title:hover {
   padding-inline: calc(var(--line-feed) - 2px);
   margin-block-end: var(--line-feed);
   border: 2px solid currentColor;
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   box-shadow: 2px 2px var(--article-card-shadow-color, var(--gray-4));
   background-color: var(--article-card-background-color, var(--red-1));
 }
@@ -1318,7 +1322,7 @@ a.nav-menu-item-anchor:hover {
 .toc {
   margin-block-end: var(--line-feed);
   border: 1px solid var(--red-5);
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   background-color: var(--red-1);
   box-shadow: 2px 2px var(--red-3);
   font-family: var(--font-display);
@@ -1413,7 +1417,7 @@ a.toc-item-anchor:hover {
   block-size: calc(var(--line-feed) * 4);
   border: 1px solid currentColor;
   box-shadow: 2px 2px var(--gray-4);
-  border-radius: 6px;
+  border-radius: var(--basic-border-radius);
   background-color: white;
   overflow: hidden;
 }
