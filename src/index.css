@@ -10,48 +10,48 @@
   font-family: 'Charter';
   font-weight: normal;
   src: local('Charter Roman');
-  size-adjust: 103%;
-  ascent-override: 96%;
+  size-adjust: 106%;
+  ascent-override: 94%;
 }
 
 @font-face {
   font-family: 'Charter';
   font-weight: bold;
   src: local('Charter Bold');
-  size-adjust: 104%;
-  ascent-override: 97%;
-}
-
-@font-face {
-  font-family: 'Liberation Serif';
-  font-weight: normal;
-  src: local('Liberation Serif');
-  size-adjust: 108%;
-  ascent-override: 86%;
-}
-
-@font-face {
-  font-family: 'Liberation Serif';
-  font-weight: bold;
-  src: local('Liberation Serif');
-  size-adjust: 117%;
-  ascent-override: 81%;
+  size-adjust: 105.5%;
+  ascent-override: 96%;
 }
 
 @font-face {
   font-family: 'Cambria';
   font-weight: normal;
   src: local('Cambria');
-  size-adjust: 105.5%;
+  size-adjust: 108%;
+  ascent-override: 87%;
+}
+
+@font-face {
+  font-family: 'Cambria';
+  font-weight: bold;
+  src: local('Cambria Bold');
+  size-adjust: 108%;
+  ascent-override: 87%;
+}
+
+@font-face {
+  font-family: 'Liberation Serif';
+  font-weight: normal;
+  src: local('Liberation Serif');
+  size-adjust: 105%;
   ascent-override: 88%;
 }
 
 @font-face {
-  font-family: 'Cambria';
+  font-family: 'Liberation Serif';
   font-weight: bold;
-  src: local('Cambria');
-  size-adjust: 114%;
-  ascent-override: 83%;
+  src: local('Liberation Serif Bold');
+  size-adjust: 106%;
+  ascent-override: 87%;
 }
 
 @font-face {
@@ -65,23 +65,37 @@
 @font-face {
   font-family: 'Times New Roman';
   font-weight: bold;
-  src: local('Times New Roman');
-  size-adjust: 117%;
-  ascent-override: 81%;
+  src: local('Times New Roman Bold');
+  size-adjust: 108%;
+  ascent-override: 86%;
 }
 
 @font-face {
   font-family: 'PT Mono';
   src: local('PT Mono');
-  size-adjust: 93%;
-  ascent-override: 103%;
+  size-adjust: 103%;
+  ascent-override: 95%;
+}
+
+@font-face {
+  font-family: 'Lucida Console';
+  src: local('Lucida Console');
+  size-adjust: 98%;
+  ascent-override: 91.5%;
+}
+
+@font-face {
+  font-family: 'Liberation Mono';
+  src: local('Liberation Mono');
+  size-adjust: 100%;
+  ascent-override: 99%;
 }
 
 @font-face {
   font-family: 'Courier';
   src: local('Courier');
-  size-adjust: 93%;
-  ascent-override: 88%;
+  size-adjust: 114%;
+  ascent-override: 74.5%;
 }
 
 :root {
@@ -309,7 +323,7 @@ figcaption {
   text-align: center;
   text-wrap: balance;
   font-family: var(--font-display);
-  font-size: var(--font-size-x-small);
+  font-size: var(--font-size-small);
 }
 
 table {
@@ -339,7 +353,6 @@ code, kbd, pre, samp, var {
 
 pre {
   font-size: var(--font-size-x-small);
-  line-height: calc(var(--line-feed) * 0.75);
 }
 
 code, kbd, samp, var {

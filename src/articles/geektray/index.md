@@ -12,7 +12,7 @@ tags:
 
 Typically, tiling window managers like [XMonad](https://xmonad.org/) do not have a system tray. If you want a system tray, you can use a standalone implementation like [stalonetray](https://github.com/kolbusa/stalonetray) or a status bar implementation with built-in system tray support, such as [polybar](https://github.com/polybar/polybar).
 
-However, neither of these implementations can't operate the system tray by the keyboard. I think the need for a keyboard-oriented system tray implementation that haves a high affinity with tiling window managers. This idea was inspired by [cereja](https://web.archive.org/web/20140823002645/https://whileimautomaton.net/2006/12/cereja/) an old Windows shell replacement.
+However, neither of these _implementations_ can't operate the system tray by the keyboard. I think the need for a keyboard-oriented system tray implementation that haves a high affinity with tiling window managers. This idea was inspired by [cereja](https://web.archive.org/web/20140823002645/https://whileimautomaton.net/2006/12/cereja/) an old Windows shell replacement.
 
 ![Cereja's system tray](./cereja.png)
 
