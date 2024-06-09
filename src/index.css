@@ -557,7 +557,7 @@ a.button {
 }
 
 .figure.is-code > .figure-caption::before {
-  content: 'Source ' counter(code-count) ': ';
+  content: 'Source ' counter(code-count) '. ';
 }
 
 .figure.is-code[data-language]::before {
@@ -668,7 +668,7 @@ a.button {
 }
 
 .figure.is-table > .figure-caption::before {
-  content: 'Table ' counter(table-count) ': ';
+  content: 'Table ' counter(table-count) '. ';
 }
 
 .figure-body > table {
@@ -724,7 +724,7 @@ a.button {
 }
 
 .figure:where(.is-image, .is-html) > .figure-caption::before {
-  content: 'Figure ' counter(figure-count) ': ';
+  content: 'Figure ' counter(figure-count) '. ';
 }
 
 .figure.is-image > .figure-body > a {
