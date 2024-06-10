@@ -323,7 +323,8 @@ ol, ul {
 
 figcaption {
   text-align: center;
-  text-wrap: balance;
+  text-wrap: pretty;
+  word-break: auto-phrase;
   font-family: var(--font-display);
   font-size: var(--font-size-small);
 }
