@@ -606,6 +606,7 @@ a.button {
 }
 
 .figure-body > pre > code {
+  display: contents;
   all: unset;
 }
 
@@ -1098,6 +1099,10 @@ a.article-card-item-title-anchor:hover {
 
   .document > .figure.is-code[data-language]::before {
     inset-inline-end: 0;
+  }
+
+  .document > .figure.is-code > .figure-body > pre {
+    border-radius: 0;
   }
 }
 
