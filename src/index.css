@@ -111,8 +111,8 @@
   --font-scale-5: calc(var(--font-scale-base) * var(--font-scale-base));
   --font-scale-6: var(--font-scale-base);
   --font-scale-7: calc(1 / var(--font-scale-base));
-  --font-scale-8: calc(1 / (var(--font-scale-base) * var(--font-scale-base)));
-  --font-scale-9: calc(1 / (var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base)));
+  --font-scale-8: calc(1 / var(--font-scale-base) / var(--font-scale-base));
+  --font-scale-9: calc(1 / var(--font-scale-base) / var(--font-scale-base) / var(--font-scale-base));
 
   --font-size-h1: calc(1rem * var(--font-scale-1));
   --font-size-h2: calc(1rem * var(--font-scale-2));
@@ -326,7 +326,7 @@ figcaption {
   text-wrap: pretty;
   word-break: auto-phrase;
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-x-small);
 }
 
 table {
