@@ -50,8 +50,8 @@
   font-family: 'Liberation Serif';
   font-weight: bold;
   src: local('Liberation Serif Bold');
-  size-adjust: 106%;
-  ascent-override: 87%;
+  size-adjust: 105%;
+  ascent-override: 88%;
 }
 
 @font-face {
@@ -73,29 +73,29 @@
 @font-face {
   font-family: 'PT Mono';
   src: local('PT Mono');
-  size-adjust: 103%;
-  ascent-override: 95%;
+  size-adjust: 93%;
+  ascent-override: 103%;
 }
 
 @font-face {
   font-family: 'Lucida Console';
   src: local('Lucida Console');
-  size-adjust: 98%;
-  ascent-override: 91.5%;
+  size-adjust: 92.5%;
+  ascent-override: 96.5%;
 }
 
 @font-face {
   font-family: 'Liberation Mono';
   src: local('Liberation Mono');
-  size-adjust: 100%;
-  ascent-override: 99%;
+  size-adjust: 93%;
+  ascent-override: 105%;
 }
 
 @font-face {
   font-family: 'Courier';
   src: local('Courier');
-  size-adjust: 114%;
-  ascent-override: 74.5%;
+  size-adjust: 93%;
+  ascent-override: 87%;
 }
 
 :root {
@@ -355,7 +355,7 @@ code, kbd, pre, samp, var {
 }
 
 pre {
-  font-size: var(--font-size-x-small);
+  font-size: var(--font-size-small);
 }
 
 code, kbd, samp, var {
