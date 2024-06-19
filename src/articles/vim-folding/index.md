@@ -26,9 +26,9 @@ Vimで十分に活用されていない組み込み機能の一つは[折り畳�
 
 この中で特に良く使われるのは`expr`と`marker`でしょう。`marker`はソースに`{{{`のようなマーカーを埋め込むことで、好きな場所に折り畳みを定義することができます。しかし、Vim以外のエディターを使うユーザーにとっては、マーカーは意味のない邪魔な文字列でしかなく、共同編集するソースで使うことはためらわれます。私は、行数の多い個人的なアプリケーションの設定ファイル(vimrcなど)でのみ、`marker`を使用するのがいいと思います。
 
-`expr`はどうでしょう？`expr`では`'foldexpr'`に設定された任意の式を評価し、得られた折り畳みレベルを表す特別な値から折り畳みが定義されます。`'foldexpr'`はファイルタイプに応じて適切なもの設定する必要がありますが、残念ながら組み込みの定義は何もありません。つまり`'foldexpr'`の設定は自分で定義するか、それを行うプラグインを導入する必要があります。
+`expr`はどうでしょう？`expr`では`'foldexpr'`に設定された任意の式を評価し、得られた折り畳みレベルを表す特別な値から折り畳みが定義されます。`'foldexpr'`はファイルタイプに応じて適切なもの設定する必要がありますが、残念ながら組み込みの定義は何もありません。つまり`'foldexpr'`の設定は自分で定義するか、それを行う何らかのプラグインを導入する必要があります。
 
-私は満足のいくプラグインを見付けることができなかったので、`'foldexpr'`を設定する[Filetype Plugin](https://github.com/emonkak/config/tree/master/vim/after/ftplugin)をいくつかのファイルタイプについて作成しました。以降では私がどのように`'foldexpr'`を設定したのか、そして`'foldexpr'`による折り畳みの限界について説明します。
+私は`'foldexpr'`を設定する独自の[Filetype Plugin](https://github.com/emonkak/config/tree/master/vim/after/ftplugin)をいくつかのファイルタイプについて作成しました。以降では私がどのように`'foldexpr'`を設定したのか、そして`'foldexpr'`による折り畳みの限界について説明します。
 
 > **Warning:** この記事で定義する折り畳みの要件
 >
@@ -97,7 +97,7 @@ EOF
 
 このような問題を回避するためには、`function`と`endfunction`が確かにVimScriptにおける関数の開始と終了を表すトークンかどうかを確認する必要があります。幸いなことに私達にはその手段があります。それは構文ハイライト(Syntax Highlighting)です。構文ハイライトを使うことで先の関数は次のように改良することができます。
 
-**Update(2024-05-22):** 関数定義のハイライトをチェックする関数を修正しました。
+**Update(2024-05-22):** 関数定義のハイライトのチェックを修正しました。
 
 ```viml 構文ハイライトを使った改良版のVimScriptの折り畳み設定
 function! VimFold(lnum) abort
@@ -139,7 +139,9 @@ endfunction
 >
 > では、syntaxの定義をより厳密にすることでこの問題を解決できるでしょうか？残念ながら、それは現在の構文ハイライトの仕様では困難だと思います。もし[TextMate文法による構文ハイライト](https://github.com/vim/vim/issues/9087)が実現したなら、この問題は解決できるかもしれません。
 >
-> さらに、syntaxに関連する別の折り畳み方法として、Tree-sitterによる構文解析の結果から折り畳みを定義することを考えることができます。[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)はそのための実験的な機能を提供しています(現時点では残念ながらうまく動きませんでした)。
+> さらに、syntaxに関連する別の折り畳み方法として、Treesitterによる構文解析の結果から折り畳みを定義することを考えることができます。[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)はそのための実験的な機能を提供しています(現時点では残念ながら動作しませんでした)。
+> 
+> **Update(2024-06-14):** 再度確認した所期待通り動作したので、Treesitterによる折り畳みの項を加筆しました。
 
 ### foldexprを定義するのが難しい言語
 
@@ -243,7 +245,7 @@ lnum   level   foldexpr   line
      break;
 ```
 
-この修正によって、少なくとも先のRustの折り畳みは、ほとんど完璧に機能するようになります。一方で、C言語の関数のような開始を表すトークンがない場合の折り畳みは、依然として困難です。それを解決する良い方法はないでしょうか？私はその方法を最近見付けました。それはLSP(Language Server Protocol)の`DocumentSymbol`を利用した折り畳みです。
+この修正によって、少なくとも先のRustの折り畳みは、ほとんど完璧に機能するようになります。一方で、C言語の関数のような開始を表すトークンがない場合の折り畳みは、依然として困難です。それを解決する良い方法はないでしょうか？それが以降で紹介するLSP(Language Server Protocol)とTreesitterによる折り畳みです。
 
 > **Note:** foldexpr内でfoldlevel()を呼び出すことはできますか？
 >
@@ -353,48 +355,61 @@ return M
 
 ```lua 非同期版のLSPによる折り畳みの初期化関数
 function M.attach(bufnr)
+  local state = fold_states[bufnr]
+
+  if state then
+    -- This buffer has already been setup. So reuse the state that already
+    -- exists and abort detaching.
+    state.detached = false
+    return
+  end
+
   vim.api.nvim_buf_attach(bufnr, false, {
     on_lines = function(event, bufnr, changedtick)
-      local fold_state = fold_states[bufnr]
-      if fold_state then
-        update_folds(bufnr, fold_state)
+      local state = fold_states[bufnr]
+      if state then
+        get_document_symboles(bufnr, state, changedtick)
+        return state.detached
       end
     end,
     on_reload = function(event, bufnr)
-      local fold_state = fold_states[bufnr]
-      if fold_state then
-        send_request(bufnr, fold_state)
+      local state = fold_states[bufnr]
+      if state then
+        local changedtick = vim.api.nvim_buf_get_changedtick(bufnr)
+        get_document_symboles(bufnr, state, changedtick)
+        return state.detached
       end
     end,
     on_detach = function(event, bufnr)
-      local fold_state = fold_states[bufnr]
-      if fold_state then
-        if fold_state.cancel_request then
-          fold_state.cancel_request()
+      local state = fold_states[bufnr]
+      if state then
+        if state.request then
+          state.request()
+          state.request = nil
         end
         if vim.api.nvim_buf_is_loaded(bufnr) then
-          restore_fold_options(bufnr, fold_state)
+          restore_fold_options(bufnr, state)
         end
         fold_states[bufnr] = nil
       end
     end,
   })
 
-  local fold_state = new_fold_state(bufnr)
+  state = new_state(bufnr)
+  fold_states[bufnr] = state
 
-  fold_states[bufnr] = fold_state
-
+  local changedtick = vim.api.nvim_buf_get_changedtick(bufnr)
   configure_fold_options(bufnr)
-  send_request(bufnr, fold_state)
+  get_document_symboles(bufnr, state, changedtick)
 end
 ```
 
-折り畳みレベルが更新されたなら、それを通知して`'foldexpr'`の再評価を要求する必要があります。それを行うのが次の関数です。ここでは折り畳みが更新された時のちらつき防止するために`'lazyredraw'`を有効にしています。この対策は残念ながら完璧ではありませんが、今は他に良い方法がありませんでした。完全にちらつきを防止するにはVim本体に対して何らかの修正が必要だと思います。
+折り畳みレベルが更新されたなら、`'foldexpr'`の再評価を要求する必要があります。それを行うのが次の関数です。ここでは折り畳みが更新された時のちらつき防止するために`'lazyredraw'`を有効にしています。この対策は残念ながら完璧ではありません。完全にちらつきを防止するにはVim本体の何らかのサポートが必要だと思います。
 
-**Update(2024-06-04):** `winsaveview()`と`winrestview()`でウィンドウの状態を復元するようにしました。
+**Update(2024-06-04):** `winsaveview()`と`winrestview()`でウィンドウの状態を復元するように修正しました。
 
-```lua foldexprの再評価を強制する関数
-local function sync_folds(bufnr)
+```lua 折り畳みの再評価関数
+local function update_folds(bufnr)
   local original_lazyredraw = vim.go.lazyredraw
   local view = vim.fn.winsaveview()
 
@@ -413,19 +428,55 @@ local function sync_folds(bufnr)
 end
 ```
 
-最後に、`'foldexpr'`で呼び出されるのが次の関数です。折り畳みレベルは事前に計算されているので、この関数ではそれらを参照してバッファーに対応する値を返すだけです。
+**Update(2024-06-14):** 組み込みのtreesitterの折り畳み関数`vim.treesitter.foldexpr()`ではネイティブ実装された非公開API [`vim._foldupdate()`](https://github.com/neovim/neovim/blob/27fb62988e922c2739035f477f93cc052a4fee1e/src/nvim/lua/stdlib.c#L549)を呼び出して[折り畳みを更新](https://github.com/neovim/neovim/blob/27fb62988e922c2739035f477f93cc052a4fee1e/runtime/lua/vim/treesitter/_fold.lua#L270)しています。この実装を参考して先程の関数を書き直すことで、折り畳み更新時のちらつきは完全に解消されました！
+
+```lua
+local function update_fold(bufnr, top, bottom)
+  for _, win in ipairs(vim.fn.win_findbuf(bufnr)) do
+    if vim.wo[win].foldmethod == 'expr' then
+      vim._foldupdate(win, top, bottom)
+    end
+  end
+end
+
+local function request_update_fold(bufnr)
+  if vim.api.nvim_get_mode().mode:match('^i') then
+    if #(vim.api.nvim_get_autocmds({ group = group, buffer = bufnr })) > 0 then
+      return
+    end
+    vim.api.nvim_create_autocmd('InsertLeave', {
+      group = augroup,
+      buffer = bufnr,
+      once = true,
+      callback = function()
+        update_fold(bufnr, 0, vim.api.nvim_buf_line_count(bufnr))
+      end,
+    })
+  else
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_loaded(bufnr) then
+        update_fold(bufnr, 0, vim.api.nvim_buf_line_count(bufnr))
+      end
+    end)
+  end
+end
+```
+
+**Caption:** `vim._foldupdate()`を使った改良版の折り畳みの再評価関数
+
+最後に、`'foldexpr'`で呼び出されるのが次の関数です。折り畳みレベルは事前に計算されているので、この関数ではそれらを参照して行番号に対応するレベルを返すだけです。
 
 ```lua 非同期版のLSPによる折り畳み実装のfoldexpr関数
 function M.foldexpr(lnum)
   local bufnr = vim.api.nvim_get_current_buf()
-  local fold_state = fold_states[bufnr]
-  if fold_state == nil then
-    return '='
+  local state = fold_states[bufnr]
+  if state == nil then
+    return -1
   end
-  local fold = fold_state.folds[lnum]
+  local fold = state.folds[lnum]
   if fold == nil then
-    return '='
-  elseif fold.symbol.range.start.line + 1 == lnum then
+    return state.levels[lnum] or '='
+  elseif fold.type == TYPE_START then
     return '>' .. fold.level
   else
     return '<' .. fold.level
@@ -433,7 +484,7 @@ function M.foldexpr(lnum)
 end
 ```
 
-実装のすべては次のリンクから見ることができます。
+実装のすべては次のリンクから参照することができます。
 
 > [config/config/nvim/lua/lsp_fold.lua at master · emonkak/config](https://github.com/emonkak/config/blob/master/vim/lua/lsp_fold.lua)
 
@@ -453,6 +504,58 @@ vim.api.nvim_create_autocmd('LspAttach', {
 そうすると、LSPが有効なバッファでは以下のような折り畳みが定義されます。これで自分の手で`'foldexpr'`を定義するのが難しい言語であっても、LSPの力を借りて折り畳みを定義できるようになりました！
 
 ![LSPのDocumentSymbolを使った折り畳み](./lsp-fold.png)
+
+## Treesitterによる折り畳み
+
+前項のLSPによる折り畳みの実装では、バッファーの内容が更新される度にDocumentSymbolの一覧をすべて取得し直して、折り畳みレベルを再計算していました。そのため、バッファーの内容が巨大だとパフォーマンスの問題が発生する可能性があります。もし、バッファーの変更された部分だけを更新することができればより効率的です。Treesitterによる折り畳みはこれを実現することができます。
+
+Treesitterによる折り畳みを使用するには、組み込みのAPIの`vim.treesitter.foldexpr()`を`'foldexpr'`として設定します。私はFileTypeイベントの発行時、対応するパーサーがインストールされていかどうかを確認して、これを自動的に設定するようにしています。
+
+> **Warning:**
+>
+> [nvim-treesitter](https://github.com/nvim-treesitter)の`nvim_treesitter#foldexpr()`は[非推奨であり削除が予定されている](https://github.com/nvim-treesitter/nvim-treesitter/issues/5643#issuecomment-1803245240)ため、組み込みの`vim.treesitter.foldexpr()`を使うべきです。
+
+```lua Treesitterによる折り畳みの設定
+vim.api.nvim_create_autocmd('Filetype', {
+  callback = function(args)
+    if require('nvim-treesitter.parsers').has_parser(args.match) then
+      vim.api.nvim_set_option_value('foldmethod', 'expr', { scope = 'local' })
+      vim.api.nvim_set_option_value(
+        'foldexpr',
+        'v:lua.vim.treesitter.foldexpr()',
+        { scope = 'local' }
+      )
+    end
+  end,
+})
+```
+
+この時、折り畳みの対象となるノードはランタイムディレクトリ内の`queries/{filetype}/folds.scm`で定義されます。これらは[組み込み](https://github.com/neovim/neovim/tree/master/runtime/queries)、あるいは[`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter)でいくつかのファイルタイプについての設定が提供されます。
+
+しかし、いずれの設定も関数やクラスの定義だけではなく、ifブロック等も折り畳みの対象となるので、この記事が目標とするソースのアウトライン表示には都合が悪いです。Treesitterのクエリは先に読み込まれたものが優先されるので、ユーザー設定で置き換えと良いでしょう。
+
+折り畳みの設定を置き換えるには`folds.scm`を`~/.config/nvim/queries/{filetype}/`以下に作成します。例として、私はLuaの折り畳みを以下のように定義しています。
+
+```
+[
+  (function_declaration)
+  (function_definition)
+] @fold
+```
+
+**Caption:**  Luaの折り畳み定義。関数の宣言と定義のみを対象とする。
+
+> **Warning:** inheritsが指定されたクエリを置き換える時の注意
+>
+> Treesitterのクエリは`inherits: {lang}...`モードラインを使用することで任意のファイルタイプのものを継承することができます[^treesitter-query-modeline-inherits]。`inherits`が指定されたクエリはユーザー設定で置き換えられると、先に継承されたファイルタイプのクエリが読み込まれた後に、ユーザー設定のクエリが読み込まれます。つまり両者は結合されます。
+> 
+> したがって、`inherits`が指定されたクエリをユーザー設定で置き換える時は、その継承元のクエリも置き換える必要があります。例えば、`nvim-treesitter`では[`typescript`の折り畳みの設定](https://github.com/nvim-treesitter/nvim-treesitter/blob/master/queries/typescript/folds.scm)は[`ecma`の設定](https://github.com/nvim-treesitter/nvim-treesitter/blob/master/queries/ecma/folds.scm)を継承しているので`ecma`のものも置き換える必要があります。
+>
+> この動作は直感的ではなく、バグだと疑われるので私は次のissueとして報告しました。
+>
+> > [Treesitter queries specified in the "inherits:" modeline are always merged, even if there is an overridden query · Issue #29348 · neovim/neovim](https://github.com/neovim/neovim/issues/29348)
+>
+> [^treesitter-query-modeline-inherits]: https://neovim.io/doc/user/treesitter.html#treesitter-query-modeline-inherits
 
 ## 折り畳みに対する操作
 
@@ -534,6 +637,8 @@ endfunction
 
 ## おわりに
 
-これまで述べてきたように、私は折り畳みを有用な機能だと信じていますが、`'foldexpr'`にはバグのような動作があり(これは修正されました)、非同期に折り畳みを更新するとちらつきが発生する問題があります。さらに、NeoVimにおいてはLua用の折り畳みAPIはありません。そして、折り畳みの実装そのものはVimの初期のバージョンからほとんど変化はなく、この記事で示したようにいくつか改善の余地があると思います。
+これまで述べてきたように、私は折り畳みを有用な機能だと信じていますが、過小評価されていると思います。
 
-それでも折り畳みが十分役立つことには変わりありません。みなさんもこの記事で示したように折り畳みを活用してみて下さい！
+一方、この記事を書く過程でいくつかの問題も見付かりました。`'foldexpr'`にはバグのような動作があり(修正されました)、非同期に折り畳みを更新するとちらつきが発生します(非公開の`vim._foldupdate()`を使うと回避可能です)。NeoVimにおいてはLua用の折り畳みAPIはありません。そして、折り畳みの設定もいくらか面倒です(それを行うプラグインが必要かもしれません)。
+
+それでも折り畳みが有用であることに変わりありません。みなさんもこの記事を参考に折り畳みを活用してみて下さい！
