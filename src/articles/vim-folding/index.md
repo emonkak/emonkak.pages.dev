@@ -505,7 +505,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 ![LSPのDocumentSymbolを使った折り畳み](./lsp-fold.png)
 
-## Treesitterによる折り畳み
+### Treesitterによる折り畳み
 
 前項のLSPによる折り畳みの実装では、バッファーの内容が更新される度にDocumentSymbolの一覧をすべて取得し直して、折り畳みレベルを再計算していました。そのため、バッファーの内容が巨大だとパフォーマンスの問題が発生する可能性があります。もし、バッファーの変更された部分だけを更新することができればより効率的です。Treesitterによる折り畳みはこれを実現することができます。
 
