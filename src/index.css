@@ -932,7 +932,6 @@ a.footnote-back-reference {
 .tag-item-label {
   padding-inline: 0.5ch;
   border-radius: var(--basic-border-radius);
-  color: currentColor;
   background-color: var(--tag-background-color, var(--gray-10));
   color: var(--tag-color, var(--red-1));
   line-height: calc(var(--line-feed) - 2px);
