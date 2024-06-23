@@ -505,16 +505,16 @@ a.button {
   color: var(--gray-7);
 }
 
-.figure:where(.is-table, .is-html) > .figure-body {
+.figure:is(.is-table, .is-html) > .figure-body {
   overflow-x: auto;
 }
 
-.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar {
+.figure:is(.is-table, .is-html) > .figure-body::-webkit-scrollbar {
   inline-size: calc(var(--basic-border-radius) * 2);
   block-size: calc(var(--basic-border-radius) * 2);
 }
 
-.figure:where(.is-table, .is-html) > .figure-body::-webkit-scrollbar-thumb {
+.figure:is(.is-table, .is-html) > .figure-body::-webkit-scrollbar-thumb {
   background-clip: padding-box;
   background-color: var(--gray-10);
   border: 2px solid transparent;
@@ -522,7 +522,7 @@ a.button {
 
 /* Link  {{{3 */
 
-.figure-body > a {
+.figure.is-link > .figure-body > a {
   display: block;
   padding: calc(var(--line-feed) / 2 - 2px);
   text-decoration: none;
@@ -534,12 +534,12 @@ a.button {
   font-weight: bold;
 }
 
-.figure-body > a:hover {
+.figure.is-link > .figure-body > a:hover {
   --link-border-color: var(--red-6);
   --link-shadow-color: var(--red-3);
 }
 
-.figure-body > a[data-domain]::after {
+.figure.is-link > .figure-body > a[data-domain]::after {
   content: attr(data-domain);
   display: block;
   padding-inline-start: calc(16px + 0.5ch);
@@ -588,7 +588,7 @@ a.button {
   line-height: 1.0;
 }
 
-.figure-body > pre {
+.figure.is-code > .figure-body > pre {
   padding: calc(var(--line-feed) / 2 - 1px);
   margin-block-end: 0;
   color: var(--gray-10);
@@ -599,26 +599,26 @@ a.button {
   overflow-x: overlay;
 }
 
-.figure-body > pre::-webkit-scrollbar {
+.figure.is-code > .figure-body > pre::-webkit-scrollbar {
   inline-size: calc(var(--basic-border-radius) * 2);
   block-size: calc(var(--basic-border-radius) * 2);
 }
 
-.figure-body > pre::-webkit-scrollbar-thumb {
+.figure.is-code > .figure-body > pre::-webkit-scrollbar-thumb {
   background-clip: padding-box;
   background-color: var(--gray-6);
   border: 2px solid transparent;
   border-radius: var(--basic-border-radius);
 }
 
-.figure-body > pre > code {
+.figure.is-code > .figure-body > pre > code {
   display: contents;
   all: unset;
 }
 
 /* Blockquote  {{{3 */
 
-.figure-body > blockquote {
+.figure.is-blockquote > .figure-body > blockquote {
   --blockquote-symbol-color: var(--red-6);
   --blockquote-symbol-size: 2.5rem;
   --blockquote-border-color: var(--red-5);
@@ -639,8 +639,8 @@ a.button {
   background-repeat: no-repeat;
 }
 
-.figure-body > blockquote::before,
-.figure-body > blockquote::after {
+.figure.is-blockquote > .figure-body > blockquote::before,
+.figure.is-blockquote > .figure-body > blockquote::after {
   position: absolute;
   inline-size: var(--blockquote-symbol-size);
   box-sizing: border-box;
@@ -650,25 +650,25 @@ a.button {
   text-align: center;
 }
 
-.figure-body > blockquote::before {
+.figure.is-blockquote > .figure-body > blockquote::before {
   content: '\201c';
   inset-block-start: 0;
   inset-inline-start: var(--line-feed);
   transform: translateY(-25%);
 }
 
-.figure-body > blockquote::after {
+.figure.is-blockquote > .figure-body > blockquote::after {
   content: '\201d';
   inset-block-end: 0;
   inset-inline-end: var(--line-feed);
   transform: translateY(75%);
 }
 
-.figure-body > blockquote > :last-child {
+.figure.is-blockquote > .figure-body > blockquote > :last-child {
   margin-block-end: 0;
 }
 
-/* Table  {{{3 */
+/* Table/HTML  {{{3 */
 
 .figure.is-table {
   counter-increment: table-count;
@@ -678,69 +678,59 @@ a.button {
   content: 'Table ' counter(table-count) '. ';
 }
 
-.figure-body > table {
+.figure:is(.is-table, .is-html) > .figure-body > table {
   max-inline-size: 100%;
   margin-block-end: 0;
   margin-inline: auto;
   font-size: var(--font-size-small);
 }
 
-.figure-body > table > tr > :is(td, th),
-.figure-body > table > :is(tbody, thead, tfoot) > tr > :is(td, th) {
+.figure:is(.is-table, .is-html) > .figure-body > table > tr > :is(td, th),
+.figure:is(.is-table, .is-html) > .figure-body > table > :is(tbody, thead, tfoot) > tr > :is(td, th) {
   padding-block: calc(var(--line-feed) / 4);
   padding-inline: 1ch;
   border: 0 solid var(--gray-10);
 }
 
-.figure-body > table > tr > th,
-.figure-body > table > :is(tbody, thead, tfoot) > tr > th {
+.figure:is(.is-table, .is-html) > .figure-body > table > tr > th,
+.figure:is(.is-table, .is-html) > .figure-body > table > :is(tbody, thead, tfoot) > tr > th {
   vertical-align: bottom;
 }
 
-.figure-body > table > tr > td,
-.figure-body > table > :is(tbody, thead, tfoot) > tr > td {
+.figure:is(.is-table, .is-html) > .figure-body > table > tr > td,
+.figure:is(.is-table, .is-html) > .figure-body > table > :is(tbody, thead, tfoot) > tr > td {
   vertical-align: top;
 }
 
-.figure-body > table > thead > tr > :is(td, th) {
+.figure:is(.is-table, .is-html) > .figure-body > table > thead > tr > :is(td, th) {
   padding-block-end: calc(var(--line-feed) / 4 - 2px);
   border-block-end-width: 2px;
 }
 
-.figure-body > table > tr > :is(td, th),
-.figure-body > table > tbody > tr > :is(td, th) {
+.figure:is(.is-table, .is-html) > .figure-body > table > tr > :is(td, th),
+.figure:is(.is-table, .is-html) > .figure-body > table > tbody > tr > :is(td, th) {
   padding-block-end: calc(var(--line-feed) / 4 - 1px);
   border-block-end-width: 1px;
 }
 
-.figure-body > table > tfoot > tr > :is(td, th) {
+.figure:is(.is-table, .is-html) > .figure-body > table > tfoot > tr > :is(td, th) {
   padding-block-start: calc(var(--line-feed) / 4 - 2px);
   border-block-start-width: 2px;
 }
 
 /* Image/HTML  {{{3 */
 
-.figure.is-image {
+.figure:is(.is-image, .is-html) {
   font-family: var(--font-display);
   counter-increment: figure-count;
 }
 
-.figure:where(.is-image, .is-html) {
-  font-family: var(--font-display);
-  counter-increment: figure-count;
-}
-
-.figure:where(.is-image, .is-html) > .figure-caption::before {
+.figure:is(.is-image, .is-html) > .figure-caption::before {
   content: 'Figure ' counter(figure-count) '. ';
 }
 
-.figure.is-image > .figure-body > a {
-  all: initial;
-  cursor: pointer;
-}
-
-.figure-body > :is(img, svg),
-.figure-body > a > :is(img, svg) {
+.figure:is(.is-image, .is-html) > .figure-body > :is(img, svg),
+.figure:is(.is-image, .is-html) > .figure-body > a > :is(img, svg) {
   display: block;
   margin-inline: auto;
   block-size: auto;
