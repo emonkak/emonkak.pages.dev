@@ -246,15 +246,19 @@ h1, h2, h3, h4, h5, h6, [role="heading"] {
   word-break: auto-phrase;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
   margin-block: 0 var(--line-feed);
 }
 
-:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h1, h2, h3) {
+:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h1, h2) {
   margin-block-start: calc(var(--line-feed) * 2);
 }
 
-:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h4, h5, h6) {
+h3, h4, h5, h6 {
+  margin-block: 0 calc(var(--line-feed) / 2);
+}
+
+:not(:where(h1, h2, h3, h4, h5, h6)) + :is(h3, h4, h5, h6) {
   margin-block-start: var(--line-feed);
 }
 
@@ -900,7 +904,7 @@ a.footnote-back-reference {
   font-weight: bold;
   font-family: var(--font-display);
   padding-inline: var(--line-feed);
-  margin-block-end: var(--line-feed);
+  margin-block-end: calc(var(--line-feed) / 2);
 }
 
 .note-body {
