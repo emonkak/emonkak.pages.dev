@@ -7,19 +7,19 @@
 }
 
 @font-face {
-  font-family: 'Charter';
+  font-family: 'Iowan Old Style';
   font-weight: normal;
-  src: local('Charter Roman');
-  size-adjust: 106%;
-  ascent-override: 94%;
+  src: local('Iowan Old Style Roman');
+  size-adjust: 102%;
+  ascent-override: 105%;
 }
 
 @font-face {
-  font-family: 'Charter';
+  font-family: 'Iowan Old Style';
   font-weight: bold;
-  src: local('Charter Bold');
-  size-adjust: 105.5%;
-  ascent-override: 96%;
+  src: local('Iowan Old Style Bold');
+  size-adjust: 102%;
+  ascent-override: 108%;
 }
 
 @font-face {
@@ -99,7 +99,7 @@
 }
 
 :root {
-  --font-text: 'Charter', 'Cambria', 'Liberation Serif', 'Times New Roman', 'BIZ UDMincho', 'YuMincho', 'iragino Mincho ProN', 'Noto Serif CJK JP', serif;
+  --font-text: 'Iowan Old Style', 'Cambria', 'Liberation Serif', 'Times New Roman', 'BIZ UDMincho', 'YuMincho', 'iragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', 'Arial', 'Meiryo', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
   --font-code: 'PT Mono', 'Lucida Console', 'Liberation Mono', 'Courier', 'Meiryo', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
 
