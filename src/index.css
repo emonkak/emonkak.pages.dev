@@ -564,6 +564,10 @@ a.button {
   color: var(--gray-7);
 }
 
+.figure-caption::before {
+  font-weight: bold;
+}
+
 .figure:is(.is-table, .is-html) > .figure-body {
   overflow-x: auto;
 }
