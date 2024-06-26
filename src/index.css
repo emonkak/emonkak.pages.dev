@@ -72,9 +72,34 @@
 
 @font-face {
   font-family: 'PT Mono';
+  font-weight: normal;
   src: local('PT Mono');
   size-adjust: 93%;
   ascent-override: 103%;
+}
+
+@font-face {
+  font-family: 'PT Mono';
+  font-weight: bold;
+  src: local('PT Mono Bold');
+  size-adjust: 93%;
+  ascent-override: 105%;
+}
+
+@font-face {
+  font-family: 'Consolas';
+  font-weight: normal;
+  src: local('Consolas');
+  size-adjust: 101%;
+  ascent-override: 95%;
+}
+
+@font-face {
+  font-family: 'Consolas';
+  font-weight: bold;
+  src: local('Consolas Bold');
+  size-adjust: 101%;
+  ascent-override: 95%;
 }
 
 @font-face {
@@ -86,22 +111,56 @@
 
 @font-face {
   font-family: 'Liberation Mono';
+  font-weight: normal;
   src: local('Liberation Mono');
   size-adjust: 93%;
   ascent-override: 105%;
 }
 
 @font-face {
+  font-family: 'Liberation Mono';
+  font-weight: bold;
+  src: local('Liberation Mono Bold');
+  size-adjust: 93%;
+  ascent-override: 105%;
+}
+
+@font-face {
   font-family: 'Courier';
+  font-weight: normal;
   src: local('Courier');
   size-adjust: 93%;
   ascent-override: 87%;
 }
 
+@font-face {
+  font-family: 'Courier';
+  font-weight: bold;
+  src: local('Courier Bold');
+  size-adjust: 93%;
+  ascent-override: 89%;
+}
+
+@font-face {
+  font-family: 'Courier New';
+  font-weight: normal;
+  src: local('Courier New');
+  size-adjust: 93%;
+  ascent-override: 109%;
+}
+
+@font-face {
+  font-family: 'Courier New';
+  font-weight: bold;
+  src: local('Courier New Bold');
+  size-adjust: 93%;
+  ascent-override: 112%;
+}
+
 :root {
   --font-text: 'Iowan Old Style', 'Cambria', 'Liberation Serif', 'Times New Roman', 'BIZ UDMincho', 'YuMincho', 'iragino Mincho ProN', 'Noto Serif CJK JP', serif;
   --font-display: 'Helvetica Neue', 'Arial', 'Meiryo', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
-  --font-code: 'PT Mono', 'Lucida Console', 'Liberation Mono', 'Courier', 'Meiryo', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
+  --font-code: 'PT Mono', 'Consolas', 'Liberation Mono', 'Courier', 'Courier New', 'Meiryo', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', monospace;
 
   --font-scale-base: 1.125;
   --font-scale-1: calc(var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base) * var(--font-scale-base));
