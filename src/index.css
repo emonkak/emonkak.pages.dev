@@ -710,6 +710,7 @@ a.button {
   color: var(--blockquote-symbol-color);
   font-size: var(--blockquote-symbol-size);
   font-weight: bold;
+  line-height: 1;
   text-align: center;
 }
 
