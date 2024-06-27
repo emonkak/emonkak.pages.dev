@@ -968,7 +968,7 @@ function OthersPanel(_props) {
 
     return h('div', { class: 'sidebar-panel' },
         h('div', { class: 'sidebar-panel-container' },
-            h('div', { class: 'form-legend', role: 'heading' }, 'Optoins'),
+            h('div', { class: 'form-legend', role: 'heading' }, 'Options'),
             h('div', { class: 'form-stack is-vertical' },
                 h('label', { class: 'form-switch-label' },
                     h('span', {}, 'Hide Color Labels'),
