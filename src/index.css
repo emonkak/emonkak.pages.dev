@@ -281,6 +281,7 @@ html {
   color: var(--gray-10);
   touch-action: manipulation;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
