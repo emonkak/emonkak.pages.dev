@@ -626,7 +626,7 @@ a.button {
 }
 
 .figure.is-code > .figure-caption::before {
-  content: 'Source ' counter(code-count) '. ';
+  content: 'Code ' counter(code-count) '. ';
 }
 
 .figure.is-code[data-language]::before {
