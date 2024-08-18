@@ -184,7 +184,7 @@
   --font-size-xx-small: calc(1rem * var(--font-scale-9));
 
   --line-length: 40rem;
-  --line-feed: calc(1rem * 28 / 18);
+  --line-feed: 1.6rem;
 
   --scrollbar-size: 17px;
 
