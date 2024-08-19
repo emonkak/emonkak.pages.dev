@@ -294,9 +294,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, [role="heading"] {
-  --adjuster: calc(1 / 4);
-  --floor: calc((var(--font-scale, 1.0) - var(--adjuster)) / var(--adjuster));
-  --line-scale: max(var(--floor) * var(--adjuster), 1.0);
+  --step: 0.25;
+  --floor: calc((var(--font-scale, 1.0) - var(--step)) / var(--step));
+  --line-scale: max(var(--floor) * var(--step), 1.0);
   line-height: calc(var(--line-feed) * var(--line-scale));
   letter-spacing: -0.5px;
   font-family: var(--font-display);
@@ -320,7 +320,7 @@ h3, h4, h5, h6 {
 }
 
 :not(:where(h1, h2, h3, h4, h5, h6)) + :is(h3, h4, h5, h6) {
-  margin-block-start: var(--line-feed);
+  margin-block-start: calc(var(--line-feed) * 1.5);
 }
 
 h1 {
