@@ -654,11 +654,10 @@ a.button {
 }
 
 .figure.is-code > .figure-body > pre {
-  padding: calc(var(--line-feed) / 2 - 1px);
+  padding: calc(var(--line-feed) / 2);
   margin-block-end: 0;
   color: var(--gray-10);
   background-color: var(--code-background-color, var(--gray-2));
-  border: 1px solid var(--gray-3);
   border-radius: var(--r);
   overflow-x: auto;
   overflow-x: overlay;
