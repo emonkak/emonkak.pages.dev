@@ -563,7 +563,7 @@ a.button {
 /* Common  {{{3 */
 
 .figure-caption {
-  color: var(--gray-7);
+  color: var(--gray-8);
 }
 
 .figure-caption::before {
@@ -611,7 +611,7 @@ a.button {
   font-size: var(--font-size-small);
   font-weight: normal;
   overflow-wrap: anywhere;
-  color: var(--gray-7);
+  color: var(--gray-8);
   background-image: var(--favicon);
   background-repeat: no-repeat;
   background-size: 16px 16px;
@@ -883,7 +883,7 @@ a.footnote-back-reference {
 
 :where(.inline-list.is-separated) > .inline-list-item + .inline-list-item::before {
   content: '·';
-  color: var(--gray-7);
+  color: var(--gray-8);
   margin-inline: 0.5ch;
 }
 
@@ -1103,7 +1103,7 @@ a.article-card-item-title-anchor:hover {
 }
 
 .article-card-item-metadata {
-  color: var(--gray-7);
+  color: var(--gray-8);
   font-size: var(--font-size-small);
 }
 
