@@ -623,6 +623,9 @@ a.button {
 .figure.is-code {
   --r: var(--basic-border-radius);
   position: relative;
+}
+
+.figure.is-code:has(.figure-caption) {
   counter-increment: code-count;
 }
 
@@ -739,7 +742,7 @@ a.button {
 
 /* Table/HTML  {{{3 */
 
-.figure.is-table {
+.figure.is-table:has(.figure-caption) {
   counter-increment: table-count;
 }
 
@@ -791,6 +794,9 @@ a.button {
 
 .figure:is(.is-image, .is-html) {
   font-family: var(--font-display);
+}
+
+.figure:is(.is-image, .is-html):has(.figure-caption) {
   counter-increment: figure-count;
 }
 
