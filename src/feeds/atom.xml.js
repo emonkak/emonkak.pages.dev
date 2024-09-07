@@ -6,7 +6,7 @@ import { BASE_URL, SITE_NAME, TAGLINE } from '../../lib/constants.js';
 
 const MAX_FEED_ENTRIES = 20;
 
-export default function render(props) {
+export default function Atom(props) {
     const { site } = props;
     const articles = site
         .allArticles()

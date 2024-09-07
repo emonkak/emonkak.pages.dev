@@ -1,19 +1,18 @@
 import { h } from 'hastscript';
-import { toText } from 'hast-util-to-text';
 
-import renderLayout from '../../lib/templates/layout.js';
+import Layout from '../../lib/templates/layout.js';
 
-export default function render(props) {
+export default function Works(props) {
     const { site, resource } = props;
-    return renderLayout({
+    return Layout({
         title: 'Works',
-        content: renderContent(props),
+        content: Content(),
         resource,
         site,
     });
 }
 
-function renderContent(props) {
+function Content() {
     return h('main', { class: 'l-main' }, [
         h('div', { class: 'l-container' }, [
             h('div', { class: 'document' }, [

@@ -1,20 +1,19 @@
 import { h } from 'hastscript';
-import { toText } from 'hast-util-to-text';
 
-import renderArchiveList from '../../lib/templates/archiveList.js';
-import renderLayout from '../../lib/templates/layout.js';
+import ArchiveList from '../../lib/templates/archiveList.js';
+import Layout from '../../lib/templates/layout.js';
 
-export default function render(props) {
+export default function Articles(props) {
     const { site, resource } = props;
-    return renderLayout({
+    return Layout({
         title: 'Articles',
-        content: renderContent(props),
+        content: Content(props),
         resource,
         site,
     });
 }
 
-function renderContent(props) {
+function Content(props) {
     const { site } = props;
     const articlesByYear = site
         .allArticles()
@@ -35,7 +34,7 @@ function renderContent(props) {
                         const articles = articlesByYear[year];
                         return [
                             h('h2', year),
-                            renderArchiveList(articles),
+                            ArchiveList(articles),
                         ];
                     })
                     .flat(),
