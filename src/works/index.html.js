@@ -123,7 +123,7 @@ function renderContent(props) {
                     }),
                     renderWorkItem({
                         title: 'emonkak/orm',
-                        description: 'A strict typed Object-Relational Mapper',
+                        description: 'A strictly typed Object-Relational Mapper',
                         url: 'https://github.com/emonkak/php-random',
                     }),
                     renderWorkItem({
